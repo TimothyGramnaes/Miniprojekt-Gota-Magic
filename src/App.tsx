@@ -14,7 +14,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Hello wörld
+          Hello wörld!
         </a>
       </header>
     </div>
