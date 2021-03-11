@@ -13,6 +13,7 @@ function ProductList(props:Props) {
     console.log(products)
     return(
         <div>
+            {productData}
            <p>hej</p>
         </div>
     )
