@@ -33,11 +33,24 @@ function LandingPage() {
                     <Button variant="contained" color="primary">Våra Produkter</Button>
             </div>
         </div>
-            <div className="* flex centered" style={landingContainer}>
+            <div className="* flex centered column" style={landingContainer}>
 
-                <div className="flex centered" style={infoLandingContainer}>
+                <div className="flex centered column" style={infoLandingContainer}>
                     <div>
                         <img style={infoLandingContainerImage} src="./assets/imgs/planeswalkers.png" alt="planeswalkers" />
+                    </div>
+                    <div className="flex centered column" style={textLandingContainer}>
+                        <h2 className="padding2rem">Om oss</h2>
+                        <span></span>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis, quis! Iusto, fugiat vitae pariatur dolor explicabo veritatis commodi? Dignissimos facere error in ad, minima quidem nam. Doloribus minus ducimus exercitationem.</p>
+                        <h3 className="padding2rem">
+                            Underrubrik igen
+                        </h3>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo esse odio minima ipsa hic, nobis architecto amet? Porro neque in atque soluta eum officiis magni doloremque ipsum? Nihil, explicabo voluptates!</p>
+                        <div className="padding2rem">
+                            <Button variant="contained" color="primary">Våra Produkter</Button>
+                        </div>
                     </div>
 
                 </div>
@@ -77,15 +90,27 @@ const landingContainer: CSSProperties = {
 }
 
 const infoLandingContainer: CSSProperties = {
-    width: '100%',
-
-    padding: '4rem 2rem 2rem 2rem'
+    width: '80vw',
+    margin: '4rem 2rem 2rem 2rem',
+    top: 0,
+    bottom: 0,
+    borderRadius: '15px',
+    overflow: 'hidden'
 }
 
 const infoLandingContainerImage: CSSProperties = {
-    width: '80vw',
+    width: '100%',
     //height: 'auto',
-    objectFit: 'cover'
+    objectFit: 'cover',
+    top: 0,
+    bottom: 0,
+}
+
+const textLandingContainer: CSSProperties = {
+    width: '100%',
+    top: 0,
+    backgroundColor: '#E2E2E2',
+    padding: '1rem 3rem 3rem 3rem'
 }
 
 export default LandingPage;
