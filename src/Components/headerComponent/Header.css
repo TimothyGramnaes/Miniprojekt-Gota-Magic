@@ -1,0 +1,14 @@
+.header {
+  height: 5rem;
+  width: 100%;
+  background-color: lightgray;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.header-icon {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
