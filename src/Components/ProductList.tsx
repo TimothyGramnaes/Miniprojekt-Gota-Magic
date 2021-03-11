@@ -1,5 +1,4 @@
-import React from 'react'
-import Products from '../DB/Products'
+import { products } from '../DB/Products'
 
 interface Props {
 
@@ -7,8 +6,15 @@ interface Props {
 
 function ProductList(props:Props) {
 
+    const productData=products.map(product => {
+        <p>Namn: {product.productname}</p>
+        }
+    )
+    console.log(productData)
     return(
-        <p>Damn u</p>
+        <div>
+           <p>hej</p>
+        </div>
     )
 }
 

@@ -1,5 +1,6 @@
 
 import './App.css';
+import ProductList from './components/ProductList';
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
+        <ProductList />
         <a
           className="App-link"
           href="https://reactjs.org"

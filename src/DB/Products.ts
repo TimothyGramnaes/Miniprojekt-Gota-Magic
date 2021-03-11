@@ -1,4 +1,4 @@
-    const Products = [
+export const products = [
         {productname: "Ancestor's Chosen",
         cardtype:"Creature — Human Cleric",
         color:"White",
@@ -39,5 +39,3 @@
         view:true,
         },
     ]
-
-    export default Products
