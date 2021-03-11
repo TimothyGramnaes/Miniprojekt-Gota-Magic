@@ -1,11 +1,14 @@
 import React from 'react'
+import Footer from './Footer';
 import LandingPage from './LandingPage'
 
 function Layout() {
 
-    return(
-        <LandingPage />
-
+    return( 
+        <>
+            <LandingPage />
+            <Footer />
+        </>
     );
 
 }
