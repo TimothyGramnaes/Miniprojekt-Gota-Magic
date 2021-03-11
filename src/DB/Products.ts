@@ -1,4 +1,19 @@
-export const products = [
+interface Product {
+    productname: string
+    cardtype: string
+    color: string
+    cardtext: string
+    expansion: string
+    cmc: number
+    pt: number
+    image: string
+    id: number
+    price: number
+    producttype: string
+    view: boolean
+}
+
+export const products: Product[] = [
         {productname: "Ancestor's Chosen",
         cardtype:"Creature — Human Cleric",
         color:"White",

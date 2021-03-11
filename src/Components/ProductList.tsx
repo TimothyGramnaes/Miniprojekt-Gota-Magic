@@ -10,7 +10,7 @@ function ProductList(props:Props) {
         <p>Namn: {product.productname}</p>
         }
     )
-    console.log(productData)
+    console.log(products)
     return(
         <div>
            <p>hej</p>
