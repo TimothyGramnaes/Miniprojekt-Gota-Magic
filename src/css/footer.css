@@ -38,10 +38,6 @@ li {
   color: grey;
 }
 
-hr {
-  border-top: 1px solid lightgrey;
-}
-
 @media (max-width: 600px) {
   .content {
     flex-direction: column;
@@ -56,5 +52,10 @@ hr {
 
   ul {
     margin: 0 auto;
+  }
+
+  .divider-container {
+    width: 75%;
+    margin-bottom: 1rem;
   }
 }
