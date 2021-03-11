@@ -17,3 +17,7 @@
 .column {
   flex-direction: column;
 }
+
+.alignItemsCenter {
+  align-items: center;
+}
