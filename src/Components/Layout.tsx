@@ -1,3 +1,13 @@
+import React from 'react'
+import LandingPage from './LandingPage'
 
+function Layout() {
 
-export  {}
+    return(
+        <LandingPage />
+
+    );
+
+}
+
+export  default Layout;
