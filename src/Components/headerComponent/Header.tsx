@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Header.css";
 import Button from "@material-ui/core/Button";
-import ShoppingCart from "@material-ui/icons/ShoppingCart";
+import CustomizedBadges from "./styledBadge";
+import TemporaryDrawer from "./Drawer";
 
-const Header = () => {
+function Header() {
+  let [isOpen, setIsOpen] = useState(false);
+
   return (
     <div className="header">
       <div className="header-icon">
@@ -18,8 +21,12 @@ const Header = () => {
       <Button>Secondary</Button>
       <Button>Secondary</Button>
       <Button>Secondary</Button>
-      <ShoppingCart fontSize="large"></ShoppingCart>
+      <div className="cartIcon" onClick={() => setIsOpen(!isOpen)}>
+        {/* <CustomizedBadges></CustomizedBadges> */}
+      </div>
+      <TemporaryDrawer></TemporaryDrawer>
     </div>
   );
-};
+}
+
 export default Header;
