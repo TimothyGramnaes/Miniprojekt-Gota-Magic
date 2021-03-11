@@ -1,7 +1,7 @@
-import React from 'react'
-import Footer from './Footer';
-import LandingPage from './LandingPage'
+import React from 'react';
+import LandingPage from './LandingPage';
 import ProductList from './ProductList';
+import Footer from './Footer';
 
 function Layout() {
 
@@ -13,7 +13,6 @@ function Layout() {
         </>
 
     );
-
 }
 
 export  default Layout;
