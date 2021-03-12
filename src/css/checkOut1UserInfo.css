@@ -1,0 +1,55 @@
+.background {
+  background-image: url(../assets/images/what-the-hex.png);
+  padding: 2rem;
+}
+
+.grey-card {
+  background-color: #EDEDED;
+  padding: 3rem;
+  border-radius: 20px;
+}
+
+.left-side {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.right-side {
+  width: 20rem;
+  margin-left: 2rem;
+}
+
+.order-overview {
+  height: 100%;
+  border-left: rgb(208, 208, 208) solid 2px;
+}
+
+.headings {
+  margin-top: 1.5rem;
+}
+
+form {
+  margin: 2rem 0 3rem 0;
+  max-width: 30rem;
+}
+
+h2 {
+  margin-bottom: 1.5rem;
+  font-size: 1.75rem;
+}
+
+h3 {
+  font-weight: normal;
+  color: grey;
+  margin: 0;
+}
+
+h5 {
+  margin: 2rem 0 .5rem 0;
+  font-weight: normal;
+  color: grey;
+}
+
+.move-fwd-btn {
+  text-transform: none;
+}

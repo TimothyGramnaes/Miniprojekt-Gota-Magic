@@ -4,14 +4,16 @@ import ProductList from "./ProductList";
 import Footer from "./Footer";
 import Header from "./headerComponent/Header";
 import ProductPage from "./ProductPage";
+import CheckOut1UserInfo from "./CheckOut1UserInfo";
 
 function Layout() {
   return (
     <>
       <Header />
-      <LandingPage />
+      {/* <LandingPage />
       <ProductList />
-      <ProductPage/>
+      <ProductPage/> */}
+      <CheckOut1UserInfo />
       <Footer />
     </>
   );
