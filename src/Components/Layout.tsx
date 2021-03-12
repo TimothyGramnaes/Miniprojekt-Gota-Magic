@@ -9,9 +9,9 @@ function Layout() {
   return (
     <>
       <Header />
+      <LandingPage />
+      <ProductList />
       <ProductPage/>
-      {/* <LandingPage /> */}
-      {/* <ProductList /> */}
       <Footer />
     </>
   );
