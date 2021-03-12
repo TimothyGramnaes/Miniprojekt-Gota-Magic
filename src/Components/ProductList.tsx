@@ -77,8 +77,6 @@ function ProductList() {
         setProductViewArray(testArray)
     }
 
-    console.log(productViewArray)
-
     const handleChange = (e:any) => {
         setSearchValue(e.target.value)
     }
@@ -96,13 +94,13 @@ function ProductList() {
         const thisPageItems:number = pageItems - pageNumbers
         const thisPageNumber:number = pageNumber - 1
 
-        if(productListStart <= page) {
+        if(productListStart >= page) {
             return
-        }
-
+        } else {
         setPage(thisPage)
         setPageItems(thisPageItems)
         setPageNumber(thisPageNumber)
+        }
     }
 
     const increase = () => {
