@@ -1,4 +1,4 @@
-import React, { Props } from "react";
+import React from "react";
 import Badge from "@material-ui/core/Badge";
 import { Theme, withStyles, createStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
@@ -16,8 +16,11 @@ const StyledBadge = withStyles((theme: Theme) =>
 )(Badge);
 
 export default function CustomizedBadges() {
+  const handleDrawer = () => {
+    console.log("öppnadig");
+  };
   return (
-    <IconButton aria-label="cart">
+    <IconButton onClick={handleDrawer} aria-label="cart">
       <StyledBadge badgeContent={4} color="secondary">
         <ShoppingCartIcon />
       </StyledBadge>

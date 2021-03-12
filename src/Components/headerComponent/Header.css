@@ -31,3 +31,21 @@
   color: white;
   border-radius: 0px 2px 0px 20px;
 }
+.menu-bar {
+  display: flex;
+}
+.menu-button {
+  margin-left: 2rem;
+}
+.menu-burger-icon {
+  display: none;
+}
+@media screen and (max-width: 580px) {
+  .menu-bar {
+    display: none;
+    background-color: black;
+  }
+  .menu-burger-icon {
+    display: flex;
+  }
+}
