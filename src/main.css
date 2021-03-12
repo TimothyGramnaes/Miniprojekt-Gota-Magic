@@ -2,7 +2,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Merriweather', serif;
+  font-family: "Merriweather", serif;
 }
 
 .flex {
@@ -18,6 +18,20 @@
   flex-direction: column;
 }
 
+/* COLORS */
+.white {
+  color: white;
+}
+
+.padding2rem {
+  padding: 2rem;
+}
+
 .alignItemsCenter {
   align-items: center;
+}
+
+.paragraphs {
+  max-width: 75ch;
+  text-align: center;
 }

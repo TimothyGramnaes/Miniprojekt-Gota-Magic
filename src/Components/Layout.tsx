@@ -1,21 +1,18 @@
-import React from 'react'
-import Footer from './Footer';
-import LandingPage from './LandingPage'
-import ProductList from './ProductList';
-import ProductPage from './ProductPage';
+import React from "react";
+import LandingPage from "./LandingPage";
+import ProductList from "./ProductList";
+import Footer from "./Footer";
+import Header from "./headerComponent/Header";
 
 function Layout() {
-
-    return(
-        <>
-            <ProductPage />
-            {/* <LandingPage />
-            <ProductList /> */}
-            <Footer />
-        </>
-
-    );
-
+  return (
+    <>
+      <Header />
+      <LandingPage />
+      <ProductList />
+      <Footer />
+    </>
+  );
 }
 
-export  default Layout;
+export default Layout;
