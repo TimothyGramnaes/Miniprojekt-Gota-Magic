@@ -36,17 +36,16 @@ function LandingPage() {
             <div className="* flex centered column" style={landingContainer}>
 
                 <div className="flex centered column" style={infoLandingContainer}>
-                    <div>
-                        <img style={infoLandingContainerImage} src="./assets/imgs/planeswalkers.png" alt="planeswalkers" />
-                    </div>
+                  
+                        <img style={infoLandingContainerImage} src="./assets/imgs/planeswalkers.png" alt="planeswalkers" />                   
                     <div className="flex centered column" style={textLandingContainer}>
                         <h2 className="padding2rem">Om oss</h2>
                         <span></span>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis, quis! Iusto, fugiat vitae pariatur dolor explicabo veritatis commodi? Dignissimos facere error in ad, minima quidem nam. Doloribus minus ducimus exercitationem.</p>
+                        <p className="paragraphs">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis, quis! Iusto, fugiat vitae pariatur dolor explicabo veritatis commodi? Dignissimos facere error in ad, minima quidem nam. Doloribus minus ducimus exercitationem.</p>
                         <h3 className="padding2rem">
                             Underrubrik igen
                         </h3>
-                        <p>
+                        <p className="paragraphs">
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo esse odio minima ipsa hic, nobis architecto amet? Porro neque in atque soluta eum officiis magni doloremque ipsum? Nihil, explicabo voluptates!</p>
                         <div className="padding2rem">
                             <Button variant="contained" color="primary">Våra Produkter</Button>
@@ -77,7 +76,8 @@ const heroContainer: CSSProperties = {
 const heroP: CSSProperties = {
     padding: '1rem',
     textAlign: 'center',
-    margin: '1rem 0 2rem 0'
+    margin: '1rem 0 2rem 0',
+    maxWidth: '75ch'
 }
 
 const mainStyle: CSSProperties = {
@@ -91,6 +91,7 @@ const landingContainer: CSSProperties = {
 
 const infoLandingContainer: CSSProperties = {
     width: '80vw',
+    maxWidth: '75rem',
     margin: '4rem 2rem 2rem 2rem',
     top: 0,
     bottom: 0,
