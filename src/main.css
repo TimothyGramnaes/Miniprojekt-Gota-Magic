@@ -30,3 +30,8 @@
 .alignItemsCenter {
   align-items: center;
 }
+
+.paragraphs {
+  max-width: 75ch;
+  text-align: center;
+}
