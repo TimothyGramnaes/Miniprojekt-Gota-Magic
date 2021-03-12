@@ -1,6 +1,6 @@
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import './App.css';
-import Layout from './components/Layout'
+import Layout from './Components/Layout'
 
 const theme = createMuiTheme({
   palette: {
