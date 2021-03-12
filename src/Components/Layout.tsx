@@ -13,7 +13,7 @@ function Layout() {
       <LandingPage />
       <ProductList />
       <ProductPage/>
-      <CheckOut1UserInfo />
+      {/* <CheckOut1UserInfo /> */}
       <Footer />
     </>
   );
