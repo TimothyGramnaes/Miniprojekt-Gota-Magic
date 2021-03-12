@@ -37,7 +37,7 @@ function LandingPage() {
 
                 <div className="flex centered column" style={infoLandingContainer}>
                   
-                        <img style={infoLandingContainerImage} src="./assets/imgs/planeswalkers.png" alt="planeswalkers" />                   
+                        <img style={infoLandingContainerImage} src="./assets/imgs/mtg" alt="planeswalkers" />                   
                     <div className="flex centered column" style={textLandingContainer}>
                         <h2 className="padding2rem">Om oss</h2>
                         <span></span>
