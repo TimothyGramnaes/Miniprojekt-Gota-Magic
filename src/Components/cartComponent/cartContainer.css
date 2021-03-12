@@ -1,0 +1,49 @@
+.cartContainer {
+  max-width: 40rem;
+  width: 100%;
+  background-color: lightgray;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: solid 2px black;
+  padding: 1rem;
+}
+.itemContainer {
+  background-color: white;
+  width: 100%;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 1rem;
+  box-shadow: 2px 5px 10px rgb(184, 184, 184);
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+.productImageContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.img {
+  width: 5rem;
+  height: 5rem;
+  background-color: lightgray;
+}
+.numberContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.iconContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+p {
+  padding: 0.5rem;
+}
