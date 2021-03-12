@@ -1,5 +1,5 @@
 .background {
-  background-image: url(../what-the-hex.png);
+  background-image: url(../assets/images/what-the-hex.png);
   padding: 2rem;
 }
 
@@ -50,13 +50,14 @@
   border-bottom: 1px solid black;
   text-align: center;
   justify-content: space-between;
-  padding: .5rem 1rem;
+  padding: .5rem 3rem;
   max-width: 20rem;
+  margin-bottom: 2rem;
 }
 
 .add-to-cart-btn {
   width: fit-content;
-  margin-top: 2.5rem;
+  /* margin-top: 2.5rem; */
   text-transform: none;
 }
 

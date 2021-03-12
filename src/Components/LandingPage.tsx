@@ -85,7 +85,7 @@ const mainStyle: CSSProperties = {
 }
 
 const landingContainer: CSSProperties = {
-    backgroundImage: 'url(./assets/imgs/Rectangle.png)',    
+    backgroundImage: 'url(./assets/imgs/what-the-hex.png)',    
     height: '100%',
 }
 

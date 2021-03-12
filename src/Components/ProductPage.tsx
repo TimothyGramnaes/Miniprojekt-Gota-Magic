@@ -17,7 +17,7 @@ function ProductPage() {
 
             <div className="image-container flex">
               {/* Ta in product.image, byt diven nedan till en <img/> */}
-              <div className="image"></div>
+              <img src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=130550&type=card" alt=""/>
             </div>
 
             <div className="info-content flex column"> 
