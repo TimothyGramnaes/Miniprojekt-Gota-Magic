@@ -1,0 +1,51 @@
+.header {
+  height: 5rem;
+  width: 100%;
+  background-color: lightgray;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.header-icon {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.cartIcon {
+  z-index: 2;
+}
+.dropDown {
+  width: 20rem;
+  background-color: rgba(57, 57, 57, 0.6);
+  position: absolute;
+  top: 0;
+  left: 1;
+  right: 0;
+  bottom: 0;
+  max-height: 400px;
+  transition: all 500ms;
+  z-index: 1;
+  padding-top: 5rem;
+  margin-top: 5rem;
+  color: white;
+  border-radius: 0px 2px 0px 20px;
+}
+.menu-bar {
+  display: flex;
+}
+.menu-button {
+  margin-left: 2rem;
+}
+.menu-burger-icon {
+  display: none;
+}
+@media screen and (max-width: 580px) {
+  .menu-bar {
+    display: none;
+    background-color: black;
+  }
+  .menu-burger-icon {
+    display: flex;
+  }
+}
