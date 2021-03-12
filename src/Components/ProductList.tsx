@@ -16,6 +16,7 @@ function ProductList() {
     // Number of items in productlist
     const pageNumbers:number = 6
 
+    // Styling variables
     const productListContainer: CSSProperties ={
         backgroundImage: 'url(./assets/imgs/what-the-hex.png)',
     }
@@ -51,7 +52,9 @@ function ProductList() {
         margin: '2rem 1rem'
         
     }
+    // End styling variables
 
+    // The mapping of the product database
     const productData=productViewArray.slice(page, pageItems).map(product => (
         <div key={product.id}>
             <ProductListCard productname={product.productname} price={product.price} image={product.image}/>
@@ -59,8 +62,10 @@ function ProductList() {
         )
     )
 
-    
-    const testArray = products.filter((result) => {
+    // Filtering the product database with the searchvalue
+    // The searchvalue is broken down with length to slice the product database value to the lenght of the searchvalue
+    // Both value is formated to lowercase for easier compare
+    const filterdArray = products.filter((result) => {
         
         const searchlength = searchValue?.length
         const product = result.color
@@ -69,24 +74,29 @@ function ProductList() {
         return sliceProduct.toLowerCase() == searchValue?.toLowerCase()
     })
 
+    // Reset the pagination values and set the setProductViewArray with the full product database values
+    // And then sets the setProductViewArray to the filtered result
     const searchArray = () => {
         setPage(0)
         setPageItems(6)
         setPageNumber(1)
         setProductViewArray(products)
-        setProductViewArray(testArray)
+        setProductViewArray(filterdArray)
     }
 
+    // sets the input value to searchValue
     const handleChange = (e:any) => {
         setSearchValue(e.target.value)
     }
 
+    // When pressed it runs the seachArray function to show the search result
     const handleSubmit = (evt:any) => {
         // correctAnswer(props.value)
         searchArray()
         evt.preventDefault();
     }
 
+    // Goes back in the pagination
     const decrease = () => {
         const productListStart:number = productViewArray.length-productViewArray.length       
 
@@ -103,6 +113,7 @@ function ProductList() {
         }
     }
 
+    // Goes forward in pagination
     const increase = () => {
         const productListEnd = productViewArray.length
 
