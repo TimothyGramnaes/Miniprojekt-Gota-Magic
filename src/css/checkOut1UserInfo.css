@@ -38,7 +38,7 @@ h2 {
   font-size: 1.75rem;
 }
 
-h3 {
+.headings h3 {
   font-weight: normal;
   color: grey;
   margin: 0;
@@ -47,7 +47,6 @@ h3 {
 h5 {
   margin: 2rem 0 .5rem 0;
   font-weight: normal;
-  color: grey;
 }
 
 .move-fwd-btn {
