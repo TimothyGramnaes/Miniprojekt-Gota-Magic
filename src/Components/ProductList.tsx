@@ -10,6 +10,8 @@ function ProductList() {
     const [page, setPage] = useState(0)
     const [pageItems, setPageItems] = useState(6)
     const [pageNumber, setPageNumber] = useState(1)
+    const [productViewArray, setProductViewArray] = useState(products)
+    const [searchValue, setSearchValue] = useState<string>()
 
     // Number of items in productlist
     const pageNumbers:number = 6
@@ -25,8 +27,8 @@ function ProductList() {
         justifyContent: 'center',
         alignItems: 'center',
         flexWrap: 'wrap',
-        maxWidth: '70rem',
-        width: '100%',
+        maxWidth: '80vw',
+        width: '75rem',
         margin: '0 auto'
     }
 
@@ -50,30 +52,49 @@ function ProductList() {
         
     }
 
-    const productData=products.slice(page, pageItems).map(product => (
+    const productData=productViewArray.slice(page, pageItems).map(product => (
         <div key={product.id}>
             <ProductListCard productname={product.productname} price={product.price} image={product.image}/>
         </div>
         )
     )
 
-    const paginationData=products.slice(page, pageItems).map(item => (
-        <p>Kortnummer: {item.id}/ </p>
-    ))
+    const [array, setArray] = useState([])
+
+    const testArray = products.filter((result) => {
+        return result.color == searchValue
+    })
+
+    const searchArray = () => {
+        setPage(0)
+        setPageItems(6)
+        setPageNumber(1)
+        setProductViewArray(products)
+        setProductViewArray(testArray)
+    }
+
+    console.log(productViewArray)
+
+    const handleChange = (e:any) => {
+        Number(setSearchValue(e.target.value))
+    }
+
+    const handleSubmit = (evt:any) => {
+        // correctAnswer(props.value)
+        searchArray()
+        evt.preventDefault();
+    }
 
     const decrease = () => {
-        const productListStart:number = products.length-products.length       
+        const productListStart:number = productViewArray.length-productViewArray.length       
 
         const thisPage:number = page - pageNumbers
         const thisPageItems:number = pageItems - pageNumbers
         const thisPageNumber:number = pageNumber - 1
 
-        if(productListStart == page) {
+        if(productListStart <= page) {
             return
         }
-
-        console.log(productListStart)
-        console.log(page)
 
         setPage(thisPage)
         setPageItems(thisPageItems)
@@ -81,16 +102,13 @@ function ProductList() {
     }
 
     const increase = () => {
-        const productListEnd = products.length
+        const productListEnd = productViewArray.length
 
         const thisPage:number = page + pageNumbers
         const thisPageItems:number = pageItems + pageNumbers
         const thisPageNumber:number = pageNumber + 1
 
-        console.log(productListEnd)
-        console.log(pageItems+pageNumbers)
-
-        if(productListEnd == pageItems) {
+        if(productListEnd <= pageItems) {
             return
         } else {
             setPage(thisPage)
@@ -102,8 +120,8 @@ function ProductList() {
     return(
         <div className="productListContainer" style={productListContainer}>
             <div style={listStyle}>            
-                {productData}
-                
+                {productData}            
+                    
                 <div className="productListBtn" style={productListBtnStyle}>
                     <IconButton onClick={decrease}>
                         <ArrowBackIcon />
@@ -115,6 +133,10 @@ function ProductList() {
                         <ArrowForwardIcon />
                     </IconButton>
                 </div>
+                <form onSubmit={handleSubmit}>
+                    <input type="text" value={searchValue} onChange={handleChange}/>
+                    <input type="submit" value='Tryck'/>
+                </form>
             </div>
         </div>
     )
