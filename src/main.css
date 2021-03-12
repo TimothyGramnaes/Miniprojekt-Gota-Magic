@@ -26,3 +26,7 @@
 .padding2rem {
   padding: 2rem;
 }
+
+.alignItemsCenter {
+  align-items: center;
+}
