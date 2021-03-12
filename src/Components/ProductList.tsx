@@ -96,6 +96,7 @@ function ProductList() {
         evt.preventDefault();
     }
 
+    // Reset the searchvalue and sets the input to blank
     const resetSearch = () => {
         setPage(0)
         setPageItems(6)
