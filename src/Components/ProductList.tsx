@@ -59,10 +59,14 @@ function ProductList() {
         )
     )
 
-    const [array, setArray] = useState([])
-
+    
     const testArray = products.filter((result) => {
-        return result.color == searchValue
+        
+        const searchlength = searchValue?.length
+        const product = result.color
+        const sliceProduct = product.slice(0, searchlength)
+
+        return sliceProduct.toLowerCase() == searchValue?.toLowerCase()
     })
 
     const searchArray = () => {
@@ -76,7 +80,7 @@ function ProductList() {
     console.log(productViewArray)
 
     const handleChange = (e:any) => {
-        Number(setSearchValue(e.target.value))
+        setSearchValue(e.target.value)
     }
 
     const handleSubmit = (evt:any) => {
