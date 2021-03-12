@@ -19,7 +19,7 @@ function ProductList() {
         justifyContent: 'center',
         alignItems: 'center',
         flexWrap: 'wrap',
-        maxWidth: '48rem',
+        maxWidth: '60rem',
         width: '100%',
         margin: '0 auto'
     }
