@@ -14,12 +14,18 @@ function ProductList() {
     // Number of items in productlist
     const pageNumbers:number = 6
 
-    const listStyle: CSSProperties = {
+    const productListContainer: CSSProperties ={
+        backgroundImage: 'url(./assets/imgs/what-the-hex.png)',
+    }
+
+    const listStyle: CSSProperties = {    
+        backgroundColor: '#EDEDED',  
+        borderRadius: '10px',  
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         flexWrap: 'wrap',
-        maxWidth: '60rem',
+        maxWidth: '70rem',
         width: '100%',
         margin: '0 auto'
     }
@@ -94,7 +100,7 @@ function ProductList() {
     }
 
     return(
-        <div className="productListContainer">
+        <div className="productListContainer" style={productListContainer}>
             <div style={listStyle}>            
                 {productData}
                 
