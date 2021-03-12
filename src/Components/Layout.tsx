@@ -5,6 +5,7 @@ import Footer from "./Footer";
 import Header from "./headerComponent/Header";
 import ProductPage from "./ProductPage";
 import BreadCrumbs from "./BreadCrumbs";
+import CheckOut1UserInfo from "./CheckOut1UserInfo";
 
 function Layout() {
   return (
@@ -14,6 +15,7 @@ function Layout() {
       <LandingPage />
       <ProductList />
       <ProductPage/>
+      {/* <CheckOut1UserInfo /> */}
       <Footer />
     </>
   );
