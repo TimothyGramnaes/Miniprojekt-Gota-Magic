@@ -33,7 +33,7 @@ form {
   max-width: 30rem;
 }
 
-h2 {
+.headings h2 {
   margin-bottom: 1.5rem;
   font-size: 1.75rem;
 }
@@ -44,7 +44,7 @@ h2 {
   margin: 0;
 }
 
-h5 {
+form h5 {
   margin: 2rem 0 .5rem 0;
   font-weight: normal;
 }
