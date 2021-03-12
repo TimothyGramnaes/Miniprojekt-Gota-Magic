@@ -1,20 +1,26 @@
+import { CSSProperties } from '@material-ui/styles'
 import { products } from '../DB/Products'
+import ProductListCard from './ProductListCard'
 
-interface Props {
+function ProductList() {
+    const listStyle: CSSProperties = {
+        display: 'flex',
+        flexWrap: 'wrap',
+        maxWidth: '48rem',
+        width: '100%',
+        margin: '0 auto'
+    }
 
-}
-
-function ProductList(props:Props) {
-
-    const productData=products.map(product => {
-        <p>Namn: {product.productname}</p>
-        }
+    const productData=products.map(product => (
+        <div key={product.id}>
+            <ProductListCard productname={product.productname} price={product.price} image={product.image}/>
+        </div>
+        )
     )
-    console.log(products)
+
     return(
-        <div>
+        <div style={listStyle}>            
             {productData}
-           <p>hej</p>
         </div>
     )
 }
