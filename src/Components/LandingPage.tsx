@@ -19,7 +19,7 @@ function LandingPage() {
                     <h3
                     style={ {fontSize: '2.5rem',
                             } } 
-                    className="white">Våra Produkter</h3>
+                    className="white">Göta Magic</h3>
                     <p
                     className="white flex centered" 
                     style={heroP}
