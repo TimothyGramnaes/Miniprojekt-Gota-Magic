@@ -12,10 +12,10 @@ function LandingPage() {
         <>
         <div className="* flex column" style={mainStyle}>
 
-            <div className="heroContainer">            
-            <div 
-                className="flex centered"
-                style={heroContainer}>
+            <div className="heroContainer" >            
+                 <div 
+                    className="flex centered"
+                    style={heroContainer}>
                     <h3
                     style={ {fontSize: '2.5rem',
                             } } 
@@ -31,14 +31,14 @@ function LandingPage() {
                         reiciendis ex earum?</p>
 
                     <Button variant="contained" color="primary">Våra Produkter</Button>
+                </div>
             </div>
-        </div>
             <div className="* flex centered column" style={landingContainer}>
 
                 <div className="flex centered column" style={infoLandingContainer}>
-                    <div>
-                        <img style={infoLandingContainerImage} src="./assets/imgs/planeswalkers.png" alt="planeswalkers" />
-                    </div>
+                    
+                    <img style={infoLandingContainerImage} src="./assets/imgs/planeswalkers.png" alt="planeswalkers" />
+                    
                     <div className="flex centered column" style={textLandingContainer}>
                         <h2 className="padding2rem">Om oss</h2>
                         <span></span>
@@ -100,7 +100,7 @@ const infoLandingContainer: CSSProperties = {
 
 const infoLandingContainerImage: CSSProperties = {
     width: '100%',
-    //height: 'auto',
+    // height: 'auto',
     objectFit: 'cover',
     top: 0,
     bottom: 0,
