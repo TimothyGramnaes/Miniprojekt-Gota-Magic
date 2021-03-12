@@ -96,6 +96,14 @@ function ProductList() {
         evt.preventDefault();
     }
 
+    const resetSearch = () => {
+        setPage(0)
+        setPageItems(6)
+        setPageNumber(1)
+        setProductViewArray(products)
+        setSearchValue("")
+    }
+
     // Goes back in the pagination
     const decrease = () => {
         const productListStart:number = productViewArray.length-productViewArray.length       
@@ -148,8 +156,9 @@ function ProductList() {
                 </div>
                 <form onSubmit={handleSubmit}>
                     <input type="text" value={searchValue} onChange={handleChange}/>
-                    <input type="submit" value='Tryck'/>
+                    <input type="submit" value='Sök'/>
                 </form>
+                    <button onClick={resetSearch}>Reset</button>
             </div>
         </div>
     )
