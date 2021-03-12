@@ -17,10 +17,13 @@ interface Props{
 
 const useStyles = makeStyles({
     card: {
-        maxWidth: 200,
+        maxWidth: 250,
         display: 'flex',
         justifyContent: 'center',
         margin: '1rem',
+    },
+    cardContent: {
+        padding: '1rem 2rem'
     },
     media: {
         height: 230,
@@ -42,7 +45,8 @@ function ProductListCard(props:Props) {
 
     return(
         <Card className={style.card}>
-            <CardContent>                
+            <CardContent 
+                className={style.cardContent}>                
                 <CardMedia
                 className={style.media}
                 image={props.image}/>
