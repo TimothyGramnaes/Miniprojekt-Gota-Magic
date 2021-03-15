@@ -52,6 +52,13 @@ function ProductList() {
         margin: '2rem 1rem'
         
     }
+
+    const searchStyle: CSSProperties = {
+        width: '100%',
+        justifyContent: 'center',
+        display: 'flex',
+        paddingBottom: '2rem'
+    }
     // End styling variables
 
     // The mapping of the product database
@@ -68,10 +75,22 @@ function ProductList() {
     const filterdArray = products.filter((result) => {
         
         const searchlength = searchValue?.length
-        const product = result.color
-        const sliceProduct = product.slice(0, searchlength)
+        const productColor = result.color
+        const sliceProductColor = productColor.slice(0, searchlength)
+        const productName = result.productname
+        const sliceProductName = productName.slice(0, searchlength)
+        const productExpansion = result.expansion
+        const sliceProductExpansion = productExpansion.slice(0, searchlength)
 
-        return sliceProduct.toLowerCase() == searchValue?.toLowerCase()
+        if (searchValue?.toLowerCase() == sliceProductColor.toLowerCase()) {
+            return searchValue?.toLowerCase()
+        } else if (searchValue?.toLowerCase() == sliceProductName.toLowerCase()) {
+            return searchValue?.toLowerCase()
+        } else if (searchValue?.toLowerCase() == sliceProductExpansion.toLowerCase()) {
+            return searchValue?.toLowerCase()
+        }
+
+        // return searchValue?.toLowerCase() == sliceProduct.toLowerCase()
     })
 
     // Reset the pagination values and set the setProductViewArray with the full product database values
@@ -141,7 +160,15 @@ function ProductList() {
 
     return(
         <div className="productListContainer" style={productListContainer}>
-            <div style={listStyle}>            
+                <div className="searchContainer" style={searchStyle}>       
+                    <form onSubmit={handleSubmit}>
+                        <input type="text" value={searchValue} onChange={handleChange}/>
+                        <input type="submit" value='Sök'/>
+                    </form>
+                    <button onClick={resetSearch}>Reset</button>
+                </div>
+            <div style={listStyle}>     
+
                 {productData}            
                     
                 <div className="productListBtn" style={productListBtnStyle}>
@@ -155,11 +182,7 @@ function ProductList() {
                         <ArrowForwardIcon />
                     </IconButton>
                 </div>
-                <form onSubmit={handleSubmit}>
-                    <input type="text" value={searchValue} onChange={handleChange}/>
-                    <input type="submit" value='Sök'/>
-                </form>
-                    <button onClick={resetSearch}>Reset</button>
+                
             </div>
         </div>
     )
