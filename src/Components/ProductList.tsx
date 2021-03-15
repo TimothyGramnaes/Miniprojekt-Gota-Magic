@@ -2,11 +2,22 @@ import { CSSProperties } from '@material-ui/styles'
 import { products } from '../DB/Products'
 import ProductListCard from './ProductListCard'
 import { useState } from 'react'
-import { IconButton, Grid } from '@material-ui/core'
+import { IconButton, Grid, TextField, Button, makeStyles } from '@material-ui/core'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
+const useStyles = makeStyles({
+    searchfield: {
+        width: '20rem'        
+    },
+    resetBtn: {
+        marginLeft: '1rem'
+    }
+});
+
 function ProductList() {
+
+    const style = useStyles();
 
     // Number of items in productlist
     const [pageNumbers, setPageNumbers] = useState(12)
@@ -17,23 +28,20 @@ function ProductList() {
     const [productViewArray, setProductViewArray] = useState(products)
     const [searchValue, setSearchValue] = useState<string>()
 
-    
+
 
     // Styling variables
     const productListContainer: CSSProperties ={
         backgroundImage: 'url(./assets/imgs/what-the-hex.png)',
     }
 
-    const listStyle: CSSProperties = {    
-        backgroundColor: '#EDEDED',  
-        borderRadius: '10px',  
+    const listStyle: CSSProperties = {
+        backgroundColor: '#EDEDED',
+        borderRadius: '10px',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         flexWrap: 'wrap',
-        // maxWidth: '80vw',
-        // width: '75rem',
-        // margin: '0 auto'
     }
 
     const productListBtnStyle: CSSProperties = {
@@ -53,7 +61,7 @@ function ProductList() {
         justifyContent: 'center',
         alignItems: 'center',
         margin: '2rem 1rem'
-        
+
     }
 
     const searchStyle: CSSProperties = {
@@ -62,6 +70,7 @@ function ProductList() {
         display: 'flex',
         paddingBottom: '2rem'
     }
+
     // End styling variables
 
     // The mapping of the product database
@@ -76,7 +85,7 @@ function ProductList() {
     // The searchvalue is broken down with length to slice the product database value to the lenght of the searchvalue
     // Both value is formated to lowercase for easier compare
     const filterdArray = products.filter((result) => {
-        
+
         const searchlength = searchValue?.length
         const productColor = result.color
         const sliceProductColor = productColor.slice(0, searchlength)
@@ -109,12 +118,13 @@ function ProductList() {
     // sets the input value to searchValue
     const handleChange = (e:any) => {
         setSearchValue(e.target.value)
+        setTimeout(()=>{searchArray() }, 500)
     }
 
     // When pressed it runs the seachArray function to show the search result
     const handleSubmit = (evt:any) => {
         // correctAnswer(props.value)
-        searchArray()
+        resetSearch()
         evt.preventDefault();
     }
 
@@ -129,7 +139,7 @@ function ProductList() {
 
     // Goes back in the pagination
     const decrease = () => {
-        const productListStart:number = productViewArray.length-productViewArray.length       
+        const productListStart:number = productViewArray.length-productViewArray.length
 
         const thisPage:number = page - pageNumbers
         const thisPageItems:number = pageItems - pageNumbers
@@ -163,15 +173,14 @@ function ProductList() {
 
     return(
         <Grid container justify="center" alignItems="center" className="productListContainer" style={productListContainer}>
-            <Grid item xs={12} className="searchContainer" style={searchStyle}>       
+            <Grid item xs={12} className="searchContainer" style={searchStyle}>
                 <form onSubmit={handleSubmit}>
-                    <input type="text" value={searchValue} onChange={handleChange}/>
-                    <input type="submit" value='Sök'/>
+                <TextField id="filled-basic" label="Filled" variant="filled" className={style.searchfield} value={searchValue} onChange={handleChange} />
                 </form>
-                <button onClick={resetSearch}>Reset</button>
+                <Button onClick={resetSearch} className={style.resetBtn} variant="contained" color="primary">Reset</Button>
             </Grid>
-            <Grid item xs={12} md={8} style={listStyle}>     
-                
+            <Grid item xs={12} md={8} style={listStyle}>
+
                 {productData}
 
                 <Grid item xs={12} className="productListBtn" style={productListBtnStyle}>
@@ -185,7 +194,7 @@ function ProductList() {
                         <ArrowForwardIcon />
                     </IconButton>
                 </Grid>
-                
+
             </Grid>
         </Grid>
     )
