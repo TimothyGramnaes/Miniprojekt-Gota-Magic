@@ -2,19 +2,22 @@ import { CSSProperties } from '@material-ui/styles'
 import { products } from '../DB/Products'
 import ProductListCard from './ProductListCard'
 import { useState } from 'react'
-import { IconButton } from '@material-ui/core'
+import { IconButton, Grid } from '@material-ui/core'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
 function ProductList() {
+
+    // Number of items in productlist
+    const [pageNumbers, setPageNumbers] = useState(12)
+
     const [page, setPage] = useState(0)
-    const [pageItems, setPageItems] = useState(6)
+    const [pageItems, setPageItems] = useState(pageNumbers)
     const [pageNumber, setPageNumber] = useState(1)
     const [productViewArray, setProductViewArray] = useState(products)
     const [searchValue, setSearchValue] = useState<string>()
 
-    // Number of items in productlist
-    const pageNumbers:number = 6
+    
 
     // Styling variables
     const productListContainer: CSSProperties ={
@@ -28,9 +31,9 @@ function ProductList() {
         justifyContent: 'center',
         alignItems: 'center',
         flexWrap: 'wrap',
-        maxWidth: '80vw',
-        width: '75rem',
-        margin: '0 auto'
+        // maxWidth: '80vw',
+        // width: '75rem',
+        // margin: '0 auto'
     }
 
     const productListBtnStyle: CSSProperties = {
@@ -97,7 +100,7 @@ function ProductList() {
     // And then sets the setProductViewArray to the filtered result
     const searchArray = () => {
         setPage(0)
-        setPageItems(6)
+        setPageItems(pageNumbers)
         setPageNumber(1)
         setProductViewArray(products)
         setProductViewArray(filterdArray)
@@ -118,7 +121,7 @@ function ProductList() {
     // Reset the searchvalue and sets the input to blank
     const resetSearch = () => {
         setPage(0)
-        setPageItems(6)
+        setPageItems(pageNumbers)
         setPageNumber(1)
         setProductViewArray(products)
         setSearchValue("")
@@ -159,19 +162,19 @@ function ProductList() {
     }
 
     return(
-        <div className="productListContainer" style={productListContainer}>
-                <div className="searchContainer" style={searchStyle}>       
-                    <form onSubmit={handleSubmit}>
-                        <input type="text" value={searchValue} onChange={handleChange}/>
-                        <input type="submit" value='Sök'/>
-                    </form>
-                    <button onClick={resetSearch}>Reset</button>
-                </div>
-            <div style={listStyle}>     
+        <Grid container justify="center" alignItems="center" className="productListContainer" style={productListContainer}>
+            <Grid item xs={12} className="searchContainer" style={searchStyle}>       
+                <form onSubmit={handleSubmit}>
+                    <input type="text" value={searchValue} onChange={handleChange}/>
+                    <input type="submit" value='Sök'/>
+                </form>
+                <button onClick={resetSearch}>Reset</button>
+            </Grid>
+            <Grid item xs={12} md={8} style={listStyle}>     
+                
+                {productData}
 
-                {productData}            
-                    
-                <div className="productListBtn" style={productListBtnStyle}>
+                <Grid item xs={12} className="productListBtn" style={productListBtnStyle}>
                     <IconButton onClick={decrease}>
                         <ArrowBackIcon />
                     </IconButton>
@@ -181,10 +184,10 @@ function ProductList() {
                     <IconButton onClick={increase}>
                         <ArrowForwardIcon />
                     </IconButton>
-                </div>
+                </Grid>
                 
-            </div>
-        </div>
+            </Grid>
+        </Grid>
     )
 }
 
