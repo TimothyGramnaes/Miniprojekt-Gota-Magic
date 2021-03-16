@@ -43,7 +43,7 @@ const useStyles = makeStyles({
 function ProductListCard(props: Props) {
   const usecart = useCart();
   const style = useStyles();
-
+  console.log(usecart);
   return (
     <Grid container>
       <Grid item xs={12}>

@@ -28,23 +28,25 @@ export const CartContextProvider: FunctionComponent = ({ children }) => {
   };
 
   const addToCart = (itemName: string, price: number, image: string) => {
-    //     let existingItem = cart.find(
-    //       (item) => item.itemName == itemName
-    //     ) as orderItem;
-    //     let newItem: orderItem = {
-    //       itemName: itemName,
-    //       price: price,
-    //       img: image,
-    //       quantity: existingItem ? existingItem.quantity + 1 : 1,
-    //     };
-    //     let newCart = [
-    //       ...cart.filter((item) => {
-    //         return item.itemName !== itemName;
-    //       }),
-    //     ];
-    //     setCart([...newCart, newItem]);
-    console.log(cart);
+    let existingItem = cart.find(
+      (item) => item.itemName == itemName
+    ) as orderItem;
+    let newItem: orderItem = {
+      itemName: itemName,
+      price: price,
+      img: image,
+      quantity: existingItem ? existingItem.quantity + 1 : 1,
+    };
+
+    let newCart = [
+      ...cart.filter((item) => {
+        return item.itemName !== itemName;
+      }),
+    ];
+    setCart([...newCart, newItem]);
+    console.log("cart");
   };
+
   const removeFromCart = (productName: string) => {
     let newCart = [
       ...cart.filter((item) => {
