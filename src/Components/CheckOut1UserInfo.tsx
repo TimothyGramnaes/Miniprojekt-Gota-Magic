@@ -3,6 +3,7 @@ import '../css/checkOut1UserInfo.css'
 import '../main.css'
 import { Button } from '@material-ui/core';
 import { useEffect, useState } from 'react'
+import BreadCrumbs from './BreadCrumbs';
 
 // Interface to the userObject array
 interface User {
@@ -13,6 +14,8 @@ interface User {
   city: string,
   postnumber: string
 }
+
+
 
 function CheckOut1UserInfo() {
 
@@ -73,10 +76,6 @@ function CheckOut1UserInfo() {
     localStorage.setItem('user', JSON.stringify(userObject))
   })
 
-  const fetchUserFromLS = () => {
-    const fetch = localStorage.getItem('user');
-    // console.log(fetch.name)  
-  }
 
   return (
     <div className="background">
@@ -85,8 +84,7 @@ function CheckOut1UserInfo() {
 
           <div className="left-side">
             <div className="breadcrumbs">
-              {/* Här tar vi in breadcrumbs komponenten, och tar bort den temporära texten nedanför */}
-              <span>---------------Breadcrumbs----------------</span>
+              <BreadCrumbs />
             </div>
             <div className="headings">
               <h2>Utcheckning</h2>
@@ -114,6 +112,13 @@ function CheckOut1UserInfo() {
           <div className="right-side">
             <div className="order-overview">
               {/* Här tar vi in order komponenten, och tar bort den temporära nedanför */}
+              <h3>Din beställning</h3>
+              <h4>Produktnamn</h4>
+              <span>199 kr</span>
+              <h4>Produktnamn</h4>
+              <span>199 kr</span>
+              <h4>Produktnamn</h4>
+              <span>199 kr</span>
             </div>
           </div>
 
