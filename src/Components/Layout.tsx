@@ -12,11 +12,11 @@ function Layout() {
   return (
     <>
       <Header />
-      {/* <BreadCrumbs />
+      <BreadCrumbs />
       <LandingPage />
       <ProductList />
       <ProductPage/>
-      <CheckOut1UserInfo /> */}
+      <CheckOut1UserInfo />
       <CheckOut2Shipping />
       <Footer />
     </>
