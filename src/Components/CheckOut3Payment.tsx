@@ -27,7 +27,7 @@ function CardPaymentModal() {
           </div>
         </div>
       </form>
-      <Button variant="contained" color="primary" className="move-fwd-btn">Välj Fraktsätt</Button>
+      <Button variant="contained" color="primary" className="move-fwd-btn">Bekräfta order och betala</Button>
     </div>
   )
 }
@@ -35,9 +35,9 @@ function CardPaymentModal() {
 function BillPaymentModal() {
   return (
     <div className="bill-modal">
-      {/* Här byts exempeltexten ut mot informationen användaren matat in tidigare, som sparats i local storage */}
+      {/* Här byts exempeladressen ut mot adressen användaren matat in tidigare */}
       <p className="payment-info-text">Din faktura kommer skickas till Exempelgatan 33</p>
-      <Button variant="contained" color="primary" className="move-fwd-btn">Välj Fraktsätt</Button>
+      <Button variant="contained" color="primary" className="move-fwd-btn">Bekräfta order och betala</Button>
     </div>
   )
 }
@@ -45,9 +45,9 @@ function BillPaymentModal() {
 function SMSLoanPaymentModal() {
   return (
     <div className="sms-loan-modal">
-      {/* Här byts exempeltexten ut mot informationen användaren matat in tidigare, som sparats i local storage */}
+      {/* Här byts exempelnumret ut mot telefonnumret användaren matat in tidigare */}
       <p className="payment-info-text">Information kring din betalning kommer skickas till 0701 23 45 67</p>
-      <Button variant="contained" color="primary" className="move-fwd-btn">Välj Fraktsätt</Button>
+      <Button variant="contained" color="primary" className="move-fwd-btn">Bekräfta order och betala</Button>
     </div>
   )
 }
@@ -58,23 +58,21 @@ function CheckOut3Payment() {
 
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue((event.target as HTMLInputElement).value);
-    console.log('value was changed')
   }
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    console.log('value after submit is: ' + value)
+    // event.preventDefault();
 
-    return (
-      value === 'kort' ? 
-      <CardPaymentModal />
+    // return (
+    //   value === 'betalaSenare' ? 
+    //   <SMSLoanPaymentModal />
 
-      : value === 'faktura' ? 
-      <BillPaymentModal />
+    //   : value === 'faktura' ? 
+    //   <BillPaymentModal />
 
-      :
-      <SMSLoanPaymentModal />
-    )
+    //   :
+    //   <CardPaymentModal />
+    // )
   }
 
   return (
@@ -100,18 +98,17 @@ function CheckOut3Payment() {
                   </RadioGroup>
                 </FormControl>
               </form>
-              {/* Payment modal */}
 
-
-              {value === 'kort' ? 
-              <CardPaymentModal />
+              {value === 'betalaSenare' ? 
+              <SMSLoanPaymentModal />
 
               : value === 'faktura' ? 
               <BillPaymentModal />
 
-              :
-              <SMSLoanPaymentModal />}
+              : value === 'kort' ?
+              <CardPaymentModal />
 
+              : ''}
 
             </div>
           </div>

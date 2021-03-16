@@ -76,6 +76,8 @@ form h5 {
 
 .expiration-date .fields span {
   margin: 0 1rem;
+  display: flex;
+  align-items: center;
 }
 
 .payment-info-text {
