@@ -78,6 +78,10 @@ form h5 {
   margin: 0 1rem;
 }
 
+.payment-info-text {
+  margin-bottom: 3rem;
+}
+
 @media (max-width: 950px) {
   .container {
     flex-direction: column;

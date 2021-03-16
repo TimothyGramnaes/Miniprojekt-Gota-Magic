@@ -36,7 +36,7 @@ function BillPaymentModal() {
   return (
     <div className="bill-modal">
       {/* Här byts exempeltexten ut mot informationen användaren matat in tidigare, som sparats i local storage */}
-      <p>Din faktura kommer skickas till Exempelgatan 33</p>
+      <p className="payment-info-text">Din faktura kommer skickas till Exempelgatan 33</p>
       <Button variant="contained" color="primary" className="move-fwd-btn">Välj Fraktsätt</Button>
     </div>
   )
@@ -46,7 +46,7 @@ function SMSLoanPaymentModal() {
   return (
     <div className="sms-loan-modal">
       {/* Här byts exempeltexten ut mot informationen användaren matat in tidigare, som sparats i local storage */}
-      <p>Information kring din betalning kommer skickas till 0701 23 45 67</p>
+      <p className="payment-info-text">Information kring din betalning kommer skickas till 0701 23 45 67</p>
       <Button variant="contained" color="primary" className="move-fwd-btn">Välj Fraktsätt</Button>
     </div>
   )
@@ -58,7 +58,7 @@ function CheckOut3Payment() {
 
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue((event.target as HTMLInputElement).value);
-    console.log(value)
+    console.log('value was changed')
   }
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -66,7 +66,7 @@ function CheckOut3Payment() {
     console.log('value after submit is: ' + value)
 
     return (
-      value === 'card' ? 
+      value === 'kort' ? 
       <CardPaymentModal />
 
       : value === 'faktura' ? 
@@ -98,13 +98,19 @@ function CheckOut3Payment() {
                     <FormControlLabel value="faktura" control={<Radio />} label="Faktura" />
                     <FormControlLabel value="betalaSenare" control={<Radio />} label="Köp nu - Betala senare, med SMS-lån" />
                   </RadioGroup>
-                  <Button type="submit" variant="contained" color="primary" className="choose-payment-btn">Välj Betalmetod</Button>
                 </FormControl>
               </form>
               {/* Payment modal */}
 
 
-              
+              {value === 'kort' ? 
+              <CardPaymentModal />
+
+              : value === 'faktura' ? 
+              <BillPaymentModal />
+
+              :
+              <SMSLoanPaymentModal />}
 
 
             </div>
