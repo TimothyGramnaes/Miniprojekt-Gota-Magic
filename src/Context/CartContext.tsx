@@ -9,9 +9,9 @@ type Context = {
   getCartSize: () => number;
   addToCart: (itemName: string, price: number, image: string) => void;
   cart: orderItem[];
-
   removeFromCart: (productName: string) => void;
 };
+
 const CartContext = createContext<Context>(undefined!);
 type orderItem = {
   //   itemId: number;
@@ -20,31 +20,29 @@ type orderItem = {
   img: string;
   quantity: number;
 };
+
 export const CartContextProvider: FunctionComponent = ({ children }) => {
   const [cart, setCart] = useState<orderItem[]>([]);
-
   const getCartSize = () => {
     return cart.length;
   };
 
   const addToCart = (itemName: string, price: number, image: string) => {
-    let existingItem = cart.find(
-      (item) => item.itemName == itemName
-    ) as orderItem;
-
-    let newItem: orderItem = {
-      itemName: itemName,
-      price: price,
-      img: image,
-      quantity: existingItem ? existingItem.quantity + 1 : 1,
-    };
-    let newCart = [
-      ...cart.filter((item) => {
-        return item.itemName !== itemName;
-      }),
-    ];
-
-    setCart([...newCart, newItem]);
+    //     let existingItem = cart.find(
+    //       (item) => item.itemName == itemName
+    //     ) as orderItem;
+    //     let newItem: orderItem = {
+    //       itemName: itemName,
+    //       price: price,
+    //       img: image,
+    //       quantity: existingItem ? existingItem.quantity + 1 : 1,
+    //     };
+    //     let newCart = [
+    //       ...cart.filter((item) => {
+    //         return item.itemName !== itemName;
+    //       }),
+    //     ];
+    //     setCart([...newCart, newItem]);
     console.log(cart);
   };
   const removeFromCart = (productName: string) => {
@@ -54,6 +52,7 @@ export const CartContextProvider: FunctionComponent = ({ children }) => {
       }),
     ];
     setCart([...newCart]);
+    console.log(cart);
   };
 
   return (

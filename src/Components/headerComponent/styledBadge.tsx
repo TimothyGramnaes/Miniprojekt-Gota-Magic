@@ -3,6 +3,7 @@ import Badge from "@material-ui/core/Badge";
 import { Theme, withStyles, createStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import { useCart } from "../../Context/CartContext";
 
 const StyledBadge = withStyles((theme: Theme) =>
   createStyles({
@@ -16,12 +17,13 @@ const StyledBadge = withStyles((theme: Theme) =>
 )(Badge);
 
 export default function CustomizedBadges() {
+  const usecart = useCart();
   const handleDrawer = () => {
     console.log("öppnadig");
   };
   return (
     <IconButton onClick={handleDrawer} aria-label="cart">
-      <StyledBadge badgeContent={4} color="secondary">
+      <StyledBadge badgeContent={2} color="secondary">
         <ShoppingCartIcon />
       </StyledBadge>
     </IconButton>
