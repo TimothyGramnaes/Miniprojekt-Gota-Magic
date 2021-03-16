@@ -34,6 +34,10 @@ form {
   max-width: 30rem;
 }
 
+.input-field {
+  margin: 1rem 0;
+}
+
 .headings h2 {
   margin-bottom: 1.5rem;
   font-size: 1.75rem;
