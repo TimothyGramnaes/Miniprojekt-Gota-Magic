@@ -4,8 +4,16 @@ import { Button } from '@material-ui/core';
 import { yellow } from '@material-ui/core/colors';
 import '../main.css'
 import '../css/productPage.css'
+import { useProductContext } from '../Context/ProductContext'
+import { useState } from 'react'
 
 function ProductPage() {
+
+  const product = useProductContext()
+
+  const [productView, setProductView] = useState()
+
+  console.log(product)
 
   return (
 
@@ -22,7 +30,7 @@ function ProductPage() {
 
             <div className="info-content flex column"> 
               {/* Ta in product.name */}
-              <h2>Produktnamn</h2>
+              <h2>{}</h2>
               {/* Ta in product.stars, rendera ut antalet stjärnor */}
               <div className="stars">
                 <StarIcon style={{ color: yellow[700] }}/>

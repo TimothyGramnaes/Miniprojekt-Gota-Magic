@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Card,
         CardContent,
         CardActions,
@@ -11,6 +11,7 @@ import { Card,
         } from '@material-ui/core';
 import { Link, Route } from 'react-router-dom';
 import '../main.css';
+import {  useProductContext } from '../Context/ProductContext'
 
 interface Props{
     image: string
@@ -43,6 +44,7 @@ const useStyles = makeStyles({
 
 
 function ProductListCard(props:Props) {
+    const getProductId = useProductContext()
 
     const style = useStyles();
 
@@ -59,7 +61,8 @@ function ProductListCard(props:Props) {
                             <ButtonGroup >
                                 <Button className={style.centerBtn}>Köp</Button>
                                     <Link className="link-style" to="/ProductPage">
-                                        <Button className={style.centerBtn}>
+                                        <Button className={style.centerBtn} 
+                                                onClick={() => {getProductId.getIdFromProductList(props.id)}}>
                                         Läs mer
                                         </Button>
                                     </Link>      

@@ -1,6 +1,6 @@
 import { CSSProperties } from '@material-ui/styles'
 import ProductListCard from './ProductListCard'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { IconButton, Grid, TextField, Button, makeStyles } from '@material-ui/core'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
@@ -16,9 +16,10 @@ const useStyles = makeStyles({
     }
 });
 
+
+
 function ProductList() {
     const products = useProducts()
-    console.log(products)
 
     const style = useStyles();
 
@@ -30,6 +31,7 @@ function ProductList() {
     const [pageNumber, setPageNumber] = useState(1)
     const [productViewArray, setProductViewArray] = useState(products)
     const [searchValue, setSearchValue] = useState<string>()
+
 
     // Styling variables
     const productListContainer: CSSProperties ={
