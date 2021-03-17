@@ -4,6 +4,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import Button from "@material-ui/core/Button";
 import CustomizedBadges from "./styledBadge";
+import CartComponent from "../cartComponent/Cart";
+import { useCart } from "../../Context/CartContext";
 
 const useStyles = makeStyles({
   list: {
@@ -17,6 +19,7 @@ const useStyles = makeStyles({
 type Anchor = "top" | "left" | "bottom" | "right";
 
 export default function TemporaryDrawer() {
+  const cart = useCart();
   const classes = useStyles();
   const [state, setState] = React.useState({
     top: false,
@@ -63,6 +66,9 @@ export default function TemporaryDrawer() {
             onClose={toggleDrawer(anchor, false)}
           >
             {list(anchor)}
+            <div>
+              <CartComponent></CartComponent>
+            </div>
           </Drawer>
         </React.Fragment>
       ))}

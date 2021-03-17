@@ -19,11 +19,11 @@ const StyledBadge = withStyles((theme: Theme) =>
 export default function CustomizedBadges() {
   const usecart = useCart();
   const handleDrawer = () => {
-    console.log("öppnadig");
+    console.log(usecart.cart.length);
   };
   return (
     <IconButton onClick={handleDrawer} aria-label="cart">
-      <StyledBadge badgeContent={usecart.cart.length} color="secondary">
+      <StyledBadge badgeContent={handleDrawer} color="secondary">
         <ShoppingCartIcon />
       </StyledBadge>
     </IconButton>

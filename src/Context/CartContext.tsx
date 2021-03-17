@@ -29,22 +29,22 @@ export const CartContextProvider: FunctionComponent = ({ children }) => {
 
   const addToCart = (itemName: string, price: number, image: string) => {
     let existingItem = cart.find(
-      (item) => item.itemName == itemName
+      (item) => item.itemName == itemName // tittar om två item har samma namn //
     ) as orderItem;
     let newItem: orderItem = {
       itemName: itemName,
       price: price,
       img: image,
-      quantity: existingItem ? existingItem.quantity + 1 : 1,
+      quantity: existingItem ? existingItem.quantity + 1 : 1, // om två item har samma namn ökar quantity med 1 //
     };
 
     let newCart = [
       ...cart.filter((item) => {
-        return item.itemName !== itemName;
+        return item.itemName !== itemName; // filtrerar bort dubletter bland items //
       }),
     ];
-    setCart([...newCart, newItem]);
-    console.log("cart");
+    setCart([...newCart, newItem]); // skapar upp en ny cart med new item med eventuell quantity //
+    console.log(cart[1]);
   };
 
   const removeFromCart = (productName: string) => {
@@ -54,7 +54,6 @@ export const CartContextProvider: FunctionComponent = ({ children }) => {
       }),
     ];
     setCart([...newCart]);
-    console.log(cart);
   };
 
   return (
