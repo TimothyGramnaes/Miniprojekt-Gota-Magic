@@ -3,6 +3,7 @@ import '../main.css'
 import { Button } from '@material-ui/core';
 import BreadCrumbs from "./BreadCrumbs";
 import React from 'react';
+import { shippingMethods } from '../DB/ShippingMethods';
 
 function OrderConfirmation() {
   return (
@@ -29,7 +30,7 @@ function OrderConfirmation() {
               <h3>Betalning</h3>
               <p>Kortbetalning med kort: **** **** **** 1234</p>
               <h3>Frakt</h3>
-              <p>Brevduva, 1 arbetsdag, Gratis</p>
+              <p>{shippingMethods[0].name}, {shippingMethods[0].deliveryTime}, {shippingMethods[0].price} kr</p>
             </div>
             <Button variant="contained" color="primary" className="move-fwd-btn">Fortsätt handla</Button>
           </div>
