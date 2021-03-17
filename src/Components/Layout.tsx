@@ -9,6 +9,7 @@ import Tournaments from "./Tournaments";
 import CheckOut1UserInfo from "./CheckOut1UserInfo";
 import CheckOut2Shipping from "./CheckOut2Shipping";
 import CheckOut3Payment from "./CheckOut3Payment";
+import OrderConfirmation from "./OrderConfirmation";
 
 import { Switch, Route, BrowserRouter } from "react-router-dom";
 
@@ -25,6 +26,7 @@ function Layout() {
       <CheckOut1UserInfo />
       <CheckOut2Shipping />
       <CheckOut3Payment />
+      <OrderConfirmation />
       <Footer />
     </BrowserRouter>
   );

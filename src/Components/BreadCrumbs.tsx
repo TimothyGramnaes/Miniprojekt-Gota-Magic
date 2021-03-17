@@ -12,13 +12,13 @@ function getSteps() {
 function getStepContent(stepIndex: number) {
     switch (stepIndex) {
         case 0:
-            return 'Användaruppgifter...';
+            return 'Användaruppgifter';
         case 1: 
-            return 'Välj fraktmetod';
+            return 'Frakt';
         case 2:
-            return 'Hur vill du betala?'
+            return 'Betalning'
         case 3:
-            return 'Har du bestämt dig?'
+            return 'Orderbekräftelse'
         default:
             return 'Unknown stepIndex';
     }
