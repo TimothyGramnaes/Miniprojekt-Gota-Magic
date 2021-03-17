@@ -1,10 +1,10 @@
 import { CSSProperties } from '@material-ui/styles'
-import { products } from '../DB/Products'
 import ProductListCard from './ProductListCard'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { IconButton, Grid, TextField, Button, makeStyles } from '@material-ui/core'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import { useProducts } from '../Context/ProductContext'
 
 const useStyles = makeStyles({
     searchfield: {
@@ -17,6 +17,8 @@ const useStyles = makeStyles({
 });
 
 function ProductList() {
+    const products = useProducts()
+    console.log(products)
 
     const style = useStyles();
 
@@ -80,7 +82,7 @@ function ProductList() {
     // The mapping of the product database
     const productData=productViewArray.slice(page, pageItems).map(product => (
         <div key={product.id}>
-            <ProductListCard productname={product.productname} price={product.price} image={product.image}/>
+            <ProductListCard productname={product.productname} price={product.price} image={product.image} id={product.id}/>
         </div>
         )
     )

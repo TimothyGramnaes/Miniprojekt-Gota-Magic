@@ -1,4 +1,4 @@
-interface Product {
+export interface Product {
     productname: string
     cardtype: string
     color: string

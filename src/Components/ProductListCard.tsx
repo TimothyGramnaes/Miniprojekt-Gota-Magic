@@ -14,14 +14,12 @@ interface Props{
     image: string
     productname: string
     price: number
-
+    id: number
 }
 
 const useStyles = makeStyles({
     card: {
         maxWidth: 250,
-        // display: 'flex',
-        // justifyContent: 'center',
         margin: '1rem',
     },
     cardContent: {
