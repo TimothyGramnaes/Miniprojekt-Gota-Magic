@@ -53,7 +53,11 @@ function BreadCrumbs() {
                 {activeStep === steps.length ? (
                     <div>
                         <p>Klart!</p>
-                        <Button variant="contained" color="primary" onClick={handleReset}>Tillbaka</Button>
+                        <Button variant="contained" 
+                        color="primary" 
+                        onClick={handleReset}>
+                            Tillbaka
+                        </Button>
                     </div>
             
                 ) : (
@@ -65,9 +69,12 @@ function BreadCrumbs() {
                         disabled={activeStep === 0}
                         onClick={handleBack}
                         >
-                            Back
+                            Tillbaka
                         </Button>
-                        <Button variant="contained" color="primary" onClick={handleNext}>
+                        <Button 
+                        variant="contained" 
+                        color="primary" 
+                        onClick={handleNext}>
                             {activeStep === steps.length - 1 ? 'Klar' : 'Nästa'}
                         </Button>
 
