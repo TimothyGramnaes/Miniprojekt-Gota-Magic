@@ -4,8 +4,12 @@ import Button from "@material-ui/core/Button";
 import "./cartContainer.css";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { useCart } from "../../Context/CartContext";
+import { orderItem } from "../../Types/orderItem";
+interface Props {
+  item: orderItem;
+}
 
-const CartComponent = () => {
+const CartComponent = ({ item }: Props) => {
   const cart = useCart();
 
   return (
@@ -16,15 +20,16 @@ const CartComponent = () => {
         </div>
       </div>
       <div className="buttonContainer">
-        <p>{"dg"}</p>
+        <p>{item.itemName}</p>
         <ButtonGroup disableElevation variant="contained" color="primary">
-          <Button>+</Button>
+          <Button onClick={() => (item.quantity += 1)}>+</Button>
           <div className="numberContainer">
-            <p>{"item.quantity"}</p>
+            <p>{item.quantity}</p>
           </div>
-          <Button>-</Button>
+          <Button onClick={() => (item.quantity -= 1)}>-</Button>
         </ButtonGroup>
-        <p>{"item.price"}</p>
+        <p>Price: {item.price}</p>
+        <p>Total price: {item.price * item.quantity}</p>
       </div>
       <div className="iconContainer">
         <DeleteIcon />

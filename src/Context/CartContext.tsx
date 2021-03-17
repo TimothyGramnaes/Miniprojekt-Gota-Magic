@@ -4,6 +4,7 @@ import React, {
   useContext,
   useState,
 } from "react";
+import { orderItem } from "../Types/orderItem";
 
 type Context = {
   getCartSize: () => number;
@@ -13,13 +14,6 @@ type Context = {
 };
 
 const CartContext = createContext<Context>(undefined!);
-type orderItem = {
-  //   itemId: number;
-  itemName: string;
-  price: number;
-  img: string;
-  quantity: number;
-};
 
 export const CartContextProvider: FunctionComponent = ({ children }) => {
   const [cart, setCart] = useState<orderItem[]>([]);

@@ -67,7 +67,9 @@ export default function TemporaryDrawer() {
           >
             {list(anchor)}
             <div>
-              <CartComponent></CartComponent>
+              {cart.cart.map((item) => {
+                return <CartComponent item={item} />;
+              })}
             </div>
           </Drawer>
         </React.Fragment>
