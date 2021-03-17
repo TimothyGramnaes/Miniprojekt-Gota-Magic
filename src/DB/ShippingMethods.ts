@@ -32,11 +32,5 @@ export const shippingMethods: ShippingMethod[] = [
   },
 ]
 
-consolelog()
-
-function consolelog() {
-  console.log(shippingMethods[1].name)
-}
-
 
 
