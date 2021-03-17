@@ -26,6 +26,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-right: 1rem;
 }
 .img {
   width: 5rem;

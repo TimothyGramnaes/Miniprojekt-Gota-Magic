@@ -15,12 +15,10 @@ const CartComponent = ({ item }: Props) => {
   return (
     <div className="itemContainer">
       <div className="productImageContainer">
-        <div className="img">
-          <p></p>
-        </div>
+        <img className="img" src={item.img} alt="" />
       </div>
       <div className="buttonContainer">
-        <p>{item.itemName}</p>
+        <p>Product: {item.itemName}</p>
         <ButtonGroup disableElevation variant="contained" color="primary">
           <Button onClick={() => (item.quantity += 1)}>+</Button>
           <div className="numberContainer">
@@ -32,7 +30,7 @@ const CartComponent = ({ item }: Props) => {
         <p>Total price: {item.price * item.quantity}</p>
       </div>
       <div className="iconContainer">
-        <DeleteIcon />
+        <DeleteIcon onClick={() => cart.removeFromCart(item.itemName)} />
       </div>
     </div>
   );
