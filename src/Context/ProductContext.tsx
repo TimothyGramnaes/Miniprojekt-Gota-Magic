@@ -7,10 +7,15 @@ export const ProductContext = createContext<Context>(undefined!);
 type Context = {
     products: Product[],
     addProduct: (product: Product) => void;
+    getIdFromProductList: (id:number) => void;
 }
 
 export const ProductProvider: FunctionComponent = ({ children }) => {
     const [products, setProducts] = useState<Product[]>(mockedProducts)
+
+    useEffect(() => {
+        setProducts(mockedProducts)
+    })
     
     // This useEffect fetch the localStorage after the page is updated. 
     // If this is not running, the saved LS data will be deleted
@@ -31,9 +36,16 @@ export const ProductProvider: FunctionComponent = ({ children }) => {
     // Add product to products
     const addProduct = (product: Product) => {}
 
+    // Get ID from productList when pressing "LÄS MER"
+    // Then filter products to set that to a new useState
+    // This state is used by Context on productPage
+    const getIdFromProductList = (id:number) => {
+
+    }
+
 
     return (
-        <ProductContext.Provider value={{ products, addProduct }}>
+        <ProductContext.Provider value={{ products, addProduct, getIdFromProductList }}>
             {children}
         </ProductContext.Provider>
     )    
