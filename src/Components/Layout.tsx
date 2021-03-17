@@ -8,6 +8,7 @@ import ProductPage from "./ProductPage";
 import Tournaments from "./Tournaments";
 import CheckOut1UserInfo from "./CheckOut1UserInfo";
 import CheckOut2Shipping from "./CheckOut2Shipping";
+import CheckOut3Payment from "./CheckOut3Payment";
 
 import { Switch, Route, BrowserRouter } from "react-router-dom";
 
@@ -23,6 +24,7 @@ function Layout() {
       </Switch>
       <CheckOut1UserInfo />
       <CheckOut2Shipping />
+      <CheckOut3Payment />
       <Footer />
     </BrowserRouter>
   );
