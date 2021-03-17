@@ -40,6 +40,11 @@
 .menu-burger-icon {
   display: none;
 }
+
+.link-style {
+  text-decoration: none;
+  color: black;
+}
 @media screen and (max-width: 580px) {
   .menu-bar {
     display: none;

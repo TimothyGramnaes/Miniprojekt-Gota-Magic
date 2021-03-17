@@ -9,6 +9,8 @@ import { Card,
         makeStyles,
         Grid,
         } from '@material-ui/core';
+import { Link, Route } from 'react-router-dom';
+import '../main.css';
 
 interface Props{
     image: string
@@ -41,6 +43,7 @@ const useStyles = makeStyles({
 
 
 
+
 function ProductListCard(props:Props) {
 
     const style = useStyles();
@@ -57,7 +60,11 @@ function ProductListCard(props:Props) {
                         <CardActions>
                             <ButtonGroup >
                                 <Button className={style.centerBtn}>Köp</Button>
-                                <Button className={style.centerBtn}>Läs mer</Button>
+                                    <Link className="link-style" to="/ProductPage">
+                                        <Button className={style.centerBtn}>
+                                        Läs mer
+                                        </Button>
+                                    </Link>      
                             </ButtonGroup>
                         </CardActions>
                         <Typography className={style.font}>

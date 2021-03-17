@@ -4,6 +4,11 @@ import Button from "@material-ui/core/Button";
 import CustomizedBadges from "./styledBadge";
 import TemporaryDrawer from "./Drawer";
 import SimpleMenu from "./SimpleMenu";
+import { Link,
+//         Route,
+//         Switch
+ } from 'react-router-dom';
+
 
 function Header() {
   let [isOpen, setIsOpen] = useState(false);
@@ -13,27 +18,38 @@ function Header() {
       <div className="menu-burger-icon">
         <SimpleMenu></SimpleMenu>
       </div>
+      <Link className="link-style" to="/">
+
       <div className="header-icon">
         <img
           style={{ width: "40px", height: "40px" }}
           src="../magic 1.png"
           alt=""
-        />
+          />
         <h3>Göta Magic</h3>
       </div>
+        </Link>
       <div className="menu-bar">
+        <Link className="link-style" to="/ProductList">
+
         <div className="menu-button">
           <Button>Produkter</Button>
         </div>
+        </Link>
         <div className="menu-button">
           <Button>Om oss</Button>
         </div>
         <div className="menu-button">
           <Button>Kontakt</Button>
         </div>
+
+
+        <Link className="link-style" to="/Tournaments">
         <div className="menu-button">
           <Button>Turneringar</Button>
         </div>
+        </Link>
+
       </div>
       <div className="cartIcon" onClick={() => setIsOpen(!isOpen)}>
         <TemporaryDrawer></TemporaryDrawer>
