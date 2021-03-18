@@ -31,13 +31,6 @@ function CheckOut2Shipping() {
     setShippingMethodToState()
   })
 
-  // // Find out the currently selected shipping method
-  // value === 'postnord' ? console.log('value is set to: ' + value) :
-  // value === 'earlybird' ? console.log('value is set to: ' + value) :
-  // value === 'instabox' ? console.log('value is set to: ' + value) :
-  // value === 'brevduva' ? console.log('value is set to: ' + value) :
-  // console.log('value is set to: ' + value)
-
   // Prefixes for displayed text beside the radio btn
   const shippingMethodText1 = shippingMethods[0].name + ' - ' + shippingMethods[0].price + ' kr (' + shippingMethods[0].deliveryTime + ')';
   const shippingMethodText2 = shippingMethods[1].name + ' - ' + shippingMethods[1].price + ' kr (' + shippingMethods[1].deliveryTime + ')';
