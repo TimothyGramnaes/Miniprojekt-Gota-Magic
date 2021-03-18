@@ -6,7 +6,7 @@ export const ProductContext = createContext<Context>(undefined!);
 // Typing for items in ProductProvider
 type Context = {
     products: Product[],
-    viewProduct: Product[],
+    getProductView: Product[],
     addProduct: (product: Product) => void;
     getIdFromProductList: (id:number) => void;
     
@@ -58,7 +58,7 @@ export const ProductProvider: FunctionComponent = ({ children }) => {
     })
 
     return (
-        <ProductContext.Provider value={{ products, viewProduct, addProduct, getIdFromProductList }}>
+        <ProductContext.Provider value={{ products, getProductView, addProduct, getIdFromProductList }}>
             {children}
         </ProductContext.Provider>
     )    
