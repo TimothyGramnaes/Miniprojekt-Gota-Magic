@@ -1,4 +1,4 @@
-interface ShippingMethod {
+export interface ShippingMethod {
   name: string,
   deliveryTime: string,
   price: number
