@@ -2,6 +2,7 @@ import React, {
   createContext,
   FunctionComponent,
   useContext,
+  useEffect,
   useState,
 } from "react";
 import { orderItem } from "../Types/orderItem";
@@ -11,6 +12,7 @@ type Context = {
   addToCart: (itemName: string, price: number, image: string) => void;
   cart: orderItem[];
   removeFromCart: (productName: string) => void;
+  decreaseQuantity: (item: orderItem) => void;
 };
 
 const CartContext = createContext<Context>(undefined!);
@@ -37,6 +39,7 @@ export const CartContextProvider: FunctionComponent = ({ children }) => {
         return item.itemName !== itemName; // filtrerar bort dubletter bland items //
       }),
     ];
+
     setCart([...newCart, newItem]); // skapar upp en ny cart med new item med eventuell quantity //
     console.log(cart[1]);
   };
@@ -50,9 +53,41 @@ export const CartContextProvider: FunctionComponent = ({ children }) => {
     setCart([...newCart]);
   };
 
+  const decreaseQuantity = (item: orderItem) => {
+    let existingItem = cart.find(
+      (i) => i.itemName == item.itemName // tittar om två item har samma namn //
+    ) as orderItem;
+
+    let newItem: orderItem = {
+      itemName: existingItem.itemName,
+      price: existingItem.price,
+      img: existingItem.img,
+      quantity: existingItem.quantity - 1, // om två item har samma namn minskar quantity med 1 //
+    };
+
+    let newCart = [
+      ...cart.filter((i) => {
+        return i.itemName !== item.itemName; // filtrerar bort dubletter bland items //
+      }),
+    ];
+
+    if (newItem.quantity === 0) {
+      setCart([...newCart]); // deletar itemet om quantity är mindre än 1 //
+      return;
+    }
+
+    setCart([...newCart, newItem]); // skapar upp en ny cart med new item med eventuell quantity //
+  };
+
   return (
     <CartContext.Provider
-      value={{ getCartSize, addToCart, cart, removeFromCart }}
+      value={{
+        getCartSize,
+        addToCart,
+        cart,
+        removeFromCart,
+        decreaseQuantity,
+      }}
     >
       {children}
     </CartContext.Provider>

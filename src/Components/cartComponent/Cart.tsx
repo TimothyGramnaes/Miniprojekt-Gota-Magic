@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Button from "@material-ui/core/Button";
 import "./cartContainer.css";
@@ -12,6 +12,13 @@ interface Props {
 const CartComponent = ({ item }: Props) => {
   const cart = useCart();
 
+  const decreaseProduct = () => {
+    if (item.quantity >= 2) item.quantity -= 1;
+    else {
+      return;
+    }
+  };
+
   return (
     <div className="itemContainer">
       <div className="productImageContainer">
@@ -20,11 +27,15 @@ const CartComponent = ({ item }: Props) => {
       <div className="buttonContainer">
         <p>Product: {item.itemName}</p>
         <ButtonGroup disableElevation variant="contained" color="primary">
-          <Button onClick={() => (item.quantity += 1)}>+</Button>
+          <Button
+            onClick={() => cart.addToCart(item.itemName, item.price, item.img)}
+          >
+            +
+          </Button>
           <div className="numberContainer">
             <p>{item.quantity}</p>
           </div>
-          <Button onClick={() => (item.quantity -= 1)}>-</Button>
+          <Button onClick={() => cart.decreaseQuantity(item)}>-</Button>
         </ButtonGroup>
         <p>Price: {item.price}</p>
         <p>Total price: {item.price * item.quantity}</p>
