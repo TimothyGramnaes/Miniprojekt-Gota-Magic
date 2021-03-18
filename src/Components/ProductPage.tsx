@@ -4,8 +4,16 @@ import { Button } from '@material-ui/core';
 import { yellow } from '@material-ui/core/colors';
 import '../main.css'
 import '../css/productPage.css'
+import { useProductContext } from '../Context/ProductContext'
+import { useState } from 'react'
 
 function ProductPage() {
+
+  const product = useProductContext()
+
+  const [productView, setProductView] = useState(product.getProductView[0])
+
+  console.log(productView.productname)
 
   return (
 
@@ -17,12 +25,12 @@ function ProductPage() {
 
             <div className="image-container flex">
               {/* Ta in product.image, byt diven nedan till en <img/> */}
-              <img src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=130550&type=card" alt=""/>
+              <img src={productView.image} alt=""/>
             </div>
 
             <div className="info-content flex column"> 
               {/* Ta in product.name */}
-              <h2>Produktnamn</h2>
+              <h2>{productView.productname}</h2>
               {/* Ta in product.stars, rendera ut antalet stjärnor */}
               <div className="stars">
                 <StarIcon style={{ color: yellow[700] }}/>
@@ -33,7 +41,7 @@ function ProductPage() {
               {/* Ta in product.shortDesc */}
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores optio nesciunt sit. Necessitatibus, placeat molestias?</p>
               {/* Ta in product.price */}
-              <h2 className="price-text">199 kr</h2>
+              <h2 className="price-text">{productView.price}</h2>
               {/* Ta in höj/sänk antal */}
               <h3 className="flex item-counter">
                 <span>-</span>
@@ -50,7 +58,7 @@ function ProductPage() {
 
             <div className="desc flex column">
               <h3>Produktbeskrivning</h3>
-              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sunt adipisci fugit voluptatem voluptatum dolorem autem harum quod ipsum quidem at impedit eum molestiae, consectetur porro architecto ipsa minus eos possimus repellat temporibus amet. Nobis laborum totam porro voluptatibus iure tenetur et, atque impedit soluta quia rerum expedita modi deleniti iusto.</p>
+              <p>{productView.cardtext}</p>
             </div>
 
             <div className="similar-products flex column">
