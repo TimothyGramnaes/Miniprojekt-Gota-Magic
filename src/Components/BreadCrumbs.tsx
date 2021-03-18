@@ -1,15 +1,18 @@
 import React from 'react';
-import Stepper from '@material-ui/core/Stepper';
-import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
+import Step from '@material-ui/core/Step';
+import Stepper from '@material-ui/core/Stepper';
 import Button from '@material-ui/core/Button';
+import '../main.css';
+import '../css/breadcrumbs.css';
+
+
 import CheckOut1UserInfo from './CheckOut1UserInfo';
 import CheckOut2Shipping from "./CheckOut2Shipping";
 import CheckOut3Payment from "./CheckOut3Payment";
 import OrderConfirmation from "./OrderConfirmation";
+// import ProductList from "./ProductList"
 
-import '../css/breadcrumbs.css';
-import '../main.css';
 
 
 
@@ -24,9 +27,9 @@ function getStepContent(stepIndex: number) {
         case 1: 
             return <CheckOut2Shipping />;
         case 2:
-            return <CheckOut3Payment />
+            return <CheckOut3Payment />;
         case 3:
-            return <OrderConfirmation />
+            return <OrderConfirmation />;
         default:
             return 'Unknown stepIndex';
     }
@@ -45,7 +48,8 @@ function BreadCrumbs() {
     };
 
     const handleReset = () => {
-        setActiveStep(0);
+        // setActiveStep(0);
+      //  return <ProductList />
     };
 
     return (
@@ -63,11 +67,14 @@ function BreadCrumbs() {
             <div className="bread-btn">
                 {activeStep === steps.length ? (
                     <div>
-                        <p>Klart!</p>
+                        <div className="slutfort-kop">
+                            <p>Tack för din beställning,</p>
+                            <p>mycket nöje!</p>
+                        </div>
                         <Button variant="contained" 
                         color="primary" 
                         onClick={handleReset}>
-                            Tillbaka
+                            Fortsätt Handla
                         </Button>
                     </div>
             
