@@ -60,21 +60,6 @@ function CheckOut3Payment() {
     setValue((event.target as HTMLInputElement).value);
   }
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    // event.preventDefault();
-
-    // return (
-    //   value === 'betalaSenare' ? 
-    //   <SMSLoanPaymentModal />
-
-    //   : value === 'faktura' ? 
-    //   <BillPaymentModal />
-
-    //   :
-    //   <CardPaymentModal />
-    // )
-  }
-
   return (
 
         <div className="container flex">
@@ -88,7 +73,7 @@ function CheckOut3Payment() {
               <h3>Välj betalmetod och fyll i dina uppgifter</h3>
             </div>
             <div className="checkout-form">
-              <form className="flex column" onSubmit={handleSubmit}>
+              <form className="flex column">
                 <FormControl>
                   <RadioGroup value={value} onChange={handleRadioChange}>
                     <FormControlLabel value="kort" control={<Radio />} label="Kortbetalning" />
