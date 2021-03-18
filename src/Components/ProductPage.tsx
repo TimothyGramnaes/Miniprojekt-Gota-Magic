@@ -5,15 +5,55 @@ import { yellow } from '@material-ui/core/colors';
 import '../main.css'
 import '../css/productPage.css'
 import { useProductContext } from '../Context/ProductContext'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { RouteComponentProps } from 'react-router-dom';
+import { Product } from '../DB/Products'
 
-function ProductPage() {
+interface Props extends RouteComponentProps {
+  id: string
+}
 
+function ProductPage(props:Props){
+  const view = props.match.url.substr(1);
+  const getId = parseInt(view.slice(12))
+  
+  const defaultProduct:Product[] = [{productname: "Ancestor's Chosen",
+  cardtype:"Creature — Human Cleric",
+  color:"White",
+  cardtext:"First strike (This creature deals combat damage before creatures without first strike.)\nWhen Ancestor's Chosen enters the battlefield, you gain 1 life for each card in your graveyard.",
+  expansion:"Tenth Edition",
+  cmc:7.0,
+  image:"http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=130550&type=card",
+  id:1,
+  price:79,
+  producttype:"single",
+  view:true,
+  rating: 4,
+  }]
+
+  const [viewProduct, setViewProduct] = useState<Product[]>(defaultProduct)
+
+  const setProduct = viewProduct[0]
+
+  useEffect(() => {
+    setFilterdList()
+  }, [])
+  
   const product = useProductContext()
+  const productData = product.products
 
-  const [productView, setProductView] = useState(product.getProductView[0])
+  const filterdProduct = productData.filter((p) => {
+    if(p.id == getId) {
+      
+      return getId
+    }
+  })
 
-  console.log(productView.productname)
+  const setFilterdList = () => {
+    setViewProduct(filterdProduct)
+  }
+  console.log(viewProduct[0].productname)
+  // console.log(rating*1)
 
   return (
 
@@ -25,23 +65,27 @@ function ProductPage() {
 
             <div className="image-container flex">
               {/* Ta in product.image, byt diven nedan till en <img/> */}
-              <img src={productView.image} alt=""/>
+              <img src={setProduct.image} alt=""/>
             </div>
 
             <div className="info-content flex column"> 
               {/* Ta in product.name */}
-              <h2>{productView.productname}</h2>
+              <h2>{setProduct.productname}</h2>
               {/* Ta in product.stars, rendera ut antalet stjärnor */}
               <div className="stars">
+                
                 <StarIcon style={{ color: yellow[700] }}/>
                 <StarIcon style={{ color: yellow[700] }} />
                 <StarIcon style={{ color: yellow[700] }} />
                 <StarIcon style={{ color: yellow[700] }} />
               </div>
               {/* Ta in product.shortDesc */}
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores optio nesciunt sit. Necessitatibus, placeat molestias?</p>
+              <h4>{setProduct.cardtype}</h4>
+              <p>Färg:  {setProduct.color}</p>
+              <p>CMC:  {setProduct.cmc}</p>
+              <p>Expansion:  {setProduct.expansion}</p>
               {/* Ta in product.price */}
-              <h2 className="price-text">{productView.price}</h2>
+              <h2 className="price-text">15</h2>
               {/* Ta in höj/sänk antal */}
               <h3 className="flex item-counter">
                 <span>-</span>
@@ -58,7 +102,7 @@ function ProductPage() {
 
             <div className="desc flex column">
               <h3>Produktbeskrivning</h3>
-              <p>{productView.cardtext}</p>
+              <p>{setProduct.cardtext}</p>
             </div>
 
             <div className="similar-products flex column">

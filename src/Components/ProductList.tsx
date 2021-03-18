@@ -5,6 +5,8 @@ import { IconButton, Grid, TextField, Button, makeStyles } from '@material-ui/co
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import { useProducts } from '../Context/ProductContext'
+import { Link } from 'react-router-dom';
+
 
 const useStyles = makeStyles({
     searchfield: {
@@ -84,7 +86,9 @@ function ProductList() {
     // The mapping of the product database
     const productData=productViewArray.slice(page, pageItems).map(product => (
         <div key={product.id}>
-            <ProductListCard productname={product.productname} price={product.price} image={product.image} id={product.id}/>
+            <Link to={`/ProductPage/${product.id}`}>            
+                <ProductListCard productname={product.productname} price={product.price} image={product.image} id={product.id}/>            
+            </Link>
         </div>
         )
     )

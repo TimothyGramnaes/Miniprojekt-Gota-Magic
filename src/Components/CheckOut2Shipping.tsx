@@ -26,10 +26,11 @@ function CheckOut2Shipping() {
   useEffect(() => {
     setValue(value)
   })
+  console.log(value)
 
-  useEffect(() => {
-    setShippingMethodToState()
-  })
+  // useEffect(() => {
+  //   setShippingMethodToState()
+  // })
 
   // Prefixes for displayed text beside the radio btn
   const shippingMethodText1 = shippingMethods[0].name + ' - ' + shippingMethods[0].price + ' kr (' + shippingMethods[0].deliveryTime + ')';

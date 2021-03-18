@@ -17,12 +17,12 @@ function Layout() {
   return (
     <BrowserRouter>
       <Header />
-      <Switch>
-      <Route exact path="/" component={LandingPage} />
-      <Route path="/Tournaments" component={Tournaments} />
-      <Route path="/ProductList" component={ProductList} />
-      <Route path="/ProductPage" component={ProductPage} />
-      </Switch>
+        <Switch>
+          <Route exact path="/" component={LandingPage} />
+          <Route path="/Tournaments" component={Tournaments} />
+          <Route path="/ProductList" component={ProductList} />
+          <Route path="/ProductPage/:id" component={ProductPage} />
+        </Switch>
       <CheckOut1UserInfo />
       <CheckOut2Shipping />
       <CheckOut3Payment />
