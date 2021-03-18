@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   Card,
   CardContent,
@@ -10,19 +10,20 @@ import {
   makeStyles,
   Grid,
 } from "@material-ui/core";
+import { Link, Route } from "react-router-dom";
+import "../main.css";
+import { useProductContext } from "../Context/ProductContext";
 import { useCart } from "../Context/CartContext";
-
 interface Props {
   image: string;
   productname: string;
   price: number;
+  id: number;
 }
 
 const useStyles = makeStyles({
   card: {
     maxWidth: 250,
-    // display: 'flex',
-    // justifyContent: 'center',
     margin: "1rem",
   },
   cardContent: {
@@ -41,9 +42,10 @@ const useStyles = makeStyles({
 });
 
 function ProductListCard(props: Props) {
+  const getProductId = useProductContext();
   const usecart = useCart();
   const style = useStyles();
-  console.log(usecart);
+
   return (
     <Grid container>
       <Grid item xs={12}>
@@ -64,7 +66,16 @@ function ProductListCard(props: Props) {
                 >
                   Köp
                 </Button>
-                <Button className={style.centerBtn}>Läs mer</Button>
+                <Link className="link-style" to="/ProductPage">
+                  <Button
+                    className={style.centerBtn}
+                    onClick={() => {
+                      getProductId.getIdFromProductList(props.id);
+                    }}
+                  >
+                    Läs mer
+                  </Button>
+                </Link>
               </ButtonGroup>
             </CardActions>
             <Typography className={style.font}>{props.productname}</Typography>

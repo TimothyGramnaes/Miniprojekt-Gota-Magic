@@ -4,6 +4,7 @@ import '../main.css';
 import Button from '@material-ui/core/Button';
 // import background from './assets/imgs/Rectangle.png';
 // import { url } from 'node:inspector';
+import { Link } from 'react-router-dom';
 
 
 function LandingPage() {
@@ -29,8 +30,9 @@ function LandingPage() {
                         laboriosam cumque exercitationem excepturi repellat, 
                         nostrum atque vitae voluptate dignissimos adipisci 
                         reiciendis ex earum?</p>
-
-                    <Button variant="contained" color="primary">Våra Produkter</Button>
+                        <Link className="link-style" to="/ProductList">
+                            <Button variant="contained" color="primary">Våra Produkter</Button>
+                        </Link>
             </div>
         </div>
             <div className="* flex centered column" style={landingContainer}>
@@ -48,7 +50,9 @@ function LandingPage() {
                         <p className="paragraphs">
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo esse odio minima ipsa hic, nobis architecto amet? Porro neque in atque soluta eum officiis magni doloremque ipsum? Nihil, explicabo voluptates!</p>
                         <div className="padding2rem">
+                            <Link className="link-style" to="/ProductList">
                             <Button variant="contained" color="primary">Våra Produkter</Button>
+                            </Link>
                         </div>
                     </div>
 

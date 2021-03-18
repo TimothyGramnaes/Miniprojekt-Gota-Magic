@@ -12,13 +12,13 @@ function getSteps() {
 function getStepContent(stepIndex: number) {
     switch (stepIndex) {
         case 0:
-            return 'Användaruppgifter...';
+            return 'Användaruppgifter';
         case 1: 
-            return 'Välj fraktmetod';
+            return 'Frakt';
         case 2:
-            return 'Hur vill du betala?'
+            return 'Betalning'
         case 3:
-            return 'Har du bestämt dig?'
+            return 'Orderbekräftelse'
         default:
             return 'Unknown stepIndex';
     }
@@ -53,7 +53,11 @@ function BreadCrumbs() {
                 {activeStep === steps.length ? (
                     <div>
                         <p>Klart!</p>
-                        <Button variant="contained" color="primary" onClick={handleReset}>Tillbaka</Button>
+                        <Button variant="contained" 
+                        color="primary" 
+                        onClick={handleReset}>
+                            Tillbaka
+                        </Button>
                     </div>
             
                 ) : (
@@ -65,9 +69,12 @@ function BreadCrumbs() {
                         disabled={activeStep === 0}
                         onClick={handleBack}
                         >
-                            Back
+                            Tillbaka
                         </Button>
-                        <Button variant="contained" color="primary" onClick={handleNext}>
+                        <Button 
+                        variant="contained" 
+                        color="primary" 
+                        onClick={handleNext}>
                             {activeStep === steps.length - 1 ? 'Klar' : 'Nästa'}
                         </Button>
 

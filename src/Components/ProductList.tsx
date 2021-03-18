@@ -1,21 +1,25 @@
 import { CSSProperties } from '@material-ui/styles'
-import { products } from '../DB/Products'
 import ProductListCard from './ProductListCard'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { IconButton, Grid, TextField, Button, makeStyles } from '@material-ui/core'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import { useProducts } from '../Context/ProductContext'
 
 const useStyles = makeStyles({
     searchfield: {
-        width: '20rem'        
+            
     },
     resetBtn: {
+        margin: '2rem 0',
         marginLeft: '1rem'
     }
 });
 
+
+
 function ProductList() {
+    const products = useProducts()
 
     const style = useStyles();
 
@@ -27,7 +31,6 @@ function ProductList() {
     const [pageNumber, setPageNumber] = useState(1)
     const [productViewArray, setProductViewArray] = useState(products)
     const [searchValue, setSearchValue] = useState<string>()
-
 
 
     // Styling variables
@@ -71,12 +74,17 @@ function ProductList() {
         paddingBottom: '2rem'
     }
 
+    const formStyle: CSSProperties = {
+        width: '100%',
+        margin: '2rem 0'
+    }
+
     // End styling variables
 
     // The mapping of the product database
     const productData=productViewArray.slice(page, pageItems).map(product => (
         <div key={product.id}>
-            <ProductListCard productname={product.productname} price={product.price} image={product.image}/>
+            <ProductListCard productname={product.productname} price={product.price} image={product.image} id={product.id}/>
         </div>
         )
     )
@@ -102,8 +110,8 @@ function ProductList() {
             return searchValue?.toLowerCase()
         }
 
-        // return searchValue?.toLowerCase() == sliceProduct.toLowerCase()
     })
+
 
     // Reset the pagination values and set the setProductViewArray with the full product database values
     // And then sets the setProductViewArray to the filtered result
@@ -118,7 +126,7 @@ function ProductList() {
     // sets the input value to searchValue
     const handleChange = (e:any) => {
         setSearchValue(e.target.value)
-        setTimeout(()=>{searchArray() }, 500)
+        searchArray()
     }
 
     // When pressed it runs the seachArray function to show the search result
@@ -174,8 +182,8 @@ function ProductList() {
     return(
         <Grid container justify="center" alignItems="center" className="productListContainer" style={productListContainer}>
             <Grid item xs={12} className="searchContainer" style={searchStyle}>
-                <form onSubmit={handleSubmit}>
-                <TextField id="filled-basic" label="Filled" variant="filled" className={style.searchfield} value={searchValue} onChange={handleChange} />
+                <form onSubmit={handleSubmit} style={formStyle}>
+                <TextField id="filled-basic" fullWidth label="Sök här" variant="filled"  className={style.searchfield} value={searchValue} onChange={handleChange} />
                 </form>
                 <Button onClick={resetSearch} className={style.resetBtn} variant="contained" color="primary">Reset</Button>
             </Grid>
