@@ -6,11 +6,13 @@ import Button from '@material-ui/core/Button';
 import '../main.css';
 import '../css/breadcrumbs.css';
 
+import { Link } from 'react-router-dom'
 
 import CheckOut1UserInfo from './CheckOut1UserInfo';
 import CheckOut2Shipping from "./CheckOut2Shipping";
 import CheckOut3Payment from "./CheckOut3Payment";
 import OrderConfirmation from "./OrderConfirmation";
+import { CSSProperties } from '@material-ui/styles';
 // import ProductList from "./ProductList"
 
 
@@ -47,17 +49,17 @@ function BreadCrumbs() {
         setActiveStep((prevActiveStep) => prevActiveStep -1);
     };
 
-    const handleReset = () => {
-        // setActiveStep(0);
-      //  return <ProductList />
-    };
+    // const handleReset = () => {
+    //     // setActiveStep(0);
+    //   //  return <ProductList />
+    // };
 
     return (
     <div className="background">
         <div className="grey-card">
         
             <div className="crumbs-container">
-            <Stepper className="grey-background" activeStep={activeStep} alternativeLabel>
+            <Stepper style={stepperStyle} activeStep={activeStep} alternativeLabel>
                 {steps.map((label) => (
                     <Step key={label}>
                         <StepLabel>{label}</StepLabel>
@@ -68,14 +70,17 @@ function BreadCrumbs() {
                 {activeStep === steps.length ? (
                     <div>
                         <div className="slutfort-kop">
-                            <p>Tack för din beställning,</p>
+                            <p>Tack för din beställning, </p>
                             <p>mycket nöje!</p>
                         </div>
+                        <Link className="link-style" to="/ProductList">
                         <Button variant="contained" 
                         color="primary" 
-                        onClick={handleReset}>
+                        // onClick={handleReset}
+                        >
                             Fortsätt Handla
                         </Button>
+                        </Link>
                     </div>
             
                 ) : (
@@ -108,6 +113,10 @@ function BreadCrumbs() {
 
     );
 
+}
+
+const stepperStyle: CSSProperties = {
+    backgroundColor: '#ededed'
 }
 
 export default BreadCrumbs;
