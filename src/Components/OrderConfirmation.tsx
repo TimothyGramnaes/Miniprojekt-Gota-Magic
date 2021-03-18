@@ -1,19 +1,18 @@
 import '../css/orderConfirmation.css'
 import '../main.css'
 import { Button } from '@material-ui/core';
-import BreadCrumbs from "./BreadCrumbs";
+// import BreadCrumbs from "./BreadCrumbs";
 import React from 'react';
 import { shippingMethods } from '../DB/ShippingMethods';
 
 function OrderConfirmation() {
   return (
-    <div className="background">
-      <div className="grey-card">
+
         <div className="container flex">
 
           <div className="left-side">
             <div className="breadcrumbs">
-              <BreadCrumbs />
+              {/* <BreadCrumbs /> */}
             </div>
             <div className="headings">
               <h2>Orderbekräftelse</h2>
@@ -32,7 +31,7 @@ function OrderConfirmation() {
               <h3>Frakt</h3>
               <p>{shippingMethods[0].name}, {shippingMethods[0].deliveryTime}, {shippingMethods[0].price} kr</p>
             </div>
-            <Button variant="contained" color="primary" className="move-fwd-btn">Fortsätt handla</Button>
+            {/* <Button variant="contained" color="primary" className="move-fwd-btn">Fortsätt handla</Button> */}
           </div>
 
           <div className="right-side">
@@ -49,9 +48,7 @@ function OrderConfirmation() {
           </div>
 
         </div>
-      </div>
-      
-    </div>
+
   )
 }
 
