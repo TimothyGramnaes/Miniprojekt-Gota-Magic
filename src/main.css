@@ -23,6 +23,10 @@
   color: white;
 }
 
+.grey-background {
+  background-color: #ededed;
+}
+
 .padding2rem {
   padding: 2rem;
 }

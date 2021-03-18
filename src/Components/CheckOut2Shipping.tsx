@@ -1,19 +1,18 @@
 import TextField from '@material-ui/core/TextField';
 import '../css/checkOut2Shipping.css'
 import '../main.css'
-import { Button, FormControlLabel, Radio, RadioGroup } from '@material-ui/core';
-import BreadCrumbs from "./BreadCrumbs";
+import { FormControlLabel, Radio, RadioGroup } from '@material-ui/core';
+// import BreadCrumbs from "./BreadCrumbs";
 import React from 'react';
 
 function CheckOut2Shipping() {
   return (
-    <div className="background">
-      <div className="grey-card">
+
         <div className="container flex">
 
           <div className="left-side">
             <div className="breadcrumbs">
-              <BreadCrumbs />
+              {/* <BreadCrumbs /> */}
             </div>
             <div className="headings">
               <h2>Frakt</h2>
@@ -29,7 +28,7 @@ function CheckOut2Shipping() {
                   <FormControlLabel className="input-field" value="magicshipping" control={<Radio />} label="Magic Shipping - 199 kr (1 timme)" />
                 </RadioGroup>
               </form>
-                <Button variant="contained" color="primary" className="move-fwd-btn">Till Betalning</Button>
+                {/* <Button variant="contained" color="primary" className="move-fwd-btn">Till Betalning</Button> */}
             </div>
           </div>
 
@@ -47,9 +46,7 @@ function CheckOut2Shipping() {
           </div>
 
         </div>
-      </div>
-      
-    </div>
+
   )
 }
 

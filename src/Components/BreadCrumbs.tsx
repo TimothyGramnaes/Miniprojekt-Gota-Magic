@@ -3,6 +3,14 @@ import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
+import CheckOut1UserInfo from './CheckOut1UserInfo';
+import CheckOut2Shipping from "./CheckOut2Shipping";
+import CheckOut3Payment from "./CheckOut3Payment";
+import OrderConfirmation from "./OrderConfirmation";
+
+import '../css/breadcrumbs.css';
+import '../main.css';
+
 
 
 function getSteps() {
@@ -12,13 +20,13 @@ function getSteps() {
 function getStepContent(stepIndex: number) {
     switch (stepIndex) {
         case 0:
-            return 'Användaruppgifter';
+            return <CheckOut1UserInfo />;
         case 1: 
-            return 'Frakt';
+            return <CheckOut2Shipping />;
         case 2:
-            return 'Betalning'
+            return <CheckOut3Payment />
         case 3:
-            return 'Orderbekräftelse'
+            return <OrderConfirmation />
         default:
             return 'Unknown stepIndex';
     }
@@ -41,15 +49,18 @@ function BreadCrumbs() {
     };
 
     return (
-        <div>
-            <Stepper activeStep={activeStep} alternativeLabel>
+    <div className="background">
+        <div className="grey-card">
+        
+            <div className="crumbs-container">
+            <Stepper className="grey-background" activeStep={activeStep} alternativeLabel>
                 {steps.map((label) => (
                     <Step key={label}>
                         <StepLabel>{label}</StepLabel>
                     </Step>
                 ))}
             </Stepper>
-            <div>
+            <div className="bread-btn">
                 {activeStep === steps.length ? (
                     <div>
                         <p>Klart!</p>
@@ -64,7 +75,7 @@ function BreadCrumbs() {
             <div>
                 <p>{getStepContent(activeStep)}</p>
                 
-                    <div>
+                    <div className="bread-btn">
                         <Button
                         disabled={activeStep === 0}
                         onClick={handleBack}
@@ -84,7 +95,9 @@ function BreadCrumbs() {
                 
                 )}
             </div>
+            </div>
         </div>
+    </div>
 
     );
 
