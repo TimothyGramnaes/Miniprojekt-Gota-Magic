@@ -3,26 +3,65 @@ import '../css/checkOut2Shipping.css'
 import '../main.css'
 import { Button, FormControl, FormControlLabel, Radio, RadioGroup } from '@material-ui/core';
 import BreadCrumbs from "./BreadCrumbs";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ShippingMethod, shippingMethods } from '../DB/ShippingMethods';
 
 function CheckOut2Shipping() {
 
-  const [value, setValue] = useState('')
+  const [value, setValue] = useState<string>('')
+  const [name, setName] = useState<string>('')
+  const [price, setPrice] = useState<number>()
+  const [deliveryTime, setDeliveryTime] = useState<string>('')
 
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue((event.target as HTMLInputElement).value);
-    console.log('handleRadioChange says: ' + value)
+    setValue(event.target.value);
   }
 
-  value === 'postnord' ? console.log(value) :
-  value === 'earlybird' ? console.log(value) :
-  value === 'instabox' ? console.log(value) :
-  value === 'brevduva' ? console.log(value) :
-  console.log('current value is ' + value)
+  // Find out the currently selected shipping method
+  value === 'postnord' ? console.log('value is set to: ' + value) :
+  value === 'earlybird' ? console.log('value is set to: ' + value) :
+  value === 'instabox' ? console.log('value is set to: ' + value) :
+  value === 'brevduva' ? console.log('value is set to: ' + value) :
+  console.log('value is set to: ' + value)
+
+  // Prefixes for displayed text beside the radio btn
+  const shippingMethodText1 = shippingMethods[0].name + ' - ' + shippingMethods[0].price + ' kr (' + shippingMethods[0].deliveryTime + ')';
+  const shippingMethodText2 = shippingMethods[1].name + ' - ' + shippingMethods[1].price + ' kr (' + shippingMethods[1].deliveryTime + ')';
+  const shippingMethodText3 = shippingMethods[2].name + ' - ' + shippingMethods[2].price + ' kr (' + shippingMethods[2].deliveryTime + ')';
+  const shippingMethodText4 = shippingMethods[3].name + ' - ' + shippingMethods[3].price + ' kr (' + shippingMethods[3].deliveryTime + ')';
+  const shippingMethodText5 = shippingMethods[4].name + ' - ' + shippingMethods[4].price + ' kr (' + shippingMethods[4].deliveryTime + ')';
 
   // Shipping methods array
   const [shippingObject, setShippingObject] = useState<ShippingMethod[]>([])
+
+  const setShippingMethodToState = () => {
+    if (value === 'postnord') {
+      setName(shippingMethods[0].name)
+      setPrice(shippingMethods[0].price)
+      setDeliveryTime(shippingMethods[0].deliveryTime)
+      console.log('1 Shipping method is set to: ' + name, price, deliveryTime + ' and value is: ' + value)
+    } else if (value === 'earlybird') {
+      setName(shippingMethods[1].name)
+      setPrice(shippingMethods[1].price)
+      setDeliveryTime(shippingMethods[1].deliveryTime)
+      console.log('2 Shipping method is set to: ' + name, price, deliveryTime + ' and value is: ' + value)
+    } else if (value === 'instabox') {
+      setName(shippingMethods[2].name)
+      setPrice(shippingMethods[2].price)
+      setDeliveryTime(shippingMethods[2].deliveryTime)
+      console.log('3 Shipping method is set to: ' + name, price, deliveryTime + ' and value is: ' + value)
+    } else if (value === 'brevduva') {
+      setName(shippingMethods[3].name)
+      setPrice(shippingMethods[3].price)
+      setDeliveryTime(shippingMethods[3].deliveryTime)
+      console.log('4 Shipping method is set to: ' + name, price, deliveryTime + ' and value is: ' + value)
+    } else {
+      setName(shippingMethods[4].name)
+      setPrice(shippingMethods[4].price)
+      setDeliveryTime(shippingMethods[4].deliveryTime)
+      console.log('5 Shipping method is set to: ' + name, price, deliveryTime + ' and value is: ' + value)
+    }
+  }
   
   return (
     <div className="background">
@@ -40,16 +79,16 @@ function CheckOut2Shipping() {
             <div className="checkout-form">
               <form className="flex column">
                 <FormControl>
-                  <RadioGroup onChange={handleRadioChange}>
-                    <FormControlLabel id="1" className="input-field" value="postnord" control={<Radio />} label={shippingMethods[0].name} />
-                    <FormControlLabel id="2" className="input-field" value="earlybird" control={<Radio />} label="EarlyBird - 29 kr (1-3 arbetsdagar)" />
-                    <FormControlLabel id="3" className="input-field" value="instabox" control={<Radio />} label="Instabox - 19 kr (1-3 arbetsdagar)" />
-                    <FormControlLabel id="4" className="input-field" value="brevduva" control={<Radio />} label="Brevduva  - Gratis (1 arbetsdag)" />
-                    <FormControlLabel id="5" className="input-field" value="magicshipping" control={<Radio />} label="Magic Shipping - 199 kr (1 timme)" />
+                  <RadioGroup value={value} onChange={handleRadioChange}>
+                    <FormControlLabel className="input-field" value="postnord" control={<Radio />} label={shippingMethodText1} />
+                    <FormControlLabel className="input-field" value="earlybird" control={<Radio />} label={shippingMethodText2} />
+                    <FormControlLabel className="input-field" value="instabox" control={<Radio />} label={shippingMethodText3} />
+                    <FormControlLabel className="input-field" value="brevduva" control={<Radio />} label={shippingMethodText4} />
+                    <FormControlLabel className="input-field" value="magicshipping" control={<Radio />} label={shippingMethodText5} />
                   </RadioGroup>
                 </FormControl>
               </form>
-              <Button variant="contained" color="primary" className="move-fwd-btn">Till Betalning</Button>
+              <Button onClick={setShippingMethodToState} variant="contained" color="primary" className="move-fwd-btn">Till Betalning</Button>
             </div>
           </div>
 
