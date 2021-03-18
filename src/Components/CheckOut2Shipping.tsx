@@ -14,15 +14,29 @@ function CheckOut2Shipping() {
   const [deliveryTime, setDeliveryTime] = useState<string>('')
 
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value);
+    const value = event.target.value
+    setRadioChange(value)
+ 
   }
 
-  // Find out the currently selected shipping method
-  value === 'postnord' ? console.log('value is set to: ' + value) :
-  value === 'earlybird' ? console.log('value is set to: ' + value) :
-  value === 'instabox' ? console.log('value is set to: ' + value) :
-  value === 'brevduva' ? console.log('value is set to: ' + value) :
-  console.log('value is set to: ' + value)
+  const setRadioChange = (v:string) => {
+    setValue(v);
+  }
+
+  useEffect(() => {
+    setValue(value)
+  })
+
+  useEffect(() => {
+    setShippingMethodToState()
+  })
+
+  // // Find out the currently selected shipping method
+  // value === 'postnord' ? console.log('value is set to: ' + value) :
+  // value === 'earlybird' ? console.log('value is set to: ' + value) :
+  // value === 'instabox' ? console.log('value is set to: ' + value) :
+  // value === 'brevduva' ? console.log('value is set to: ' + value) :
+  // console.log('value is set to: ' + value)
 
   // Prefixes for displayed text beside the radio btn
   const shippingMethodText1 = shippingMethods[0].name + ' - ' + shippingMethods[0].price + ' kr (' + shippingMethods[0].deliveryTime + ')';
@@ -35,7 +49,9 @@ function CheckOut2Shipping() {
   const [shippingObject, setShippingObject] = useState<ShippingMethod[]>([])
 
   const setShippingMethodToState = () => {
-    if (value === 'postnord') {
+    const freightValue = value
+
+    if (freightValue == 'postnord') {
       setName(shippingMethods[0].name)
       setPrice(shippingMethods[0].price)
       setDeliveryTime(shippingMethods[0].deliveryTime)
