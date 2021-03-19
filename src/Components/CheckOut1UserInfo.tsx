@@ -1,9 +1,8 @@
 import TextField from '@material-ui/core/TextField';
 import '../css/checkOut1UserInfo.css'
 import '../main.css'
-import { Button } from '@material-ui/core';
 import { useEffect, useState } from 'react'
-import BreadCrumbs from './BreadCrumbs';
+
 
 // Interface to the userObject array
 interface User {
@@ -78,13 +77,12 @@ function CheckOut1UserInfo() {
 
 
   return (
-    <div className="background">
-      <div className="grey-card">
+
         <div className="container flex">
 
           <div className="left-side">
             <div className="breadcrumbs">
-              <BreadCrumbs />
+              {/* <BreadCrumbs /> */}
             </div>
             <div className="headings">
               <h2>Utcheckning</h2>
@@ -105,7 +103,7 @@ function CheckOut1UserInfo() {
                 <h5>Postnummer</h5>
                 <TextField className="input-field" required placeholder="ex. 123 45" variant="standard" value={userPostNumber} onChange={handleuserPostNumber}/>
               </form>
-                <Button onClick={setUserToObject} variant="contained" color="primary" className="move-fwd-btn">Välj Fraktsätt</Button>
+                {/* <Button onClick={setUserToObject} variant="contained" color="primary" className="move-fwd-btn">Välj Fraktsätt</Button> */}
             </div>
           </div>
 
@@ -123,9 +121,7 @@ function CheckOut1UserInfo() {
           </div>
 
         </div>
-      </div>
-      
-    </div>
+
   )
 }
 
