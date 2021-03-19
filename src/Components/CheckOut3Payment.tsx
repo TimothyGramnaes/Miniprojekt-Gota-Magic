@@ -1,5 +1,8 @@
-import "../css/checkOut3Payment.css";
 import "../main.css";
+import BreadCrumbs from "./BreadCrumbs";
+import CartComponent from "./cartComponent/Cart";
+import { useCart } from "../Context/CartContext";
+import "../css/checkOut3Payment.css";
 import {
   TextField,
   Button,
@@ -8,10 +11,8 @@ import {
   Radio,
   RadioGroup,
 } from "@material-ui/core";
-import BreadCrumbs from "./BreadCrumbs";
+// import BreadCrumbs from './BreadCrumbs';
 import React from "react";
-import CartComponent from "./cartComponent/Cart";
-import { useCart } from "../Context/CartContext";
 
 function CardPaymentModal() {
   return (
@@ -106,76 +107,58 @@ function CheckOut3Payment() {
     setValue((event.target as HTMLInputElement).value);
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    // event.preventDefault();
-    // return (
-    //   value === 'betalaSenare' ?
-    //   <SMSLoanPaymentModal />
-    //   : value === 'faktura' ?
-    //   <BillPaymentModal />
-    //   :
-    //   <CardPaymentModal />
-    // )
-  };
-
   return (
-    <div className="background">
-      <div className="grey-card">
-        <div className="container flex">
-          <div className="left-side">
-            <div className="breadcrumbs">
-              <BreadCrumbs />
-            </div>
-            <div className="headings">
-              <h2>Betalning</h2>
-              <h3>Välj betalmetod och fyll i dina uppgifter</h3>
-            </div>
-            <div className="checkout-form">
-              <form className="flex column" onSubmit={handleSubmit}>
-                <FormControl>
-                  <RadioGroup value={value} onChange={handleRadioChange}>
-                    <FormControlLabel
-                      value="kort"
-                      control={<Radio />}
-                      label="Kortbetalning"
-                    />
-                    <FormControlLabel
-                      value="faktura"
-                      control={<Radio />}
-                      label="Faktura"
-                    />
-                    <FormControlLabel
-                      value="betalaSenare"
-                      control={<Radio />}
-                      label="Köp nu - Betala senare, med SMS-lån"
-                    />
-                  </RadioGroup>
-                </FormControl>
-              </form>
+    <div className="container flex">
+      <div className="left-side">
+        <div className="breadcrumbs">{/* <BreadCrumbs /> */}</div>
+        <div className="headings">
+          <h2>Betalning</h2>
+          <h3>Välj betalmetod och fyll i dina uppgifter</h3>
+        </div>
+        <div className="checkout-form">
+          <form className="flex column">
+            <FormControl>
+              <RadioGroup value={value} onChange={handleRadioChange}>
+                <FormControlLabel
+                  value="kort"
+                  control={<Radio />}
+                  label="Kortbetalning"
+                />
+                <FormControlLabel
+                  value="faktura"
+                  control={<Radio />}
+                  label="Faktura"
+                />
+                <FormControlLabel
+                  value="betalaSenare"
+                  control={<Radio />}
+                  label="Köp nu - Betala senare, med SMS-lån"
+                />
+              </RadioGroup>
+            </FormControl>
+          </form>
 
-              {value === "betalaSenare" ? (
-                <SMSLoanPaymentModal />
-              ) : value === "faktura" ? (
-                <BillPaymentModal />
-              ) : value === "kort" ? (
-                <CardPaymentModal />
-              ) : (
-                ""
-              )}
-            </div>
-          </div>
+          {value === "betalaSenare" ? (
+            <SMSLoanPaymentModal />
+          ) : value === "faktura" ? (
+            <BillPaymentModal />
+          ) : value === "kort" ? (
+            <CardPaymentModal />
+          ) : (
+            ""
+          )}
+        </div>
+      </div>
 
-          <div className="right-side">
-            <div className="order-overview">
-              {/* Här tar vi in order komponenten, och tar bort den temporära nedanför */}
-              <h3>Din beställning</h3>
-              <h4>Produktnamn</h4>
-              <div>
-                {cart.cart.map((item) => {
-                  return <CartComponent item={item} />;
-                })}
-              </div>
-            </div>
+      <div className="right-side">
+        <div className="order-overview">
+          {/* Här tar vi in order komponenten, och tar bort den temporära nedanför */}
+          <h3>Din beställning</h3>
+          <h4>Produktnamn</h4>
+          <div>
+            {cart.cart.map((item) => {
+              return <CartComponent item={item} />;
+            })}
           </div>
         </div>
       </div>
