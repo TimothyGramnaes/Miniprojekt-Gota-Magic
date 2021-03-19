@@ -1,10 +1,19 @@
-import React, { createContext, FunctionComponent, useContext, useState } from 'react'
-import { ShippingMethod } from '../DB/ShippingMethods'
+import React, {
+  createContext,
+  FunctionComponent,
+  useContext,
+  useState,
+} from "react";
+import { ShippingMethod, shippingMethods } from "../DB/ShippingMethods";
 
 interface CheckoutContextValue {
   // saveUserInfo: (name: string, email: string, mobile: string, deliveryaddress: string, city: string, postnumber: string) => void;
-  saveShippingMethod: (shippingMethod: ShippingMethod) => void;
-  savePaymentMethod: (name: string, price: number, deliveryTime: string) => void
+  saveShippingMethod: (id: string) => void;
+  savePaymentMethod: (
+    name: string,
+    price: number,
+    deliveryTime: string
+  ) => void;
 }
 
 // type User = {
@@ -16,14 +25,14 @@ interface CheckoutContextValue {
 //   postnumber: string
 // }
 
-export const CheckoutContext = createContext<CheckoutContextValue>({} as any)
+export const CheckoutContext = createContext<CheckoutContextValue>({} as any);
 
-export const CheckoutProvider: FunctionComponent = ( {children} ) => {
-  const [checkout, setCheckout] = useState<[]>([])
+export const CheckoutProvider: FunctionComponent = ({ children }) => {
+  const [checkout, setCheckout] = useState<[]>([]);
   // const [userInfo, setUserInfo] = useState<User[]>([])
   // const [shipping, setShipping] = useState<[]>([])
-  const [shippingObject, setShippingObject] = useState<ShippingMethod[]>([])
-  const [payment, setPayment] = useState<[]>([])
+  const [shippingObject, setShippingObject] = useState<ShippingMethod[]>([]);
+  const [payment, setPayment] = useState<[]>([]);
 
   // const saveUserInfo = (name: string,
   //   email: string,
@@ -32,7 +41,7 @@ export const CheckoutProvider: FunctionComponent = ( {children} ) => {
   //   city: string,
   //   postnumber: string ) => {
 
-  //   const newUserInfo = 
+  //   const newUserInfo =
   //   {
   //     name: name,
   //     email: email,
@@ -45,23 +54,29 @@ export const CheckoutProvider: FunctionComponent = ( {children} ) => {
   //   console.log(userInfo)
   // }
 
-  const saveShippingMethod = () => {
+  const saveShippingMethod = (id: string) => {
+    const freightValue = parseInt(id);
+    const selectedShipping = shippingMethods.filter((s) => {
+      if (s.id == freightValue) return freightValue;
+    });
 
-  }
+    setShippingObject([...selectedShipping]);
+  };
+  console.log(shippingObject);
 
-  const savePaymentMethod = () => {
+  const savePaymentMethod = () => {};
 
-  }
-  
   return (
-    <CheckoutContext.Provider value={{
-      saveShippingMethod,
-      savePaymentMethod
-    }}>
+    <CheckoutContext.Provider
+      value={{
+        saveShippingMethod,
+        savePaymentMethod,
+      }}
+    >
       {children}
     </CheckoutContext.Provider>
-  )
-}
+  );
+};
 
-export const useCheckoutContext = () => useContext<CheckoutContextValue>(CheckoutContext)
-
+export const useCheckoutContext = () =>
+  useContext<CheckoutContextValue>(CheckoutContext);
