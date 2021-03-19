@@ -1,8 +1,11 @@
 import TextField from '@material-ui/core/TextField';
 import '../css/checkOut2Shipping.css'
 import '../main.css'
-import { Button, FormControl, FormControlLabel, Radio, RadioGroup } from '@material-ui/core';
-import BreadCrumbs from "./BreadCrumbs";
+//import { FormControlLabel, Radio, RadioGroup } from '@material-ui/core';
+// import BreadCrumbs from "./BreadCrumbs";
+// import React from 'react';
+import {  FormControl, FormControlLabel, Radio, RadioGroup } from '@material-ui/core';
+// import BreadCrumbs from "./BreadCrumbs";
 import React, { useEffect, useState } from 'react';
 import { ShippingMethod, shippingMethods } from '../DB/ShippingMethods';
 
@@ -74,13 +77,12 @@ function CheckOut2Shipping() {
   }
   
   return (
-    <div className="background">
-      <div className="grey-card">
+
         <div className="container flex">
 
           <div className="left-side">
             <div className="breadcrumbs">
-              <BreadCrumbs />
+              {/* <BreadCrumbs /> */}
             </div>
             <div className="headings">
               <h2>Frakt</h2>
@@ -98,7 +100,7 @@ function CheckOut2Shipping() {
                   </RadioGroup>
                 </FormControl>
               </form>
-              <Button onClick={setShippingMethodToState} variant="contained" color="primary" className="move-fwd-btn">Till Betalning</Button>
+                {/* <Button variant="contained" color="primary" className="move-fwd-btn">Till Betalning</Button> */}
             </div>
           </div>
 
@@ -116,9 +118,7 @@ function CheckOut2Shipping() {
           </div>
 
         </div>
-      </div>
-      
-    </div>
+
   )
 }
 

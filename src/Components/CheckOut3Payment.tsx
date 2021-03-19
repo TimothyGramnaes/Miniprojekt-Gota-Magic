@@ -1,7 +1,7 @@
 import '../css/checkOut3Payment.css'
 import '../main.css'
 import { TextField, Button, FormControl, FormControlLabel, Radio, RadioGroup } from '@material-ui/core';
-import BreadCrumbs from './BreadCrumbs';
+// import BreadCrumbs from './BreadCrumbs';
 import React from 'react';
 
 function CardPaymentModal() {
@@ -61,13 +61,12 @@ function CheckOut3Payment() {
   }
 
   return (
-    <div className="background">
-      <div className="grey-card">
+
         <div className="container flex">
 
           <div className="left-side">
             <div className="breadcrumbs">
-              <BreadCrumbs />
+              {/* <BreadCrumbs /> */}
             </div>
             <div className="headings">
               <h2>Betalning</h2>
@@ -112,9 +111,7 @@ function CheckOut3Payment() {
           </div>
 
         </div>
-      </div>
-      
-    </div>
+
   )
 }
 
