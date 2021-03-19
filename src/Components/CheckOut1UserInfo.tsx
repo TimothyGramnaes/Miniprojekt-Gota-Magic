@@ -1,7 +1,9 @@
 import TextField from '@material-ui/core/TextField';
 import '../css/checkOut1UserInfo.css'
 import '../main.css'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import {CheckoutContext, useCheckoutContext} from '../Context/CheckoutContext'
+import { Button } from '@material-ui/core';
 
 
 // Interface to the userObject array
@@ -17,6 +19,8 @@ interface User {
 
 
 function CheckOut1UserInfo() {
+
+  const checkout = useCheckoutContext()
 
   const [userName, setUserName] = useState<string>('')
   const [userEmail, setUserEmail] = useState<string>('')
@@ -103,6 +107,7 @@ function CheckOut1UserInfo() {
                 <h5>Postnummer</h5>
                 <TextField className="input-field" required placeholder="ex. 123 45" variant="standard" value={userPostNumber} onChange={handleuserPostNumber}/>
               </form>
+              {/* <Button onClick={() => checkout.saveUserInfo('bob', 'bobemail', '973892792', 'eihfefe', 'eifiefh', 'deoe')}>Test</Button> */}
                 {/* <Button onClick={setUserToObject} variant="contained" color="primary" className="move-fwd-btn">Välj Fraktsätt</Button> */}
             </div>
           </div>
