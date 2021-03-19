@@ -5,8 +5,8 @@ import { IconButton, Grid, TextField, Button, makeStyles } from '@material-ui/co
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import { useProducts } from '../Context/ProductContext'
+// Used fot routing the ID to URL and the right product is showned
 import { Link } from 'react-router-dom';
-
 
 const useStyles = makeStyles({
     searchfield: {
@@ -33,7 +33,6 @@ function ProductList() {
     const [pageNumber, setPageNumber] = useState(1)
     const [productViewArray, setProductViewArray] = useState(products)
     const [searchValue, setSearchValue] = useState<string>()
-
 
     // Styling variables
     const productListContainer: CSSProperties ={
@@ -66,7 +65,6 @@ function ProductList() {
         justifyContent: 'center',
         alignItems: 'center',
         margin: '2rem 1rem'
-
     }
 
     const searchStyle: CSSProperties = {
@@ -86,6 +84,8 @@ function ProductList() {
     // The mapping of the product database
     const productData=productViewArray.slice(page, pageItems).map(product => (
         <div key={product.id}>
+            {/* Link is to show the right product on ProductPage.
+                The product.id is set in the URL string, and shows the right product that has the ID. */}
             <Link to={`/ProductPage/${product.id}`}>            
                 <ProductListCard productname={product.productname} price={product.price} image={product.image} id={product.id}/>            
             </Link>

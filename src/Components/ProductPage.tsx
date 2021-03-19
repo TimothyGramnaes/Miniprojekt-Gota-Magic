@@ -1,4 +1,3 @@
-import { products } from '../DB/Products'
 import StarIcon from '@material-ui/icons/Star';
 import { Button } from '@material-ui/core';
 import { yellow } from '@material-ui/core/colors';
@@ -6,17 +5,38 @@ import '../main.css'
 import '../css/productPage.css'
 import { useProductContext } from '../Context/ProductContext'
 import { useState, useEffect } from 'react'
+// This is to get the URL from browser
 import { RouteComponentProps } from 'react-router-dom';
+// Imported the product DB just for the interface
 import { Product } from '../DB/Products'
 
 interface Props extends RouteComponentProps {
   id: string
 }
 
+  // THE HOW TO SHOW RIGHT PRODUCT
+  // 1. Create in Layout <Route path="/ProductPage/:id" component={ProductPage} />
+  //    The :id is set to catch the id from ProductList
+  // 2. In ProductList create a Link around the mapped content <Link to={`/ProductPage/${product.id}`}>
+  //    The ${product.id} sets the clicked products id in the URL
+  // 3. And last, in Productpage you import "import { RouteComponentProps } from 'react-router-dom'"
+  //    After that you extract the URL with this line "const productUrl = props.match.url.substr(1);"
+  //    Now you've got the URL behind "pagename/" and needed to shortened
+  //    Filter the product array with the id you've got and use the data in the HTML
+
 function ProductPage(props:Props){
-  const view = props.match.url.substr(1);
-  const getId = parseInt(view.slice(12))
   
+  // Import context
+  const product = useProductContext()
+  // Extracted the products array from Context
+  const productData = product.products
+
+  // Gets the URL in webbrowser
+  const productUrl = props.match.url.substr(1);
+  // Clean the URL so just the ID is left
+  const getId = parseInt(productUrl.slice(12))
+  
+  // Default product to stop error when a product is choosen to display
   const defaultProduct:Product[] = [{productname: "Ancestor's Chosen",
   cardtype:"Creature — Human Cleric",
   color:"White",
@@ -31,29 +51,28 @@ function ProductPage(props:Props){
   rating: 4,
   }]
 
+  // State that gets the filtered product
   const [viewProduct, setViewProduct] = useState<Product[]>(defaultProduct)
 
+  // Variable to use for output data in the HTML
   const setProduct = viewProduct[0]
 
-  useEffect(() => {
-    setFilterdList()
-  }, [])
-  
-  const product = useProductContext()
-  const productData = product.products
-
+  // Filter the product array and return the clicked product
   const filterdProduct = productData.filter((p) => {
-    if(p.id == getId) {
-      
+    if(p.id == getId) {      
       return getId
     }
   })
 
+  // Function that sets the filtered state
   const setFilterdList = () => {
     setViewProduct(filterdProduct)
-  }
-  console.log(viewProduct[0].productname)
-  // console.log(rating*1)
+  }    
+
+  // useEffect to automaticly runs and set the filtered value to the state
+  useEffect(() => {
+    setFilterdList()
+  }, [])
 
   return (
 
