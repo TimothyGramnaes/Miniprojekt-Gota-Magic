@@ -3,6 +3,7 @@ import BreadCrumbs from "./BreadCrumbs";
 import CartComponent from "./cartComponent/Cart";
 import { useCart } from "../Context/CartContext";
 import "../css/checkOut3Payment.css";
+import { Card, Invoice, SmsLoan, Swish } from "../DB/PaymentMethods"
 import {
   TextField,
   Button,
@@ -13,6 +14,7 @@ import {
 } from "@material-ui/core";
 // import BreadCrumbs from './BreadCrumbs';
 import React from "react";
+
 
 function CardPaymentModal() {
   return (
