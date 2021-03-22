@@ -1,12 +1,13 @@
-import TextField from "@material-ui/core/TextField";
+import TextField from '@material-ui/core/TextField';
+import '../css/checkOut1UserInfo.css'
+import {CheckoutContext, useCheckoutContext} from '../Context/CheckoutContext'
+import { Button } from '@material-ui/core';
 import "../css/checkOut1UserInfo.css";
 import "../main.css";
-import { Button } from "@material-ui/core";
 import BreadCrumbs from "./BreadCrumbs";
 import { useCart } from "../Context/CartContext";
 import CartComponent from "./cartComponent/Cart";
 import "../css/checkOut1UserInfo.css";
-import "../main.css";
 import { useEffect, useState } from "react";
 
 // Interface to the userObject array
