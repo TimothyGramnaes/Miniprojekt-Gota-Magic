@@ -1,5 +1,4 @@
 .cartContainer {
-  max-width: 40rem;
   width: 100%;
   background-color: lightgray;
   display: flex;
@@ -20,9 +19,9 @@
   box-shadow: 2px 5px 10px rgb(184, 184, 184);
   flex-wrap: wrap;
   margin-top: 1rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  margin: 1rem;
+  /* padding-left: 1rem;
+  padding-right: 1rem;*/
+  margin-bottom: 1rem;
 }
 .productImageContainer {
   display: flex;
