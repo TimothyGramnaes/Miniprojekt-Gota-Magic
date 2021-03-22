@@ -1,19 +1,21 @@
-import React from 'react'
-import { CheckoutProvider } from '../Context/CheckoutContext'
-import { ProductProvider } from '../Context/ProductContext'
-import Layout from './Layout'
-
+import React from "react";
+import { CartContextProvider } from "../Context/CartContext";
+import { CheckoutProvider } from "../Context/CheckoutContext";
+import { ProductProvider } from "../Context/ProductContext";
+import Layout from "./Layout";
 
 function ContextMaster() {
-    return(
-        <>
+  return (
+    <>
+      <ProductProvider>
         <CheckoutProvider>
-            <ProductProvider>
-                <Layout />
-            </ProductProvider>
+          <CartContextProvider>
+            <Layout />
+          </CartContextProvider>
         </CheckoutProvider>
-        </>
-    )
+      </ProductProvider>
+    </>
+  );
 }
 
-export default ContextMaster
+export default ContextMaster;

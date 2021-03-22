@@ -1,53 +1,50 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Button from "@material-ui/core/Button";
 import "./cartContainer.css";
 import DeleteIcon from "@material-ui/icons/Delete";
+import { useCart } from "../../Context/CartContext";
+import { orderItem } from "../../Types/orderItem";
+interface Props {
+  item: orderItem;
+}
 
-const CartComponent = () => (
-  <div className="cartContainer">
+const CartComponent = ({ item }: Props) => {
+  const cart = useCart();
+
+  const decreaseProduct = () => {
+    if (item.quantity >= 2) item.quantity -= 1;
+    else {
+      return;
+    }
+  };
+
+  return (
     <div className="itemContainer">
       <div className="productImageContainer">
-        <div className="img">
-          <p>product-img</p>
-        </div>
+        <img className="img" src={item.img} alt="" />
       </div>
       <div className="buttonContainer">
-        <p>Produktnamn</p>
+        <p>Product: {item.itemName}</p>
         <ButtonGroup disableElevation variant="contained" color="primary">
-          <Button>+</Button>
+          <Button
+            onClick={() => cart.addToCart(item.itemName, item.price, item.img)}
+          >
+            +
+          </Button>
           <div className="numberContainer">
-            <p>3</p>
+            <p>{item.quantity}</p>
           </div>
-          <Button>-</Button>
+          <Button onClick={() => cart.decreaseQuantity(item)}>-</Button>
         </ButtonGroup>
-        <p>Pris: 199</p>
+        <p>Price: {item.price}</p>
+        <p>Total price: {item.price * item.quantity}</p>
       </div>
       <div className="iconContainer">
-        <DeleteIcon />
+        <DeleteIcon onClick={() => cart.removeFromCart(item.itemName)} />
       </div>
     </div>
-    <div className="itemContainer">
-      <div className="productImageContainer">
-        <div className="img">
-          <p>product-img</p>
-        </div>
-      </div>
-      <div className="buttonContainer">
-        <p>Produktnamn</p>
-        <ButtonGroup disableElevation variant="contained" color="primary">
-          <Button>+</Button>
-          <div className="numberContainer">
-            <p>3</p>
-          </div>
-          <Button>-</Button>
-        </ButtonGroup>
-        <p>Pris: 199</p>
-      </div>
-      <div className="iconContainer">
-        <DeleteIcon />
-      </div>
-    </div>
-  </div>
-);
+  );
+};
+
 export default CartComponent;

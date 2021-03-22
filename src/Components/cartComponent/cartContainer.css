@@ -20,12 +20,16 @@
   box-shadow: 2px 5px 10px rgb(184, 184, 184);
   flex-wrap: wrap;
   margin-top: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin: 1rem;
 }
 .productImageContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-right: 1rem;
 }
 .img {
   width: 5rem;
