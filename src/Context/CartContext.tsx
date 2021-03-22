@@ -2,7 +2,6 @@ import React, {
   createContext,
   FunctionComponent,
   useContext,
-  useEffect,
   useState,
 } from "react";
 import { orderItem } from "../Types/orderItem";
