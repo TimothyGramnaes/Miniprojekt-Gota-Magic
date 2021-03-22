@@ -78,7 +78,7 @@ export default function TemporaryDrawer() {
               {cart.cart.map((item) => {
                 return <CartComponent item={item} />;
               })}
-              <Link to="/ProductCart">
+              <Link className="link-style" to="/ProductCart">
                 <Button variant="contained" color="primary">
                   Till kassa
                 </Button>

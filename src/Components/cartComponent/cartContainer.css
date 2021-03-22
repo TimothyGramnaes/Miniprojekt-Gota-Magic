@@ -5,8 +5,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: solid 2px black;
   padding: 1rem;
+  flex-wrap: wrap;
 }
 .itemContainer {
   background-color: white;
@@ -16,7 +16,7 @@
   flex-direction: row;
   justify-content: space-around;
   padding: 1rem;
-  box-shadow: 2px 5px 10px rgb(184, 184, 184);
+  box-shadow: 2px 3px 5px rgb(184, 184, 184);
   flex-wrap: wrap;
   margin-top: 1rem;
   /* padding-left: 1rem;
@@ -44,9 +44,14 @@
 .iconContainer {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 p {
   padding: 0.5rem;
+}
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
 }
