@@ -67,6 +67,7 @@ export default function TemporaryDrawer() {
           >
             {list(anchor)}
             <div>
+              <p>Total Price: {cart.totalPrice}</p>
               {cart.cart.map((item) => {
                 return <CartComponent item={item} />;
               })}

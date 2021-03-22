@@ -12,6 +12,7 @@ type Context = {
   cart: orderItem[];
   removeFromCart: (productName: string) => void;
   decreaseQuantity: (item: orderItem) => void;
+  totalPrice: number;
 };
 
 const CartContext = createContext<Context>(undefined!);
@@ -21,6 +22,10 @@ export const CartContextProvider: FunctionComponent = ({ children }) => {
   const getCartSize = () => {
     return cart.length;
   };
+  const totalPrice = cart.reduce(
+    (acc, curr) => acc + curr.price * curr.quantity,
+    0
+  );
 
   const addToCart = (itemName: string, price: number, image: string) => {
     let existingItem = cart.find(
@@ -86,6 +91,7 @@ export const CartContextProvider: FunctionComponent = ({ children }) => {
         cart,
         removeFromCart,
         decreaseQuantity,
+        totalPrice,
       }}
     >
       {children}

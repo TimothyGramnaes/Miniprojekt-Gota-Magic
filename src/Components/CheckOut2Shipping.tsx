@@ -186,6 +186,7 @@ function CheckOut2Shipping() {
         <div className="order-overview">
           {/* Här tar vi in order komponenten, och tar bort den temporära nedanför */}
           <h3>Din beställning</h3>
+          <h3>Dina produkter: {cart.totalPrice} SEK </h3>
           <div>
             {cart.cart.map((item) => {
               return <CartComponent item={item} />;
