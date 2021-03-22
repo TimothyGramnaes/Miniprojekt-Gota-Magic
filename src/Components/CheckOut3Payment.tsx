@@ -13,39 +13,66 @@ import {
   RadioGroup,
 } from "@material-ui/core";
 // import BreadCrumbs from './BreadCrumbs';
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import  { User } from "../Components/CheckOut1UserInfo"
+import {CheckoutContext, useCheckoutContext} from '../Context/CheckoutContext'
 
 
 
 function CardPaymentModal() {
+
+  const userFromContext = useCheckoutContext()
+  const userInfo = userFromContext.userInfo[0]
   
+  const [userObject, setUserObject] = useState<User[]>([]);
   const [value, setValue] = useState<string>("");
-  const [cardType, setCardType] = useState<string>('Betalkort')
-  const [userName, setUserName] = useState<string>('Betalkort')
+  const [cardType, setCardType] = useState<string>("Betalkort")
+  const [userName, setUserName] = useState<string>(userInfo.name)
   const [cardNumber, setCardNumber] = useState<number>(0)
   const [month, setMonth] = useState<number>(1)
   const [year, setyear] = useState<number>(23)
   const [safeCode, setSafeCode] = useState<number>(111)
-  const [email, setEmail] = useState<string>('david@nord.se')
-  const [mobileNumber, SetMobileNumber] = useState<number>(+4670134578)
+  const [email, setEmail] = useState<string>(userInfo.email)
+  const [mobileNumber, SetMobileNumber] = useState<string>(userInfo.mobile)
+  
+    // This useEffect fetch the localStorage after the page is updated.
+  // If this is not running, the saved LS data will be deleted
+  useEffect(() => {
+    const data = localStorage.getItem("user");    
+    if (data) {
+      setUserObject(JSON.parse(data));
+    }
+    setUser()
+  }, []);
 
-  const setPaymentToState = () => {
-    const PaymentValue = Number(value)
-    
-    if (PaymentValue == 1) {
-      setUserName("Nicklas"), //från LS
-      setCardNumber(0),
-      setMonth(1),
-      setyear(23),
-      setSafeCode(111)  
-     } else if (PaymentValue == 2) {
-        setEmail("david@sensei.se") // från LS
-       } else if (PaymentValue == 3) {
-          SetMobileNumber(467012345678) //från LS
-         } else if (PaymentValue == 4) {
-            SetMobileNumber(467012345678) //från LS
-          };
+  console.log(userObject[0])
+  const setUser = () => {
+    // setUserName(userObject[0].name)
+    // setEmail(userObject[0].email)
+    // SetMobileNumber(userObject[0].mobile)
   }
+
+
+
+  // const setPaymentToState = () => {
+  //   const PaymentValue = Number(value)
+    
+  //   if (PaymentValue == 1) {
+  //     setUserName("Nicklas"), //från LS
+  //     setCardNumber(0),
+  //     setMonth(1),
+  //     setyear(23),
+  //     setSafeCode(111)  
+  //    } else if (PaymentValue == 2) {
+  //       setEmail("david@sensei.se") // från LS
+  //      } else if (PaymentValue == 3) {
+  //         SetMobileNumber(467012345678) //från LS
+  //        } else if (PaymentValue == 4) {
+  //           SetMobileNumber(467012345678) //från LS
+  //         };
+  // }
+
+  // console.log(userName, cardNumber, month, year, safeCode, email, mobileNumber)
 
 
   return (

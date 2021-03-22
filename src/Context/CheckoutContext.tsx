@@ -4,35 +4,56 @@ import React, {
   useContext,
   useState,
 } from "react";
+import { convertCompilerOptionsFromJson } from "typescript";
 import { ShippingMethod, shippingMethods } from "../DB/ShippingMethods";
 
 interface CheckoutContextValue {
-  // saveUserInfo: (name: string, email: string, mobile: string, deliveryaddress: string, city: string, postnumber: string) => void;
+  saveUserInformation: (name: string, email: string, mobile: string, deliveryaddress: string, city: string, postnumber: string) => void;
   saveShippingMethod: (id: string) => void;
   savePaymentMethod: (
     name: string,
     price: number,
     deliveryTime: string
   ) => void;
+  userInfo: User[]
 }
 
-// type User = {
-//   name: string,
-//   email: string,
-//   mobile: string,
-//   deliveryaddress: string,
-//   city: string,
-//   postnumber: string
-// }
+type User = {
+  name: string,
+  email: string,
+  mobile: string,
+  deliveryaddress: string,
+  city: string,
+  postnumber: string
+}
 
 export const CheckoutContext = createContext<CheckoutContextValue>({} as any);
 
 export const CheckoutProvider: FunctionComponent = ({ children }) => {
   const [checkout, setCheckout] = useState<[]>([]);
-  // const [userInfo, setUserInfo] = useState<User[]>([])
+  const [userInfo, setUserInfo] = useState<User[]>([])
   // const [shipping, setShipping] = useState<[]>([])
   const [shippingObject, setShippingObject] = useState<ShippingMethod[]>([]);
   const [payment, setPayment] = useState<[]>([]);
+
+  const saveUserInformation = (
+    name: string,
+    email: string,
+    mobile: string,
+    deliveryaddress: string,
+    city: string,
+    postnumber: string) => {
+      setUserInfo([{
+          name: name,
+          email: email,
+          mobile: mobile,
+          deliveryaddress: deliveryaddress,
+          city: city,
+          postnumber: postnumber   
+      }])
+    }
+  
+    console.log(userInfo)
 
   // const saveUserInfo = (name: string,
   //   email: string,
@@ -69,8 +90,10 @@ export const CheckoutProvider: FunctionComponent = ({ children }) => {
   return (
     <CheckoutContext.Provider
       value={{
+        saveUserInformation,
         saveShippingMethod,
         savePaymentMethod,
+        userInfo
       }}
     >
       {children}
