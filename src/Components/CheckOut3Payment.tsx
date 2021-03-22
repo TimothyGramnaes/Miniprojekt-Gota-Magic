@@ -3,7 +3,7 @@ import BreadCrumbs from "./BreadCrumbs";
 import CartComponent from "./cartComponent/Cart";
 import { useCart } from "../Context/CartContext";
 import "../css/checkOut3Payment.css";
-import { Card, Invoice, SmsLoan, Swish } from "../DB/PaymentMethods"
+import { PaymentMethods, Card, Invoice, SmsLoan, Swish } from "../DB/PaymentMethods"
 import {
   TextField,
   Button,
@@ -13,10 +13,41 @@ import {
   RadioGroup,
 } from "@material-ui/core";
 // import BreadCrumbs from './BreadCrumbs';
-import React from "react";
+import React, { useState } from "react";
+
 
 
 function CardPaymentModal() {
+  
+  const [value, setValue] = useState<string>("");
+  const [cardType, setCardType] = useState<string>('Betalkort')
+  const [userName, setUserName] = useState<string>('Betalkort')
+  const [cardNumber, setCardNumber] = useState<number>(0)
+  const [month, setMonth] = useState<number>(1)
+  const [year, setyear] = useState<number>(23)
+  const [safeCode, setSafeCode] = useState<number>(111)
+  const [email, setEmail] = useState<string>('david@nord.se')
+  const [mobileNumber, SetMobileNumber] = useState<number>(+4670134578)
+
+  const setPaymentToState = () => {
+    const PaymentValue = Number(value)
+    
+    if (PaymentValue == 1) {
+      setUserName("Nicklas"), //från LS
+      setCardNumber(0),
+      setMonth(1),
+      setyear(23),
+      setSafeCode(111)  
+     } else if (PaymentValue == 2) {
+        setEmail("david@sensei.se") // från LS
+       } else if (PaymentValue == 3) {
+          SetMobileNumber(467012345678) //från LS
+         } else if (PaymentValue == 4) {
+            SetMobileNumber(467012345678) //från LS
+          };
+  }
+
+
   return (
     <div className="card-modal">
       <form>
