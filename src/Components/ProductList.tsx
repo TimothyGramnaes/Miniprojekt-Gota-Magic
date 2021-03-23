@@ -86,9 +86,9 @@ function ProductList() {
         <div key={product.id}>
             {/* Link is to show the right product on ProductPage.
                 The product.id is set in the URL string, and shows the right product that has the ID. */}
-            <Link to={`/ProductPage/${product.id}`}>            
+                        
                 <ProductListCard productname={product.productname} price={product.price} image={product.image} id={product.id}/>            
-            </Link>
+            
         </div>
         )
     )
