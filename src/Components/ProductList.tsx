@@ -113,7 +113,6 @@ function ProductList() {
         } else if (searchValue?.toLowerCase() == sliceProductExpansion.toLowerCase()) {
             return searchValue?.toLowerCase()
         }
-
     })
 
 
