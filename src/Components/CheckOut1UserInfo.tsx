@@ -93,7 +93,6 @@ function CheckOut1UserInfo() {
 
     user.getValidation(validated)
 
-
     user.saveUserInformation(userName, userEmail, userMobile, userDeliveryaddress, userCity, userPostNumber, validated)
     setUserObject([
       {
@@ -106,9 +105,7 @@ function CheckOut1UserInfo() {
         validated: validated
       },
     ]);
-  };
-
-  
+  }; 
 
 
   // This useEffect fetch the localStorage after the page is updated.
@@ -123,10 +120,8 @@ function CheckOut1UserInfo() {
   useEffect(() => {
     if (userNameError && userEmailError === true) {
       setValidated(true)
-      console.log(true)
     } else {
       setValidated(false)
-      console.log(false)
     }
   })
 

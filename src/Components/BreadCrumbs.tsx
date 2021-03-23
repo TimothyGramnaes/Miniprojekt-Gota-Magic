@@ -50,6 +50,15 @@ function BreadCrumbs() {
 
     const handleNext = () => {
         setActiveStep((prevActiveStep) => prevActiveStep +1);
+        if(activeStep === 0) {
+            console.log(1)
+        } else if (activeStep === 1) {
+            console.log(2)
+        } else if (activeStep === 2) {
+            console.log(3)
+        } else if (activeStep === 3) {
+            console.log(4)
+        }
     };
 
     const handleBack = () => {
@@ -104,7 +113,9 @@ function BreadCrumbs() {
                         <Button 
                         variant="contained" 
                         color="primary" 
-                        onClick={handleNext}>
+                        disabled={validatedUser === false}
+                        onClick={handleNext}>                
+                            {/* {btnState}             */}
                             {activeStep === steps.length - 1 ? 'Klar' : 'Nästa'}
                         </Button>
 

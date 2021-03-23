@@ -59,7 +59,6 @@ export const CheckoutProvider: FunctionComponent = ({ children }) => {
     setValidatedUser(value)      
   }
 
-  console.log(validatedUser)
 
   const saveShippingMethod = (id: string) => {
     const freightValue = parseInt(id);
@@ -69,7 +68,6 @@ export const CheckoutProvider: FunctionComponent = ({ children }) => {
 
     setShippingObject([...selectedShipping]);
   };
-  console.log(shippingObject);
 
   const savePaymentMethod = (cardType: string, cardId: number) => {
     const selectedPayment = PaymentMethods.filter((p) => {
@@ -77,7 +75,6 @@ export const CheckoutProvider: FunctionComponent = ({ children }) => {
     })
     setPayment([...selectedPayment])
   };
-  console.log(payment)
 
   return (
     <CheckoutContext.Provider
