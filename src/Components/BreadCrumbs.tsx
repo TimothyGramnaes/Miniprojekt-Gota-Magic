@@ -14,6 +14,7 @@ import CheckOut3Payment from "./CheckOut3Payment";
 import OrderConfirmation from "./OrderConfirmation";
 import { CSSProperties } from '@material-ui/styles';
 // import ProductList from "./ProductList"
+import {useCheckoutContext} from '../Context/CheckoutContext'
 
 
 
@@ -37,12 +38,27 @@ function getStepContent(stepIndex: number) {
     }
 }
 
+
 function BreadCrumbs() {
+    const user = useCheckoutContext()
+    const validatedUser = user.validatedUser
+
+    console.log(validatedUser)
+
     const [activeStep, setActiveStep] = React.useState(0);
     const steps = getSteps();
 
     const handleNext = () => {
         setActiveStep((prevActiveStep) => prevActiveStep +1);
+        if(activeStep === 0) {
+            console.log(1)
+        } else if (activeStep === 1) {
+            console.log(2)
+        } else if (activeStep === 2) {
+            console.log(3)
+        } else if (activeStep === 3) {
+            console.log(4)
+        }
     };
 
     const handleBack = () => {
@@ -97,7 +113,9 @@ function BreadCrumbs() {
                         <Button 
                         variant="contained" 
                         color="primary" 
-                        onClick={handleNext}>
+                        disabled={validatedUser === false}
+                        onClick={handleNext}>                
+                            {/* {btnState}             */}
                             {activeStep === steps.length - 1 ? 'Klar' : 'Nästa'}
                         </Button>
 
