@@ -42,7 +42,7 @@ export default function TemporaryDrawer() {
 
     setState({ ...state, [anchor]: open });
   };
-
+  const disableButton = () => {};
   const list = (anchor: Anchor) => (
     <div
       className={clsx(classes.list, {
@@ -79,7 +79,12 @@ export default function TemporaryDrawer() {
                 return <CartComponent item={item} />;
               })}
               <Link className="link-style" to="/ProductCart">
-                <Button variant="contained" color="primary">
+                <Button
+                  onClick={toggleDrawer(anchor, false)}
+                  variant="contained"
+                  color="primary"
+                  disabled={cart.cart.length >= 1 ? false : true}
+                >
                   Till kassa
                 </Button>
               </Link>
