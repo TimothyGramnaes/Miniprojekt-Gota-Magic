@@ -19,6 +19,7 @@ import {CheckoutContext, useCheckoutContext} from '../Context/CheckoutContext'
 
 
 function CheckOut3Payment() {
+  const checkout = useCheckoutContext()
   const cart = useCart();
   const [value, setValue] = React.useState("");
 
@@ -124,7 +125,7 @@ function CheckOut3Payment() {
             </div>
           </div>
         </form>
-        <Button variant="contained" color="primary" className="move-fwd-btn">
+        <Button variant="contained" color="primary" className="move-fwd-btn" onClick={() => checkout.savePaymentMethod('Betalkort', 1)}>
           Bekräfta order och betala
         </Button>
       </div>
@@ -144,7 +145,7 @@ function CheckOut3Payment() {
           variant="standard"
           value={userInfo.deliveryaddress}
         />
-        <Button variant="contained" color="primary" className="move-fwd-btn">
+        <Button variant="contained" color="primary" className="move-fwd-btn" onClick={() => checkout.savePaymentMethod('Faktura', 2)}>
           Bekräfta order och betala
         </Button>
       </div>
@@ -163,7 +164,7 @@ function CheckOut3Payment() {
           variant="standard"
           value={userInfo.mobile}
         />
-        <Button variant="contained" color="primary" className="move-fwd-btn">
+        <Button variant="contained" color="primary" className="move-fwd-btn" onClick={() => checkout.savePaymentMethod('SMS-lån', 3)}>
           Bekräfta order och betala
         </Button>
       </div>
@@ -182,7 +183,7 @@ function CheckOut3Payment() {
           variant="standard"
           value={userInfo.mobile}
         />
-        <Button variant="contained" color="primary" className="move-fwd-btn">
+        <Button variant="contained" color="primary" className="move-fwd-btn" onClick={() => checkout.savePaymentMethod('Swish', 4)}>
           Bekräfta order och betala
         </Button>
       </div>

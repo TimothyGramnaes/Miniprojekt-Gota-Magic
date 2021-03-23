@@ -40,7 +40,7 @@ export const PaymentMethods: PaymentMethod[] = [
     email: "david@sensei.se",
   } as Invoice,
   {
-    cardType: "Sms-lån",
+    cardType: "SMS-lån",
     cardId: 3,
     mobileNumber: +467012345678
 
