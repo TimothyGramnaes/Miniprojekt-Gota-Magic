@@ -55,6 +55,7 @@ function CheckOut1UserInfo() {
 
   // Functions that handles the inputfields an save it to states right above
   const handleUserName = (e: any) => {
+    
     setUserName(e.target.value);
     if (e.target.value.length < 5) {
       setUserNameError(false)
@@ -62,31 +63,39 @@ function CheckOut1UserInfo() {
     } else {
       setUserNameError(true)
       setUserNameErrorText('')
+      setUserToObject()
     }
   };
   const handleuserEmail = (e: any) => {
     setUserEmail(e.target.value);
     if (e.target.value.indexOf('@') === -1) {
       setUserEmailError(false)
-      setUserEmailErrorText('Kräver en riktig e-post')
-    } else {
+      setUserEmailErrorText('Kräver en riktig e-post') 
+    } 
+    else {
       setUserEmailErrorText('')
       setUserEmailError(true)
+      setUserToObject()
     }
   };
   const handleuserMobile = (e: any) => {
     setUserMobile(e.target.value);
+    setUserToObject()
   };
   const handleuserDeliveryaddress = (e: any) => {
     setUserDeliveryaddress(e.target.value);
+    setUserToObject()
   };
   const handleuserCity = (e: any) => {
     setUserCity(e.target.value);
+    setUserToObject()
   };
   const handleuserPostNumber = (e: any) => {
     setUserPostNumber(e.target.value);
+    setUserToObject()
   };
   // End of input handlers
+
 
   // Function that saves the inputsfields to an object
   const setUserToObject = () => {
@@ -120,9 +129,15 @@ function CheckOut1UserInfo() {
   useEffect(() => {
     if (userNameError && userEmailError === true) {
       setValidated(true)
+      console.log('funkar')
     } else {
       setValidated(false)
     }
+  })
+
+  useEffect(()=> {
+    user.getValidation(validated)
+    
   })
 
   // This useEffect saves the userObject to LS
@@ -210,6 +225,7 @@ function CheckOut1UserInfo() {
           >
             Välj Fraktsätt
           </Button>
+          <button onClick={user.addOrderNumber}>Plussa ordernummer</button>
           {/* <Button onClick={setUserToObject} variant="contained" color="primary" className="move-fwd-btn">Välj Fraktsätt</Button> */}
         </div>
       </div>

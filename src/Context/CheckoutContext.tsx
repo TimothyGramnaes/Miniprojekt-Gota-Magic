@@ -2,6 +2,7 @@ import React, {
   createContext,
   FunctionComponent,
   useContext,
+  useEffect,
   useState,
 } from "react";
 import { PaymentMethod, PaymentMethods } from "../DB/PaymentMethods";
@@ -14,6 +15,7 @@ interface CheckoutContextValue {
   getValidation: (value:boolean) => void;
   userInfo: User[]
   validatedUser: boolean
+  addOrderNumber: () => void
 }
 
 type User = {
@@ -33,6 +35,28 @@ export const CheckoutProvider: FunctionComponent = ({ children }) => {
   const [userInfo, setUserInfo] = useState<User[]>([])
   const [shippingObject, setShippingObject] = useState<ShippingMethod[]>([]);
   const [payment, setPayment] = useState<PaymentMethod[]>([]);
+
+  const [orderNumber, setOrderNumber] = useState<number>(0)
+
+  // Fetch ordernumber from LS
+    useEffect(() => {   
+      const data = localStorage.getItem('orderNumber') || "[]"
+      if (data) {
+        setOrderNumber(JSON.parse(data))
+      }
+  }, [])
+
+  // This useEffect saves the ordernumber to LS
+  useEffect(() => {    
+      localStorage.setItem('orderNumber', JSON.stringify(orderNumber))
+  })
+
+  const addOrderNumber = () => {
+    const oldOrderNumber = orderNumber
+    setOrderNumber(oldOrderNumber+1)
+  }
+
+  console.log(orderNumber)
 
   const saveUserInformation = (
     name: string,
@@ -59,7 +83,6 @@ export const CheckoutProvider: FunctionComponent = ({ children }) => {
     setValidatedUser(value)      
   }
 
-
   const saveShippingMethod = (id: string) => {
     const freightValue = parseInt(id);
     const selectedShipping = shippingMethods.filter((s) => {
@@ -84,7 +107,8 @@ export const CheckoutProvider: FunctionComponent = ({ children }) => {
         savePaymentMethod,
         userInfo,
         getValidation,
-        validatedUser
+        validatedUser,
+        addOrderNumber
       }}
     >
       {children}
