@@ -9,6 +9,7 @@ import { useCart } from "../Context/CartContext";
 import CartComponent from "./cartComponent/Cart";
 import "../css/checkOut1UserInfo.css";
 import { useEffect, useState } from "react";
+import { FormatColorResetOutlined } from '@material-ui/icons';
 
 // Interface to the userObject array
 export interface User {
@@ -18,28 +19,60 @@ export interface User {
   deliveryaddress: string;
   city: string;
   postnumber: string;
+  validated: boolean
+}
+
+interface Validate {
+  name: boolean;
+  email: boolean;
+  // mobile: boolean;
+  // deliveryaddress: boolean;
+  // city: boolean;
+  // postnumber: boolean;
 }
 
 function CheckOut1UserInfo() {
   const cart = useCart();
   const [userName, setUserName] = useState<string>("");
+  const [userNameError, setUserNameError] = useState<boolean>(false);
+  const [userNameErrorText, setUserNameErrorText] = useState<string>('');
   const [userEmail, setUserEmail] = useState<string>("");
   const [userMobile, setUserMobile] = useState<string>("");
   const [userDeliveryaddress, setUserDeliveryaddress] = useState<string>("");
   const [userCity, setUserCity] = useState<string>("");
   const [userPostNumber, setUserPostNumber] = useState<string>("");
+  const [userEmailError, setUserEmailError] = useState<boolean>(false);
+  const [userEmailErrorText, setUserEmailErrorText] = useState<string>('');
+  const [userMobileError, setUserMobileError] = useState<string>("");
+  const [validated, setValidated] = useState<boolean>(false);
+
 
   // The user array
   const [userObject, setUserObject] = useState<User[]>([]);
 
   const user = useCheckoutContext()
 
+
   // Functions that handles the inputfields an save it to states right above
   const handleUserName = (e: any) => {
     setUserName(e.target.value);
+    if (e.target.value.length < 5) {
+      setUserNameError(false)
+      setUserNameErrorText('För kort! Minst 5 tecken')
+    } else {
+      setUserNameError(true)
+      setUserNameErrorText('')
+    }
   };
   const handleuserEmail = (e: any) => {
     setUserEmail(e.target.value);
+    if (e.target.value.indexOf('@') === -1) {
+      setUserEmailError(false)
+      setUserEmailErrorText('Kräver en riktig e-post')
+    } else {
+      setUserEmailErrorText('')
+      setUserEmailError(true)
+    }
   };
   const handleuserMobile = (e: any) => {
     setUserMobile(e.target.value);
@@ -57,7 +90,11 @@ function CheckOut1UserInfo() {
 
   // Function that saves the inputsfields to an object
   const setUserToObject = () => {
-    user.saveUserInformation(userName, userEmail, userMobile, userDeliveryaddress, userCity, userPostNumber)
+
+    user.getValidation(validated)
+
+
+    user.saveUserInformation(userName, userEmail, userMobile, userDeliveryaddress, userCity, userPostNumber, validated)
     setUserObject([
       {
         name: userName,
@@ -66,9 +103,12 @@ function CheckOut1UserInfo() {
         deliveryaddress: userDeliveryaddress,
         city: userCity,
         postnumber: userPostNumber,
+        validated: validated
       },
     ]);
   };
+
+  
 
 
   // This useEffect fetch the localStorage after the page is updated.
@@ -79,6 +119,16 @@ function CheckOut1UserInfo() {
       setUserObject(JSON.parse(data));
     }
   }, []);
+
+  useEffect(() => {
+    if (userNameError && userEmailError === true) {
+      setValidated(true)
+      console.log(true)
+    } else {
+      setValidated(false)
+      console.log(false)
+    }
+  })
 
   // This useEffect saves the userObject to LS
   useEffect(() => {
@@ -103,6 +153,8 @@ function CheckOut1UserInfo() {
               variant="standard"
               value={userName}
               onChange={handleUserName}
+              error={userNameError}
+              helperText={userNameErrorText}
             />
             <h5>E-Mail</h5>
             <TextField
@@ -113,6 +165,9 @@ function CheckOut1UserInfo() {
               type="email"
               value={userEmail}
               onChange={handleuserEmail}
+              error={userEmailError}
+              helperText={userEmailErrorText}
+              
             />
             <h5>Mobilnummer</h5>
             <TextField

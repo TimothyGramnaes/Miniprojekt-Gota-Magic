@@ -8,10 +8,12 @@ import { PaymentMethod, PaymentMethods } from "../DB/PaymentMethods";
 import { ShippingMethod, shippingMethods } from "../DB/ShippingMethods";
 
 interface CheckoutContextValue {
-  saveUserInformation: (name: string, email: string, mobile: string, deliveryaddress: string, city: string, postnumber: string) => void;
+  saveUserInformation: (name: string, email: string, mobile: string, deliveryaddress: string, city: string, postnumber: string, validated: boolean ) => void;
   saveShippingMethod: (id: string) => void;
   savePaymentMethod: (cardType: string, cardId: number) => void;
+  getValidation: (value:boolean) => void;
   userInfo: User[]
+  validatedUser: boolean
 }
 
 type User = {
@@ -20,7 +22,8 @@ type User = {
   mobile: string,
   deliveryaddress: string,
   city: string,
-  postnumber: string
+  postnumber: string,
+  validated: boolean,
 }
 
 export const CheckoutContext = createContext<CheckoutContextValue>({} as any);
@@ -37,16 +40,26 @@ export const CheckoutProvider: FunctionComponent = ({ children }) => {
     mobile: string,
     deliveryaddress: string,
     city: string,
-    postnumber: string) => {
+    postnumber: string,
+    validated: boolean) => {
       setUserInfo([{
           name: name,
           email: email,
           mobile: mobile,
           deliveryaddress: deliveryaddress,
           city: city,
-          postnumber: postnumber   
+          postnumber: postnumber,
+          validated: validated   
       }])
     }
+
+  const [validatedUser, setValidatedUser] = useState<boolean>(false)
+
+  const getValidation = (value:boolean) => {
+    setValidatedUser(value)      
+  }
+
+  console.log(validatedUser)
 
   const saveShippingMethod = (id: string) => {
     const freightValue = parseInt(id);
@@ -72,7 +85,9 @@ export const CheckoutProvider: FunctionComponent = ({ children }) => {
         saveUserInformation,
         saveShippingMethod,
         savePaymentMethod,
-        userInfo
+        userInfo,
+        getValidation,
+        validatedUser
       }}
     >
       {children}

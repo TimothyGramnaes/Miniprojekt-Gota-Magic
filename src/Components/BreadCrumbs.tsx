@@ -14,6 +14,7 @@ import CheckOut3Payment from "./CheckOut3Payment";
 import OrderConfirmation from "./OrderConfirmation";
 import { CSSProperties } from '@material-ui/styles';
 // import ProductList from "./ProductList"
+import {useCheckoutContext} from '../Context/CheckoutContext'
 
 
 
@@ -37,7 +38,13 @@ function getStepContent(stepIndex: number) {
     }
 }
 
+
 function BreadCrumbs() {
+    const user = useCheckoutContext()
+    const validatedUser = user.validatedUser
+
+    console.log(validatedUser)
+
     const [activeStep, setActiveStep] = React.useState(0);
     const steps = getSteps();
 
