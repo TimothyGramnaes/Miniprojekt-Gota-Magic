@@ -1,16 +1,17 @@
-import TextField from "@material-ui/core/TextField";
+import TextField from '@material-ui/core/TextField';
+import '../css/checkOut1UserInfo.css'
+import {CheckoutContext, useCheckoutContext} from '../Context/CheckoutContext'
+import { Button } from '@material-ui/core';
 import "../css/checkOut1UserInfo.css";
 import "../main.css";
-import { Button } from "@material-ui/core";
 import BreadCrumbs from "./BreadCrumbs";
 import { useCart } from "../Context/CartContext";
 import CartComponent from "./cartComponent/Cart";
 import "../css/checkOut1UserInfo.css";
-import "../main.css";
 import { useEffect, useState } from "react";
 
 // Interface to the userObject array
-interface User {
+export interface User {
   name: string;
   email: string;
   mobile: string;
@@ -30,6 +31,8 @@ function CheckOut1UserInfo() {
 
   // The user array
   const [userObject, setUserObject] = useState<User[]>([]);
+
+  const user = useCheckoutContext()
 
   // Functions that handles the inputfields an save it to states right above
   const handleUserName = (e: any) => {
@@ -54,6 +57,7 @@ function CheckOut1UserInfo() {
 
   // Function that saves the inputsfields to an object
   const setUserToObject = () => {
+    user.saveUserInformation(userName, userEmail, userMobile, userDeliveryaddress, userCity, userPostNumber)
     setUserObject([
       {
         name: userName,
@@ -65,6 +69,7 @@ function CheckOut1UserInfo() {
       },
     ]);
   };
+
 
   // This useEffect fetch the localStorage after the page is updated.
   // If this is not running, the saved LS data will be deleted
@@ -193,3 +198,23 @@ function CheckOut1UserInfo() {
 }
 
 export default CheckOut1UserInfo;
+// function email(name: void, string: any, email: any, string: any, mobile: any, string: any, deliveryaddress: any, string: any, city: any, string: any, postnumber: any, string: any) {
+//   throw new Error('Function not implemented.');
+// }
+
+// function mobile(name: void, string: any, email: any, string: any, mobile: any, string: any, deliveryaddress: any, string: any, city: any, string: any, postnumber: any, string: any) {
+//   throw new Error('Function not implemented.');
+// }
+
+// function deliveryaddress(name: void, string: any, email: any, string: any, mobile: any, string: any, deliveryaddress: any, string: any, city: any, string: any, postnumber: any, string: any) {
+//   throw new Error('Function not implemented.');
+// }
+
+// function city(name: void, string: any, email: any, string: any, mobile: any, string: any, deliveryaddress: any, string: any, city: any, string: any, postnumber: any, string: any) {
+//   throw new Error('Function not implemented.');
+// }
+
+// function postnumber(name: void, string: any, email: any, string: any, mobile: any, string: any, deliveryaddress: any, string: any, city: any, string: any, postnumber: any, string: any) {
+//   throw new Error('Function not implemented.');
+// }
+

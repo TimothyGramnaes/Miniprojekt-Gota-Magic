@@ -1,24 +1,21 @@
 import TextField from "@material-ui/core/TextField";
 import "../css/checkOut2Shipping.css";
 import "../main.css";
-//import { FormControlLabel, Radio, RadioGroup } from '@material-ui/core';
-// import BreadCrumbs from "./BreadCrumbs";
-// import React from 'react';
 import {
   FormControl,
   FormControlLabel,
   Radio,
   RadioGroup,
 } from "@material-ui/core";
-// import BreadCrumbs from "./BreadCrumbs";
 import React, { useEffect, useState } from "react";
 import { ShippingMethod, shippingMethods } from "../DB/ShippingMethods";
+import { useCheckoutContext } from "../Context/CheckoutContext";
 import CartComponent from "./cartComponent/Cart";
 import { useCart } from "../Context/CartContext";
 
 function CheckOut2Shipping() {
+  const checkout = useCheckoutContext();
   const cart = useCart();
-
   const [value, setValue] = useState<string>("");
   const [name, setName] = useState<string>("");
   const [price, setPrice] = useState<number>();
@@ -36,12 +33,7 @@ function CheckOut2Shipping() {
   useEffect(() => {
     setValue(value);
   });
-  console.log(value);
-
-  // useEffect(() => {
-  //   setShippingMethodToState()
-  // })
-
+  
   // Prefixes for displayed text beside the radio btn
   const shippingMethodText1 =
     shippingMethods[0].name +
@@ -82,57 +74,6 @@ function CheckOut2Shipping() {
   // Shipping methods array
   const [shippingObject, setShippingObject] = useState<ShippingMethod[]>([]);
 
-  const setShippingMethodToState = () => {
-    const freightValue = value;
-
-    if (freightValue == "postnord") {
-      setName(shippingMethods[0].name);
-      setPrice(shippingMethods[0].price);
-      setDeliveryTime(shippingMethods[0].deliveryTime);
-      console.log(
-        "1 Shipping method is set to: " + name,
-        price,
-        deliveryTime + " and value is: " + value
-      );
-    } else if (value === "earlybird") {
-      setName(shippingMethods[1].name);
-      setPrice(shippingMethods[1].price);
-      setDeliveryTime(shippingMethods[1].deliveryTime);
-      console.log(
-        "2 Shipping method is set to: " + name,
-        price,
-        deliveryTime + " and value is: " + value
-      );
-    } else if (value === "instabox") {
-      setName(shippingMethods[2].name);
-      setPrice(shippingMethods[2].price);
-      setDeliveryTime(shippingMethods[2].deliveryTime);
-      console.log(
-        "3 Shipping method is set to: " + name,
-        price,
-        deliveryTime + " and value is: " + value
-      );
-    } else if (value === "brevduva") {
-      setName(shippingMethods[3].name);
-      setPrice(shippingMethods[3].price);
-      setDeliveryTime(shippingMethods[3].deliveryTime);
-      console.log(
-        "4 Shipping method is set to: " + name,
-        price,
-        deliveryTime + " and value is: " + value
-      );
-    } else {
-      setName(shippingMethods[4].name);
-      setPrice(shippingMethods[4].price);
-      setDeliveryTime(shippingMethods[4].deliveryTime);
-      console.log(
-        "5 Shipping method is set to: " + name,
-        price,
-        deliveryTime + " and value is: " + value
-      );
-    }
-  };
-
   return (
     <div className="container flex">
       <div className="left-side">
@@ -147,31 +88,31 @@ function CheckOut2Shipping() {
               <RadioGroup value={value} onChange={handleRadioChange}>
                 <FormControlLabel
                   className="input-field"
-                  value="postnord"
+                  value="1"
                   control={<Radio />}
                   label={shippingMethodText1}
                 />
                 <FormControlLabel
                   className="input-field"
-                  value="earlybird"
+                  value="2"
                   control={<Radio />}
                   label={shippingMethodText2}
                 />
                 <FormControlLabel
                   className="input-field"
-                  value="instabox"
+                  value="3"
                   control={<Radio />}
                   label={shippingMethodText3}
                 />
                 <FormControlLabel
                   className="input-field"
-                  value="brevduva"
+                  value="4"
                   control={<Radio />}
                   label={shippingMethodText4}
                 />
                 <FormControlLabel
                   className="input-field"
-                  value="magicshipping"
+                  value="5"
                   control={<Radio />}
                   label={shippingMethodText5}
                 />
@@ -179,6 +120,9 @@ function CheckOut2Shipping() {
             </FormControl>
           </form>
           {/* <Button variant="contained" color="primary" className="move-fwd-btn">Till Betalning</Button> */}
+          <button onClick={() => checkout.saveShippingMethod(value)}>
+            test
+          </button>
         </div>
       </div>
 

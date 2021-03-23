@@ -1,5 +1,6 @@
 import React from "react";
 import { CartContextProvider } from "../Context/CartContext";
+import { CheckoutProvider } from "../Context/CheckoutContext";
 import { ProductProvider } from "../Context/ProductContext";
 import Layout from "./Layout";
 
@@ -7,9 +8,11 @@ function ContextMaster() {
   return (
     <>
       <ProductProvider>
-        <CartContextProvider>
-          <Layout />
-        </CartContextProvider>
+        <CheckoutProvider>
+          <CartContextProvider>
+            <Layout />
+          </CartContextProvider>
+        </CheckoutProvider>
       </ProductProvider>
     </>
   );
