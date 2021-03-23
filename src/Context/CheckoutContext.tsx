@@ -4,17 +4,13 @@ import React, {
   useContext,
   useState,
 } from "react";
-import { convertCompilerOptionsFromJson } from "typescript";
+import { PaymentMethod, PaymentMethods } from "../DB/PaymentMethods";
 import { ShippingMethod, shippingMethods } from "../DB/ShippingMethods";
 
 interface CheckoutContextValue {
   saveUserInformation: (name: string, email: string, mobile: string, deliveryaddress: string, city: string, postnumber: string) => void;
   saveShippingMethod: (id: string) => void;
-  savePaymentMethod: (
-    name: string,
-    price: number,
-    deliveryTime: string
-  ) => void;
+  savePaymentMethod: (cardType: string, cardId: number) => void;
   userInfo: User[]
 }
 
@@ -32,9 +28,8 @@ export const CheckoutContext = createContext<CheckoutContextValue>({} as any);
 export const CheckoutProvider: FunctionComponent = ({ children }) => {
   const [checkout, setCheckout] = useState<[]>([]);
   const [userInfo, setUserInfo] = useState<User[]>([])
-  // const [shipping, setShipping] = useState<[]>([])
   const [shippingObject, setShippingObject] = useState<ShippingMethod[]>([]);
-  const [payment, setPayment] = useState<[]>([]);
+  const [payment, setPayment] = useState<PaymentMethod[]>([]);
 
   const saveUserInformation = (
     name: string,
@@ -52,28 +47,6 @@ export const CheckoutProvider: FunctionComponent = ({ children }) => {
           postnumber: postnumber   
       }])
     }
-  
-    console.log(userInfo)
-
-  // const saveUserInfo = (name: string,
-  //   email: string,
-  //   mobile: string,
-  //   deliveryaddress: string,
-  //   city: string,
-  //   postnumber: string ) => {
-
-  //   const newUserInfo =
-  //   {
-  //     name: name,
-  //     email: email,
-  //     mobile: mobile,
-  //     deliveryaddress: deliveryaddress,
-  //     city: city,
-  //     postnumber: postnumber
-  //   }
-  //   setUserInfo([...userInfo, newUserInfo])
-  //   console.log(userInfo)
-  // }
 
   const saveShippingMethod = (id: string) => {
     const freightValue = parseInt(id);
@@ -85,7 +58,13 @@ export const CheckoutProvider: FunctionComponent = ({ children }) => {
   };
   console.log(shippingObject);
 
-  const savePaymentMethod = () => {};
+  const savePaymentMethod = (cardType: string, cardId: number) => {
+    const selectedPayment = PaymentMethods.filter((p) => {
+      if (p.cardId == cardId) return cardId;
+    })
+    setPayment([...selectedPayment])
+  };
+  console.log(payment)
 
   return (
     <CheckoutContext.Provider
