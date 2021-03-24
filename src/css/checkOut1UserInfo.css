@@ -27,10 +27,14 @@
 }
 
 .order-overview {
-  height: 100%;
   border-left: rgb(208, 208, 208) solid 2px;
   padding-left: 1.5rem;
   width: 100%;
+}
+
+.products {
+  max-height: 500px;
+  overflow-y: scroll;
 }
 
 .cartInfoText {
