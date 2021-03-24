@@ -51,6 +51,11 @@
   text-decoration: none;
   color: black;
 }
+
+.cart-btn-style {
+  margin-bottom: 10rem;
+}
+
 @media screen and (max-width: 580px) {
   .menu-bar {
     display: none;

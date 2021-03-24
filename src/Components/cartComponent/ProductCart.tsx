@@ -4,24 +4,43 @@ import { Link } from "react-router-dom";
 import { useCart } from "../../Context/CartContext";
 import CartComponent from "./Cart";
 import "./productCart.css";
+
+
 const ProductCart = () => {
   const cart = useCart();
+
+  const calculateTaxes = () => {
+    // const taxCost = totalCost * 0.25
+  }
+
+  // byt ut texterna där pris ska visas
+
   if (cart.cart.length > 0) {
     return (
-      <Grid container justify="center" alignItems="center">
-        <Grid item className="productContainer">
+      <div className="background">
+        <div className="grey-card">
           <h2>Din varukorg</h2>
-
-          {cart.cart.map((item) => {
-            return <CartComponent item={item} />;
-          })}
-          <Link className="link-style" to="/BreadCrumbs">
-            <Button variant="contained" color="primary">
-              Slutför Köp
-            </Button>
-          </Link>
-        </Grid>
-      </Grid>
+          <span>599 kr</span>
+          <div className="cartInfoContainer">
+            <div className="productsInCart">
+              {cart.cart.map((item) => {
+                return <CartComponent item={item} />;
+              })}
+            </div>
+            <div className="priceInfo">
+              <p> <b>Total kostnad: </b> 599 kr</p>
+              <p> <b>Frakt: </b> Ej fastställt</p>
+              <p> <b>Varav Moms:</b> 59 kr</p>
+              
+              <Link className="till-kassan-btn" to="/BreadCrumbs">
+                <Button variant="contained" color="primary">
+                  Till Kassan
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
     );
   } else
     return (

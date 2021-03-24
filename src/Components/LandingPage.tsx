@@ -81,7 +81,9 @@ const heroP: CSSProperties = {
     padding: '1rem',
     textAlign: 'center',
     margin: '1rem 0 2rem 0',
-    maxWidth: '75ch'
+    maxWidth: '75ch',
+    letterSpacing: '1px',
+    lineHeight: '1.5rem'
 }
 
 const mainStyle: CSSProperties = {

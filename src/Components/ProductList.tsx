@@ -185,7 +185,7 @@ function ProductList() {
         <Grid container justify="center" alignItems="center" className="productListContainer" style={productListContainer}>
             <Grid item xs={12} className="searchContainer" style={searchStyle}>
                 <form onSubmit={handleSubmit} style={formStyle}>
-                <TextField id="filled-basic" fullWidth label="Sök här" variant="filled"  className={style.searchfield} value={searchValue} onChange={handleChange} />
+                    <TextField id="filled-basic" fullWidth label="Sök här" variant="filled"  className={style.searchfield} value={searchValue} onChange={handleChange} />
                 </form>
                 <Button onClick={resetSearch} className={style.resetBtn} variant="contained" color="primary">Reset</Button>
             </Grid>

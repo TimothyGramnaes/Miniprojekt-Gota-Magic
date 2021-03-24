@@ -1,6 +1,40 @@
-.productContainer {
+/* .productContainer {
   max-width: 50rem;
-  width: 100%;
   padding-top: 5rem;
   padding-bottom: 5rem;
+} */
+
+.background {
+  background-image: url(../../assets/images/what-the-hex.png);
+}
+
+.grey-card {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.cartInfoContainer {
+  display: flex;
+  margin-top: 2rem;
+}
+
+.priceInfo {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  margin: 1rem 0 0 4rem;
+}
+
+.priceInfo p {
+  margin: 1rem 0;
+}
+
+.productsInCart {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.till-kassan-btn {
+  margin-top: 2rem;
 }
