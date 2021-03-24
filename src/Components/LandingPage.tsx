@@ -25,7 +25,7 @@ function LandingPage() {
                     className="white flex centered" 
                     style={heroP}
                         >
-                            Välkommen till Götamagic. din portal till allt du behöver
+                            Välkommen till Götamagic, din portal till allt du behöver
                             för kompetativt Magicspel i Göteborg.
                         </p>
                         <Link className="link-style" to="/ProductList">

@@ -28,7 +28,7 @@ function AboutUs() {
                 <Grid container className="flex" style={textLandingContainer}>
                     <Grid container className="tour-kort">
 
-                    <Grid className="tour-kort-item" item xs={6} md={12}>
+                    <Grid className="tour-kort-item" item xs={10} md={12}>
                     <h2>Göta Magic</h2>
                     <p className="kort-p">
                         Vi är ett glatt sällskap Magicentusiaster lokaliserade 

@@ -30,7 +30,7 @@ function Contact() {
                 <Grid container className="flex" style={textLandingContainer}>
                     <Grid container className="tour-kort">
 
-                    <Grid className="tour-kort-item-contact" item xs={6} md={12}>
+                    <Grid className="tour-kort-item-contact" item xs={10} md={12}>
                     <h2>Göta Magic</h2>
                         <div className="kontakt-container">
 
