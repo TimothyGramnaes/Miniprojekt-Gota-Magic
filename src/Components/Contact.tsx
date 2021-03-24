@@ -2,7 +2,6 @@ import { CSSProperties } from '@material-ui/styles';
 import React from 'react'
 import '../main.css';
 import '../css/tournaments.css';
-import { Link } from 'react-router-dom';
 import {  Grid } from '@material-ui/core';
 import MailIcon from '@material-ui/icons/Mail';
 import PhoneIcon from '@material-ui/icons/Phone';
@@ -33,16 +32,32 @@ function Contact() {
 
                     <Grid className="tour-kort-item-contact" item xs={6} md={12}>
                     <h2>Göta Magic</h2>
-                    <p className="kort-p">
-                        <PhoneIcon />
-                        <HomeIcon />
-                        <MailIcon />
+                        <div className="kontakt-container">
+
+                            <div className="kontakt-seperator">
+                                <div className="icon-div">
+                                <PhoneIcon style={{ fontSize: 40 }} />
+                                </div>
+                                <h3>0737 141414</h3>
+                            </div>
+
+                            <div className="kontakt-seperator">
+                                <div className="icon-div">
+                                    <MailIcon style={{ fontSize: 40 }} />
+                                </div>
+                                <h3>Gotamagic@gmail.com</h3>
+                            </div>
+
+                            <div className="kontakt-seperator">
+                                <div className="icon-div">
+                                    <HomeIcon style={{ fontSize: 40 }} />
+                                </div>
+                                <h3>Helleforsgatan 10B, 41875 Göteborg</h3>
+                            </div>
+                        </div>
                         
 
-                        <br/>
-                        <br/>
-                        Kontakta oss gärna <Link to="./Contact">här</Link> med frågor eller förslag
-                    </p>
+
                     </Grid>
                     {/* <Grid item xs={6} md={4}>
                         <img className="person-bild" src="./assets/imgs/play/petrus.jpeg" alt="petrus" />

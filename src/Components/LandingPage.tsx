@@ -24,12 +24,10 @@ function LandingPage() {
                     <p
                     className="white flex centered" 
                     style={heroP}
-                    >
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                        Unde quae nihil quod nam similique ducimus beatae 
-                        laboriosam cumque exercitationem excepturi repellat, 
-                        nostrum atque vitae voluptate dignissimos adipisci 
-                        reiciendis ex earum?</p>
+                        >
+                            Välkommen till Götamagic. din portal till allt du behöver
+                            för kompetativt Magicspel i Göteborg.
+                        </p>
                         <Link className="link-style" to="/ProductList">
                             <Button variant="contained" color="primary">Våra Produkter</Button>
                         </Link>

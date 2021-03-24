@@ -19,7 +19,7 @@ function AboutUs() {
             {/* <div className="flex centered column" style={infoLandingContainer}> */}
             <Grid container xs={12} md={10} style={infoLandingContainer}>
   
-               <img style={infoLandingContainerImage} src="./assets/imgs/play/totallylost.png" alt="glatt-turnerings-sallskap" />                   
+               <img style={infoLandingContainerImage} src="./assets/imgs/play/STASIS.jpg" alt="glatt-turnerings-sallskap" />                   
                 <Grid container className="flex" style={titleHeader}>
                     <h2>
                         Om oss                       
@@ -45,16 +45,13 @@ function AboutUs() {
                         Kontakta oss gärna <Link to="./Contact">här</Link> med frågor eller förslag
                     </p>
                     </Grid>
-                    {/* <Grid item xs={6} md={4}>
-                        <img className="person-bild" src="./assets/imgs/play/petrus.jpeg" alt="petrus" />
-                        <p className="pic-text">Petter Mölder, stolt vinnare av segerkepsen 2021-03-20</p>
-                    </Grid> */}
+                   
                     </Grid>
-                    <div className="breaker"></div>
+                     <div className="breaker"></div>
                 
                     <Grid container className="bottom-p">
-                        <p>picture above: Totally Lost illustrated by: David Palumbo</p>
-                    </Grid>
+                        <p>picture above: Stasis illustrated by: Seb McKinnon</p>
+                    </Grid> 
 
             </Grid>
         
