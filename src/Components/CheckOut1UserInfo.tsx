@@ -1,7 +1,10 @@
-import TextField from '@material-ui/core/TextField';
-import '../css/checkOut1UserInfo.css'
-import {CheckoutContext, useCheckoutContext} from '../Context/CheckoutContext'
-import { Button } from '@material-ui/core';
+import TextField from "@material-ui/core/TextField";
+import "../css/checkOut1UserInfo.css";
+import {
+  CheckoutContext,
+  useCheckoutContext,
+} from "../Context/CheckoutContext";
+import { Button } from "@material-ui/core";
 import "../css/checkOut1UserInfo.css";
 import "../main.css";
 import BreadCrumbs from "./BreadCrumbs";
@@ -9,7 +12,7 @@ import { useCart } from "../Context/CartContext";
 import CartComponent from "./cartComponent/Cart";
 import "../css/checkOut1UserInfo.css";
 import { useEffect, useState } from "react";
-import { FormatColorResetOutlined } from '@material-ui/icons';
+import { FormatColorResetOutlined } from "@material-ui/icons";
 
 // Interface to the userObject array
 export interface User {
@@ -19,7 +22,7 @@ export interface User {
   deliveryaddress: string;
   city: string;
   postnumber: string;
-  validated: boolean
+  validated: boolean;
 }
 
 interface Validate {
@@ -35,74 +38,125 @@ function CheckOut1UserInfo() {
   const cart = useCart();
   const [userName, setUserName] = useState<string>("");
   const [userNameError, setUserNameError] = useState<boolean>(false);
-  const [userNameErrorText, setUserNameErrorText] = useState<string>('');
+  const [userNameErrorText, setUserNameErrorText] = useState<string>("");
   const [userEmail, setUserEmail] = useState<string>("");
   const [userMobile, setUserMobile] = useState<string>("");
   const [userDeliveryaddress, setUserDeliveryaddress] = useState<string>("");
+  const [
+    userDeliveryAdressError,
+    setUserDeliveryAdressError,
+  ] = useState<boolean>(false);
+  const [userDeliveryErrorText, setUserDeliveryErrorText] = useState<string>(
+    ""
+  );
   const [userCity, setUserCity] = useState<string>("");
+  const [userCityError, setUserCityError] = useState<boolean>(false);
+  const [userCityErrorText, setUserCityText] = useState<string>("");
   const [userPostNumber, setUserPostNumber] = useState<string>("");
+  const [userPostNumberError, setUserPostNumberError] = useState<boolean>(
+    false
+  );
+  const [
+    userPostNumberTextError,
+    setUserPostNumberErrorText,
+  ] = useState<string>("");
   const [userEmailError, setUserEmailError] = useState<boolean>(false);
-  const [userEmailErrorText, setUserEmailErrorText] = useState<string>('');
-  const [userMobileError, setUserMobileError] = useState<string>("");
+  const [userEmailErrorText, setUserEmailErrorText] = useState<string>("");
+  const [userMobileError, setUserMobileError] = useState<boolean>(false);
+  const [userMobileErrorText, setUserMobileText] = useState<string>("");
   const [validated, setValidated] = useState<boolean>(false);
-
 
   // The user array
   const [userObject, setUserObject] = useState<User[]>([]);
 
-  const user = useCheckoutContext()
-
+  const user = useCheckoutContext();
 
   // Functions that handles the inputfields an save it to states right above
   const handleUserName = (e: any) => {
-    
     setUserName(e.target.value);
     if (e.target.value.length < 5) {
-      setUserNameError(false)
-      setUserNameErrorText('För kort! Minst 5 tecken')
+      setUserNameError(false);
+      setUserNameErrorText("För kort! Minst 5 tecken");
     } else {
-      setUserNameError(true)
-      setUserNameErrorText('')
-      setUserToObject()
+      setUserNameError(true);
+      setUserNameErrorText("");
+      setUserToObject();
     }
   };
   const handleuserEmail = (e: any) => {
     setUserEmail(e.target.value);
-    if (e.target.value.indexOf('@') === -1) {
-      setUserEmailError(false)
-      setUserEmailErrorText('Kräver en riktig e-post') 
-    } 
-    else {
-      setUserEmailErrorText('')
-      setUserEmailError(true)
-      setUserToObject()
+    if (e.target.value.indexOf("@") === -1) {
+      setUserEmailError(false);
+      setUserEmailErrorText("Kräver en riktig e-post");
+    } else {
+      setUserEmailErrorText("");
+      setUserEmailError(true);
+      setUserToObject();
     }
   };
   const handleuserMobile = (e: any) => {
     setUserMobile(e.target.value);
-    setUserToObject()
+    if (!/^(\d{10})$/.test(e.target.value)) {
+      console.log("regex funkar");
+      setUserMobileError(false);
+      setUserMobileText("Ditt 10 siffriga mobilnummer");
+    } else {
+      setUserMobileText("");
+      setUserMobileError(true);
+      setUserToObject();
+    }
   };
+
   const handleuserDeliveryaddress = (e: any) => {
     setUserDeliveryaddress(e.target.value);
-    setUserToObject()
+    if (e.target.value.length < 2) {
+      setUserDeliveryAdressError(false);
+      setUserDeliveryErrorText("Minst 2 tecken");
+    } else {
+      setUserDeliveryAdressError(true);
+      setUserDeliveryErrorText("");
+      setUserToObject();
+    }
   };
+
   const handleuserCity = (e: any) => {
     setUserCity(e.target.value);
-    setUserToObject()
+    if (e.target.value.length < 2) {
+      setUserCityError(false);
+      setUserCityText("Minst 2 tecken");
+    } else {
+      setUserCityError(true);
+      setUserCityText("");
+      setUserToObject();
+    }
   };
+
   const handleuserPostNumber = (e: any) => {
     setUserPostNumber(e.target.value);
-    setUserToObject()
+    if (!/^(\d{5})$/.test(e.target.value)) {
+      setUserPostNumberError(false);
+      setUserPostNumberErrorText("Skriv ditt 5 siffriga postnummer");
+    } else {
+      setUserPostNumberError(true);
+      setUserPostNumberErrorText("");
+      setUserToObject();
+    }
   };
   // End of input handlers
 
-
   // Function that saves the inputsfields to an object
   const setUserToObject = () => {
+    user.getValidation(validated);
 
-    user.getValidation(validated)
-
-    user.saveUserInformation(userName, userEmail, userMobile, userDeliveryaddress, userCity, userPostNumber, validated)
+    user.saveUserInformation(
+      userName,
+      userEmail,
+      userMobile,
+      userDeliveryaddress,
+      userCity,
+      userPostNumber,
+      validated
+    );
     setUserObject([
       {
         name: userName,
@@ -111,11 +165,10 @@ function CheckOut1UserInfo() {
         deliveryaddress: userDeliveryaddress,
         city: userCity,
         postnumber: userPostNumber,
-        validated: validated
+        validated: validated,
       },
     ]);
-  }; 
-
+  };
 
   // This useEffect fetch the localStorage after the page is updated.
   // If this is not running, the saved LS data will be deleted
@@ -127,18 +180,24 @@ function CheckOut1UserInfo() {
   }, []);
 
   useEffect(() => {
-    if (userNameError && userEmailError === true) {
-      setValidated(true)
-      console.log('funkar')
+    if (
+      userNameError &&
+      userEmailError &&
+      userMobileError &&
+      userPostNumberError &&
+      userDeliveryAdressError &&
+      userCityError === true
+    ) {
+      setValidated(true);
+      console.log("funkar");
     } else {
-      setValidated(false)
+      setValidated(false);
     }
-  })
+  });
 
-  useEffect(()=> {
-    user.getValidation(validated)
-    
-  })
+  useEffect(() => {
+    user.getValidation(validated);
+  });
 
   // This useEffect saves the userObject to LS
   useEffect(() => {
@@ -177,7 +236,6 @@ function CheckOut1UserInfo() {
               onChange={handleuserEmail}
               error={userEmailError}
               helperText={userEmailErrorText}
-              
             />
             <h5>Mobilnummer</h5>
             <TextField
@@ -188,6 +246,7 @@ function CheckOut1UserInfo() {
               type="tel"
               value={userMobile}
               onChange={handleuserMobile}
+              helperText={userMobileErrorText}
             />
             <h5>Leveransadress</h5>
             <TextField
@@ -197,6 +256,7 @@ function CheckOut1UserInfo() {
               variant="standard"
               value={userDeliveryaddress}
               onChange={handleuserDeliveryaddress}
+              helperText={userDeliveryErrorText}
             />
             <h5>Stad / Ort</h5>
             <TextField
@@ -206,6 +266,7 @@ function CheckOut1UserInfo() {
               variant="standard"
               value={userCity}
               onChange={handleuserCity}
+              helperText={userCityErrorText}
             />
             <h5>Postnummer</h5>
             <TextField
@@ -215,6 +276,7 @@ function CheckOut1UserInfo() {
               variant="standard"
               value={userPostNumber}
               onChange={handleuserPostNumber}
+              helperText={userPostNumberTextError}
             />
           </form>
           <Button
@@ -283,4 +345,3 @@ export default CheckOut1UserInfo;
 // function postnumber(name: void, string: any, email: any, string: any, mobile: any, string: any, deliveryaddress: any, string: any, city: any, string: any, postnumber: any, string: any) {
 //   throw new Error('Function not implemented.');
 // }
-
