@@ -21,6 +21,9 @@ function CheckOut2Shipping() {
   const [price, setPrice] = useState<number>();
   const [deliveryTime, setDeliveryTime] = useState<string>("");
 
+   // Shipping methods array
+   const [shippingObject, setShippingObject] = useState<ShippingMethod[]>([]);
+
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     setRadioChange(value);
@@ -33,6 +36,10 @@ function CheckOut2Shipping() {
   useEffect(() => {
     setValue(value);
   });
+
+  useEffect(() => {
+    checkout.saveShippingMethod(value)
+  }, [])
   
   // Prefixes for displayed text beside the radio btn
   const shippingMethodText1 =
@@ -71,8 +78,7 @@ function CheckOut2Shipping() {
     shippingMethods[4].deliveryTime +
     ")";
 
-  // Shipping methods array
-  const [shippingObject, setShippingObject] = useState<ShippingMethod[]>([]);
+ 
 
   return (
     <div className="container flex">

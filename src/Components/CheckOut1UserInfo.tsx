@@ -140,6 +140,21 @@ function CheckOut1UserInfo() {
     
   })
 
+  useEffect(() => {
+    user.saveUserInformation(userName, userEmail, userMobile, userDeliveryaddress, userCity, userPostNumber, validated)
+    setUserObject([
+      {
+        name: userName,
+        email: userEmail,
+        mobile: userMobile,
+        deliveryaddress: userDeliveryaddress,
+        city: userCity,
+        postnumber: userPostNumber,
+        validated: validated
+      },
+    ]);
+  }, [])
+
   // This useEffect saves the userObject to LS
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(userObject));

@@ -57,6 +57,7 @@ export const CheckoutProvider: FunctionComponent = ({ children }) => {
   }
 
   console.log(orderNumber)
+  console.log(shippingObject)
 
   const saveUserInformation = (
     name: string,
@@ -76,6 +77,8 @@ export const CheckoutProvider: FunctionComponent = ({ children }) => {
           validated: validated   
       }])
     }
+
+    console.log(userInfo)
 
   const [validatedUser, setValidatedUser] = useState<boolean>(false)
 
