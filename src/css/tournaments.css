@@ -1,0 +1,33 @@
+.person-bild {
+  width: 100%;
+}
+
+.tour-kort h2 {
+  padding: 0.6rem;
+}
+
+.kort-p {
+  max-width: 75ch;
+  padding: 0.9rem;
+}
+
+.tour-kort {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  box-shadow: 0 0rem 0 grey;
+}
+
+.tour-kort-item-right {
+  padding-left: 2rem;
+}
+
+.pic-text {
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.breaker {
+  width: 100%;
+  height: 1px;
+  box-shadow: 0 0.1rem 0 grey;
+}

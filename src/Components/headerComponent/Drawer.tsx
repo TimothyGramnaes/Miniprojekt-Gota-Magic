@@ -6,6 +6,7 @@ import Button from "@material-ui/core/Button";
 import CustomizedBadges from "./styledBadge";
 import CartComponent from "../cartComponent/Cart";
 import { useCart } from "../../Context/CartContext";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
   list: {
@@ -41,7 +42,7 @@ export default function TemporaryDrawer() {
 
     setState({ ...state, [anchor]: open });
   };
-
+  const disableButton = () => {};
   const list = (anchor: Anchor) => (
     <div
       className={clsx(classes.list, {
@@ -66,10 +67,27 @@ export default function TemporaryDrawer() {
             onClose={toggleDrawer(anchor, false)}
           >
             {list(anchor)}
-            <div>
+            <div
+              style={{
+                paddingLeft: "1rem",
+                paddingRight: "1rem",
+                paddingTop: "1rem",
+              }}
+            >
+              <h3>Dina produkter: {cart.totalPrice} SEK </h3>
               {cart.cart.map((item) => {
                 return <CartComponent item={item} />;
               })}
+              <Link className="link-style" to="/ProductCart">
+                <Button
+                  onClick={toggleDrawer(anchor, false)}
+                  variant="contained"
+                  color="primary"
+                  disabled={cart.cart.length >= 1 ? false : true}
+                >
+                  Till kassa
+                </Button>
+              </Link>
             </div>
           </Drawer>
         </React.Fragment>

@@ -136,9 +136,24 @@ function CheckOut2Shipping() {
         <div className="order-overview">
           {/* Här tar vi in order komponenten, och tar bort den temporära nedanför */}
           <h3>Din beställning</h3>
+          <h3 style={{ paddingTop: "1rem", paddingBottom: "1rem" }}>
+            Dina produkter: {cart.totalPrice} SEK{" "}
+          </h3>
           <div>
             {cart.cart.map((item) => {
-              return <CartComponent item={item} />;
+              return (
+                <div style={{ display: "flex", flexDirection: "row" }}>
+                  <p>
+                    <strong>Produkt:</strong> {item.itemName}
+                  </p>
+                  <p>
+                    <strong>Pris:</strong> {item.price}
+                  </p>{" "}
+                  <p>
+                    <strong>Antal:</strong> {item.quantity}
+                  </p>
+                </div>
+              );
             })}
           </div>
         </div>
