@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
     searchfield: {
-            
+        background: '#EDEDED'    
     },
     resetBtn: {
         margin: '2rem 0',
@@ -71,12 +71,12 @@ function ProductList() {
         width: '100%',
         justifyContent: 'center',
         display: 'flex',
-        paddingBottom: '2rem'
+        marginRight: '1rem'
     }
 
     const formStyle: CSSProperties = {
         width: '100%',
-        margin: '2rem 0'
+        margin: '2rem 1rem'
     }
 
     // End styling variables
@@ -186,7 +186,7 @@ function ProductList() {
         <Grid container justify="center" alignItems="center" className="productListContainer" style={productListContainer}>
             <Grid item xs={12} className="searchContainer" style={searchStyle}>
                 <form onSubmit={handleSubmit} style={formStyle}>
-                <TextField id="filled-basic" fullWidth label="Sök här" variant="filled"  className={style.searchfield} value={searchValue} onChange={handleChange} />
+                    <TextField id="filled-basic" fullWidth label="Sök här" variant="filled"  className={style.searchfield} value={searchValue} onChange={handleChange} />
                 </form>
                 <Button onClick={resetSearch} className={style.resetBtn} variant="contained" color="primary">Reset</Button>
             </Grid>

@@ -28,7 +28,10 @@ type User = {
   validated: boolean,
 }
 
+
 export const CheckoutContext = createContext<CheckoutContextValue>({} as any);
+
+const baseOrderNumber:number = 0
 
 export const CheckoutProvider: FunctionComponent = ({ children }) => {
   const [checkout, setCheckout] = useState<[]>([]);
@@ -37,14 +40,23 @@ export const CheckoutProvider: FunctionComponent = ({ children }) => {
   const [payment, setPayment] = useState<PaymentMethod[]>([]);
 
   const [orderNumber, setOrderNumber] = useState<number>(0)
+  const helaOrdern = [orderNumber, ...userInfo, ...shippingObject, ...payment]
+  
+  console.log(helaOrdern)
+  
+
 
   // Fetch ordernumber from LS
     useEffect(() => {   
       const data = localStorage.getItem('orderNumber') || "[]"
       if (data) {
+        if(data === "[]") {
+          setOrderNumber(0)
+        } else {
         setOrderNumber(JSON.parse(data))
       }
-  }, [])
+      }
+  }, [] )
 
   // This useEffect saves the ordernumber to LS
   useEffect(() => {    
@@ -53,10 +65,11 @@ export const CheckoutProvider: FunctionComponent = ({ children }) => {
 
   const addOrderNumber = () => {
     let oldOrderNumber:number = orderNumber
-    setOrderNumber(oldOrderNumber++)
+    setOrderNumber(oldOrderNumber+1)
   }
 
-  console.log(orderNumber)
+  
+  console.log(shippingObject)
 
   const saveUserInformation = (
     name: string,
@@ -76,6 +89,11 @@ export const CheckoutProvider: FunctionComponent = ({ children }) => {
           validated: validated   
       }])
     }
+
+    console.log(userInfo)
+    console.log(orderNumber)
+    console.log(payment)
+    
 
   const [validatedUser, setValidatedUser] = useState<boolean>(false)
 

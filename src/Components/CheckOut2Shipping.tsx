@@ -21,9 +21,13 @@ function CheckOut2Shipping() {
   const [price, setPrice] = useState<number>();
   const [deliveryTime, setDeliveryTime] = useState<string>("");
 
+   // Shipping methods array
+   const [shippingObject, setShippingObject] = useState<ShippingMethod[]>([]);
+
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     setRadioChange(value);
+    checkout.saveShippingMethod(value)
   };
 
   const setRadioChange = (v: string) => {
@@ -33,6 +37,10 @@ function CheckOut2Shipping() {
   useEffect(() => {
     setValue(value);
   });
+
+  useEffect(() => {
+    checkout.saveShippingMethod(value)
+  }, [])
   
   // Prefixes for displayed text beside the radio btn
   const shippingMethodText1 =
@@ -71,8 +79,7 @@ function CheckOut2Shipping() {
     shippingMethods[4].deliveryTime +
     ")";
 
-  // Shipping methods array
-  const [shippingObject, setShippingObject] = useState<ShippingMethod[]>([]);
+ 
 
   return (
     <div className="container flex">
@@ -120,35 +127,46 @@ function CheckOut2Shipping() {
             </FormControl>
           </form>
           {/* <Button variant="contained" color="primary" className="move-fwd-btn">Till Betalning</Button> */}
-          <button onClick={() => checkout.saveShippingMethod(value)}>
+          {/* <button onClick={() => checkout.saveShippingMethod(value)}>
             test
-          </button>
+          </button> */}
         </div>
       </div>
 
       <div className="right-side">
         <div className="order-overview">
           {/* Här tar vi in order komponenten, och tar bort den temporära nedanför */}
-          <h3>Din beställning</h3>
+          <h2>Din beställning</h2>
           <h3 style={{ paddingTop: "1rem", paddingBottom: "1rem" }}>
-            Dina produkter: {cart.totalPrice} SEK{" "}
+            {cart.totalPrice} kr{" "}
           </h3>
           <div>
             {cart.cart.map((item) => {
               return (
-                <div style={{ display: "flex", flexDirection: "row" }}>
-                  <p>
-                    <strong>Produkt:</strong> {item.itemName}
-                  </p>
-                  <p>
-                    <strong>Pris:</strong> {item.price}
-                  </p>{" "}
-                  <p>
-                    <strong>Antal:</strong> {item.quantity}
-                  </p>
+                <div className="cartItem">
+                  <img src={item.img} alt={item.itemName}/>
+                  <div className="cartInfoText">
+                    <p>
+                      <strong>{item.itemName}</strong>
+                    </p>
+                    <p>
+                      {item.price} kr
+                    </p>{" "}
+                    <p>
+                      <strong>Antal:</strong> {item.quantity}
+                    </p>
+                  </div>
                 </div>
               );
             })}
+            {/* {cart.cart.map((item) => {
+              return <CartComponent item={item} />;
+            })} */}
+          </div>
+          <div className="priceInfo">
+            <p> <b>Total kostnad: </b> {cart.totalPrice} kr{" "}</p>
+            <p> <b>Varav Moms:</b> 59 kr</p>
+            <p> <b>Frakt: </b> Ej fastställt</p>
           </div>
         </div>
       </div>
