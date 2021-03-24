@@ -3,6 +3,10 @@
   padding: 2rem;
 }
 
+.container {
+  justify-content: space-between;
+}
+
 .grey-card {
   background-color: #EDEDED;
   padding: 3rem;
@@ -11,11 +15,12 @@
 
 .left-side {
   max-width: 600px;
-  margin: 0 auto;
+  padding-left: 3rem;
+  flex: 2;
 }
 
 .right-side {
-  width: 20rem;
+  flex: 1;
   margin-left: 2rem;
 }
 
@@ -76,7 +81,7 @@ form {
 
 @media (max-width: 950px) {
   .container {
-    flex-direction: column;
+    flex-direction: column-reverse;
   }
 
   .right-side {
@@ -86,7 +91,7 @@ form {
 
   .order-overview {
     border-left: none;
-    border-top: rgb(208, 208, 208) solid 2px;
+    border-bottom: rgb(208, 208, 208) solid 2px;
     margin: 2rem auto 0 auto;
     padding: 1rem 0;
     max-width: 600px;

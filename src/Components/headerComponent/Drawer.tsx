@@ -74,11 +74,11 @@ export default function TemporaryDrawer() {
                 paddingTop: "1rem",
               }}
             >
-              <h3>Dina produkter: {cart.totalPrice} SEK </h3>
+              <h3>Dina produkter: {cart.totalPrice} kr </h3>
               {cart.cart.map((item) => {
                 return <CartComponent item={item} />;
               })}
-              <Link className="link-style" to="/ProductCart">
+              <Link className="cart-btn-style" to="/ProductCart">
                 <Button
                   onClick={toggleDrawer(anchor, false)}
                   variant="contained"

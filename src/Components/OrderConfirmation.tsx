@@ -4,8 +4,12 @@ import { Button } from '@material-ui/core';
 // import BreadCrumbs from "./BreadCrumbs";
 import React from 'react';
 import { shippingMethods } from '../DB/ShippingMethods';
+import { useCart } from "../Context/CartContext";
 
 function OrderConfirmation() {
+
+  const cart = useCart();
+
   return (
 
         <div className="container flex">
@@ -35,19 +39,43 @@ function OrderConfirmation() {
           </div>
 
           <div className="right-side">
-            <div className="order-overview">
-              {/* Här tar vi in order komponenten, och tar bort den temporära nedanför */}
-              <h3>Din beställning</h3>
-              <h4>Produktnamn</h4>
-              <span>199 kr</span>
-              <h4>Produktnamn</h4>
-              <span>199 kr</span>
-              <h4>Produktnamn</h4>
-              <span>199 kr</span>
-            </div>
+        <div className="order-overview">
+          {/* Här tar vi in order komponenten, och tar bort den temporära nedanför */}
+          <h2>Din beställning</h2>
+          <h3 style={{ paddingTop: "1rem", paddingBottom: "1rem" }}>
+            {cart.totalPrice} kr{" "}
+          </h3>
+          <div>
+            {cart.cart.map((item) => {
+              return (
+                <div className="cartItem">
+                  <img src={item.img} alt={item.itemName}/>
+                  <div className="cartInfoText">
+                    <p>
+                      <strong>{item.itemName}</strong>
+                    </p>
+                    <p>
+                      {item.price} kr
+                    </p>{" "}
+                    <p>
+                      <strong>Antal:</strong> {item.quantity}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+            {/* {cart.cart.map((item) => {
+              return <CartComponent item={item} />;
+            })} */}
           </div>
-
+          <div className="priceInfo">
+            <p> <b>Total kostnad: </b> {cart.totalPrice} kr{" "}</p>
+            <p> <b>Varav Moms:</b> 59 kr</p>
+            <p> <b>Frakt: </b> Ej fastställt</p>
+          </div>
         </div>
+      </div>
+    </div>
 
   )
 }
