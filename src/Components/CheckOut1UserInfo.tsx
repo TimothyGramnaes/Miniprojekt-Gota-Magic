@@ -232,15 +232,15 @@ function CheckOut1UserInfo() {
               onChange={handleuserPostNumber}
             />
           </form>
-          <Button
+          {/* <Button
             onClick={setUserToObject}
             variant="contained"
             color="primary"
             className="move-fwd-btn"
           >
             Välj Fraktsätt
-          </Button>
-          <button onClick={user.addOrderNumber}>Plussa ordernummer</button>
+          </Button> */}
+          {/* <button onClick={user.addOrderNumber}>Plussa ordernummer</button> */}
           {/* <Button onClick={setUserToObject} variant="contained" color="primary" className="move-fwd-btn">Välj Fraktsätt</Button> */}
         </div>
       </div>

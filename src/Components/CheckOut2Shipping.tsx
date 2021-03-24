@@ -27,6 +27,7 @@ function CheckOut2Shipping() {
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     setRadioChange(value);
+    checkout.saveShippingMethod(value)
   };
 
   const setRadioChange = (v: string) => {
@@ -126,9 +127,9 @@ function CheckOut2Shipping() {
             </FormControl>
           </form>
           {/* <Button variant="contained" color="primary" className="move-fwd-btn">Till Betalning</Button> */}
-          <button onClick={() => checkout.saveShippingMethod(value)}>
+          {/* <button onClick={() => checkout.saveShippingMethod(value)}>
             test
-          </button>
+          </button> */}
         </div>
       </div>
 
