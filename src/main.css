@@ -44,3 +44,19 @@
   text-decoration: none;
   color: brown;
 }
+
+.nyhets-titel {
+}
+
+.nyhets-datum {
+  font-size: 0.8rem;
+  font-style: italic;
+  color: grey;
+}
+
+.produkt-bild {
+  width: 100%;
+  border: 2px solid black;
+  border-radius: 8px;
+  overflow: hidden;
+}

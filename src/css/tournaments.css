@@ -28,6 +28,8 @@
 
 .breaker {
   width: 100%;
+  padding-top: 1rem;
+
   height: 1px;
   box-shadow: 0 0.1rem 0 grey;
 }

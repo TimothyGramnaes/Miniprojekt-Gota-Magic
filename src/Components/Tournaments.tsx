@@ -28,7 +28,7 @@ function Tournaments() {
                 <Grid container className="flex" style={textLandingContainer}>
                     <Grid container className="tour-kort">
 
-                    <Grid className="tour-kort-item" item xs={6} md={8}>
+                    <Grid className="tour-kort-item" item xs={8} md={8}>
                     <h2>Lördagsmagi</h2>
                     <p className="kort-p">
                         Varje lördag spelas det turnering i Legacy/Modern på 
@@ -39,13 +39,13 @@ function Tournaments() {
                         <br/>
                         <br/>
                         Nu under corona-tider är vi dessvärre tvugna att max
-                        vara 8 personer under våra spelträffar. kontakta oss här
+                        vara 8 personer under våra spelträffar.  <Link to="./Contact">Kontakta oss </Link> 
                         för att ställa dig i kö så kontaktar vi dig om plats finnes.
                         Det är dock många som står i kö så räkna med att det kan 
                         ta ett tag innan ni kan få möjlighet att vara med.
                     </p>
                     </Grid>
-                    <Grid item xs={6} md={4}>
+                    <Grid item xs={8} md={4}>
                         <img className="person-bild" src="./assets/imgs/play/petrus.jpeg" alt="petrus" />
                         <p className="pic-text">Petter Mölder, stolt vinnare av segerkepsen 2021-03-20</p>
                     </Grid>
