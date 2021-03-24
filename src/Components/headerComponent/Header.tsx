@@ -44,10 +44,11 @@ function Header() {
 
 
         <Link className="link-style" to="/Tournaments">
-        <div className="menu-button">
+        <div className="menu-button menu-button-last">
           <Button>Turneringar</Button>
         </div>
         </Link>
+
 
       </div>
       <div className="cartIcon" onClick={() => setIsOpen(!isOpen)}>

@@ -71,11 +71,12 @@ function ProductList() {
         width: '100%',
         justifyContent: 'center',
         display: 'flex',
+        marginRight: '1rem'
     }
 
     const formStyle: CSSProperties = {
         width: '100%',
-        margin: '2rem 0'
+        margin: '2rem 1rem'
     }
 
     // End styling variables
