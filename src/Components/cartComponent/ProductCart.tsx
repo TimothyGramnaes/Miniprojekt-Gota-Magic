@@ -11,6 +11,9 @@ const ProductCart = () => {
       <Grid container justify="center" alignItems="center">
         <Grid item className="productContainer">
           <h2>Din varukorg</h2>
+          <h2 style={{ paddingBottom: "1rem", paddingTop: "1rem" }}>
+            Dina produkter: {cart.totalPrice} SEK
+          </h2>
 
           {cart.cart.map((item) => {
             return <CartComponent item={item} />;
