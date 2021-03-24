@@ -21,9 +21,13 @@ function CheckOut2Shipping() {
   const [price, setPrice] = useState<number>();
   const [deliveryTime, setDeliveryTime] = useState<string>("");
 
+   // Shipping methods array
+   const [shippingObject, setShippingObject] = useState<ShippingMethod[]>([]);
+
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     setRadioChange(value);
+    checkout.saveShippingMethod(value)
   };
 
   const setRadioChange = (v: string) => {
@@ -33,6 +37,10 @@ function CheckOut2Shipping() {
   useEffect(() => {
     setValue(value);
   });
+
+  useEffect(() => {
+    checkout.saveShippingMethod(value)
+  }, [])
   
   // Prefixes for displayed text beside the radio btn
   const shippingMethodText1 =
@@ -71,8 +79,7 @@ function CheckOut2Shipping() {
     shippingMethods[4].deliveryTime +
     ")";
 
-  // Shipping methods array
-  const [shippingObject, setShippingObject] = useState<ShippingMethod[]>([]);
+ 
 
   return (
     <div className="container flex">
@@ -120,9 +127,9 @@ function CheckOut2Shipping() {
             </FormControl>
           </form>
           {/* <Button variant="contained" color="primary" className="move-fwd-btn">Till Betalning</Button> */}
-          <button onClick={() => checkout.saveShippingMethod(value)}>
+          {/* <button onClick={() => checkout.saveShippingMethod(value)}>
             test
-          </button>
+          </button> */}
         </div>
       </div>
 

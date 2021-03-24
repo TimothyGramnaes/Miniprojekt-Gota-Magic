@@ -140,6 +140,21 @@ function CheckOut1UserInfo() {
     
   })
 
+  useEffect(() => {
+    user.saveUserInformation(userName, userEmail, userMobile, userDeliveryaddress, userCity, userPostNumber, validated)
+    setUserObject([
+      {
+        name: userName,
+        email: userEmail,
+        mobile: userMobile,
+        deliveryaddress: userDeliveryaddress,
+        city: userCity,
+        postnumber: userPostNumber,
+        validated: validated
+      },
+    ]);
+  }, [])
+
   // This useEffect saves the userObject to LS
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(userObject));
@@ -217,15 +232,15 @@ function CheckOut1UserInfo() {
               onChange={handleuserPostNumber}
             />
           </form>
-          <Button
+          {/* <Button
             onClick={setUserToObject}
             variant="contained"
             color="primary"
             className="move-fwd-btn"
           >
             Välj Fraktsätt
-          </Button>
-          <button onClick={user.addOrderNumber}>Plussa ordernummer</button>
+          </Button> */}
+          {/* <button onClick={user.addOrderNumber}>Plussa ordernummer</button> */}
           {/* <Button onClick={setUserToObject} variant="contained" color="primary" className="move-fwd-btn">Välj Fraktsätt</Button> */}
         </div>
       </div>
