@@ -302,7 +302,10 @@ function CheckOut1UserInfo() {
           <div>
             {cart.cart.map((item) => {
               return (
-                <div style={{ display: "flex", flexDirection: "row" }}>
+                <div
+                  key={item.id}
+                  style={{ display: "flex", flexDirection: "row" }}
+                >
                   <p>
                     <strong>Produkt:</strong> {item.itemName}
                   </p>

@@ -42,7 +42,9 @@ const CartComponent = ({ item }: Props) => {
         </p>
         <ButtonGroup disableElevation variant="contained" color="primary">
           <Button
-            onClick={() => cart.addToCart(item.itemName, item.price, item.img)}
+            onClick={() =>
+              cart.addToCart(item.itemName, item.price, item.img, item.id)
+            }
           >
             +
           </Button>

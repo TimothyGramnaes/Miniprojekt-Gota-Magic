@@ -16,7 +16,7 @@ const ProductCart = () => {
           </h2>
 
           {cart.cart.map((item) => {
-            return <CartComponent item={item} />;
+            return <CartComponent key={item.id} item={item} />;
           })}
           <Link className="link-style" to="/BreadCrumbs">
             <Button variant="contained" color="primary">

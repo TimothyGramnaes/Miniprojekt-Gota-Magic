@@ -3,7 +3,13 @@ import BreadCrumbs from "./BreadCrumbs";
 import CartComponent from "./cartComponent/Cart";
 import { useCart } from "../Context/CartContext";
 import "../css/checkOut3Payment.css";
-import { PaymentMethods, Card, Invoice, SmsLoan, Swish } from "../DB/PaymentMethods"
+import {
+  PaymentMethods,
+  Card,
+  Invoice,
+  SmsLoan,
+  Swish,
+} from "../DB/PaymentMethods";
 import {
   TextField,
   Button,
@@ -14,56 +20,57 @@ import {
 } from "@material-ui/core";
 // import BreadCrumbs from './BreadCrumbs';
 import React, { useState, useEffect } from "react";
-import  { User } from "../Components/CheckOut1UserInfo"
-import {CheckoutContext, useCheckoutContext} from '../Context/CheckoutContext'
-
+import { User } from "../Components/CheckOut1UserInfo";
+import {
+  CheckoutContext,
+  useCheckoutContext,
+} from "../Context/CheckoutContext";
 
 function CheckOut3Payment() {
-  const checkout = useCheckoutContext()
+  const checkout = useCheckoutContext();
   const cart = useCart();
   const [value, setValue] = React.useState("");
 
-  const userFromContext = useCheckoutContext()
-  const userInfo = userFromContext.userInfo[0]
+  const userFromContext = useCheckoutContext();
+  const userInfo = userFromContext.userInfo[0];
 
   const [userObject, setUserObject] = useState<User[]>([]);
   // const [value, setValue] = useState<string>("");
-  const [cardType, setCardType] = useState<string>("Betalkort")
-  const [userName, setUserName] = useState<string>(userInfo.name)
-  const [cardNumber, setCardNumber] = useState<number>(0)
-  const [month, setMonth] = useState<number>(1)
-  const [year, setyear] = useState<number>(23)
-  const [safeCode, setSafeCode] = useState<number>(111)
-  const [email, setEmail] = useState<string>(userInfo.email)
-  const [mobileNumber, SetMobileNumber] = useState<string>(userInfo.mobile)
+  const [cardType, setCardType] = useState<string>("Betalkort");
+  const [userName, setUserName] = useState<string>(userInfo.name);
+  const [cardNumber, setCardNumber] = useState<number>(0);
+  const [month, setMonth] = useState<number>(1);
+  const [year, setyear] = useState<number>(23);
+  const [safeCode, setSafeCode] = useState<number>(111);
+  const [email, setEmail] = useState<string>(userInfo.email);
+  const [mobileNumber, SetMobileNumber] = useState<string>(userInfo.mobile);
 
   function CardPaymentModal() {
-  
-      // This useEffect fetch the localStorage after the page is updated.
+    // This useEffect fetch the localStorage after the page is updated.
     // If this is not running, the saved LS data will be deleted
     // useEffect(() => {
-    //   const data = localStorage.getItem("user");    
+    //   const data = localStorage.getItem("user");
     //   if (data) {
     //     setUserObject(JSON.parse(data));
     //   }
     //   setUser()
     // }, []);
-  
+
     const setUser = () => {
       // setUserName(userObject[0].name)
       // setEmail(userObject[0].email)
       // SetMobileNumber(userObject[0].mobile)
-    }
+    };
 
     // const setPaymentToState = () => {
     //   const PaymentValue = Number(value)
-      
+
     //   if (PaymentValue == 1) {
     //     setUserName("Nicklas"), //från LS
     //     setCardNumber(0),
     //     setMonth(1),
     //     setyear(23),
-    //     setSafeCode(111)  
+    //     setSafeCode(111)
     //    } else if (PaymentValue == 2) {
     //       setEmail("david@sensei.se") // från LS
     //      } else if (PaymentValue == 3) {
@@ -72,10 +79,9 @@ function CheckOut3Payment() {
     //           SetMobileNumber(467012345678) //från LS
     //         };
     // }
-  
+
     // console.log(userName, cardNumber, month, year, safeCode, email, mobileNumber)
-  
-  
+
     return (
       <div className="card-modal">
         <form>
@@ -125,13 +131,18 @@ function CheckOut3Payment() {
             </div>
           </div>
         </form>
-        <Button variant="contained" color="primary" className="move-fwd-btn" onClick={() => checkout.savePaymentMethod('Betalkort', 1)}>
+        <Button
+          variant="contained"
+          color="primary"
+          className="move-fwd-btn"
+          onClick={() => checkout.savePaymentMethod("Betalkort", 1)}
+        >
           Bekräfta order och betala
         </Button>
       </div>
     );
   }
-  
+
   function BillPaymentModal() {
     return (
       <div className="bill-modal">
@@ -145,13 +156,18 @@ function CheckOut3Payment() {
           variant="standard"
           value={userInfo.deliveryaddress}
         />
-        <Button variant="contained" color="primary" className="move-fwd-btn" onClick={() => checkout.savePaymentMethod('Faktura', 2)}>
+        <Button
+          variant="contained"
+          color="primary"
+          className="move-fwd-btn"
+          onClick={() => checkout.savePaymentMethod("Faktura", 2)}
+        >
           Bekräfta order och betala
         </Button>
       </div>
     );
   }
-  
+
   function SMSLoanPaymentModal() {
     return (
       <div className="sms-loan-modal">
@@ -164,13 +180,18 @@ function CheckOut3Payment() {
           variant="standard"
           value={userInfo.mobile}
         />
-        <Button variant="contained" color="primary" className="move-fwd-btn" onClick={() => checkout.savePaymentMethod('SMS-lån', 3)}>
+        <Button
+          variant="contained"
+          color="primary"
+          className="move-fwd-btn"
+          onClick={() => checkout.savePaymentMethod("SMS-lån", 3)}
+        >
           Bekräfta order och betala
         </Button>
       </div>
     );
   }
-  
+
   function SwishPaymentModal() {
     return (
       <div className="swish-modal flex column">
@@ -183,7 +204,12 @@ function CheckOut3Payment() {
           variant="standard"
           value={userInfo.mobile}
         />
-        <Button variant="contained" color="primary" className="move-fwd-btn" onClick={() => checkout.savePaymentMethod('Swish', 4)}>
+        <Button
+          variant="contained"
+          color="primary"
+          className="move-fwd-btn"
+          onClick={() => checkout.savePaymentMethod("Swish", 4)}
+        >
           Bekräfta order och betala
         </Button>
       </div>
@@ -235,7 +261,7 @@ function CheckOut3Payment() {
             <BillPaymentModal />
           ) : value === "kort" ? (
             <CardPaymentModal />
-          ) : value === 'swish' ? (
+          ) : value === "swish" ? (
             <SwishPaymentModal />
           ) : (
             ""
@@ -253,7 +279,10 @@ function CheckOut3Payment() {
           <div>
             {cart.cart.map((item) => {
               return (
-                <div style={{ display: "flex", flexDirection: "row" }}>
+                <div
+                  key={item.id}
+                  style={{ display: "flex", flexDirection: "row" }}
+                >
                   <p>
                     <strong>Produkt:</strong> {item.itemName}
                   </p>

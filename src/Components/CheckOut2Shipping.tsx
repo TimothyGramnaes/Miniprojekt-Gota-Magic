@@ -33,7 +33,7 @@ function CheckOut2Shipping() {
   useEffect(() => {
     setValue(value);
   });
-  
+
   // Prefixes for displayed text beside the radio btn
   const shippingMethodText1 =
     shippingMethods[0].name +
@@ -136,7 +136,10 @@ function CheckOut2Shipping() {
           <div>
             {cart.cart.map((item) => {
               return (
-                <div style={{ display: "flex", flexDirection: "row" }}>
+                <div
+                  key={item.id}
+                  style={{ display: "flex", flexDirection: "row" }}
+                >
                   <p>
                     <strong>Produkt:</strong> {item.itemName}
                   </p>
