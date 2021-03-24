@@ -52,8 +52,8 @@ export const CheckoutProvider: FunctionComponent = ({ children }) => {
   })
 
   const addOrderNumber = () => {
-    const oldOrderNumber = orderNumber
-    setOrderNumber(oldOrderNumber+1)
+    let oldOrderNumber:number = orderNumber
+    setOrderNumber(oldOrderNumber++)
   }
 
   console.log(orderNumber)
