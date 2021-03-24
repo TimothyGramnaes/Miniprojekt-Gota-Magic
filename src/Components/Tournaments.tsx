@@ -3,7 +3,7 @@ import React from 'react'
 import '../main.css';
 import '../css/tournaments.css';
 import { Link } from 'react-router-dom';
-import { IconButton, Grid, TextField, Button, makeStyles } from '@material-ui/core'
+import {  Grid } from '@material-ui/core'
 
 
 function Tournaments() {
