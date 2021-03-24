@@ -4,7 +4,7 @@
 }
 
 .grey-card {
-  background-color: #EDEDED;
+  background-color: #ededed;
   padding: 3rem;
   border-radius: 20px;
 }
@@ -15,7 +15,7 @@
 }
 
 .right-side {
-  width: 20rem;
+  width: 100%;
   margin-left: 2rem;
 }
 
@@ -23,6 +23,7 @@
   height: 100%;
   border-left: rgb(208, 208, 208) solid 2px;
   padding-left: 1.5rem;
+  min-width: 50rem;
 }
 
 .headings {
@@ -46,7 +47,7 @@ form {
 }
 
 form h5 {
-  margin: 2rem 0 .5rem 0;
+  margin: 2rem 0 0.5rem 0;
   font-weight: normal;
 }
 
