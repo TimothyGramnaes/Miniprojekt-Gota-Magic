@@ -22,7 +22,6 @@ function Header() {
 
       <div className="header-icon">
         <img
-          style={{ width: "40px", height: "40px" }}
           src="../magic 1.png"
           alt=""
           />

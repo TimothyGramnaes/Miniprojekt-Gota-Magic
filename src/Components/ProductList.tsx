@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
     searchfield: {
-            
+        background: '#EDEDED'    
     },
     resetBtn: {
         margin: '2rem 0',
@@ -71,7 +71,6 @@ function ProductList() {
         width: '100%',
         justifyContent: 'center',
         display: 'flex',
-        paddingBottom: '2rem'
     }
 
     const formStyle: CSSProperties = {
