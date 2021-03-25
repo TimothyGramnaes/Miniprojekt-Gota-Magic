@@ -18,14 +18,14 @@ export interface User {
   validated: boolean;
 }
 
-interface Validate {
-  name: boolean;
-  email: boolean;
+// interface Validate {
+//   name: boolean;
+//   email: boolean;
   // mobile: boolean;
   // deliveryaddress: boolean;
   // city: boolean;
   // postnumber: boolean;
-}
+// }
 
 function CheckOut1UserInfo() {
   const cart = useCart();
