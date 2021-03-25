@@ -1,18 +1,11 @@
-import TextField from "@material-ui/core/TextField";
-import "../css/checkOut1UserInfo.css";
-import {
-  CheckoutContext,
-  useCheckoutContext,
-} from "../Context/CheckoutContext";
-import { Button } from "@material-ui/core";
+import TextField from '@material-ui/core/TextField';
+import '../css/checkOut1UserInfo.css'
+import { useCheckoutContext } from '../Context/CheckoutContext'
 import "../css/checkOut1UserInfo.css";
 import "../main.css";
-import BreadCrumbs from "./BreadCrumbs";
 import { useCart } from "../Context/CartContext";
-
 import "../css/checkOut1UserInfo.css";
 import { useEffect, useState } from "react";
-import { FormatColorResetOutlined } from "@material-ui/icons";
 
 // Interface to the userObject array
 export interface User {
@@ -83,6 +76,7 @@ function CheckOut1UserInfo() {
       setUserToObject();
     }
   };
+
   const handleuserEmail = (e: any) => {
     setUserEmail(e.target.value);
     if (e.target.value.indexOf("@") === -1) {
@@ -94,6 +88,7 @@ function CheckOut1UserInfo() {
       setUserToObject();
     }
   };
+
   const handleuserMobile = (e: any) => {
     setUserMobile(e.target.value);
     if (!/^(\d{10})$/.test(e.target.value)) {
@@ -130,7 +125,6 @@ function CheckOut1UserInfo() {
       setUserToObject();
     }
   };
-
   const handleuserPostNumber = (e: any) => {
     setUserPostNumber(e.target.value);
     if (!/^(\d{5})$/.test(e.target.value)) {
@@ -302,16 +296,6 @@ function CheckOut1UserInfo() {
               helperText={userPostNumberTextError}
             />
           </form>
-          {/* <Button
-            onClick={setUserToObject}
-            variant="contained"
-            color="primary"
-            className="move-fwd-btn"
-          >
-            Välj Fraktsätt
-          </Button> */}
-          {/* <button onClick={user.addOrderNumber}>Plussa ordernummer</button> */}
-          {/* <Button onClick={setUserToObject} variant="contained" color="primary" className="move-fwd-btn">Välj Fraktsätt</Button> */}
         </div>
       </div>
 
@@ -339,9 +323,6 @@ function CheckOut1UserInfo() {
                 </div>
               );
             })}
-            {/* {cart.cart.map((item) => {
-              return <CartComponent item={item} />;
-            })} */}
           </div>
           <div className="priceInfo">
             <p>
@@ -364,22 +345,3 @@ function CheckOut1UserInfo() {
 }
 
 export default CheckOut1UserInfo;
-// function email(name: void, string: any, email: any, string: any, mobile: any, string: any, deliveryaddress: any, string: any, city: any, string: any, postnumber: any, string: any) {
-//   throw new Error('Function not implemented.');
-// }
-
-// function mobile(name: void, string: any, email: any, string: any, mobile: any, string: any, deliveryaddress: any, string: any, city: any, string: any, postnumber: any, string: any) {
-//   throw new Error('Function not implemented.');
-// }
-
-// function deliveryaddress(name: void, string: any, email: any, string: any, mobile: any, string: any, deliveryaddress: any, string: any, city: any, string: any, postnumber: any, string: any) {
-//   throw new Error('Function not implemented.');
-// }
-
-// function city(name: void, string: any, email: any, string: any, mobile: any, string: any, deliveryaddress: any, string: any, city: any, string: any, postnumber: any, string: any) {
-//   throw new Error('Function not implemented.');
-// }
-
-// function postnumber(name: void, string: any, email: any, string: any, mobile: any, string: any, deliveryaddress: any, string: any, city: any, string: any, postnumber: any, string: any) {
-//   throw new Error('Function not implemented.');
-// }

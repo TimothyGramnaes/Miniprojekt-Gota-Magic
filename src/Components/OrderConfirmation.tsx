@@ -1,12 +1,10 @@
 import '../css/orderConfirmation.css'
 import '../main.css'
-import { Button } from '@material-ui/core';
-// import BreadCrumbs from "./BreadCrumbs";
 import React from 'react';
 import { shippingMethods } from '../DB/ShippingMethods';
 import { useCart } from "../Context/CartContext";
 
-import {CheckoutContext, useCheckoutContext} from '../Context/CheckoutContext'
+import { useCheckoutContext } from '../Context/CheckoutContext'
 
 function OrderConfirmation() {
 
@@ -42,7 +40,6 @@ function OrderConfirmation() {
               <h3>Frakt</h3>
               <p>{shippingMethods[0].name}, {shippingMethods[0].deliveryTime}, {shippingMethods[0].price} kr</p>
             </div>
-            {/* <Button variant="contained" color="primary" className="move-fwd-btn">Fortsätt handla</Button> */}
           </div>
 
           <div className="right-side">
@@ -71,9 +68,6 @@ function OrderConfirmation() {
                 </div>
               );
             })}
-            {/* {cart.cart.map((item) => {
-              return <CartComponent item={item} />;
-            })} */}
           </div>
           <div className="priceInfo">
             <p> <b>Total kostnad: </b> {cart.totalPrice} kr{" "}</p>

@@ -8,6 +8,7 @@ import React, {
 import { PaymentMethod, PaymentMethods } from "../DB/PaymentMethods";
 import { ShippingMethod, shippingMethods } from "../DB/ShippingMethods";
 
+// functions and varibles that works through context
 interface CheckoutContextValue {
   saveUserInformation: (name: string, email: string, mobile: string, deliveryaddress: string, city: string, postnumber: string, validated: boolean ) => void;
   saveShippingMethod: (id: string) => void;
@@ -21,6 +22,7 @@ interface CheckoutContextValue {
   addOrderNumber: () => void
 }
 
+// Interface for userinput from Checkout1UserInfo
 type User = {
   name: string,
   email: string,
@@ -40,7 +42,9 @@ interface Checkout {
 
 export const CheckoutContext = createContext<CheckoutContextValue>({} as any);
 
+// When page never been used, this value sets as ordernumber
 const baseOrderNumber:number = 1000
+
 
 export const CheckoutProvider: FunctionComponent = ({ children }) => {
   const [checkout, setCheckout] = useState<Checkout[]>([{
@@ -53,11 +57,6 @@ export const CheckoutProvider: FunctionComponent = ({ children }) => {
   const [payment, setPayment] = useState<PaymentMethod[]>([]);
 
   const [orderNumber, setOrderNumber] = useState<number>(1000)
-  // const helaOrdern = [ ...userInfo, ...shippingObject, ...payment]
-
-  // console.log(helaOrdern)
-
-  // const [order, setOrder] = useState<[]>(helaOrdern)
 
   // Fetch ordernumber from LS
     useEffect(() => {   
@@ -76,14 +75,13 @@ export const CheckoutProvider: FunctionComponent = ({ children }) => {
       localStorage.setItem('orderNumber', JSON.stringify(orderNumber))
   })
 
+  // Function that increase the ordernumber when order is done and the orderconfirmation shows
   const addOrderNumber = () => {
     let oldOrderNumber:number = orderNumber
     setOrderNumber(oldOrderNumber+1)
   }
 
-  
-  console.log(shippingObject)
-
+  // Function to get the checkout userinformation
   const saveUserInformation = (
     name: string,
     email: string,
@@ -103,15 +101,15 @@ export const CheckoutProvider: FunctionComponent = ({ children }) => {
       }])
     }
 
-    console.log(payment)
-    
-
+  // A boolean that sends a true or false to BreadCrumbs to activate the next button at the CheckOut1UserInfo
   const [validatedUser, setValidatedUser] = useState<boolean>(false)
 
+  // Gets the boolean from CheckOut1UserInfo
   const getValidation = (value:boolean) => {
     setValidatedUser(value)      
   }
 
+  // Saves the shippinginformation from CheckOut2Shipping
   const saveShippingMethod = (id: string) => {
     const freightValue = parseInt(id);
     const selectedShipping = shippingMethods.filter((s) => {
@@ -121,6 +119,7 @@ export const CheckoutProvider: FunctionComponent = ({ children }) => {
     setShippingObject([...selectedShipping]);
   };
 
+  // Saves the paymentinformation from CheckOut3Payment
   const savePaymentMethod = (cardType: string, cardId: number) => {
     const selectedPayment = PaymentMethods.filter((p) => {
       if (p.cardId == cardId) return cardId;

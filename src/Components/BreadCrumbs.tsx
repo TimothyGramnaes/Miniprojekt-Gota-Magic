@@ -13,11 +13,7 @@ import CheckOut2Shipping from "./CheckOut2Shipping";
 import CheckOut3Payment from "./CheckOut3Payment";
 import OrderConfirmation from "./OrderConfirmation";
 import { CSSProperties } from '@material-ui/styles';
-// import ProductList from "./ProductList"
 import {useCheckoutContext} from '../Context/CheckoutContext'
-
-
-
 
 function getSteps() {
     return ['Användaruppgifter', 'Frakt', 'Betalning', 'Orderbekräftelse']
@@ -38,7 +34,6 @@ function getStepContent(stepIndex: number) {
     }
 }
 
-
 function BreadCrumbs() {
     const user = useCheckoutContext()
     const validatedUser = user.validatedUser;
@@ -58,19 +53,13 @@ function BreadCrumbs() {
             console.log(3)
             user.addOrderNumber()
         } else if (activeStep === 3) {
-            console.log(4)           
-
+            console.log(4)     
         }
     };
 
     const handleBack = () => {
         setActiveStep((prevActiveStep) => prevActiveStep -1);
     };
-
-    // const handleReset = () => {
-    //     // setActiveStep(0);
-    //   //  return <ProductList />
-    // };
 
     return (
     <div className="background">
@@ -94,7 +83,6 @@ function BreadCrumbs() {
                         <Link className="link-style" to="/ProductList">
                         <Button variant="contained" 
                         color="primary" 
-                        // onClick={handleReset}
                         >
                             Fortsätt Handla
                         </Button>
@@ -116,8 +104,7 @@ function BreadCrumbs() {
                         variant="contained" 
                         color="primary" 
                         disabled={validatedUser === false}
-                        onClick={handleNext}>                
-                            {/* {btnState}             */}
+                        onClick={handleNext}>               
                             {activeStep === steps.length - 1 ? 'Klar' : 'Nästa'}
                         </Button>
 
@@ -132,7 +119,6 @@ function BreadCrumbs() {
     </div>
 
     );
-
 }
 
 const stepperStyle: CSSProperties = {

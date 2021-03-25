@@ -1,4 +1,3 @@
-import TextField from "@material-ui/core/TextField";
 import "../css/checkOut2Shipping.css";
 import "../main.css";
 import {
@@ -10,7 +9,6 @@ import {
 import React, { useEffect, useState } from "react";
 import { ShippingMethod, shippingMethods } from "../DB/ShippingMethods";
 import { useCheckoutContext } from "../Context/CheckoutContext";
-
 import { useCart } from "../Context/CartContext";
 
 function CheckOut2Shipping() {
@@ -124,10 +122,6 @@ function CheckOut2Shipping() {
               </RadioGroup>
             </FormControl>
           </form>
-          {/* <Button variant="contained" color="primary" className="move-fwd-btn">Till Betalning</Button> */}
-          {/* <button onClick={() => checkout.saveShippingMethod(value)}>
-            test
-          </button> */}
         </div>
       </div>
 
@@ -155,9 +149,6 @@ function CheckOut2Shipping() {
                 </div>
               );
             })}
-            {/* {cart.cart.map((item) => {
-              return <CartComponent item={item} />;
-            })} */}
           </div>
           <div className="priceInfo">
             <p>

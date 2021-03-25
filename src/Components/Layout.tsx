@@ -11,7 +11,6 @@ import Contact from "./Contact";
 
 import { Switch, Route, BrowserRouter } from "react-router-dom";
 import ProductCart from "./cartComponent/ProductCart";
-import CheckOut1UserInfo from "./CheckOut1UserInfo";
 //import BreadCrumbs from "./BreadCrumbs";
 
 function Layout() {
