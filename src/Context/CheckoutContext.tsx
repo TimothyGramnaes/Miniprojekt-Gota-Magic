@@ -105,7 +105,8 @@ export const CheckoutProvider: FunctionComponent = ({ children }) => {
   const saveShippingMethod = (id: string) => {
     const freightValue = parseInt(id);
     const selectedShipping = shippingMethods.filter((s) => {
-      if (s.id === freightValue) return freightValue;
+      if (s.id === freightValue) {return freightValue}
+      else {return null};
     });
 
     setShippingObject([...selectedShipping]);
@@ -115,7 +116,8 @@ export const CheckoutProvider: FunctionComponent = ({ children }) => {
   // Saves the paymentinformation from CheckOut3Payment
   const savePaymentMethod = (cardType: string, cardId: number) => {
     const selectedPayment = PaymentMethods.filter((p) => {
-      if (p.cardId === cardId) return cardId;
+      if (p.cardId === cardId) {return cardId;}
+      else {return null}
     })
     setPayment([...selectedPayment])
   };
