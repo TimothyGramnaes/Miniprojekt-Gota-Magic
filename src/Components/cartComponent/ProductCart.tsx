@@ -1,4 +1,4 @@
-import { Button, Grid } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import React from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "../../Context/CartContext";
@@ -8,11 +8,7 @@ import "./productCart.css";
 const ProductCart = () => {
   const cart = useCart();
 
-  const calculateTaxes = () => {
-    // const taxCost = totalCost * 0.25
-  };
-
-  // byt ut texterna där pris ska visas
+    // byt ut texterna där pris ska visas
 
   if (cart.cart.length > 0) {
     return (

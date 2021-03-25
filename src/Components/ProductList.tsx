@@ -25,7 +25,7 @@ function ProductList() {
     const style = useStyles();
 
     // Number of items in productlist
-    const [pageNumbers, setPageNumbers] = useState(12)
+    const pageNumbers = 12
 
     const [page, setPage] = useState(0)
     const [pageItems, setPageItems] = useState(pageNumbers)
@@ -112,7 +112,7 @@ function ProductList() {
         } else if (searchValue?.toLowerCase() === sliceProductExpansion.toLowerCase()) {
             return searchValue?.toLowerCase()
         }
-       // return null;
+       return null;
     })
 
 

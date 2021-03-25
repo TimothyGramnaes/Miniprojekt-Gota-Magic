@@ -20,7 +20,7 @@ export const ProductProvider: FunctionComponent = ({ children }) => {
 
     useEffect(() => {
         setProducts(mockedProducts)
-    })
+    }, [])
     
     // This useEffect fetch the localStorage after the page is updated. 
     // If this is not running, the saved LS data will be deleted
@@ -52,7 +52,7 @@ export const ProductProvider: FunctionComponent = ({ children }) => {
     }
 
     const getProductView = products.filter((p) => {
-        if(p.id == productId) {
+        if(p.id === productId) {
            return productId
         }
     })
@@ -73,15 +73,4 @@ export const useProducts = () => {
     const value = useProductContext();
     return value.products;
 }
-
-// export const viewProduct = () => {
-//     const value = useProductContext();
-//     return value.viewProduct
-// }
-// Using a function to get
-// export const viewProductInfo = () => {
-//     const product = useProductContext();
-//     return product.viewProduct;
-// }
-
 

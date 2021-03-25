@@ -18,7 +18,6 @@ function Contact() {
         className="landingContainer" 
         style={landingContainer}>
 
-            {/* <div className="flex centered column" style={infoLandingContainer}> */}
             <Grid container xs={12} md={10} style={infoLandingContainer}>
   
                <img style={infoLandingContainerImage} src="./assets/imgs/play/totallylost.png" alt="glatt-turnerings-sallskap" />                   
@@ -59,10 +58,6 @@ function Contact() {
 
 
                     </Grid>
-                    {/* <Grid item xs={6} md={4}>
-                        <img className="person-bild" src="./assets/imgs/play/petrus.jpeg" alt="petrus" />
-                        <p className="pic-text">Petter Mölder, stolt vinnare av segerkepsen 2021-03-20</p>
-                    </Grid> */}
                     </Grid>
                     <div className="breaker"></div>
                 

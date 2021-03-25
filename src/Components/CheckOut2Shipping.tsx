@@ -15,12 +15,6 @@ function CheckOut2Shipping() {
   const checkout = useCheckoutContext();
   const cart = useCart();
   const [value, setValue] = useState<string>("");
-  // const [name, setName] = useState<string>("");
-  // const [price, setPrice] = useState<number>();
-  // const [deliveryTime, setDeliveryTime] = useState<string>("");
-
-  // // Shipping methods array
-  // const [shippingObject, setShippingObject] = useState<ShippingMethod[]>([]);
 
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
