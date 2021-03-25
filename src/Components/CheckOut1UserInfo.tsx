@@ -9,7 +9,7 @@ import "../css/checkOut1UserInfo.css";
 import "../main.css";
 import BreadCrumbs from "./BreadCrumbs";
 import { useCart } from "../Context/CartContext";
-import CartComponent from "./cartComponent/Cart";
+
 import "../css/checkOut1UserInfo.css";
 import { useEffect, useState } from "react";
 import { FormatColorResetOutlined } from "@material-ui/icons";
@@ -199,6 +199,29 @@ function CheckOut1UserInfo() {
     user.getValidation(validated);
   });
 
+  useEffect(() => {
+    user.saveUserInformation(
+      userName,
+      userEmail,
+      userMobile,
+      userDeliveryaddress,
+      userCity,
+      userPostNumber,
+      validated
+    );
+    setUserObject([
+      {
+        name: userName,
+        email: userEmail,
+        mobile: userMobile,
+        deliveryaddress: userDeliveryaddress,
+        city: userCity,
+        postnumber: userPostNumber,
+        validated: validated,
+      },
+    ]);
+  }, []);
+
   // This useEffect saves the userObject to LS
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(userObject));
@@ -279,15 +302,15 @@ function CheckOut1UserInfo() {
               helperText={userPostNumberTextError}
             />
           </form>
-          <Button
+          {/* <Button
             onClick={setUserToObject}
             variant="contained"
             color="primary"
             className="move-fwd-btn"
           >
             Välj Fraktsätt
-          </Button>
-          <button onClick={user.addOrderNumber}>Plussa ordernummer</button>
+          </Button> */}
+          {/* <button onClick={user.addOrderNumber}>Plussa ordernummer</button> */}
           {/* <Button onClick={setUserToObject} variant="contained" color="primary" className="move-fwd-btn">Välj Fraktsätt</Button> */}
         </div>
       </div>
@@ -295,32 +318,44 @@ function CheckOut1UserInfo() {
       <div className="right-side">
         <div className="order-overview">
           {/* Här tar vi in order komponenten, och tar bort den temporära nedanför */}
-          <h3>Din beställning</h3>
+          <h2>Din beställning</h2>
           <h3 style={{ paddingTop: "1rem", paddingBottom: "1rem" }}>
-            Dina produkter: {cart.totalPrice} SEK{" "}
+            {cart.totalPrice} kr{" "}
           </h3>
-          <div>
+          <div className="products">
             {cart.cart.map((item) => {
               return (
-                <div
-                  key={item.id}
-                  style={{ display: "flex", flexDirection: "row" }}
-                >
-                  <p>
-                    <strong>Produkt:</strong> {item.itemName}
-                  </p>
-                  <p>
-                    <strong>Pris:</strong> {item.price}
-                  </p>{" "}
-                  <p>
-                    <strong>Antal:</strong> {item.quantity}
-                  </p>
+                <div className="cartItem">
+                  <img src={item.img} alt={item.itemName} />
+                  <div className="cartInfoText">
+                    <p>
+                      <strong>{item.itemName}</strong>
+                    </p>
+                    <p>{item.price} kr</p>{" "}
+                    <p>
+                      <strong>Antal:</strong> {item.quantity}
+                    </p>
+                  </div>
                 </div>
               );
             })}
             {/* {cart.cart.map((item) => {
               return <CartComponent item={item} />;
             })} */}
+          </div>
+          <div className="priceInfo">
+            <p>
+              {" "}
+              <b>Total kostnad: </b> {cart.totalPrice} kr{" "}
+            </p>
+            <p>
+              {" "}
+              <b>Varav Moms:</b> 59 kr
+            </p>
+            <p>
+              {" "}
+              <b>Frakt: </b> Ej fastställt
+            </p>
           </div>
         </div>
       </div>

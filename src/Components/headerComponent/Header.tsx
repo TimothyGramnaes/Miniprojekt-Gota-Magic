@@ -22,7 +22,6 @@ function Header() {
 
       <div className="header-icon">
         <img
-          style={{ width: "40px", height: "40px" }}
           src="../magic 1.png"
           alt=""
           />
@@ -36,19 +35,24 @@ function Header() {
           <Button>Produkter</Button>
         </div>
         </Link>
+        <Link className="link-style" to="/AboutUs">
         <div className="menu-button">
           <Button>Om oss</Button>
         </div>
+        </Link>
+        <Link className="link-style" to="/Contact">
         <div className="menu-button">
           <Button>Kontakt</Button>
         </div>
+        </Link>
 
 
         <Link className="link-style" to="/Tournaments">
-        <div className="menu-button">
+        <div className="menu-button menu-button-last">
           <Button>Turneringar</Button>
         </div>
         </Link>
+
 
       </div>
       <div className="cartIcon" onClick={() => setIsOpen(!isOpen)}>

@@ -1,6 +1,6 @@
 import "../main.css";
 import BreadCrumbs from "./BreadCrumbs";
-import CartComponent from "./cartComponent/Cart";
+
 import { useCart } from "../Context/CartContext";
 import "../css/checkOut3Payment.css";
 import {
@@ -82,6 +82,11 @@ function CheckOut3Payment() {
 
     // console.log(userName, cardNumber, month, year, safeCode, email, mobileNumber)
 
+    const sendOrder: () => void = () => {
+      checkout.savePaymentMethod("Betalkort", 1);
+      checkout.addOrderNumber();
+    };
+
     return (
       <div className="card-modal">
         <form>
@@ -135,7 +140,7 @@ function CheckOut3Payment() {
           variant="contained"
           color="primary"
           className="move-fwd-btn"
-          onClick={() => checkout.savePaymentMethod("Betalkort", 1)}
+          onClick={sendOrder}
         >
           Bekräfta order och betala
         </Button>
@@ -144,6 +149,10 @@ function CheckOut3Payment() {
   }
 
   function BillPaymentModal() {
+    const sendOrder: () => void = () => {
+      checkout.savePaymentMethod("Faktura", 2);
+      checkout.addOrderNumber();
+    };
     return (
       <div className="bill-modal">
         {/* Här byts exempeladressen ut mot adressen användaren matat in tidigare */}
@@ -160,7 +169,7 @@ function CheckOut3Payment() {
           variant="contained"
           color="primary"
           className="move-fwd-btn"
-          onClick={() => checkout.savePaymentMethod("Faktura", 2)}
+          onClick={sendOrder}
         >
           Bekräfta order och betala
         </Button>
@@ -169,6 +178,10 @@ function CheckOut3Payment() {
   }
 
   function SMSLoanPaymentModal() {
+    const sendOrder: () => void = () => {
+      checkout.savePaymentMethod("SMS-lån", 3);
+      checkout.addOrderNumber();
+    };
     return (
       <div className="sms-loan-modal">
         <p className="payment-info-text">
@@ -184,7 +197,7 @@ function CheckOut3Payment() {
           variant="contained"
           color="primary"
           className="move-fwd-btn"
-          onClick={() => checkout.savePaymentMethod("SMS-lån", 3)}
+          onClick={sendOrder}
         >
           Bekräfta order och betala
         </Button>
@@ -193,6 +206,11 @@ function CheckOut3Payment() {
   }
 
   function SwishPaymentModal() {
+    const sendOrder: () => void = () => {
+      checkout.savePaymentMethod("Swish", 4);
+      checkout.addOrderNumber();
+    };
+
     return (
       <div className="swish-modal flex column">
         <p className="payment-info-text">
@@ -208,15 +226,17 @@ function CheckOut3Payment() {
           variant="contained"
           color="primary"
           className="move-fwd-btn"
-          onClick={() => checkout.savePaymentMethod("Swish", 4)}
+          onClick={sendOrder}
         >
           Bekräfta order och betala
         </Button>
+        {/* <button onClick={checkout.addOrderNumber}>Plussa ordernummer</button> */}
       </div>
     );
   }
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue((event.target as HTMLInputElement).value);
+    checkout.savePaymentMethod("Swish", 4);
   };
 
   return (
@@ -272,29 +292,41 @@ function CheckOut3Payment() {
       <div className="right-side">
         <div className="order-overview">
           {/* Här tar vi in order komponenten, och tar bort den temporära nedanför */}
-          <h3>Din beställning</h3>
+          <h2>Din beställning</h2>
           <h3 style={{ paddingTop: "1rem", paddingBottom: "1rem" }}>
-            Dina produkter: {cart.totalPrice} SEK{" "}
+            {cart.totalPrice} kr{" "}
           </h3>
           <div>
             {cart.cart.map((item) => {
               return (
-                <div
-                  key={item.id}
-                  style={{ display: "flex", flexDirection: "row" }}
-                >
-                  <p>
-                    <strong>Produkt:</strong> {item.itemName}
-                  </p>
-                  <p>
-                    <strong>Pris:</strong> {item.price}
-                  </p>{" "}
-                  <p>
-                    <strong>Antal:</strong> {item.quantity}
-                  </p>
+                <div className="cartItem">
+                  <img src={item.img} alt={item.itemName} />
+                  <div className="cartInfoText">
+                    <p>
+                      <strong>{item.itemName}</strong>
+                    </p>
+                    <p>{item.price} kr</p>{" "}
+                    <p>
+                      <strong>Antal:</strong> {item.quantity}
+                    </p>
+                  </div>
                 </div>
               );
             })}
+          </div>
+          <div className="priceInfo">
+            <p>
+              {" "}
+              <b>Total kostnad: </b> {cart.totalPrice} kr{" "}
+            </p>
+            <p>
+              {" "}
+              <b>Varav Moms:</b> 59 kr
+            </p>
+            <p>
+              {" "}
+              <b>Frakt: </b> Ej fastställt
+            </p>
           </div>
         </div>
       </div>

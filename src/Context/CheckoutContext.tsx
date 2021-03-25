@@ -13,7 +13,10 @@ interface CheckoutContextValue {
   saveShippingMethod: (id: string) => void;
   savePaymentMethod: (cardType: string, cardId: number) => void;
   getValidation: (value:boolean) => void;
-  userInfo: User[]
+  userInfo: User[];
+  payment: PaymentMethod[];
+  shippingObject: ShippingMethod[];
+  orderNumber: number;
   validatedUser: boolean
   addOrderNumber: () => void
 }
@@ -28,23 +31,45 @@ type User = {
   validated: boolean,
 }
 
+interface Checkout {
+  userInfo: User[],
+  shippingObject: ShippingMethod[],
+  payment: PaymentMethod[]
+}
+
+
 export const CheckoutContext = createContext<CheckoutContextValue>({} as any);
 
+const baseOrderNumber:number = 1000
+
 export const CheckoutProvider: FunctionComponent = ({ children }) => {
-  const [checkout, setCheckout] = useState<[]>([]);
+  const [checkout, setCheckout] = useState<Checkout[]>([{
+    userInfo: [],
+    shippingObject: [],
+    payment: []
+  }]);
   const [userInfo, setUserInfo] = useState<User[]>([])
-  const [shippingObject, setShippingObject] = useState<ShippingMethod[]>([]);
+  const [shippingObject, setShippingObject] = useState<ShippingMethod[]>([]); 
   const [payment, setPayment] = useState<PaymentMethod[]>([]);
 
-  const [orderNumber, setOrderNumber] = useState<number>(0)
+  const [orderNumber, setOrderNumber] = useState<number>(1000)
+  // const helaOrdern = [ ...userInfo, ...shippingObject, ...payment]
+
+  // console.log(helaOrdern)
+
+  // const [order, setOrder] = useState<[]>(helaOrdern)
 
   // Fetch ordernumber from LS
     useEffect(() => {   
       const data = localStorage.getItem('orderNumber') || "[]"
       if (data) {
+        if(data === "[]") {
+          setOrderNumber(1000)
+        } else {
         setOrderNumber(JSON.parse(data))
       }
-  }, [])
+      }
+  }, [] )
 
   // This useEffect saves the ordernumber to LS
   useEffect(() => {    
@@ -52,11 +77,12 @@ export const CheckoutProvider: FunctionComponent = ({ children }) => {
   })
 
   const addOrderNumber = () => {
-    const oldOrderNumber = orderNumber
+    let oldOrderNumber:number = orderNumber
     setOrderNumber(oldOrderNumber+1)
   }
 
-  console.log(orderNumber)
+  
+  console.log(shippingObject)
 
   const saveUserInformation = (
     name: string,
@@ -76,6 +102,9 @@ export const CheckoutProvider: FunctionComponent = ({ children }) => {
           validated: validated   
       }])
     }
+
+    console.log(payment)
+    
 
   const [validatedUser, setValidatedUser] = useState<boolean>(false)
 
@@ -108,7 +137,10 @@ export const CheckoutProvider: FunctionComponent = ({ children }) => {
         userInfo,
         getValidation,
         validatedUser,
-        addOrderNumber
+        addOrderNumber,
+        payment,
+        shippingObject,
+        orderNumber,
       }}
     >
       {children}

@@ -10,7 +10,6 @@ import {
   makeStyles,
   Grid,
 } from "@material-ui/core";
-// import { Link, Route } from "react-router-dom";
 import "../main.css";
 import { useProductContext } from "../Context/ProductContext";
 import { useCart } from "../Context/CartContext";
@@ -37,8 +36,16 @@ const useStyles = makeStyles({
     textAlign: "center",
     fontSize: "1rem",
   },
-  centerBtn: {
+  centerBtnLeft: {
     fontSize: "0.8rem",
+    border: '1px solid grey',
+    background: '#FF7A2F',
+  },
+  centerBtnRight: {
+    fontSize: "0.8rem",
+    border: '1px solid grey',
+    borderTopLeftRadius: '0',
+    borderBottomLeftRadius: '0',
   },
 });
 
@@ -64,14 +71,14 @@ function ProductListCard(props: Props) {
                       props.id
                     )
                   }
-                  className={style.centerBtn}
+                  className={style.centerBtnLeft}
                 >
                   Köp
                 </Button>
 
                 <Link to={`/ProductPage/${props.id}`}>
                   <Button
-                    className={style.centerBtn}
+                    className={style.centerBtnRight}
                     onClick={() => {
                       getProductId.getIdFromProductList(props.id);
                     }}

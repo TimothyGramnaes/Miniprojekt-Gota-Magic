@@ -7,6 +7,7 @@
   align-items: center;
   /* position: fixed; */
   z-index: 100;
+  padding: 0 2rem;
 }
 .header-icon {
   display: flex;
@@ -35,19 +36,32 @@
 }
 .menu-bar {
   display: flex;
+  align-items: center;
 }
 .menu-button {
   margin-left: 2rem;
 }
+
 .menu-burger-icon {
   display: none;
+}
+
+.header img {
+  margin-right: 0.75rem;
+  width: 40px;
+  height: 40px;
 }
 
 .link-style {
   text-decoration: none;
   color: black;
 }
-@media screen and (max-width: 580px) {
+
+.cart-btn-style {
+  margin-bottom: 10rem;
+}
+
+@media screen and (max-width: 820px) {
   .menu-bar {
     display: none;
     background-color: black;

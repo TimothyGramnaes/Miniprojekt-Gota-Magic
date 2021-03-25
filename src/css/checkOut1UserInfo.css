@@ -3,6 +3,10 @@
   padding: 2rem;
 }
 
+.container {
+  justify-content: space-between;
+}
+
 .grey-card {
   background-color: #ededed;
   padding: 3rem;
@@ -11,19 +15,45 @@
 
 .left-side {
   max-width: 600px;
-  margin: 0 auto;
+  padding-left: 3rem;
+  flex: 2;
 }
 
 .right-side {
   width: 100%;
   margin-left: 2rem;
+  flex: 1;
+  padding: 2rem 0;
 }
 
 .order-overview {
-  height: 100%;
   border-left: rgb(208, 208, 208) solid 2px;
   padding-left: 1.5rem;
-  min-width: 50rem;
+  width: 100%;
+}
+
+.products {
+  max-height: 500px;
+  overflow-y: scroll;
+}
+
+.cartInfoText {
+  display: flex;
+  flex-direction: column;
+}
+
+.cartInfoText p {
+  margin-bottom: .5rem;
+}
+
+.cartItem {
+  display: flex;
+  margin: 1.5rem 0;
+}
+
+.cartItem img {
+  height: 80px;
+  margin-right: 1rem;
 }
 
 .headings {
@@ -55,19 +85,25 @@ form h5 {
   text-transform: none;
 }
 
+.order-overview .priceInfo {
+  border-top: rgb(208, 208, 208) solid 2px;
+  margin: 0;
+}
+
 @media (max-width: 950px) {
   .container {
-    flex-direction: column;
+    flex-direction: column-reverse;
   }
 
   .right-side {
     width: auto;
     max-width: 600px;
+    padding-left: 1rem;
   }
 
   .order-overview {
     border-left: none;
-    border-top: rgb(208, 208, 208) solid 2px;
+    border-bottom: rgb(208, 208, 208) solid 2px;
     margin: 2rem auto 0 auto;
     padding: 1rem 0;
     max-width: 600px;

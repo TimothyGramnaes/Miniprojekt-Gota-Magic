@@ -19,40 +19,37 @@ const CartComponent = ({ item }: Props) => {
     }
   };
 
+  const priceText = item.price + " kr";
+  const totalPriceText = "Totalpris: " + item.price * item.quantity + " kr";
+
   return (
     <div className="itemContainer">
-      <div className="productImageContainer">
-        <img className="img" src={item.img} alt="" />
-      </div>
-      <div>
-        <p>
-          <strong>Produkt:</strong> {item.itemName}
-        </p>
-        <p>
-          <strong>Pris: </strong>
-          {item.price}
-        </p>
-        <p>
-          <strong>Total pris:</strong> {item.price * item.quantity}
-        </p>
-      </div>
-      <div className="buttonContainer">
-        <p>
-          <strong>Antal</strong>
-        </p>
-        <ButtonGroup disableElevation variant="contained" color="primary">
-          <Button
-            onClick={() =>
-              cart.addToCart(item.itemName, item.price, item.img, item.id)
-            }
-          >
-            +
-          </Button>
-          <div className="numberContainer">
-            <p>{item.quantity}</p>
+      <div className="product">
+        <div className="productImageContainer">
+          <img className="img" src={item.img} alt="" />
+        </div>
+        <div className="productInfoText">
+          <p>
+            <strong>{item.itemName}</strong>
+          </p>
+          <p>{priceText}</p>
+          <div className="buttonContainer">
+            <ButtonGroup disableElevation variant="contained" color="primary">
+              <Button
+                onClick={() =>
+                  cart.addToCart(item.itemName, item.price, item.img, item.id)
+                }
+              >
+                +
+              </Button>
+              <div className="numberContainer">
+                <p>{item.quantity}</p>
+              </div>
+              <Button onClick={() => cart.decreaseQuantity(item)}>-</Button>
+            </ButtonGroup>
           </div>
-          <Button onClick={() => cart.decreaseQuantity(item)}>-</Button>
-        </ButtonGroup>
+          <p>{totalPriceText}</p>
+        </div>
       </div>
       <div className="iconContainer">
         <DeleteIcon onClick={() => cart.removeFromCart(item.itemName)} />
