@@ -1,4 +1,3 @@
-import TextField from "@material-ui/core/TextField";
 import "../css/checkOut2Shipping.css";
 import "../main.css";
 import {
@@ -10,7 +9,6 @@ import {
 import React, { useEffect, useState } from "react";
 import { ShippingMethod, shippingMethods } from "../DB/ShippingMethods";
 import { useCheckoutContext } from "../Context/CheckoutContext";
-import CartComponent from "./cartComponent/Cart";
 import { useCart } from "../Context/CartContext";
 
 function CheckOut2Shipping() {
@@ -78,8 +76,6 @@ function CheckOut2Shipping() {
     " kr (" +
     shippingMethods[4].deliveryTime +
     ")";
-
- 
 
   return (
     <div className="container flex">
@@ -155,9 +151,6 @@ function CheckOut2Shipping() {
                 </div>
               );
             })}
-            {/* {cart.cart.map((item) => {
-              return <CartComponent item={item} />;
-            })} */}
           </div>
           <div className="priceInfo">
             <p> <b>Total kostnad: </b> {cart.totalPrice} kr{" "}</p>

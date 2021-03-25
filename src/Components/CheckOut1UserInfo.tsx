@@ -4,7 +4,6 @@ import { useCheckoutContext } from '../Context/CheckoutContext'
 import "../css/checkOut1UserInfo.css";
 import "../main.css";
 import { useCart } from "../Context/CartContext";
-import CartComponent from "./cartComponent/Cart";
 import "../css/checkOut1UserInfo.css";
 import { useEffect, useState } from "react";
 
@@ -43,12 +42,10 @@ function CheckOut1UserInfo() {
   const [userMobileError, setUserMobileError] = useState<string>("");
   const [validated, setValidated] = useState<boolean>(false);
 
-
   // The user array
   const [userObject, setUserObject] = useState<User[]>([]);
 
   const user = useCheckoutContext()
-
 
   // Functions that handles the inputfields an save it to states right above
   const handleUserName = (e: any) => {
@@ -63,6 +60,7 @@ function CheckOut1UserInfo() {
       setUserToObject()
     }
   };
+
   const handleuserEmail = (e: any) => {
     setUserEmail(e.target.value);
     if (e.target.value.indexOf('@') === -1) {
@@ -75,18 +73,22 @@ function CheckOut1UserInfo() {
       setUserToObject()
     }
   };
+
   const handleuserMobile = (e: any) => {
     setUserMobile(e.target.value);
     setUserToObject()
   };
+
   const handleuserDeliveryaddress = (e: any) => {
     setUserDeliveryaddress(e.target.value);
     setUserToObject()
   };
+
   const handleuserCity = (e: any) => {
     setUserCity(e.target.value);
     setUserToObject()
   };
+  
   const handleuserPostNumber = (e: any) => {
     setUserPostNumber(e.target.value);
     setUserToObject()
@@ -258,9 +260,6 @@ function CheckOut1UserInfo() {
                 </div>
               );
             })}
-            {/* {cart.cart.map((item) => {
-              return <CartComponent item={item} />;
-            })} */}
           </div>
           <div className="priceInfo">
             <p> <b>Total kostnad: </b> {cart.totalPrice} kr{" "}</p>
