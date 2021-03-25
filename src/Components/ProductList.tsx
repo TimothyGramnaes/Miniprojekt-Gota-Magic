@@ -4,7 +4,9 @@ import { useState } from 'react'
 import { IconButton, Grid, TextField, Button, makeStyles } from '@material-ui/core'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
-import { useProducts } from '../Context/ProductContext'
+// import { useProducts } from '../Context/ProductContext'
+
+import { Product, products as mockedProducts } from '../DB/Products'
 // Used fot routing the ID to URL and the right product is showned
 
 const useStyles = makeStyles({
@@ -20,7 +22,7 @@ const useStyles = makeStyles({
 
 
 function ProductList() {
-    const products = useProducts()
+    const products:Product[] = mockedProducts
 
     const style = useStyles();
 
@@ -30,7 +32,7 @@ function ProductList() {
     const [page, setPage] = useState(0)
     const [pageItems, setPageItems] = useState(pageNumbers)
     const [pageNumber, setPageNumber] = useState(1)
-    const [productViewArray, setProductViewArray] = useState(products)
+    const [productViewArray, setProductViewArray] = useState<Product[]>(products)
     const [searchValue, setSearchValue] = useState<string>()
 
     // Styling variables
