@@ -1,6 +1,5 @@
 import '../css/orderConfirmation.css'
 import '../main.css'
-import React from 'react';
 import { shippingMethods } from '../DB/ShippingMethods';
 import { useCart } from "../Context/CartContext";
 

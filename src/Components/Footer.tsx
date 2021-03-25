@@ -6,8 +6,6 @@ import MailIcon from '@material-ui/icons/Mail';
 import PhoneIcon from '@material-ui/icons/Phone';
 import HomeIcon from '@material-ui/icons/Home';
 import { useState } from 'react';
-import { createStyles } from '@material-ui/styles';
-import { makeStyles } from '@material-ui/core';
 
 function Footer() {
   const [divider, rotateDivider] = useState(false)

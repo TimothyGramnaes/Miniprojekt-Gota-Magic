@@ -4,15 +4,8 @@ import { yellow } from '@material-ui/core/colors';
 import '../main.css'
 import '../css/productPage.css'
 import { useProductContext } from '../Context/ProductContext'
-import { useState, useEffect } from 'react'
 // This is to get the URL from browser
-import { RouteComponentProps } from 'react-router-dom';
-// Imported the product DB just for the interface
-import { Product } from '../DB/Products'
-
-interface Props extends RouteComponentProps {
-  id: string
-}
+import { useParams } from 'react-router-dom';
 
   // THE HOW TO SHOW RIGHT PRODUCT
   // 1. Create in Layout <Route path="/ProductPage/:id" component={ProductPage} />
@@ -24,58 +17,20 @@ interface Props extends RouteComponentProps {
   //    Now you've got the URL behind "pagename/" and needed to shortened
   //    Filter the product array with the id you've got and use the data in the HTML
 
-function ProductPage(props:Props){
+function ProductPage(){
   
   // Import context
-  const product = useProductContext()
-  // Extracted the products array from Context
-  const productData = product.products
-
-  // Gets the URL in webbrowser
-  const productUrl = props.match.url.substr(1);
-  // Clean the URL so just the ID is left
-  const getId = parseInt(productUrl.slice(12))
+  const { products } = useProductContext()
+  const params = useParams<{ id: string }>()
   
   // Default product to stop error when a product is choosen to display
-  const defaultProduct:Product[] = [{productname: "Ancestor's Chosen",
-  cardtype:"Creature — Human Cleric",
-  color:"White",
-  cardtext:"First strike (This creature deals combat damage before creatures without first strike.)\nWhen Ancestor's Chosen enters the battlefield, you gain 1 life for each card in your graveyard.",
-  expansion:"Tenth Edition",
-  cmc:7.0,
-  image:"http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=130550&type=card",
-  id:1,
-  price:79,
-  producttype:"single",
-  view:true,
-  rating: 4,
-  }]
-
-  // State that gets the filtered product
-  const [viewProduct, setViewProduct] = useState<Product[]>(defaultProduct)
-
-  // Variable to use for output data in the HTML
-  const setProduct = viewProduct[0]
-
-  // Filter the product array and return the clicked product
-  const filterdProduct = productData.filter((p) => {
-    if(p.id == getId) {      
-      return getId
-    }
-  })
-
-  // Function that sets the filtered state
-  const setFilterdList = () => {
-    setViewProduct(filterdProduct)
-  }    
-
-  // useEffect to automaticly runs and set the filtered value to the state
-  useEffect(() => {
-    setFilterdList()
-  }, [])
+  const product = products.find(p => String(p.id) === params.id)
+ 
+  if (!product) {
+    return <p>Det här magikortet verkar inte finnas.</p>
+  }
 
   return (
-
     <div className="background">
       <div className="grey-card">
         <div className="container">
@@ -84,12 +39,12 @@ function ProductPage(props:Props){
 
             <div className="image-container flex">
               {/* Ta in product.image, byt diven nedan till en <img/> */}
-              <img src={setProduct.image} alt=""/>
+              <img src={product.image} alt=""/>
             </div>
 
             <div className="info-content flex column"> 
               {/* Ta in product.name */}
-              <h2>{setProduct.productname}</h2>
+              <h2>{product.productname}</h2>
               {/* Ta in product.stars, rendera ut antalet stjärnor */}
               <div className="stars">
                 
@@ -99,10 +54,10 @@ function ProductPage(props:Props){
                 <StarIcon style={{ color: yellow[700] }} />
               </div>
               {/* Ta in product.shortDesc */}
-              <h4>{setProduct.cardtype}</h4>
-              <p>Färg:  {setProduct.color}</p>
-              <p>CMC:  {setProduct.cmc}</p>
-              <p>Expansion:  {setProduct.expansion}</p>
+              <h4>{product.cardtype}</h4>
+              <p>Färg:  {product.color}</p>
+              <p>CMC:  {product.cmc}</p>
+              <p>Expansion:  {product.expansion}</p>
               {/* Ta in product.price */}
               <h2 className="price-text">15</h2>
               {/* Ta in höj/sänk antal */}
@@ -121,7 +76,7 @@ function ProductPage(props:Props){
 
             <div className="desc flex column">
               <h3>Produktbeskrivning</h3>
-              <p>{setProduct.cardtext}</p>
+              <p>{product.cardtext}</p>
             </div>
 
             <div className="similar-products flex column">
