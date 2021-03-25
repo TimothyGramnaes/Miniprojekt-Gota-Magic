@@ -37,10 +37,10 @@ export default function SimpleMenu() {
         <Link className="link-style" to="/ProductList">
           <MenuItem onClick={handleClose}>Produkter</MenuItem>
         </Link>
-        <Link className="link-style" to="/">
+        <Link className="link-style" to="/AboutUs">
           <MenuItem onClick={handleClose}>Om oss</MenuItem>
         </Link>
-        <Link className="link-style" to="/">
+        <Link className="link-style" to="/Contact">
           <MenuItem onClick={handleClose}>Kontakt</MenuItem>
         </Link>
         <Link className="link-style" to="/Tournaments">

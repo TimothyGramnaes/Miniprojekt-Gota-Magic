@@ -28,6 +28,42 @@
 
 .breaker {
   width: 100%;
+  padding-top: 1rem;
+
   height: 1px;
   box-shadow: 0 0.1rem 0 grey;
+}
+
+.bottom-p {
+  color: grey;
+  font-style: italic;
+  font-size: 0.9rem;
+  align-items: center;
+  justify-content: center;
+  padding-top: 0.5rem;
+}
+
+.tour-kort-item-contact {
+  display: flex;
+  flex-direction: column;
+
+  padding-left: 2rem;
+}
+
+.kontakt-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.icon-div {
+  padding: 0rem;
+  margin: 0.4rem;
+}
+
+.kontakt-seperator {
+  padding: 0.1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* justify-content: center; */
 }
