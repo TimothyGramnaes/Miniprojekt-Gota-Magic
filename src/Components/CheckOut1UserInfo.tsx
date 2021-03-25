@@ -187,7 +187,7 @@ function CheckOut1UserInfo() {
     } else {
       setValidated(false);
     }
-  });
+  }, [userNameError, userEmailError, userMobileError, userPostNumberError, userDeliveryAdressError, userCityError]);
 
   useEffect(() => {
     user.getValidation(validated);
@@ -214,7 +214,7 @@ function CheckOut1UserInfo() {
         validated: validated,
       },
     ]);
-  }, []);
+  }, [user, userCity, userDeliveryaddress, userEmail, userMobile, userName, userPostNumber, validated]);
 
   // This useEffect saves the userObject to LS
   useEffect(() => {
