@@ -7,7 +7,7 @@ import {
   RadioGroup,
 } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
-import { ShippingMethod, shippingMethods } from "../DB/ShippingMethods";
+import { shippingMethods } from "../DB/ShippingMethods";
 import { useCheckoutContext } from "../Context/CheckoutContext";
 import { useCart } from "../Context/CartContext";
 
@@ -15,12 +15,12 @@ function CheckOut2Shipping() {
   const checkout = useCheckoutContext();
   const cart = useCart();
   const [value, setValue] = useState<string>("");
-  const [name, setName] = useState<string>("");
-  const [price, setPrice] = useState<number>();
-  const [deliveryTime, setDeliveryTime] = useState<string>("");
+  // const [name, setName] = useState<string>("");
+  // const [price, setPrice] = useState<number>();
+  // const [deliveryTime, setDeliveryTime] = useState<string>("");
 
-  // Shipping methods array
-  const [shippingObject, setShippingObject] = useState<ShippingMethod[]>([]);
+  // // Shipping methods array
+  // const [shippingObject, setShippingObject] = useState<ShippingMethod[]>([]);
 
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
