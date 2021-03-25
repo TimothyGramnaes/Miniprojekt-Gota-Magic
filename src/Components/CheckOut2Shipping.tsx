@@ -157,7 +157,7 @@ function CheckOut2Shipping() {
             </p>
             <p>
               {" "}
-              <b>Varav Moms:</b> 59 kr
+              <b>Varav Moms:</b> {cart.totalPrice * 0.25} kr
             </p>
             <p>
               {" "}
