@@ -1,6 +1,6 @@
 import { CSSProperties } from '@material-ui/styles'
 import ProductListCard from './ProductListCard'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { IconButton, Grid, TextField, Button, makeStyles } from '@material-ui/core'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
@@ -186,20 +186,20 @@ function ProductList() {
 
 
     
-    useEffect(() => {   
+    // useEffect(() => {   
         
-        const data = localStorage.getItem('products') || "[]"
-        if (data) {
-            setProductViewArray(JSON.parse(data))
-        }
-    }, [])
+    //     const data = localStorage.getItem('products') || "[]"
+    //     if (data) {
+    //         setProductViewArray(JSON.parse(data))
+    //     }
+    // }, [])
 
-    // This useEffect saves the userObject to LS
-    // Like ComponentDidUpdate
-    useEffect(() => {    
-        localStorage.setItem('products', JSON.stringify(productViewArray))
-    })
-    console.log(productViewArray)
+    // // This useEffect saves the userObject to LS
+    // // Like ComponentDidUpdate
+    // useEffect(() => {    
+    //     localStorage.setItem('products', JSON.stringify(productViewArray))
+    // })
+    // console.log(productViewArray)
 
     return(
         <Grid container justify="center" alignItems="center" className="productListContainer" style={productListContainer}>
