@@ -3,9 +3,7 @@ import "./Header.css";
 import Button from "@material-ui/core/Button";
 import TemporaryDrawer from "./Drawer";
 import SimpleMenu from "./SimpleMenu";
-import { Link,
-//         Route,
-//         Switch
+import { Link
  } from 'react-router-dom';
 
 

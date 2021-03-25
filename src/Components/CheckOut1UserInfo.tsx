@@ -18,15 +18,6 @@ export interface User {
   validated: boolean;
 }
 
-// interface Validate {
-//   name: boolean;
-//   email: boolean;
-  // mobile: boolean;
-  // deliveryaddress: boolean;
-  // city: boolean;
-  // postnumber: boolean;
-// }
-
 function CheckOut1UserInfo() {
   const cart = useCart();
   const [userName, setUserName] = useState<string>("");
@@ -190,29 +181,6 @@ function CheckOut1UserInfo() {
       setValidated(false);
     }
   }
-
-  // const sendUser = () => {
-  //   user.saveUserInformation(
-  //     userName,
-  //     userEmail,
-  //     userMobile,
-  //     userDeliveryaddress,
-  //     userCity,
-  //     userPostNumber,
-  //     validated
-  //   );
-  //   setUserObject([
-  //     {
-  //       name: userName,
-  //       email: userEmail,
-  //       mobile: userMobile,
-  //       deliveryaddress: userDeliveryaddress,
-  //       city: userCity,
-  //       postnumber: userPostNumber,
-  //       validated: validated,
-  //     },
-  //   ]);
-  // }
 
   useEffect(() => {
     validateFunction()

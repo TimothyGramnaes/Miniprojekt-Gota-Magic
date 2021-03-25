@@ -16,7 +16,6 @@ function AboutUs() {
         className="landingContainer" 
         style={landingContainer}>
 
-            {/* <div className="flex centered column" style={infoLandingContainer}> */}
             <Grid container xs={12} md={10} style={infoLandingContainer}>
   
                <img style={infoLandingContainerImage} src="./assets/imgs/play/STASIS.jpg" alt="glatt-turnerings-sallskap" />                   
@@ -96,7 +95,6 @@ const infoLandingContainerImage: CSSProperties = {
     objectFit: 'cover',
     top: 0,
     bottom: 0,
-    // border: '2px solid black'
 }
 
 const textLandingContainer: CSSProperties = {

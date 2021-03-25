@@ -26,14 +26,6 @@ function CheckOut2Shipping() {
     setValue(v);
   };
 
-  // useEffect(() => {
-  //   setValue(value);
-  // });
-
-  // useEffect(() => {
-  //   checkout.saveShippingMethod(value);
-  // }, []);
-
   // Prefixes for displayed text beside the radio btn
   const shippingMethodText1 =
     shippingMethods[0].name +
