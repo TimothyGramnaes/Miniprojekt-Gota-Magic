@@ -125,7 +125,7 @@ function CheckOut1UserInfo() {
       setUserToObject();
     }
   };
-  const handleuserPostNumber = (e: any) => {
+  const handleuserPostNumber = (e: any) => {    
     setUserPostNumber(e.target.value);
     if (!/^(\d{5})$/.test(e.target.value)) {
       setUserPostNumberError(false);
@@ -140,6 +140,7 @@ function CheckOut1UserInfo() {
 
   // Function that saves the inputsfields to an object
   const setUserToObject = () => {
+    
     user.getValidation(validated);
 
     user.saveUserInformation(
@@ -173,7 +174,8 @@ function CheckOut1UserInfo() {
     }
   }, []);
 
-  useEffect(() => {
+
+  const validateFunction = () => {
     if (
       userNameError &&
       userEmailError &&
@@ -187,34 +189,39 @@ function CheckOut1UserInfo() {
     } else {
       setValidated(false);
     }
-  }, [userNameError, userEmailError, userMobileError, userPostNumberError, userDeliveryAdressError, userCityError]);
+  }
+
+  // const sendUser = () => {
+  //   user.saveUserInformation(
+  //     userName,
+  //     userEmail,
+  //     userMobile,
+  //     userDeliveryaddress,
+  //     userCity,
+  //     userPostNumber,
+  //     validated
+  //   );
+  //   setUserObject([
+  //     {
+  //       name: userName,
+  //       email: userEmail,
+  //       mobile: userMobile,
+  //       deliveryaddress: userDeliveryaddress,
+  //       city: userCity,
+  //       postnumber: userPostNumber,
+  //       validated: validated,
+  //     },
+  //   ]);
+  // }
+
+  useEffect(() => {
+    validateFunction()
+  });
 
   useEffect(() => {
     user.getValidation(validated);
   });
 
-  useEffect(() => {
-    user.saveUserInformation(
-      userName,
-      userEmail,
-      userMobile,
-      userDeliveryaddress,
-      userCity,
-      userPostNumber,
-      validated
-    );
-    setUserObject([
-      {
-        name: userName,
-        email: userEmail,
-        mobile: userMobile,
-        deliveryaddress: userDeliveryaddress,
-        city: userCity,
-        postnumber: userPostNumber,
-        validated: validated,
-      },
-    ]);
-  }, [user, userCity, userDeliveryaddress, userEmail, userMobile, userName, userPostNumber, validated]);
 
   // This useEffect saves the userObject to LS
   useEffect(() => {
