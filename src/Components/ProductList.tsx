@@ -189,11 +189,14 @@ function ProductList() {
                 </form>
                 <Button onClick={resetSearch} className={style.resetBtn} variant="contained" color="primary">Reset</Button>
             </Grid>
-            <Grid item xs={12} md={8} style={listStyle}>
 
-                {productData}
+            <Grid container xs={12} md={10} style={infoLandingContainer}>
 
-                <Grid item xs={12} className="productListBtn" style={productListBtnStyle}>
+                <Grid item style={listStyle}>
+
+                    {productData}
+
+                    <Grid item xs={12} className="productListBtn" style={productListBtnStyle}>
                     <IconButton onClick={decrease}>
                         <ArrowBackIcon />
                     </IconButton>
@@ -206,8 +209,19 @@ function ProductList() {
                 </Grid>
 
             </Grid>
+            </Grid>
         </Grid>
     )
+}
+
+const infoLandingContainer: CSSProperties = {
+   
+    maxWidth: '60rem',
+    margin: '4rem 2rem 2rem 2rem',
+    top: 0,
+    bottom: 0,
+    borderRadius: '15px',
+    overflow: 'hidden'
 }
 
 export default ProductList

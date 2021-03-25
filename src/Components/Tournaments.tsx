@@ -16,7 +16,6 @@ function Tournaments() {
         className="landingContainer" 
         style={landingContainer}>
 
-            {/* <div className="flex centered column" style={infoLandingContainer}> */}
             <Grid container xs={12} md={10} style={infoLandingContainer}>
   
                <img style={infoLandingContainerImage} src="./assets/imgs/play/bear2.jpg" alt="glatt-turnerings-sallskap" />                   
@@ -104,7 +103,7 @@ const titleHeader: CSSProperties = {
 
 const infoLandingContainer: CSSProperties = {
    
-    maxWidth: '75rem',
+    maxWidth: '60rem',
 
     margin: '4rem 2rem 2rem 2rem',
     top: 0,
