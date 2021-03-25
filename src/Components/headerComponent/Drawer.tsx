@@ -76,7 +76,7 @@ export default function TemporaryDrawer() {
             >
               <h3>Dina produkter: {cart.totalPrice} kr </h3>
               {cart.cart.map((item) => {
-                return <CartComponent item={item} />;
+                return <CartComponent key={item.id} item={item} />;
               })}
               <Link className="cart-btn-style" to="/ProductCart">
                 <Button

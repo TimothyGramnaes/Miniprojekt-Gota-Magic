@@ -4,4 +4,5 @@ export type orderItem = {
   price: number;
   img: string;
   quantity: number;
+  id: number;
 };
