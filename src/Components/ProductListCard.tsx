@@ -12,7 +12,7 @@ import {
 import "../main.css";
 import { useProductContext } from "../Context/ProductContext";
 import { useCart } from "../Context/CartContext";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 interface Props {
   image: string;
   productname: string;
@@ -61,20 +61,20 @@ function ProductListCard(props: Props) {
             <CardMedia className={style.media} image={props.image} />
             <CardActions>
               <ButtonGroup>
-              
                 <Button
                   onClick={() =>
                     usecart.addToCart(
                       props.productname,
                       props.price,
-                      props.image
+                      props.image,
+                      props.id
                     )
                   }
                   className={style.centerBtnLeft}
                 >
                   Köp
                 </Button>
-                
+
                 <Link to={`/ProductPage/${props.id}`}>
                   <Button
                     className={style.centerBtnRight}

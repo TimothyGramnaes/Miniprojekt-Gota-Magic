@@ -18,9 +18,9 @@ const CartComponent = ({ item }: Props) => {
       return;
     }
   };
-  
-  const priceText = item.price + ' kr';
-  const totalPriceText = 'Totalpris: ' + item.price * item.quantity + ' kr';
+
+  const priceText = item.price + " kr";
+  const totalPriceText = "Totalpris: " + item.price * item.quantity + " kr";
 
   return (
     <div className="itemContainer">
@@ -30,27 +30,25 @@ const CartComponent = ({ item }: Props) => {
         </div>
         <div className="productInfoText">
           <p>
-            <strong>{item.itemName}</strong> 
+            <strong>{item.itemName}</strong>
           </p>
-          <p>
-            {priceText}
-          </p>
+          <p>{priceText}</p>
           <div className="buttonContainer">
             <ButtonGroup disableElevation variant="contained" color="primary">
               <Button
-                onClick={() => cart.addToCart(item.itemName, item.price, item.img)}
+                onClick={() =>
+                  cart.addToCart(item.itemName, item.price, item.img, item.id)
+                }
               >
                 +
               </Button>
-                <div className="numberContainer">
-                  <p>{item.quantity}</p>
-                </div>
+              <div className="numberContainer">
+                <p>{item.quantity}</p>
+              </div>
               <Button onClick={() => cart.decreaseQuantity(item)}>-</Button>
             </ButtonGroup>
           </div>
-          <p>
-            {totalPriceText}
-          </p>
+          <p>{totalPriceText}</p>
         </div>
       </div>
       <div className="iconContainer">

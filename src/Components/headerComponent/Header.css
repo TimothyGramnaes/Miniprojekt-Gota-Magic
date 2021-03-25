@@ -5,6 +5,8 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
+  /* position: fixed; */
+  z-index: 100;
   padding: 0 2rem;
 }
 .header-icon {
@@ -14,7 +16,7 @@
   align-items: center;
 }
 .cartIcon {
-  z-index: 2;
+  z-index: 200;
 }
 .dropDown {
   width: 20rem;
@@ -45,7 +47,7 @@
 }
 
 .header img {
-  margin-right: .75rem;
+  margin-right: 0.75rem;
   width: 40px;
   height: 40px;
 }

@@ -14,12 +14,12 @@ import { useCheckoutContext } from '../Context/CheckoutContext'
 
 
 function CheckOut3Payment() {
-  const checkout = useCheckoutContext()
+  const checkout = useCheckoutContext();
   const cart = useCart();
   const [value, setValue] = useState("");
 
-  const userFromContext = useCheckoutContext()
-  const userInfo = userFromContext.userInfo[0]
+  const userFromContext = useCheckoutContext();
+  const userInfo = userFromContext.userInfo[0];
 
   function CardPaymentModal() {
   
@@ -72,12 +72,12 @@ function CheckOut3Payment() {
             </div>
           </div>
         </form>
+        
       </div>
     );
   }
-  
-  function BillPaymentModal() {
 
+  function BillPaymentModal() {
     return (
       <div className="bill-modal">
         {/* Här byts exempeladressen ut mot adressen användaren matat in tidigare */}
@@ -93,7 +93,7 @@ function CheckOut3Payment() {
       </div>
     );
   }
-  
+
   function SMSLoanPaymentModal() {
     
     return (
@@ -110,7 +110,7 @@ function CheckOut3Payment() {
       </div>
     );
   }
-  
+
   function SwishPaymentModal() {
 
     return (
@@ -129,9 +129,8 @@ function CheckOut3Payment() {
   }
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue((event.target as HTMLInputElement).value);
-    checkout.savePaymentMethod('Swish', 4)
+    checkout.savePaymentMethod("Swish", 4);
   };
-
 
   return (
     <div className="container flex">
@@ -175,7 +174,7 @@ function CheckOut3Payment() {
             <BillPaymentModal />
           ) : value === "kort" ? (
             <CardPaymentModal />
-          ) : value === 'swish' ? (
+          ) : value === "swish" ? (
             <SwishPaymentModal />
           ) : (
             ""
@@ -194,14 +193,12 @@ function CheckOut3Payment() {
             {cart.cart.map((item) => {
               return (
                 <div className="cartItem">
-                  <img src={item.img} alt={item.itemName}/>
+                  <img src={item.img} alt={item.itemName} />
                   <div className="cartInfoText">
                     <p>
                       <strong>{item.itemName}</strong>
                     </p>
-                    <p>
-                      {item.price} kr
-                    </p>{" "}
+                    <p>{item.price} kr</p>{" "}
                     <p>
                       <strong>Antal:</strong> {item.quantity}
                     </p>
@@ -211,9 +208,18 @@ function CheckOut3Payment() {
             })}
           </div>
           <div className="priceInfo">
-            <p> <b>Total kostnad: </b> {cart.totalPrice} kr{" "}</p>
-            <p> <b>Varav Moms:</b> 59 kr</p>
-            <p> <b>Frakt: </b> Ej fastställt</p>
+            <p>
+              {" "}
+              <b>Total kostnad: </b> {cart.totalPrice} kr{" "}
+            </p>
+            <p>
+              {" "}
+              <b>Varav Moms:</b> 59 kr
+            </p>
+            <p>
+              {" "}
+              <b>Frakt: </b> Ej fastställt
+            </p>
           </div>
         </div>
       </div>

@@ -19,13 +19,13 @@ function CheckOut2Shipping() {
   const [price, setPrice] = useState<number>();
   const [deliveryTime, setDeliveryTime] = useState<string>("");
 
-   // Shipping methods array
-   const [shippingObject, setShippingObject] = useState<ShippingMethod[]>([]);
+  // Shipping methods array
+  const [shippingObject, setShippingObject] = useState<ShippingMethod[]>([]);
 
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     setRadioChange(value);
-    checkout.saveShippingMethod(value)
+    checkout.saveShippingMethod(value);
   };
 
   const setRadioChange = (v: string) => {
@@ -37,9 +37,9 @@ function CheckOut2Shipping() {
   });
 
   useEffect(() => {
-    checkout.saveShippingMethod(value)
-  }, [])
-  
+    checkout.saveShippingMethod(value);
+  }, []);
+
   // Prefixes for displayed text beside the radio btn
   const shippingMethodText1 =
     shippingMethods[0].name +
@@ -136,14 +136,12 @@ function CheckOut2Shipping() {
             {cart.cart.map((item) => {
               return (
                 <div className="cartItem">
-                  <img src={item.img} alt={item.itemName}/>
+                  <img src={item.img} alt={item.itemName} />
                   <div className="cartInfoText">
                     <p>
                       <strong>{item.itemName}</strong>
                     </p>
-                    <p>
-                      {item.price} kr
-                    </p>{" "}
+                    <p>{item.price} kr</p>{" "}
                     <p>
                       <strong>Antal:</strong> {item.quantity}
                     </p>
@@ -153,9 +151,18 @@ function CheckOut2Shipping() {
             })}
           </div>
           <div className="priceInfo">
-            <p> <b>Total kostnad: </b> {cart.totalPrice} kr{" "}</p>
-            <p> <b>Varav Moms:</b> 59 kr</p>
-            <p> <b>Frakt: </b> Ej fastställt</p>
+            <p>
+              {" "}
+              <b>Total kostnad: </b> {cart.totalPrice} kr{" "}
+            </p>
+            <p>
+              {" "}
+              <b>Varav Moms:</b> 59 kr
+            </p>
+            <p>
+              {" "}
+              <b>Frakt: </b> Ej fastställt
+            </p>
           </div>
         </div>
       </div>

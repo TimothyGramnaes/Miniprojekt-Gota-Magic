@@ -1,10 +1,12 @@
 import { CSSProperties } from '@material-ui/styles';
 import React from 'react'
 import '../main.css';
+import '../css/tournaments.css';
 import Button from '@material-ui/core/Button';
 // import background from './assets/imgs/Rectangle.png';
 // import { url } from 'node:inspector';
 import { Link } from 'react-router-dom';
+import { Grid } from '@material-ui/core';
 
 
 function LandingPage() {
@@ -24,41 +26,65 @@ function LandingPage() {
                     <p
                     className="white flex centered" 
                     style={heroP}
-                    >
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                        Unde quae nihil quod nam similique ducimus beatae 
-                        laboriosam cumque exercitationem excepturi repellat, 
-                        nostrum atque vitae voluptate dignissimos adipisci 
-                        reiciendis ex earum?</p>
+                        >
+                            Välkommen till Götamagic, din portal till allt du behöver
+                            för kompetativt Magicspel i Göteborg.
+                        </p>
                         <Link className="link-style" to="/ProductList">
                             <Button variant="contained" color="primary">Våra Produkter</Button>
                         </Link>
             </div>
         </div>
-            <div className="* flex centered column" style={landingContainer}>
+            <Grid container className="* flex centered column" style={landingContainer}>
 
-                <div className="flex centered column" style={infoLandingContainer}>
+                <Grid container xs={12} md={12} className="flex centered column" style={infoLandingContainer}>
                   
-                        <img style={infoLandingContainerImage} src="./assets/imgs/mtg" alt="planeswalkers" />                   
-                    <div className="flex centered column" style={textLandingContainer}>
-                        <h2 className="padding2rem">Om oss</h2>
-                        <span></span>
-                        <p className="paragraphs">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis, quis! Iusto, fugiat vitae pariatur dolor explicabo veritatis commodi? Dignissimos facere error in ad, minima quidem nam. Doloribus minus ducimus exercitationem.</p>
-                        <h3 className="padding2rem">
-                            Underrubrik igen
-                        </h3>
-                        <p className="paragraphs">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo esse odio minima ipsa hic, nobis architecto amet? Porro neque in atque soluta eum officiis magni doloremque ipsum? Nihil, explicabo voluptates!</p>
-                        <div className="padding2rem">
-                            <Link className="link-style" to="/ProductList">
-                            <Button variant="contained" color="primary">Våra Produkter</Button>
-                            </Link>
-                        </div>
-                    </div>
+                        <img style={infoLandingContainerImage} src="./assets/imgs/mtg" alt="planeswalkers" /> 
+                        <Grid container className="flex" style={titleHeader}>
+                            <h2>
+                                Nyheter                      
+                            </h2>
+                        </Grid>                  
+                    <Grid container className="flex centered column" style={textLandingContainer}>
+                        
+                    <Grid container className="tour-kort">
+                        <Grid className="tour-kort-item" item xs={8} md={8}>
+                            <p className="nyhets-datum">2021-01-12</p>
+                            <h2 className="nyhets-titel">Corona anpassade turneringar</h2>
+                            <span></span>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis, quis! Iusto, fugiat vitae pariatur dolor explicabo veritatis commodi? Dignissimos facere error in ad, minima quidem nam. Doloribus minus ducimus exercitationem.</p>
+                        </Grid>
+                        <Grid className="tour-kort-item" item xs={4} md={4}>
+                            <img className="person-bild" src="./assets/imgs/play/bear1.jpg" alt="bild"/>
+                        </Grid>
+                        
+                        <div className="breaker"></div>
 
-                </div>
+                        <Grid container className="tour-kort">
+                            <Grid item xs={6} md={4}>
+                                <img className="produkt-bild" src="./assets/imgs/play/timespiralremastered.jpg" alt="eddie" />
+                                
+                            </Grid>
+                            <Grid className="tour-kort-item-right" item xs={6} md={8}>
+                            <p className="nyhets-datum">2021-03-12</p>
+                            <h2>Time Spiral Remestered finns i lager!</h2>
+                            <p className="kort-p">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis voluptatibus in sunt qui pariatur dolores deserunt alias, dignissimos sed. Quae autem dicta nihil sequi, impedit aliquam dolorem excepturi atque tempore.
+                                </p>
+                                <Link className="link-style" to="/ProductList">
+                                <Button variant="contained" color="primary">Våra Produkter</Button>
+                                </Link>
+                            </Grid>
+
+                        </Grid>
+
+                        
+                        </Grid>
+                    </Grid>
+
+                </Grid>
                             
-            </div>
+            </Grid>
         </div>
         </>
     )
@@ -75,6 +101,18 @@ const heroContainer: CSSProperties = {
     flexDirection: 'column',
     zIndex: 2,
     padding: '4rem'
+}
+
+const titleHeader: CSSProperties = {
+    fontSize: '2rem',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: '1rem',
+    width: '100%',
+    backgroundImage: 'url(./assets/imgs/mtg)',
+    objectFit: 'cover',
+    color: 'white'
+
 }
 
 const heroP: CSSProperties = {

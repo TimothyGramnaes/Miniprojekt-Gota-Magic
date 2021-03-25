@@ -36,7 +36,7 @@ function getStepContent(stepIndex: number) {
 
 function BreadCrumbs() {
     const user = useCheckoutContext()
-    const validatedUser = user.validatedUser
+    const validatedUser = user.validatedUser;
 
     console.log(validatedUser)
 
