@@ -19,7 +19,7 @@ const ProductCart = () => {
       <div className="background">
         <div className="grey-card">
           <h2>Din varukorg</h2>
-          <span>599 kr</span>
+          <span>{cart.totalPrice} kr</span>
           <div className="cartInfoContainer">
             <div className="productsInCart">
               {cart.cart.map((item) => {
