@@ -105,13 +105,14 @@ function ProductList() {
         const productExpansion = result.expansion
         const sliceProductExpansion = productExpansion.slice(0, searchlength)
 
-        if (searchValue?.toLowerCase() == sliceProductColor.toLowerCase()) {
+        if (searchValue?.toLowerCase() === sliceProductColor.toLowerCase()) {
             return searchValue?.toLowerCase()
-        } else if (searchValue?.toLowerCase() == sliceProductName.toLowerCase()) {
+        } else if (searchValue?.toLowerCase() === sliceProductName.toLowerCase()) {
             return searchValue?.toLowerCase()
-        } else if (searchValue?.toLowerCase() == sliceProductExpansion.toLowerCase()) {
+        } else if (searchValue?.toLowerCase() === sliceProductExpansion.toLowerCase()) {
             return searchValue?.toLowerCase()
         }
+       // return null;
     })
 
 
