@@ -6,7 +6,7 @@ import {
   Radio,
   RadioGroup,
 } from "@material-ui/core";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { shippingMethods } from "../DB/ShippingMethods";
 import { useCheckoutContext } from "../Context/CheckoutContext";
 import { useCart } from "../Context/CartContext";
@@ -26,13 +26,13 @@ function CheckOut2Shipping() {
     setValue(v);
   };
 
-  useEffect(() => {
-    setValue(value);
-  });
+  // useEffect(() => {
+  //   setValue(value);
+  // });
 
-  useEffect(() => {
-    checkout.saveShippingMethod(value);
-  }, []);
+  // useEffect(() => {
+  //   checkout.saveShippingMethod(value);
+  // }, []);
 
   // Prefixes for displayed text beside the radio btn
   const shippingMethodText1 =

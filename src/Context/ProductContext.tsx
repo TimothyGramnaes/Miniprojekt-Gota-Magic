@@ -15,7 +15,7 @@ type Context = {
 export const ProductProvider: FunctionComponent = ({ children }) => {
     const [products, setProducts] = useState<Product[]>(mockedProducts)
 
-    const [viewProduct, setViewProduct] = useState<Product[]>()
+    // const [viewProduct, setViewProduct] = useState<Product[]>([])
     const [productId, setProductId] = useState<number>(0)
 
     useEffect(() => {
@@ -47,7 +47,7 @@ export const ProductProvider: FunctionComponent = ({ children }) => {
     const getIdFromProductList = (id:number) => {
         // useProductContext(id)
         setProductId(id) 
-        setViewProduct(getProductView)
+        // setViewProduct(getProductView)
         
     }
 
@@ -55,6 +55,7 @@ export const ProductProvider: FunctionComponent = ({ children }) => {
         if(p.id === productId) {
            return productId
         }
+        return null
     })
 
     return (

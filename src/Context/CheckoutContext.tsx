@@ -109,6 +109,7 @@ export const CheckoutProvider: FunctionComponent = ({ children }) => {
     });
 
     setShippingObject([...selectedShipping]);
+    
   };
 
   // Saves the paymentinformation from CheckOut3Payment
