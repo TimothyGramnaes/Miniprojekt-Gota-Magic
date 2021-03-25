@@ -135,7 +135,7 @@ const landingContainer: CSSProperties = {
 
 const infoLandingContainer: CSSProperties = {
     width: '80vw',
-    maxWidth: '75rem',
+    maxWidth: '60rem',
     margin: '4rem 2rem 2rem 2rem',
     top: 0,
     bottom: 0,
