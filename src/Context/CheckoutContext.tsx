@@ -13,7 +13,10 @@ interface CheckoutContextValue {
   saveShippingMethod: (id: string) => void;
   savePaymentMethod: (cardType: string, cardId: number) => void;
   getValidation: (value:boolean) => void;
-  userInfo: User[]
+  userInfo: User[];
+  payment: PaymentMethod[];
+  shippingObject: ShippingMethod[];
+  orderNumber: number;
   validatedUser: boolean
   addOrderNumber: () => void
 }
@@ -28,30 +31,40 @@ type User = {
   validated: boolean,
 }
 
+interface Checkout {
+  userInfo: User[],
+  shippingObject: ShippingMethod[],
+  payment: PaymentMethod[]
+}
+
 
 export const CheckoutContext = createContext<CheckoutContextValue>({} as any);
 
-const baseOrderNumber:number = 0
+const baseOrderNumber:number = 1000
 
 export const CheckoutProvider: FunctionComponent = ({ children }) => {
-  const [checkout, setCheckout] = useState<[]>([]);
+  const [checkout, setCheckout] = useState<Checkout[]>([{
+    userInfo: [],
+    shippingObject: [],
+    payment: []
+  }]);
   const [userInfo, setUserInfo] = useState<User[]>([])
-  const [shippingObject, setShippingObject] = useState<ShippingMethod[]>([]);
+  const [shippingObject, setShippingObject] = useState<ShippingMethod[]>([]); 
   const [payment, setPayment] = useState<PaymentMethod[]>([]);
 
-  const [orderNumber, setOrderNumber] = useState<number>(0)
-  const helaOrdern = [orderNumber, ...userInfo, ...shippingObject, ...payment]
-  
-  console.log(helaOrdern)
-  
+  const [orderNumber, setOrderNumber] = useState<number>(1000)
+  // const helaOrdern = [ ...userInfo, ...shippingObject, ...payment]
 
+  // console.log(helaOrdern)
+
+  // const [order, setOrder] = useState<[]>(helaOrdern)
 
   // Fetch ordernumber from LS
     useEffect(() => {   
       const data = localStorage.getItem('orderNumber') || "[]"
       if (data) {
         if(data === "[]") {
-          setOrderNumber(0)
+          setOrderNumber(1000)
         } else {
         setOrderNumber(JSON.parse(data))
       }
@@ -90,8 +103,6 @@ export const CheckoutProvider: FunctionComponent = ({ children }) => {
       }])
     }
 
-    console.log(userInfo)
-    console.log(orderNumber)
     console.log(payment)
     
 
@@ -126,7 +137,10 @@ export const CheckoutProvider: FunctionComponent = ({ children }) => {
         userInfo,
         getValidation,
         validatedUser,
-        addOrderNumber
+        addOrderNumber,
+        payment,
+        shippingObject,
+        orderNumber,
       }}
     >
       {children}

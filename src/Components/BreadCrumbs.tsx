@@ -56,8 +56,10 @@ function BreadCrumbs() {
             console.log(2)
         } else if (activeStep === 2) {
             console.log(3)
+            user.addOrderNumber()
         } else if (activeStep === 3) {
-            console.log(4)
+            console.log(4)           
+
         }
     };
 

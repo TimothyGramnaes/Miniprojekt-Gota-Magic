@@ -10,7 +10,6 @@ import {
   makeStyles,
   Grid,
 } from "@material-ui/core";
-// import { Link, Route } from "react-router-dom";
 import "../main.css";
 import { useProductContext } from "../Context/ProductContext";
 import { useCart } from "../Context/CartContext";

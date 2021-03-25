@@ -209,7 +209,9 @@ function CheckOut3Payment() {
   }
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue((event.target as HTMLInputElement).value);
+    checkout.savePaymentMethod('Swish', 4)
   };
+
 
   return (
     <div className="container flex">
