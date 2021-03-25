@@ -26,12 +26,12 @@ export const ProductProvider: FunctionComponent = ({ children }) => {
     // If this is not running, the saved LS data will be deleted
     // Like ComponentDidMount
     useEffect(() => {   
-        console.log(mockedProducts)
+        console.log(products)
         const data = localStorage.getItem('products') || "[]"
         if (data) {
             setProducts(JSON.parse(data))
         }
-    }, [])
+    }, [products])
 
     // This useEffect saves the userObject to LS
     // Like ComponentDidUpdate
