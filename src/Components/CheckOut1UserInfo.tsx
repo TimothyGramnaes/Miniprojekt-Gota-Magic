@@ -1,15 +1,12 @@
 import TextField from '@material-ui/core/TextField';
 import '../css/checkOut1UserInfo.css'
-import {CheckoutContext, useCheckoutContext} from '../Context/CheckoutContext'
-import { Button } from '@material-ui/core';
+import { useCheckoutContext } from '../Context/CheckoutContext'
 import "../css/checkOut1UserInfo.css";
 import "../main.css";
-import BreadCrumbs from "./BreadCrumbs";
 import { useCart } from "../Context/CartContext";
 import CartComponent from "./cartComponent/Cart";
 import "../css/checkOut1UserInfo.css";
 import { useEffect, useState } from "react";
-import { FormatColorResetOutlined } from '@material-ui/icons';
 
 // Interface to the userObject array
 export interface User {
@@ -232,16 +229,6 @@ function CheckOut1UserInfo() {
               onChange={handleuserPostNumber}
             />
           </form>
-          {/* <Button
-            onClick={setUserToObject}
-            variant="contained"
-            color="primary"
-            className="move-fwd-btn"
-          >
-            Välj Fraktsätt
-          </Button> */}
-          {/* <button onClick={user.addOrderNumber}>Plussa ordernummer</button> */}
-          {/* <Button onClick={setUserToObject} variant="contained" color="primary" className="move-fwd-btn">Välj Fraktsätt</Button> */}
         </div>
       </div>
 
@@ -287,23 +274,4 @@ function CheckOut1UserInfo() {
 }
 
 export default CheckOut1UserInfo;
-// function email(name: void, string: any, email: any, string: any, mobile: any, string: any, deliveryaddress: any, string: any, city: any, string: any, postnumber: any, string: any) {
-//   throw new Error('Function not implemented.');
-// }
-
-// function mobile(name: void, string: any, email: any, string: any, mobile: any, string: any, deliveryaddress: any, string: any, city: any, string: any, postnumber: any, string: any) {
-//   throw new Error('Function not implemented.');
-// }
-
-// function deliveryaddress(name: void, string: any, email: any, string: any, mobile: any, string: any, deliveryaddress: any, string: any, city: any, string: any, postnumber: any, string: any) {
-//   throw new Error('Function not implemented.');
-// }
-
-// function city(name: void, string: any, email: any, string: any, mobile: any, string: any, deliveryaddress: any, string: any, city: any, string: any, postnumber: any, string: any) {
-//   throw new Error('Function not implemented.');
-// }
-
-// function postnumber(name: void, string: any, email: any, string: any, mobile: any, string: any, deliveryaddress: any, string: any, city: any, string: any, postnumber: any, string: any) {
-//   throw new Error('Function not implemented.');
-// }
 

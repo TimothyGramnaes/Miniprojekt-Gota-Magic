@@ -1,12 +1,11 @@
 import { CSSProperties } from '@material-ui/styles'
 import ProductListCard from './ProductListCard'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { IconButton, Grid, TextField, Button, makeStyles } from '@material-ui/core'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import { useProducts } from '../Context/ProductContext'
 // Used fot routing the ID to URL and the right product is showned
-import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
     searchfield: {

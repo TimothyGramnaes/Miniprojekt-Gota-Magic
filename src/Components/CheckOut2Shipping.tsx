@@ -126,10 +126,6 @@ function CheckOut2Shipping() {
               </RadioGroup>
             </FormControl>
           </form>
-          {/* <Button variant="contained" color="primary" className="move-fwd-btn">Till Betalning</Button> */}
-          {/* <button onClick={() => checkout.saveShippingMethod(value)}>
-            test
-          </button> */}
         </div>
       </div>
 
