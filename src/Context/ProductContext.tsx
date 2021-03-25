@@ -18,10 +18,10 @@ export const ProductProvider: FunctionComponent = ({ children }) => {
     // const [viewProduct, setViewProduct] = useState<Product[]>([])
     const [productId, setProductId] = useState<number>(0)
 
-    useEffect(() => {
-        setProducts(mockedProducts)
-    }, [])
-    console.log(mockedProducts)
+    // useEffect(() => {
+    //     setProducts(mockedProducts)
+    // }, [])
+
     // This useEffect fetch the localStorage after the page is updated. 
     // If this is not running, the saved LS data will be deleted
     // Like ComponentDidMount
