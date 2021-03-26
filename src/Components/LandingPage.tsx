@@ -48,29 +48,34 @@ function LandingPage() {
                     <Grid container className="tour-kort">
                         <Grid className="tour-kort-item" item xs={12} md={7}>
                             <p className="nyhets-datum">2021-01-12</p>
-                            <h2 className="nyhets-titel">Corona anpassade turneringar</h2>
+                            <h2 className="nyhets-titel">Corona-anpassade turneringar</h2>
                             <span></span>
-                            <p className="kort-p">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis, quis! Iusto, fugiat vitae pariatur dolor explicabo veritatis commodi? Dignissimos facere error in ad, minima quidem nam. Doloribus minus ducimus exercitationem.</p>
+                            <p className="kort-p">
+                                Vi fortsätter att ha turneringar nu under Corona men med en rad förändringar.
+                                Vi har ett tak på 8 deltagare. samtliga deltagare uppmanas att sitta med minst 1,5m 
+                                avstånd från varandra. Vid minsta förkylningssymptom uppmanas du att stanna hemma <br/>
+                                Vi tallhandahåller handsprit.
+                            </p>
                         </Grid>
-                        <Grid className="tour-kort-item" item xs={12} md={5}>
+                        <Grid className="artikel-grafik" item xs={12} md={5}>
                             <img className="person-bild" src="./assets/imgs/play/bear1.jpg" alt="bild"/>
                         </Grid>
                         
                         <div className="breaker"></div>
 
                         <Grid container className="tour-kort">
-                            <Grid item xs={12} md={5}>
-                                <img className="produkt-bild" src="./assets/imgs/play/timespiralremastered.jpg" alt="eddie" />
-                                
+                            <Grid className="artikel-grafik" item xs={12} md={5}>
+                                <img className="produkt-bild" src="./assets/imgs/play/timespiralremastered.jpg" alt="eddie" />                                
                             </Grid>
                             <Grid className="tour-kort-item-right" item xs={12} md={7}>
-                            <p className="nyhets-datum">2021-03-12</p>
-                            <h2>Time Spiral Remestered finns i lager!</h2>
-                            <p className="kort-p">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis voluptatibus in sunt qui pariatur dolores deserunt alias, dignissimos sed. Quae autem dicta nihil sequi, impedit aliquam dolorem excepturi atque tempore.
+                                <p className="nyhets-datum">2021-03-12</p>
+                                    <h2>Time Spiral Remestered finns i lager!</h2>
+                                <p className="kort-p">
+                                    Äntligen är den efterlängtade remastern av Time Spiral här!
+                                    lägg vantarna på din box redan nu. Förväntas sälja slut mycket fort
                                 </p>
                                 <Link className="link-style" to="/ProductList">
-                                <Button variant="contained" color="primary">Våra Produkter</Button>
+                                <Button variant="contained" color="primary">Till Våra Produkter</Button>
                                 </Link>
                             </Grid>
 
