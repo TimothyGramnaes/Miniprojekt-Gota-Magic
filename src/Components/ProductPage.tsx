@@ -7,6 +7,7 @@ import '../css/productPage.css'
 // This is to get the URL from browser
 import { useParams } from 'react-router-dom';
 import { Product, products as mockedProducts } from '../DB/Products'
+import { CSSProperties } from '@material-ui/styles';
 
   // THE HOW TO SHOW RIGHT PRODUCT
   // 1. Create in Layout <Route path="/ProductPage/:id" component={ProductPage} />
@@ -33,7 +34,7 @@ function ProductPage(){
 
   return (
     <div className="background">
-      <div className="grey-card">
+      <div className="grey-card" style={cardStyle}>
         <div className="container">
 
           <div className="top flex">
@@ -110,6 +111,10 @@ function ProductPage(){
     </div>
     
     )
+}
+
+const cardStyle: CSSProperties = {
+  marginTop: '6rem'
 }
 
 
