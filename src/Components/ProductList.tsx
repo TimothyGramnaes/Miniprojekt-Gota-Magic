@@ -1,10 +1,10 @@
 import { CSSProperties } from '@material-ui/styles'
 import ProductListCard from './ProductListCard'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { IconButton, Grid, TextField, Button, makeStyles } from '@material-ui/core'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
-// import { useProducts } from '../Context/ProductContext'
+import { useProductContext } from '../Context/ProductContext'
 
 import { Product, products as mockedProducts } from '../DB/Products'
 // Used fot routing the ID to URL and the right product is showned
@@ -19,10 +19,9 @@ const useStyles = makeStyles({
     }
 });
 
-
-
 function ProductList() {
     const products:Product[] = mockedProducts
+    const productContext = useProductContext()
 
     const style = useStyles();
 
@@ -93,6 +92,8 @@ function ProductList() {
         </div>
         )
     )
+
+
 
     // Filtering the product database with the searchvalue
     // The searchvalue is broken down with length to slice the product database value to the lenght of the searchvalue
@@ -184,6 +185,10 @@ function ProductList() {
         }
     }
 
+    
+    useEffect(() => {
+        productContext.ProductArray(products)
+    }, [productContext, products])
 
     
     // useEffect(() => {   
