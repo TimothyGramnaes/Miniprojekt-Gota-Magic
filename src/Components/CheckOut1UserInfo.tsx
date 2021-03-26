@@ -208,6 +208,7 @@ function CheckOut1UserInfo() {
           <form className="flex column" autoComplete="on">
             <h5>Ditt namn</h5>
             <TextField
+              autoFocus
               className="input-field"
               required
               placeholder="ex. John Doe"
@@ -216,6 +217,7 @@ function CheckOut1UserInfo() {
               onChange={handleUserName}
               error={userNameError}
               helperText={userNameErrorText}
+              autoComplete="on"
             />
             <h5>E-Mail</h5>
             <TextField
@@ -228,6 +230,7 @@ function CheckOut1UserInfo() {
               onChange={handleuserEmail}
               error={userEmailError}
               helperText={userEmailErrorText}
+              autoComplete="on"
             />
             <h5>Mobilnummer</h5>
             <TextField
@@ -239,6 +242,7 @@ function CheckOut1UserInfo() {
               value={userMobile}
               onChange={handleuserMobile}
               helperText={userMobileErrorText}
+              autoComplete="on"
             />
             <h5>Leveransadress</h5>
             <TextField
@@ -249,6 +253,7 @@ function CheckOut1UserInfo() {
               value={userDeliveryaddress}
               onChange={handleuserDeliveryaddress}
               helperText={userDeliveryErrorText}
+              autoComplete="on"
             />
             <h5>Stad / Ort</h5>
             <TextField

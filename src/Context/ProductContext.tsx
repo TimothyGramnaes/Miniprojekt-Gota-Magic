@@ -9,14 +9,18 @@ type Context = {
     getProductView: Product[],
     addProduct: (product: Product) => void;
     getIdFromProductList: (id:number) => void;
+    ProductArray:(product: Product[]) => void
     
 }
 
 export const ProductProvider: FunctionComponent = ({ children }) => {
+    // const [products, setProducts] = useState<Product[]>(mockedProducts)
     const [products, setProducts] = useState<Product[]>(mockedProducts)
 
     // const [viewProduct, setViewProduct] = useState<Product[]>([])
     const [productId, setProductId] = useState<number>(0)
+
+    console.log(products)
 
     // useEffect(() => {
     //     setProducts(mockedProducts)
@@ -26,12 +30,12 @@ export const ProductProvider: FunctionComponent = ({ children }) => {
     // If this is not running, the saved LS data will be deleted
     // Like ComponentDidMount
     useEffect(() => {   
-        console.log(products)
+        // ProductArray(products)
         const data = localStorage.getItem('products') || "[]"
         if (data) {
             setProducts(JSON.parse(data))
         }
-    }, [products])
+    }, [])
 
     // This useEffect saves the userObject to LS
     // Like ComponentDidUpdate
@@ -48,8 +52,11 @@ export const ProductProvider: FunctionComponent = ({ children }) => {
     const getIdFromProductList = (id:number) => {
         // useProductContext(id)
         setProductId(id) 
-        // setViewProduct(getProductView)
-        
+        // setViewProduct(getProductView)        
+    }
+
+    const ProductArray = (products:Product[]) => {
+        setProducts(products)
     }
 
     const getProductView = products.filter((p) => {
@@ -60,7 +67,7 @@ export const ProductProvider: FunctionComponent = ({ children }) => {
     })
 
     return (
-        <ProductContext.Provider value={{ products, getProductView, addProduct, getIdFromProductList }}>
+        <ProductContext.Provider value={{ products, getProductView, addProduct, getIdFromProductList, ProductArray }}>
             {children}
         </ProductContext.Provider>
     )    
