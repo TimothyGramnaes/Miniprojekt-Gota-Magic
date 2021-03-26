@@ -1,6 +1,6 @@
-import StarIcon from '@material-ui/icons/Star';
+// import StarIcon from '@material-ui/icons/Star';
 import { Button } from '@material-ui/core';
-import { yellow } from '@material-ui/core/colors';
+// import { yellow } from '@material-ui/core/colors';
 import '../main.css'
 import '../css/productPage.css'
 // import { useProductContext } from '../Context/ProductContext'
@@ -20,7 +20,14 @@ import { CSSProperties } from '@material-ui/styles';
   //    Filter the product array with the id you've got and use the data in the HTML
 
 function ProductPage(){
-  
+
+  const styling: CSSProperties = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%'
+}
+
   // Import context
   const products:Product[] = mockedProducts
   const params = useParams<{ id: string }>()
@@ -39,7 +46,7 @@ function ProductPage(){
 
           <div className="top flex">
 
-            <div className="image-container flex">
+            <div className="image-container flex" style={styling}>
               {/* Ta in product.image, byt diven nedan till en <img/> */}
               <img src={product.image} alt=""/>
             </div>
@@ -48,13 +55,13 @@ function ProductPage(){
               {/* Ta in product.name */}
               <h2>{product.productname}</h2>
               {/* Ta in product.stars, rendera ut antalet stjärnor */}
-              <div className="stars">
+              {/* <div className="stars">
                 
                 <StarIcon style={{ color: yellow[700] }}/>
                 <StarIcon style={{ color: yellow[700] }} />
                 <StarIcon style={{ color: yellow[700] }} />
                 <StarIcon style={{ color: yellow[700] }} />
-              </div>
+              </div> */}
               {/* Ta in product.shortDesc */}
               <h4>{product.cardtype}</h4>
               <p>Färg:  {product.color}</p>
@@ -63,11 +70,11 @@ function ProductPage(){
               {/* Ta in product.price */}
               <h2 className="price-text">{product.price} kr</h2>
               {/* Ta in höj/sänk antal */}
-              <h3 className="flex item-counter">
+              {/* <h3 className="flex item-counter">
                 <span>-</span>
                 <span>1</span>
                 <span>+</span>
-              </h3>
+              </h3> */}
               {/* Knapp */}
               <Button variant="contained" color="primary" className="add-to-cart-btn">Lägg i varukorg</Button>
             </div>
@@ -81,7 +88,7 @@ function ProductPage(){
               <p>{product.cardtext}</p>
             </div>
 
-            <div className="similar-products flex column">
+            {/* <div className="similar-products flex column">
               <h3>Liknande produkter</h3>
               <p>Andra kunder kollade också på:</p>
               {/* Ta in 2 random produkter */}
@@ -90,7 +97,7 @@ function ProductPage(){
               {/* 2 st product.price */}
               {/* TEMPORÄRA "BILDER" NEDANFÖR */}
 
-              <div className="images">
+              {/* <div className="images">
                 <div className="similar-product similar-product-1">
                   <div className="image"></div>
                   <h5>Produktnamn</h5>
@@ -101,9 +108,9 @@ function ProductPage(){
                   <h5>Produktnamn</h5>
                   <p>299 kr</p>
                 </div>
-              </div>
+              </div> */}
 
-            </div>
+            {/* </div> */}
 
           </div>
         </div>
