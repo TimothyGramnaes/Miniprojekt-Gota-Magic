@@ -255,7 +255,7 @@ function CheckOut1UserInfo() {
             />
 
             <TextField
-              name="shipping address-level2"
+              name="city"
               className="input-field"
               required
               label="Stad"
