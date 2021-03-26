@@ -21,12 +21,19 @@ import { CSSProperties } from '@material-ui/styles';
 
 function ProductPage(){
 
-  const styling: CSSProperties = {
+  const stylingImg: CSSProperties = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     width: '100%'
-}
+  }
+
+  const stylingProductInfo: CSSProperties = {
+    display: 'flex',
+    justifyContent: 'center',
+    // alignItems: 'center',
+    width: '100%'
+  }
 
   // Import context
   const products:Product[] = mockedProducts
@@ -46,12 +53,13 @@ function ProductPage(){
 
           <div className="top flex">
 
-            <div className="image-container flex" style={styling}>
+            <div className="image-container flex" style={stylingImg}>
               {/* Ta in product.image, byt diven nedan till en <img/> */}
               <img src={product.image} alt=""/>
             </div>
 
-            <div className="info-content flex column"> 
+            <div className="info-content flex column" style={stylingProductInfo}> 
+              
               {/* Ta in product.name */}
               <h2>{product.productname}</h2>
               {/* Ta in product.stars, rendera ut antalet stjärnor */}
@@ -77,6 +85,7 @@ function ProductPage(){
               </h3> */}
               {/* Knapp */}
               <Button variant="contained" color="primary" className="add-to-cart-btn">Lägg i varukorg</Button>
+              
             </div>
 
           </div>
