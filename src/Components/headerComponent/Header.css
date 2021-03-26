@@ -5,7 +5,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  /* position: fixed; */
+  position: fixed;
   z-index: 100;
   padding: 0 2rem;
 }
@@ -58,7 +58,7 @@
 }
 
 .cart-btn-style {
-  margin-bottom: 10rem;
+  text-decoration: none;
 }
 
 @media screen and (max-width: 820px) {

@@ -19,7 +19,7 @@ function AboutUs() {
             <Grid container xs={12} md={10} style={infoLandingContainer}>
   
                <img style={infoLandingContainerImage} src="./assets/imgs/play/STASIS.jpg" alt="glatt-turnerings-sallskap" />                   
-                <Grid container className="flex" style={titleHeader}>
+                <Grid container className="component-title flex" style={titleHeader}>
                     <h2>
                         Om oss                       
                     </h2>
@@ -78,12 +78,9 @@ const titleHeader: CSSProperties = {
     color: 'white'
 }
 
-const infoLandingContainer: CSSProperties = {
-   
+const infoLandingContainer: CSSProperties = {  
     maxWidth: '60rem',
-
-    margin: '4rem 2rem 2rem 2rem',
-    top: 0,
+    margin: '8rem 2rem 2rem 2rem',
     bottom: 0,
     borderRadius: '15px',
     overflow: 'hidden'

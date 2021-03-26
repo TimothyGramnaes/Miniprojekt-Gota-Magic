@@ -21,7 +21,7 @@ function Contact() {
             <Grid container xs={12} md={10} style={infoLandingContainer}>
   
                <img style={infoLandingContainerImage} src="./assets/imgs/play/totallylost.png" alt="glatt-turnerings-sallskap" />                   
-                <Grid container className="flex" style={titleHeader}>
+                <Grid container className="component-title flex" style={titleHeader}>
                     <h2>
                         Kontakta oss                      
                     </h2>
@@ -29,7 +29,7 @@ function Contact() {
                 <Grid container className="flex" style={textLandingContainer}>
                     <Grid container className="tour-kort">
 
-                    <Grid className="tour-kort-item-contact" item xs={10} md={12}>
+                    <Grid className="tour-kort-item-contact" item xs={12} md={12}>
                     <h2>Göta Magic</h2>
                         <div className="kontakt-container">
 
@@ -55,8 +55,6 @@ function Contact() {
                             </div>
                         </div>
                         
-
-
                     </Grid>
                     </Grid>
                     <div className="breaker"></div>
@@ -94,8 +92,7 @@ const titleHeader: CSSProperties = {
 const infoLandingContainer: CSSProperties = {
    
     maxWidth: '60rem',
-
-    margin: '4rem 2rem 2rem 2rem',
+    margin: '8rem 2rem 2rem 2rem',
     top: 0,
     bottom: 0,
     borderRadius: '15px',
