@@ -63,7 +63,7 @@ function BreadCrumbs() {
 
     return (
     <div className="background">
-        <div className="grey-card">
+        <div className="grey-card main-box" style={mainBox}>
         
             <div className="crumbs-container">
             <Stepper style={stepperStyle} activeStep={activeStep} alternativeLabel>
@@ -119,6 +119,10 @@ function BreadCrumbs() {
     </div>
 
     );
+}
+
+const mainBox: CSSProperties = {
+    marginTop: '6rem'
 }
 
 const stepperStyle: CSSProperties = {

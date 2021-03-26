@@ -1,5 +1,7 @@
 .person-bild {
   width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .tour-kort h2 {
@@ -79,6 +81,8 @@
 }
 
 .sok-test {
+  display: flex;
+  flex-direction: column;
   margin-top: 5rem;
 }
 

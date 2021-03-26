@@ -218,7 +218,7 @@ function ProductList() {
                 </form>
                 <Button onClick={resetSearch} className={style.resetBtn} variant="contained" color="primary">Reset</Button>
             </Grid>
-            </div>
+            
 
             <Grid container xs={12} md={10} style={infoLandingContainer}>
 
@@ -240,6 +240,7 @@ function ProductList() {
 
             </Grid>
             </Grid>
+            </div>
         </Grid>
     )
 }
