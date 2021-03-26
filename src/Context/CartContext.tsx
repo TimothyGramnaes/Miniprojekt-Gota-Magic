@@ -39,7 +39,7 @@ export const CartContextProvider: FunctionComponent = ({ children }) => {
     id: number
   ) => {
     let existingItem = cart.find(
-      (item) => item.itemName == itemName // tittar om två item har samma namn //
+      (item) => item.itemName === itemName // tittar om två item har samma namn //
     ) as orderItem;
     let newItem: orderItem = {
       itemName: itemName,
@@ -70,7 +70,7 @@ export const CartContextProvider: FunctionComponent = ({ children }) => {
 
   const decreaseQuantity = (item: orderItem) => {
     let existingItem = cart.find(
-      (i) => i.itemName == item.itemName // tittar om två item har samma namn //
+      (i) => i.itemName === item.itemName // tittar om två item har samma namn //
     ) as orderItem;
 
     let newItem: orderItem = {

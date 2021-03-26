@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Button from "@material-ui/core/Button";
 import "./cartContainer.css";
@@ -11,13 +11,6 @@ interface Props {
 
 const CartComponent = ({ item }: Props) => {
   const cart = useCart();
-
-  const decreaseProduct = () => {
-    if (item.quantity >= 2) item.quantity -= 1;
-    else {
-      return;
-    }
-  };
 
   const priceText = item.price + " kr";
   const totalPriceText = "Totalpris: " + item.price * item.quantity + " kr";

@@ -42,7 +42,7 @@ export default function TemporaryDrawer() {
 
     setState({ ...state, [anchor]: open });
   };
-  const disableButton = () => {};
+  
   const list = (anchor: Anchor) => (
     <div
       className={clsx(classes.list, {

@@ -11,7 +11,6 @@ function OrderConfirmation() {
   const checkoutData = useCheckoutContext()
 
   const user = checkoutData.userInfo[0]
-  const shipping = checkoutData.shippingObject[0]
   const payment = checkoutData.payment[0]
 
   return (
@@ -20,7 +19,6 @@ function OrderConfirmation() {
 
           <div className="left-side">
             <div className="breadcrumbs">
-              {/* <BreadCrumbs /> */}
             </div>
             <div className="headings">
               <h2>Orderbekräftelse</h2>
@@ -70,7 +68,7 @@ function OrderConfirmation() {
           </div>
           <div className="priceInfo">
             <p> <b>Total kostnad: </b> {cart.totalPrice} kr{" "}</p>
-            <p> <b>Varav Moms:</b> 59 kr</p>
+            <p> <b>Varav Moms:</b> {cart.totalPrice * 0.25} kr</p>
             <p> <b>Frakt: </b> Ej fastställt</p>
           </div>
         </div>

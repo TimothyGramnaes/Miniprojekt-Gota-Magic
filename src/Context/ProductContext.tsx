@@ -9,23 +9,28 @@ type Context = {
     getProductView: Product[],
     addProduct: (product: Product) => void;
     getIdFromProductList: (id:number) => void;
+    ProductArray:(product: Product[]) => void
     
 }
 
 export const ProductProvider: FunctionComponent = ({ children }) => {
+    // const [products, setProducts] = useState<Product[]>(mockedProducts)
     const [products, setProducts] = useState<Product[]>(mockedProducts)
 
-    const [viewProduct, setViewProduct] = useState<Product[]>()
+    // const [viewProduct, setViewProduct] = useState<Product[]>([])
     const [productId, setProductId] = useState<number>(0)
 
-    useEffect(() => {
-        setProducts(mockedProducts)
-    })
-    
+    console.log(products)
+
+    // useEffect(() => {
+    //     setProducts(mockedProducts)
+    // }, [])
+
     // This useEffect fetch the localStorage after the page is updated. 
     // If this is not running, the saved LS data will be deleted
     // Like ComponentDidMount
     useEffect(() => {   
+        // ProductArray(products)
         const data = localStorage.getItem('products') || "[]"
         if (data) {
             setProducts(JSON.parse(data))
@@ -47,18 +52,22 @@ export const ProductProvider: FunctionComponent = ({ children }) => {
     const getIdFromProductList = (id:number) => {
         // useProductContext(id)
         setProductId(id) 
-        setViewProduct(getProductView)
-        
+        // setViewProduct(getProductView)        
+    }
+
+    const ProductArray = (products:Product[]) => {
+        setProducts(products)
     }
 
     const getProductView = products.filter((p) => {
-        if(p.id == productId) {
+        if(p.id === productId) {
            return productId
         }
+        return null
     })
 
     return (
-        <ProductContext.Provider value={{ products, getProductView, addProduct, getIdFromProductList }}>
+        <ProductContext.Provider value={{ products, getProductView, addProduct, getIdFromProductList, ProductArray }}>
             {children}
         </ProductContext.Provider>
     )    
@@ -73,15 +82,4 @@ export const useProducts = () => {
     const value = useProductContext();
     return value.products;
 }
-
-// export const viewProduct = () => {
-//     const value = useProductContext();
-//     return value.viewProduct
-// }
-// Using a function to get
-// export const viewProductInfo = () => {
-//     const product = useProductContext();
-//     return product.viewProduct;
-// }
-
 

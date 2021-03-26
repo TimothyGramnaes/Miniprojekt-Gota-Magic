@@ -6,7 +6,7 @@ import {
   Radio,
   RadioGroup,
 } from "@material-ui/core";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { shippingMethods } from "../DB/ShippingMethods";
 import { useCheckoutContext } from "../Context/CheckoutContext";
 import { useCart } from "../Context/CartContext";
@@ -15,12 +15,6 @@ function CheckOut2Shipping() {
   const checkout = useCheckoutContext();
   const cart = useCart();
   const [value, setValue] = useState<string>("");
-  // const [name, setName] = useState<string>("");
-  // const [price, setPrice] = useState<number>();
-  // const [deliveryTime, setDeliveryTime] = useState<string>("");
-
-  // // Shipping methods array
-  // const [shippingObject, setShippingObject] = useState<ShippingMethod[]>([]);
 
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -31,14 +25,6 @@ function CheckOut2Shipping() {
   const setRadioChange = (v: string) => {
     setValue(v);
   };
-
-  useEffect(() => {
-    setValue(value);
-  });
-
-  useEffect(() => {
-    checkout.saveShippingMethod(value);
-  }, []);
 
   // Prefixes for displayed text beside the radio btn
   const shippingMethodText1 =
@@ -157,7 +143,7 @@ function CheckOut2Shipping() {
             </p>
             <p>
               {" "}
-              <b>Varav Moms:</b> 59 kr
+              <b>Varav Moms:</b> {cart.totalPrice * 0.25} kr
             </p>
             <p>
               {" "}

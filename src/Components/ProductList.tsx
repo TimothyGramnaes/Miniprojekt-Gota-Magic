@@ -1,10 +1,12 @@
 import { CSSProperties } from '@material-ui/styles'
 import ProductListCard from './ProductListCard'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { IconButton, Grid, TextField, Button, makeStyles } from '@material-ui/core'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
-import { useProducts } from '../Context/ProductContext'
+import { useProductContext } from '../Context/ProductContext'
+
+import { Product, products as mockedProducts } from '../DB/Products'
 // Used fot routing the ID to URL and the right product is showned
 
 const useStyles = makeStyles({
@@ -17,20 +19,19 @@ const useStyles = makeStyles({
     }
 });
 
-
-
 function ProductList() {
-    const products = useProducts()
+    const products:Product[] = mockedProducts
+    const productContext = useProductContext()
 
     const style = useStyles();
 
     // Number of items in productlist
-    const [pageNumbers, setPageNumbers] = useState(12)
+    const pageNumbers = 12
 
     const [page, setPage] = useState(0)
     const [pageItems, setPageItems] = useState(pageNumbers)
     const [pageNumber, setPageNumber] = useState(1)
-    const [productViewArray, setProductViewArray] = useState(products)
+    const [productViewArray, setProductViewArray] = useState<Product[]>(products)
     const [searchValue, setSearchValue] = useState<string>()
 
     // Styling variables
@@ -92,6 +93,8 @@ function ProductList() {
         )
     )
 
+
+
     // Filtering the product database with the searchvalue
     // The searchvalue is broken down with length to slice the product database value to the lenght of the searchvalue
     // Both value is formated to lowercase for easier compare
@@ -112,7 +115,7 @@ function ProductList() {
         } else if (searchValue?.toLowerCase() === sliceProductExpansion.toLowerCase()) {
             return searchValue?.toLowerCase()
         }
-       // return null;
+       return null;
     })
 
 
@@ -181,6 +184,27 @@ function ProductList() {
             setPageNumber(thisPageNumber)
         }
     }
+
+    
+    useEffect(() => {
+        productContext.ProductArray(products)
+    }, [productContext, products])
+
+    
+    // useEffect(() => {   
+        
+    //     const data = localStorage.getItem('products') || "[]"
+    //     if (data) {
+    //         setProductViewArray(JSON.parse(data))
+    //     }
+    // }, [])
+
+    // // This useEffect saves the userObject to LS
+    // // Like ComponentDidUpdate
+    // useEffect(() => {    
+    //     localStorage.setItem('products', JSON.stringify(productViewArray))
+    // })
+    // console.log(productViewArray)
 
     return(
         <Grid container justify="center" alignItems="center" className="productListContainer" style={productListContainer}>

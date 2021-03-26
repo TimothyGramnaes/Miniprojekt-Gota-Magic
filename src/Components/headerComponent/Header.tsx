@@ -1,12 +1,9 @@
 import React, { useState } from "react";
 import "./Header.css";
 import Button from "@material-ui/core/Button";
-import CustomizedBadges from "./styledBadge";
 import TemporaryDrawer from "./Drawer";
 import SimpleMenu from "./SimpleMenu";
-import { Link,
-//         Route,
-//         Switch
+import { Link
  } from 'react-router-dom';
 
 
