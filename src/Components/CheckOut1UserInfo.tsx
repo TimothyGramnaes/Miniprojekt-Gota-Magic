@@ -1,6 +1,6 @@
-import TextField from '@material-ui/core/TextField';
-import '../css/checkOut1UserInfo.css'
-import { useCheckoutContext } from '../Context/CheckoutContext'
+import TextField from "@material-ui/core/TextField";
+import "../css/checkOut1UserInfo.css";
+import { useCheckoutContext } from "../Context/CheckoutContext";
 import "../css/checkOut1UserInfo.css";
 import "../main.css";
 import { useCart } from "../Context/CartContext";
@@ -116,7 +116,7 @@ function CheckOut1UserInfo() {
       setUserToObject();
     }
   };
-  const handleuserPostNumber = (e: any) => {    
+  const handleuserPostNumber = (e: any) => {
     setUserPostNumber(e.target.value);
     if (!/^(\d{5})$/.test(e.target.value)) {
       setUserPostNumberError(false);
@@ -131,7 +131,6 @@ function CheckOut1UserInfo() {
 
   // Function that saves the inputsfields to an object
   const setUserToObject = () => {
-    
     user.getValidation(validated);
 
     user.saveUserInformation(
@@ -165,7 +164,6 @@ function CheckOut1UserInfo() {
     }
   }, []);
 
-
   const validateFunction = () => {
     if (
       userNameError &&
@@ -180,16 +178,15 @@ function CheckOut1UserInfo() {
     } else {
       setValidated(false);
     }
-  }
+  };
 
   useEffect(() => {
-    validateFunction()
+    validateFunction();
   });
 
   useEffect(() => {
     user.getValidation(validated);
   });
-
 
   // This useEffect saves the userObject to LS
   useEffect(() => {
@@ -206,23 +203,24 @@ function CheckOut1UserInfo() {
         </div>
         <div className="checkout-form">
           <form className="flex column" autoComplete="on">
-            <h5>Ditt namn</h5>
             <TextField
+              name="name"
               autoFocus
               className="input-field"
               required
-              placeholder="ex. John Doe"
+              label="Namn"
               variant="standard"
               value={userName}
               onChange={handleUserName}
               error={userNameError}
               helperText={userNameErrorText}
-              autoComplete="on"
             />
-            <h5>E-Mail</h5>
+
             <TextField
+              name="email"
               className="input-field"
               required
+              label="Email"
               placeholder="ex. johndoe@gmail.com"
               variant="standard"
               type="email"
@@ -230,45 +228,49 @@ function CheckOut1UserInfo() {
               onChange={handleuserEmail}
               error={userEmailError}
               helperText={userEmailErrorText}
-              autoComplete="on"
             />
-            <h5>Mobilnummer</h5>
+
             <TextField
+              name="mobile"
               className="input-field"
               required
-              placeholder="ex. 0701234567"
+              label="Mobilnummer"
               variant="standard"
               type="tel"
               value={userMobile}
               onChange={handleuserMobile}
               helperText={userMobileErrorText}
-              autoComplete="on"
             />
-            <h5>Leveransadress</h5>
+
             <TextField
+              name="shipping street-address"
               className="input-field"
               required
+              label="Adress"
               placeholder="ex. Exempelgatan 5B"
               variant="standard"
               value={userDeliveryaddress}
               onChange={handleuserDeliveryaddress}
               helperText={userDeliveryErrorText}
-              autoComplete="on"
             />
-            <h5>Stad / Ort</h5>
+
             <TextField
+              name="city"
               className="input-field"
               required
+              label="Stad"
               placeholder="ex. Exempelhamn"
               variant="standard"
               value={userCity}
               onChange={handleuserCity}
               helperText={userCityErrorText}
             />
-            <h5>Postnummer</h5>
+
             <TextField
+              name="postal-code"
               className="input-field"
               required
+              label="Postnummer"
               placeholder="ex. 123 45"
               variant="standard"
               value={userPostNumber}
