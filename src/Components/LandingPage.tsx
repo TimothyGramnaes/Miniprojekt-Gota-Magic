@@ -55,6 +55,9 @@ function LandingPage() {
                                 Vi har ett tak på 8 deltagare. samtliga deltagare uppmanas att sitta med minst 1,5m 
                                 avstånd från varandra. Vid minsta förkylningssymptom uppmanas du att stanna hemma <br/>
                                 Vi tallhandahåller handsprit.
+                                <br/>
+                                <br/>
+                                Läs mer om våra trevliga turneringar <Link to="./Tournaments">här</Link>
                             </p>
                         </Grid>
                         <Grid className="artikel-grafik" item xs={12} md={5}>

@@ -8,6 +8,7 @@ import '../css/productPage.css'
 import { useParams } from 'react-router-dom';
 import { Product, products as mockedProducts } from '../DB/Products'
 import { CSSProperties } from '@material-ui/styles';
+import { useCart } from "../Context/CartContext";
 
   // THE HOW TO SHOW RIGHT PRODUCT
   // 1. Create in Layout <Route path="/ProductPage/:id" component={ProductPage} />
@@ -36,26 +37,25 @@ function ProductPage(){
   }
 
   // Import context
-  const products:Product[] = mockedProducts
-  const params = useParams<{ id: string }>()
-  
+  const products: Product[] = mockedProducts;
+  const params = useParams<{ id: string }>();
+  const cart = useCart();
   // Default product to stop error when a product is choosen to display
-  const product = products.find(p => String(p.id) === params.id)
- 
+  const product = products.find((p) => String(p.id) === params.id);
+
   if (!product) {
-    return <p>Det här magikortet verkar inte finnas.</p>
+    return <p>Det här magikortet verkar inte finnas.</p>;
   }
 
   return (
     <div className="background">
       <div className="grey-card" style={cardStyle}>
         <div className="container">
-
           <div className="top flex">
 
             <div className="image-container flex" style={stylingImg}>
               {/* Ta in product.image, byt diven nedan till en <img/> */}
-              <img src={product.image} alt=""/>
+              <img src={product.image} alt="" />
             </div>
 
             <div className="info-content flex column" style={stylingProductInfo}> 
@@ -72,9 +72,9 @@ function ProductPage(){
               </div> */}
               {/* Ta in product.shortDesc */}
               <h4>{product.cardtype}</h4>
-              <p>Färg:  {product.color}</p>
-              <p>CMC:  {product.cmc}</p>
-              <p>Expansion:  {product.expansion}</p>
+              <p>Färg: {product.color}</p>
+              <p>CMC: {product.cmc}</p>
+              <p>Expansion: {product.expansion}</p>
               {/* Ta in product.price */}
               <h2 className="price-text">{product.price} kr</h2>
               {/* Ta in höj/sänk antal */}
@@ -84,14 +84,25 @@ function ProductPage(){
                 <span>+</span>
               </h3> */}
               {/* Knapp */}
-              <Button variant="contained" color="primary" className="add-to-cart-btn">Lägg i varukorg</Button>
-              
+              <Button
+                onClick={() =>
+                  cart.addToCart(
+                    product.productname,
+                    product.price,
+                    product.image,
+                    product.id
+                  )
+                }
+                variant="contained"
+                color="primary"
+                className="add-to-cart-btn"
+              >
+                Lägg i varukorg
+              </Button>
             </div>
-
           </div>
-          
-          <div className="bottom flex">
 
+          <div className="bottom flex">
             <div className="desc flex column">
               <h3>Produktbeskrivning</h3>
               <p>{product.cardtext}</p>
@@ -125,14 +136,11 @@ function ProductPage(){
         </div>
       </div>
     </div>
-    
-    )
+  );
 }
 
 const cardStyle: CSSProperties = {
-  marginTop: '6rem'
-}
+  marginTop: "6rem",
+};
 
-
-
-export default ProductPage
+export default ProductPage;
