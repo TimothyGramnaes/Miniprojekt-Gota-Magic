@@ -13,6 +13,8 @@ function OrderConfirmation() {
   const user = checkoutData.userInfo[0]
   const payment = checkoutData.payment[0]
 
+  const totalPay = cart.totalPrice + checkoutData.shippingObject[0].price
+
   return (
 
         <div className="container flex">
@@ -67,9 +69,9 @@ function OrderConfirmation() {
             })}
           </div>
           <div className="priceInfo">
-            <p> <b>Total kostnad: </b> {cart.totalPrice} kr{" "}</p>
+            <p> <b>Total kostnad: </b> {totalPay} kr{" "}</p>
             <p> <b>Varav Moms:</b> {cart.totalPrice * 0.25} kr</p>
-            <p> <b>Frakt: </b> Ej fastställt</p>
+            <p> <b>Frakt: </b>{checkoutData.shippingObject[0].price}</p>
           </div>
         </div>
       </div>
