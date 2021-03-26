@@ -5,7 +5,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  /* position: fixed; */
+  position: fixed;
   z-index: 100;
   padding: 0 2rem;
 }
