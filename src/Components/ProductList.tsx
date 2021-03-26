@@ -1,10 +1,12 @@
 import { CSSProperties } from '@material-ui/styles'
+import '../css/tournaments.css';
 import ProductListCard from './ProductListCard'
 import { useEffect, useState } from 'react'
 import { IconButton, Grid, TextField, Button, makeStyles } from '@material-ui/core'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import { useProductContext } from '../Context/ProductContext'
+
 
 import { Product, products as mockedProducts } from '../DB/Products'
 // Used fot routing the ID to URL and the right product is showned
@@ -208,17 +210,23 @@ function ProductList() {
 
     return(
         <Grid container justify="center" alignItems="center" className="productListContainer" style={productListContainer}>
+            <div className="sok-test">
+
             <Grid item xs={12} className="searchContainer" style={searchStyle}>
                 <form onSubmit={handleSubmit} style={formStyle}>
                     <TextField id="filled-basic" fullWidth label="Sök här" variant="filled"  className={style.searchfield} value={searchValue} onChange={handleChange} />
                 </form>
                 <Button onClick={resetSearch} className={style.resetBtn} variant="contained" color="primary">Reset</Button>
             </Grid>
-            <Grid item xs={12} md={8} style={listStyle}>
+            </div>
 
-                {productData}
+            <Grid container xs={12} md={10} style={infoLandingContainer}>
 
-                <Grid item xs={12} className="productListBtn" style={productListBtnStyle}>
+                <Grid item style={listStyle}>
+
+                    {productData}
+
+                    <Grid item xs={12} className="productListBtn" style={productListBtnStyle}>
                     <IconButton onClick={decrease}>
                         <ArrowBackIcon />
                     </IconButton>
@@ -231,8 +239,21 @@ function ProductList() {
                 </Grid>
 
             </Grid>
+            </Grid>
         </Grid>
     )
+}
+
+
+
+const infoLandingContainer: CSSProperties = {
+   
+    maxWidth: '60rem',
+    margin: '1rem 2rem 2rem 2rem',
+    top: 0,
+    bottom: 0,
+    borderRadius: '15px',
+    overflow: 'hidden'
 }
 
 export default ProductList

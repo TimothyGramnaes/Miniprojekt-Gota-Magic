@@ -46,6 +46,9 @@ const useStyles = makeStyles({
     borderTopLeftRadius: '0',
     borderBottomLeftRadius: '0',
   },
+  linkStyle: {
+    textDecoration: 'none'
+  }
 });
 
 function ProductListCard(props: Props) {
@@ -75,7 +78,7 @@ function ProductListCard(props: Props) {
                   Köp
                 </Button>
 
-                <Link to={`/ProductPage/${props.id}`}>
+                <Link to={`/ProductPage/${props.id}`} className={style.linkStyle}>
                   <Button
                     className={style.centerBtnRight}
                     onClick={() => {
