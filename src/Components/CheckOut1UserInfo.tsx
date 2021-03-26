@@ -1,6 +1,6 @@
-import TextField from '@material-ui/core/TextField';
-import '../css/checkOut1UserInfo.css'
-import { useCheckoutContext } from '../Context/CheckoutContext'
+import TextField from "@material-ui/core/TextField";
+import "../css/checkOut1UserInfo.css";
+import { useCheckoutContext } from "../Context/CheckoutContext";
 import "../css/checkOut1UserInfo.css";
 import "../main.css";
 import { useCart } from "../Context/CartContext";
@@ -116,7 +116,7 @@ function CheckOut1UserInfo() {
       setUserToObject();
     }
   };
-  const handleuserPostNumber = (e: any) => {    
+  const handleuserPostNumber = (e: any) => {
     setUserPostNumber(e.target.value);
     if (!/^(\d{5})$/.test(e.target.value)) {
       setUserPostNumberError(false);
@@ -131,7 +131,6 @@ function CheckOut1UserInfo() {
 
   // Function that saves the inputsfields to an object
   const setUserToObject = () => {
-    
     user.getValidation(validated);
 
     user.saveUserInformation(
@@ -165,7 +164,6 @@ function CheckOut1UserInfo() {
     }
   }, []);
 
-
   const validateFunction = () => {
     if (
       userNameError &&
@@ -180,16 +178,15 @@ function CheckOut1UserInfo() {
     } else {
       setValidated(false);
     }
-  }
+  };
 
   useEffect(() => {
-    validateFunction()
+    validateFunction();
   });
 
   useEffect(() => {
     user.getValidation(validated);
   });
-
 
   // This useEffect saves the userObject to LS
   useEffect(() => {
@@ -208,16 +205,17 @@ function CheckOut1UserInfo() {
           <form className="flex column" autoComplete="on">
             <h5>Ditt namn</h5>
             <TextField
+              name="name"
               autoFocus
               className="input-field"
               required
-              placeholder="ex. John Doe"
+              label="Namn"
               variant="standard"
               value={userName}
               onChange={handleUserName}
               error={userNameError}
               helperText={userNameErrorText}
-              autoComplete="on"
+              autoComplete="shipping street-address"
             />
             <h5>E-Mail</h5>
             <TextField
@@ -234,9 +232,10 @@ function CheckOut1UserInfo() {
             />
             <h5>Mobilnummer</h5>
             <TextField
+              name="mobile"
               className="input-field"
               required
-              placeholder="ex. 0701234567"
+              label="Mobilnummer"
               variant="standard"
               type="tel"
               value={userMobile}
