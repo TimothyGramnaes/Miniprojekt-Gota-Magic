@@ -19,7 +19,7 @@ function Tournaments() {
             <Grid container xs={12} md={10} style={infoLandingContainer}>
   
                <img style={infoLandingContainerImage} src="./assets/imgs/play/bear2.jpg" alt="glatt-turnerings-sallskap" />                   
-                <Grid container className="flex" style={titleHeader}>
+                <Grid container className="component-title flex" style={titleHeader}>
                     <h2>
                         Turneringar                       
                     </h2>
@@ -27,7 +27,7 @@ function Tournaments() {
                 <Grid container className="flex" style={textLandingContainer}>
                     <Grid container className="tour-kort">
 
-                    <Grid className="tour-kort-item" item xs={8} md={8}>
+                    <Grid className="tour-kort-item" item xs={12} md={8}>
                     <h2>Lördagsmagi</h2>
                     <p className="kort-p">
                         Varje lördag spelas det turnering i Legacy/Modern på 
@@ -44,7 +44,7 @@ function Tournaments() {
                         ta ett tag innan ni kan få möjlighet att vara med.
                     </p>
                     </Grid>
-                    <Grid item xs={8} md={4}>
+                    <Grid className="artikel-grafik" item xs={12} md={4}>
                         <img className="person-bild" src="./assets/imgs/play/petrus.jpeg" alt="petrus" />
                         <p className="pic-text">Petter Mölder, stolt vinnare av segerkepsen 2021-03-20</p>
                     </Grid>
@@ -52,13 +52,13 @@ function Tournaments() {
                     <div className="breaker"></div>
                 
                     <Grid container className="tour-kort">
-                        <Grid item xs={6} md={4}>
-                            <img className="person-bild" src="./assets/imgs/play/eddie.png" alt="eddie" />
+                        <Grid className="artikel-grafik" item xs={12} md={4}>
+                            <img className="person-bild flex center" src="./assets/imgs/play/eddie.png" alt="eddie" />
                             <p className="pic-text">
                                 Edvin Boije, vinnare av Modbearn -2020
                             </p>
                         </Grid>
-                        <Grid className="tour-kort-item-right" item xs={6} md={8}>
+                        <Grid className="tour-kort-item-right" item xs={12} md={8}>
                             <h2>Bearvitational</h2>
                             <p className="kort-p">
                                 Även kännt som Modbearn eller bara årets höjdpunkt.
@@ -87,6 +87,7 @@ function Tournaments() {
 const landingContainer: CSSProperties = {
     backgroundImage: 'url(./assets/imgs/what-the-hex.png)',    
     height: '100%',
+
     
 }
 
@@ -101,11 +102,9 @@ const titleHeader: CSSProperties = {
     color: 'white'
 }
 
-const infoLandingContainer: CSSProperties = {
-   
+const infoLandingContainer: CSSProperties = {   
     maxWidth: '60rem',
-
-    margin: '4rem 2rem 2rem 2rem',
+    margin: '8rem 2rem 2rem 2rem',
     top: 0,
     bottom: 0,
     borderRadius: '15px',

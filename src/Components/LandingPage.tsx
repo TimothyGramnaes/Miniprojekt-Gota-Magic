@@ -38,7 +38,7 @@ function LandingPage() {
                 <Grid container xs={12} md={12} className="flex centered column" style={infoLandingContainer}>
                   
                         <img style={infoLandingContainerImage} src="./assets/imgs/mtg" alt="planeswalkers" /> 
-                        <Grid container className="flex" style={titleHeader}>
+                        <Grid container className="component-title flex" style={titleHeader}>
                             <h2>
                                 Nyheter                      
                             </h2>
@@ -46,24 +46,24 @@ function LandingPage() {
                     <Grid container className="flex centered column" style={textLandingContainer}>
                         
                     <Grid container className="tour-kort">
-                        <Grid className="tour-kort-item" item xs={8} md={8}>
+                        <Grid className="tour-kort-item" item xs={12} md={7}>
                             <p className="nyhets-datum">2021-01-12</p>
                             <h2 className="nyhets-titel">Corona anpassade turneringar</h2>
                             <span></span>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis, quis! Iusto, fugiat vitae pariatur dolor explicabo veritatis commodi? Dignissimos facere error in ad, minima quidem nam. Doloribus minus ducimus exercitationem.</p>
+                            <p className="kort-p">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis, quis! Iusto, fugiat vitae pariatur dolor explicabo veritatis commodi? Dignissimos facere error in ad, minima quidem nam. Doloribus minus ducimus exercitationem.</p>
                         </Grid>
-                        <Grid className="tour-kort-item" item xs={4} md={4}>
+                        <Grid className="tour-kort-item" item xs={12} md={5}>
                             <img className="person-bild" src="./assets/imgs/play/bear1.jpg" alt="bild"/>
                         </Grid>
                         
                         <div className="breaker"></div>
 
                         <Grid container className="tour-kort">
-                            <Grid item xs={6} md={4}>
+                            <Grid item xs={12} md={5}>
                                 <img className="produkt-bild" src="./assets/imgs/play/timespiralremastered.jpg" alt="eddie" />
                                 
                             </Grid>
-                            <Grid className="tour-kort-item-right" item xs={6} md={8}>
+                            <Grid className="tour-kort-item-right" item xs={12} md={7}>
                             <p className="nyhets-datum">2021-03-12</p>
                             <h2>Time Spiral Remestered finns i lager!</h2>
                             <p className="kort-p">
@@ -94,7 +94,7 @@ const heroContainer: CSSProperties = {
     backgroundImage: 'url(./assets/imgs/Hero-Image.png)',
     textAlign: 'center',
     backgroundSize: 'cover',
-    marginTop: '0rem',
+    marginTop: '5rem',
     position: 'relative',
     flexDirection: 'column',
     zIndex: 2,
