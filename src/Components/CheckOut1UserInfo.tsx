@@ -203,7 +203,6 @@ function CheckOut1UserInfo() {
         </div>
         <div className="checkout-form">
           <form className="flex column" autoComplete="on">
-            <h5>Ditt namn</h5>
             <TextField
               name="name"
               autoFocus
@@ -215,12 +214,13 @@ function CheckOut1UserInfo() {
               onChange={handleUserName}
               error={userNameError}
               helperText={userNameErrorText}
-              autoComplete="shipping street-address"
             />
-            <h5>E-Mail</h5>
+
             <TextField
+              name="email"
               className="input-field"
               required
+              label="Email"
               placeholder="ex. johndoe@gmail.com"
               variant="standard"
               type="email"
@@ -228,9 +228,8 @@ function CheckOut1UserInfo() {
               onChange={handleuserEmail}
               error={userEmailError}
               helperText={userEmailErrorText}
-              autoComplete="on"
             />
-            <h5>Mobilnummer</h5>
+
             <TextField
               name="mobile"
               className="input-field"
@@ -241,23 +240,25 @@ function CheckOut1UserInfo() {
               value={userMobile}
               onChange={handleuserMobile}
               helperText={userMobileErrorText}
-              autoComplete="on"
             />
             <h5>Leveransadress</h5>
             <TextField
+              name="shipping street-address"
               className="input-field"
               required
+              label="Adress"
               placeholder="ex. Exempelgatan 5B"
               variant="standard"
               value={userDeliveryaddress}
               onChange={handleuserDeliveryaddress}
               helperText={userDeliveryErrorText}
-              autoComplete="on"
             />
             <h5>Stad / Ort</h5>
             <TextField
+              name="shipping address-level2"
               className="input-field"
               required
+              label="Stad"
               placeholder="ex. Exempelhamn"
               variant="standard"
               value={userCity}
@@ -266,8 +267,10 @@ function CheckOut1UserInfo() {
             />
             <h5>Postnummer</h5>
             <TextField
+              name="postal-code"
               className="input-field"
               required
+              label="Postnummer"
               placeholder="ex. 123 45"
               variant="standard"
               value={userPostNumber}
