@@ -18,15 +18,6 @@ export interface User {
   validated: boolean;
 }
 
-// interface Validate {
-//   name: boolean;
-//   email: boolean;
-  // mobile: boolean;
-  // deliveryaddress: boolean;
-  // city: boolean;
-  // postnumber: boolean;
-// }
-
 function CheckOut1UserInfo() {
   const cart = useCart();
   const [userName, setUserName] = useState<string>("");
@@ -125,7 +116,7 @@ function CheckOut1UserInfo() {
       setUserToObject();
     }
   };
-  const handleuserPostNumber = (e: any) => {
+  const handleuserPostNumber = (e: any) => {    
     setUserPostNumber(e.target.value);
     if (!/^(\d{5})$/.test(e.target.value)) {
       setUserPostNumberError(false);
@@ -140,6 +131,7 @@ function CheckOut1UserInfo() {
 
   // Function that saves the inputsfields to an object
   const setUserToObject = () => {
+    
     user.getValidation(validated);
 
     user.saveUserInformation(
@@ -173,7 +165,8 @@ function CheckOut1UserInfo() {
     }
   }, []);
 
-  useEffect(() => {
+
+  const validateFunction = () => {
     if (
       userNameError &&
       userEmailError &&
@@ -187,34 +180,16 @@ function CheckOut1UserInfo() {
     } else {
       setValidated(false);
     }
+  }
+
+  useEffect(() => {
+    validateFunction()
   });
 
   useEffect(() => {
     user.getValidation(validated);
   });
 
-  useEffect(() => {
-    user.saveUserInformation(
-      userName,
-      userEmail,
-      userMobile,
-      userDeliveryaddress,
-      userCity,
-      userPostNumber,
-      validated
-    );
-    setUserObject([
-      {
-        name: userName,
-        email: userEmail,
-        mobile: userMobile,
-        deliveryaddress: userDeliveryaddress,
-        city: userCity,
-        postnumber: userPostNumber,
-        validated: validated,
-      },
-    ]);
-  }, []);
 
   // This useEffect saves the userObject to LS
   useEffect(() => {

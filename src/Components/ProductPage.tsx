@@ -3,9 +3,10 @@ import { Button } from '@material-ui/core';
 import { yellow } from '@material-ui/core/colors';
 import '../main.css'
 import '../css/productPage.css'
-import { useProductContext } from '../Context/ProductContext'
+// import { useProductContext } from '../Context/ProductContext'
 // This is to get the URL from browser
 import { useParams } from 'react-router-dom';
+import { Product, products as mockedProducts } from '../DB/Products'
 
   // THE HOW TO SHOW RIGHT PRODUCT
   // 1. Create in Layout <Route path="/ProductPage/:id" component={ProductPage} />
@@ -20,7 +21,7 @@ import { useParams } from 'react-router-dom';
 function ProductPage(){
   
   // Import context
-  const { products } = useProductContext()
+  const products:Product[] = mockedProducts
   const params = useParams<{ id: string }>()
   
   // Default product to stop error when a product is choosen to display

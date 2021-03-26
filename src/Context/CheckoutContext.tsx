@@ -33,11 +33,7 @@ type User = {
   validated: boolean,
 }
 
-interface Checkout {
-  userInfo: User[],
-  shippingObject: ShippingMethod[],
-  payment: PaymentMethod[]
-}
+
 
 
 export const CheckoutContext = createContext<CheckoutContextValue>({} as any);
@@ -47,16 +43,12 @@ const baseOrderNumber:number = 1000
 
 
 export const CheckoutProvider: FunctionComponent = ({ children }) => {
-  const [checkout, setCheckout] = useState<Checkout[]>([{
-    userInfo: [],
-    shippingObject: [],
-    payment: []
-  }]);
+
   const [userInfo, setUserInfo] = useState<User[]>([])
   const [shippingObject, setShippingObject] = useState<ShippingMethod[]>([]); 
   const [payment, setPayment] = useState<PaymentMethod[]>([]);
 
-  const [orderNumber, setOrderNumber] = useState<number>(1000)
+  const [orderNumber, setOrderNumber] = useState<number>(baseOrderNumber)
 
   // Fetch ordernumber from LS
     useEffect(() => {   
@@ -113,16 +105,19 @@ export const CheckoutProvider: FunctionComponent = ({ children }) => {
   const saveShippingMethod = (id: string) => {
     const freightValue = parseInt(id);
     const selectedShipping = shippingMethods.filter((s) => {
-      if (s.id == freightValue) return freightValue;
+      if (s.id === freightValue) {return freightValue}
+      else {return null};
     });
 
     setShippingObject([...selectedShipping]);
+    
   };
 
   // Saves the paymentinformation from CheckOut3Payment
   const savePaymentMethod = (cardType: string, cardId: number) => {
     const selectedPayment = PaymentMethods.filter((p) => {
-      if (p.cardId == cardId) return cardId;
+      if (p.cardId === cardId) {return cardId;}
+      else {return null}
     })
     setPayment([...selectedPayment])
   };

@@ -3,8 +3,6 @@ import React from 'react'
 import '../main.css';
 import '../css/tournaments.css';
 import Button from '@material-ui/core/Button';
-// import background from './assets/imgs/Rectangle.png';
-// import { url } from 'node:inspector';
 import { Link } from 'react-router-dom';
 import { Grid } from '@material-ui/core';
 
