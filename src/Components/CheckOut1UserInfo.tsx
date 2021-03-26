@@ -241,7 +241,7 @@ function CheckOut1UserInfo() {
               onChange={handleuserMobile}
               helperText={userMobileErrorText}
             />
-            <h5>Leveransadress</h5>
+
             <TextField
               name="shipping street-address"
               className="input-field"
@@ -253,7 +253,7 @@ function CheckOut1UserInfo() {
               onChange={handleuserDeliveryaddress}
               helperText={userDeliveryErrorText}
             />
-            <h5>Stad / Ort</h5>
+
             <TextField
               name="shipping address-level2"
               className="input-field"
@@ -265,7 +265,7 @@ function CheckOut1UserInfo() {
               onChange={handleuserCity}
               helperText={userCityErrorText}
             />
-            <h5>Postnummer</h5>
+
             <TextField
               name="postal-code"
               className="input-field"
