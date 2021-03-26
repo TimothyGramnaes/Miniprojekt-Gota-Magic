@@ -219,7 +219,7 @@ function CheckOut3Payment() {
             </p>
             <p>
               {" "}
-              <b>Frakt: </b> {checkout.shippingObject[0].price}
+              <b>Frakt: </b> {checkout.shippingObject[0].price} kr
             </p>
           </div>
         </div>

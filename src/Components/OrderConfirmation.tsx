@@ -71,7 +71,7 @@ function OrderConfirmation() {
           <div className="priceInfo">
             <p> <b>Total kostnad: </b> {totalPay} kr{" "}</p>
             <p> <b>Varav Moms:</b> {cart.totalPrice * 0.25} kr</p>
-            <p> <b>Frakt: </b>{checkoutData.shippingObject[0].price}</p>
+            <p> <b>Frakt: </b>{checkoutData.shippingObject[0].price} kr</p>
           </div>
         </div>
       </div>
