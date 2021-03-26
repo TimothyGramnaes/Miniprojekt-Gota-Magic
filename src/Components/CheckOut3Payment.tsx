@@ -20,6 +20,8 @@ function CheckOut3Payment() {
   const userFromContext = useCheckoutContext();
   const userInfo = userFromContext.userInfo[0];
 
+  const totalPay = checkout.shippingObject[0].price + cart.totalPrice
+
   function CardPaymentModal() {
   
     return (
@@ -209,7 +211,7 @@ function CheckOut3Payment() {
           <div className="priceInfo">
             <p>
               {" "}
-              <b>Total kostnad: </b> {cart.totalPrice} kr{" "}
+              <b>Total kostnad: </b> {totalPay} kr{" "}
             </p>
             <p>
               {" "}
@@ -217,7 +219,7 @@ function CheckOut3Payment() {
             </p>
             <p>
               {" "}
-              <b>Frakt: </b> Ej fastställt
+              <b>Frakt: </b> {checkout.shippingObject[0].price} kr
             </p>
           </div>
         </div>
