@@ -2,6 +2,7 @@ import React, {
   createContext,
   FunctionComponent,
   useContext,
+  useEffect,
   useState,
 } from "react";
 import { orderItem } from "../Types/orderItem";
@@ -18,20 +19,62 @@ type Context = {
   removeFromCart: (productName: string) => void;
   decreaseQuantity: (item: orderItem) => void;
   totalPrice: number;
+  ResetCart: () => void;
+  resetCartLs: () => void;
+  lsCart: orderItem[];
+  cartTotalPrice: number;
 };
 
 const CartContext = createContext<Context>(undefined!);
 
 export const CartContextProvider: FunctionComponent = ({ children }) => {
   const [cart, setCart] = useState<orderItem[]>([]);
+  const [lsCart, setLsCart] = useState<orderItem[]>([]);
   const getCartSize = () => {
     return cart.length;
   };
-  const totalPrice = cart.reduce(
+  const totalPrice = lsCart.reduce(
+    (acc, curr) => acc + curr.price * curr.quantity,
+    0
+  );
+  const cartTotalPrice = cart.reduce(
     (acc, curr) => acc + curr.price * curr.quantity,
     0
   );
 
+  const ResetCart = () => {
+    setCart([...[]]);
+  };
+
+  const resetCartLs = () => {
+    const cartData = localStorage.getItem("productCart") || "[]";
+    if (cartData) {
+      setLsCart([...JSON.parse(cartData)]);
+    }
+    localStorage.setItem("productCart", JSON.stringify([]));
+  };
+
+  useEffect(() => {
+    const cartData = localStorage.getItem("productCart") || "[]";
+    if (cartData) {
+      setCart([...JSON.parse(cartData)]);
+    }
+  }, []);
+
+  console.log(lsCart);
+
+  // const getLsCart = () => {
+  //   const cartData = localStorage.getItem("productCart") || "[]";
+  //   if (cartData) {
+  //     setLsCart([...JSON.parse(cartData)]);
+  //   }
+  // };
+
+  useEffect(() => {
+    localStorage.setItem("productCart", JSON.stringify(cart));
+  }, [cart]);
+
+  console.log(lsCart);
   const addToCart = (
     itemName: string,
     price: number,
@@ -56,7 +99,6 @@ export const CartContextProvider: FunctionComponent = ({ children }) => {
     ];
 
     setCart([...newCart, newItem]); // skapar upp en ny cart med new item med eventuell quantity //
-    console.log(cart[1]);
   };
 
   const removeFromCart = (productName: string) => {
@@ -94,6 +136,8 @@ export const CartContextProvider: FunctionComponent = ({ children }) => {
 
     setCart([...newCart, newItem]); // skapar upp en ny cart med new item med eventuell quantity //
   };
+  console.log(cart);
+  console.log(lsCart);
 
   return (
     <CartContext.Provider
@@ -104,6 +148,10 @@ export const CartContextProvider: FunctionComponent = ({ children }) => {
         removeFromCart,
         decreaseQuantity,
         totalPrice,
+        ResetCart,
+        resetCartLs,
+        lsCart,
+        cartTotalPrice,
       }}
     >
       {children}
