@@ -25,7 +25,7 @@ const ProductCart = () => {
             <div className="priceInfo">
               <p>
                 {" "}
-                <b>Total kostnad: </b> 599 kr
+                <b>Total kostnad: </b> {cart.totalPrice} kr
               </p>
               <p>
                 {" "}
@@ -33,7 +33,7 @@ const ProductCart = () => {
               </p>
               <p>
                 {" "}
-                <b>Varav Moms:</b> 59 kr
+                <b>Varav Moms:</b> {cart.totalPrice * 0.25} kr
               </p>
 
               <Link className="till-kassan-btn" to="/BreadCrumbs">

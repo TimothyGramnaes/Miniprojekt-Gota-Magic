@@ -60,7 +60,7 @@ function ProductPage(){
               <p>CMC:  {product.cmc}</p>
               <p>Expansion:  {product.expansion}</p>
               {/* Ta in product.price */}
-              <h2 className="price-text">15</h2>
+              <h2 className="price-text">{product.price} kr</h2>
               {/* Ta in höj/sänk antal */}
               <h3 className="flex item-counter">
                 <span>-</span>
