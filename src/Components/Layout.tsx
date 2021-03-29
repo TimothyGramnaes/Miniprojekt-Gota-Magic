@@ -8,6 +8,7 @@ import BreadCrumbs from "./BreadCrumbs";
 import Tournaments from "./Tournaments";
 import AboutUs from "./AboutUs";
 import Contact from "./Contact";
+import ErrorBoundary from "./ErrorBoundary";
 
 import { Switch, Route, BrowserRouter } from "react-router-dom";
 import ProductCart from "./cartComponent/ProductCart";
@@ -16,6 +17,8 @@ function Layout() {
   return (
     <BrowserRouter>
       <Header />
+      <ErrorBoundary>
+
       <Switch>
         <Route exact path="/" component={LandingPage} />
         <Route path="/Tournaments" component={Tournaments} />
@@ -27,6 +30,7 @@ function Layout() {
         {/* :id is put behind the ProductPage/ to use the id that is put in the link tag in ProductList.tsx */}
         <Route path="/ProductPage/:id" component={ProductPage} />
       </Switch>
+      </ErrorBoundary>
       <Footer />
     </BrowserRouter>
   );
