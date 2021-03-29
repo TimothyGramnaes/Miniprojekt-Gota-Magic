@@ -53,7 +53,7 @@ function OrderConfirmation() {
             {cart.totalPrice} kr{" "}
           </h3>
           <div>
-            {cart.cart.map((item) => {
+            {cart.lsCart.map((item) => {
               return (
                 <div className="cartItem">
                   <img src={item.img} alt={item.itemName} />
