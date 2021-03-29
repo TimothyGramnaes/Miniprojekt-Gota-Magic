@@ -1,40 +1,39 @@
 // import StarIcon from '@material-ui/icons/Star';
-import { Button } from '@material-ui/core';
+import { Button } from "@material-ui/core";
 // import { yellow } from '@material-ui/core/colors';
-import '../main.css'
-import '../css/productPage.css'
+import "../main.css";
+import "../css/productPage.css";
 // import { useProductContext } from '../Context/ProductContext'
 // This is to get the URL from browser
-import { useParams } from 'react-router-dom';
-import { Product, products as mockedProducts } from '../DB/Products'
-import { CSSProperties } from '@material-ui/styles';
+import { useParams } from "react-router-dom";
+import { Product, products as mockedProducts } from "../DB/Products";
+import { CSSProperties } from "@material-ui/styles";
 import { useCart } from "../Context/CartContext";
 
-  // THE HOW TO SHOW RIGHT PRODUCT
-  // 1. Create in Layout <Route path="/ProductPage/:id" component={ProductPage} />
-  //    The :id is set to catch the id from ProductList
-  // 2. In ProductList create a Link around the mapped content <Link to={`/ProductPage/${product.id}`}>
-  //    The ${product.id} sets the clicked products id in the URL
-  // 3. And last, in Productpage you import "import { RouteComponentProps } from 'react-router-dom'"
-  //    After that you extract the URL with this line "const productUrl = props.match.url.substr(1);"
-  //    Now you've got the URL behind "pagename/" and needed to shortened
-  //    Filter the product array with the id you've got and use the data in the HTML
+// THE HOW TO SHOW RIGHT PRODUCT
+// 1. Create in Layout <Route path="/ProductPage/:id" component={ProductPage} />
+//    The :id is set to catch the id from ProductList
+// 2. In ProductList create a Link around the mapped content <Link to={`/ProductPage/${product.id}`}>
+//    The ${product.id} sets the clicked products id in the URL
+// 3. And last, in Productpage you import "import { RouteComponentProps } from 'react-router-dom'"
+//    After that you extract the URL with this line "const productUrl = props.match.url.substr(1);"
+//    Now you've got the URL behind "pagename/" and needed to shortened
+//    Filter the product array with the id you've got and use the data in the HTML
 
-function ProductPage(){
-
+function ProductPage() {
   const stylingImg: CSSProperties = {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '100%'
-  }
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+  };
 
   const stylingProductInfo: CSSProperties = {
-    display: 'flex',
-    justifyContent: 'center',
+    display: "flex",
+    justifyContent: "center",
     // alignItems: 'center',
-    width: '100%'
-  }
+    width: "100%",
+  };
 
   // Import context
   const products: Product[] = mockedProducts;
@@ -52,14 +51,15 @@ function ProductPage(){
       <div className="grey-card" style={cardStyle}>
         <div className="container">
           <div className="top flex">
-
             <div className="image-container flex" style={stylingImg}>
               {/* Ta in product.image, byt diven nedan till en <img/> */}
               <img src={product.image} alt="" />
             </div>
 
-            <div className="info-content flex column" style={stylingProductInfo}> 
-              
+            <div
+              className="info-content flex column"
+              style={stylingProductInfo}
+            >
               {/* Ta in product.name */}
               <h2>{product.productname}</h2>
               {/* Ta in product.stars, rendera ut antalet stjärnor */}
@@ -112,12 +112,12 @@ function ProductPage(){
               <h3>Liknande produkter</h3>
               <p>Andra kunder kollade också på:</p>
               {/* Ta in 2 random produkter */}
-              {/* 2 st product.image */}
-              {/* 2 st product.name */}
-              {/* 2 st product.price */}
-              {/* TEMPORÄRA "BILDER" NEDANFÖR */}
+            {/* 2 st product.image */}
+            {/* 2 st product.name */}
+            {/* 2 st product.price */}
+            {/* TEMPORÄRA "BILDER" NEDANFÖR */}
 
-              {/* <div className="images">
+            {/* <div className="images">
                 <div className="similar-product similar-product-1">
                   <div className="image"></div>
                   <h5>Produktnamn</h5>
@@ -131,7 +131,6 @@ function ProductPage(){
               </div> */}
 
             {/* </div> */}
-
           </div>
         </div>
       </div>

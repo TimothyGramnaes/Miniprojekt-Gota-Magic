@@ -12,7 +12,7 @@ import { ShippingMethod, shippingMethods } from "../DB/ShippingMethods";
 interface CheckoutContextValue {
   saveUserInformation: (name: string, email: string, mobile: string, deliveryaddress: string, city: string, postnumber: string, validated: boolean ) => void;
   saveShippingMethod: (id: string) => void;
-  savePaymentMethod: (cardType: string, cardId: number) => void;
+  savePaymentMethod: (cardId: string) => void;
   getValidation: (value:boolean) => void;
   userInfo: User[];
   payment: PaymentMethod[];
@@ -114,9 +114,9 @@ export const CheckoutProvider: FunctionComponent = ({ children }) => {
   };
 
   // Saves the paymentinformation from CheckOut3Payment
-  const savePaymentMethod = (cardType: string, cardId: number) => {
+  const savePaymentMethod = (cardId: string) => {
     const selectedPayment = PaymentMethods.filter((p) => {
-      if (p.cardId === cardId) {return cardId;}
+      if (p.cardId === parseInt(cardId)) {return cardId;}
       else {return null}
     })
     setPayment([...selectedPayment])

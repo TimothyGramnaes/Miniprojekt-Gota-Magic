@@ -1,6 +1,5 @@
 import "../css/orderConfirmation.css";
 import "../main.css";
-import { shippingMethods } from "../DB/ShippingMethods";
 import { useCart } from "../Context/CartContext";
 
 import { useCheckoutContext } from "../Context/CheckoutContext";
@@ -11,6 +10,7 @@ function OrderConfirmation() {
 
   const user = checkoutData.userInfo[0];
   const payment = checkoutData.payment[0];
+  const shipping = checkoutData.shippingObject
 
   const totalPay = cart.totalPrice + checkoutData.shippingObject[0].price;
 
@@ -36,11 +36,11 @@ function OrderConfirmation() {
             {user.deliveryaddress}, {user.postnumber}, {user.city}
           </p>
           <h3>Betalning</h3>
-          <p>{payment.cardType}:</p>
+          <p>{payment.cardType}</p>
           <h3>Frakt</h3>
           <p>
-            {shippingMethods[0].name}, {shippingMethods[0].deliveryTime},{" "}
-            {shippingMethods[0].price} kr
+            {shipping[0].name}, {shipping[0].deliveryTime},{" "}
+            {shipping[0].price} kr
           </p>
         </div>
       </div>
@@ -53,7 +53,7 @@ function OrderConfirmation() {
             {cart.totalPrice} kr{" "}
           </h3>
           <div className="products">
-            {cart.cart.map((item) => {
+            {cart.lsCart.map((item) => {
               return (
                 <div className="cartItem">
                   <img src={item.img} alt={item.itemName} />
