@@ -31,6 +31,11 @@
   padding-left: 1.5rem;
 }
 
+.products {
+  max-height: 400px;
+  overflow-y: scroll;
+}
+
 .headings {
   margin-top: 1.5rem;
 }

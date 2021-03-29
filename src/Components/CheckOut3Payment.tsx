@@ -187,7 +187,7 @@ function CheckOut3Payment() {
           <h3 style={{ paddingTop: "1rem", paddingBottom: "1rem" }}>
             {cart.cartTotalPrice} kr{" "}
           </h3>
-          <div>
+          <div className="products">
             {cart.cart.map((item) => {
               return (
                 <div className="cartItem">
