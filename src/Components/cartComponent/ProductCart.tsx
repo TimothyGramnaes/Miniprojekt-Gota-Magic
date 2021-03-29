@@ -1,4 +1,5 @@
 import { Button } from "@material-ui/core";
+import { CSSProperties } from "@material-ui/styles";
 import React from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "../../Context/CartContext";
@@ -12,8 +13,8 @@ const ProductCart = () => {
 
   if (cart.cart.length > 0) {
     return (
-      <div className="background">
-        <div className="grey-card">
+      <div className="background" style={backStyle}>
+        <div className="grey-card" style={varuStyle}>
           <h2>Din varukorg</h2>
           <span>{cart.cartTotalPrice} kr</span>
           <div className="cartInfoContainer">
@@ -61,4 +62,14 @@ const ProductCart = () => {
       </div>
     );
 };
+
+const varuStyle: CSSProperties = {
+  marginTop: '6rem',
+  minHeight: '20rem'
+
+}
+const backStyle: CSSProperties = {
+  minHeight: '69vh'
+}
+
 export default ProductCart;
