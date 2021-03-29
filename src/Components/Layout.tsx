@@ -26,6 +26,11 @@ function Layout() {
         <Route path="/BreadCrumbs" component={BreadCrumbs} />
         {/* :id is put behind the ProductPage/ to use the id that is put in the link tag in ProductList.tsx */}
         <Route path="/ProductPage/:id" component={ProductPage} />
+        {/* Adminpages */}
+        <Route path="/admin" component={Admin} />
+        <Route path="/admin/products" component={AdminProductsList} />
+        <Route path="/admin/products/:id" component={AdminProduct} />
+        <Route path="/admin/products/new-product" component={AdminNewProduct} />
       </Switch>
       <Footer />
     </BrowserRouter>
