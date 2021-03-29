@@ -15,13 +15,16 @@ import { useCheckoutContext } from '../Context/CheckoutContext'
 function CheckOut3Payment() {
   const checkout = useCheckoutContext();
   const cart = useCart();
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState<string>("");
+  const shipping = checkout.shippingObject
 
   const userFromContext = useCheckoutContext();
   const userInfo = userFromContext.userInfo[0];
 
   const totalPay = checkout.shippingObject[0].price + cart.totalPrice
+  
 
+  console.log(shipping)
   function CardPaymentModal() {
   
     return (
@@ -129,8 +132,9 @@ function CheckOut3Payment() {
     );
   }
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue((event.target as HTMLInputElement).value);
-    checkout.savePaymentMethod("Swish", 4);
+    const value = event.target.value;
+    setValue(value);
+    checkout.savePaymentMethod(value);
   };
 
   return (
@@ -146,22 +150,22 @@ function CheckOut3Payment() {
             <FormControl>
               <RadioGroup value={value} onChange={handleRadioChange}>
                 <FormControlLabel
-                  value="kort"
+                  value="1"
                   control={<Radio />}
                   label="Kortbetalning"
                 />
                 <FormControlLabel
-                  value="faktura"
+                  value="2"
                   control={<Radio />}
                   label="Faktura"
                 />
                 <FormControlLabel
-                  value="betalaSenare"
+                  value="3"
                   control={<Radio />}
                   label="Köp nu - Betala senare, med SMS-lån"
                 />
                 <FormControlLabel
-                  value="swish"
+                  value="4"
                   control={<Radio />}
                   label="Swish"
                 />
@@ -169,13 +173,13 @@ function CheckOut3Payment() {
             </FormControl>
           </form>
 
-          {value === "betalaSenare" ? (
+          {value === "3" ? (
             <SMSLoanPaymentModal />
-          ) : value === "faktura" ? (
+          ) : value === "2" ? (
             <BillPaymentModal />
-          ) : value === "kort" ? (
+          ) : value === "1" ? (
             <CardPaymentModal />
-          ) : value === "swish" ? (
+          ) : value === "4" ? (
             <SwishPaymentModal />
           ) : (
             ""

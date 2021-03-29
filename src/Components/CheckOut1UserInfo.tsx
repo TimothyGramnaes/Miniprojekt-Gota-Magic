@@ -68,6 +68,8 @@ function CheckOut1UserInfo() {
     }
   };
 
+  console.log(userPostNumber)
+
   const handleuserEmail = (e: any) => {
     setUserEmail(e.target.value);
     if (e.target.value.indexOf("@") === -1) {
