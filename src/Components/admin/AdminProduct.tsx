@@ -3,7 +3,9 @@ import React from 'react'
 function AdminProduct() {
 
     return(
-        <p>Här är produktsidan</p>
+        <div style={{height:"2rem"}}>
+         <h1>HEJ PRODUKTSIDA</h1>
+        </div>
     )
 }
 

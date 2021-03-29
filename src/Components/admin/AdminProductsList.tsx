@@ -3,7 +3,7 @@ import React from 'react'
 function AdminProductsList() {
 
     return(
-        <p>Här mappar vi allt</p>
+        <p>produktlista</p>
     )
 }
 

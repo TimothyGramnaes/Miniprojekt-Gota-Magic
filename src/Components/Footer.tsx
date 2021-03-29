@@ -61,6 +61,11 @@ function Footer() {
                 Se alla våra produkter här
               </Link>
             </li>
+            <li>
+              <Link to='/admin' className="li-item">
+                Admin
+              </Link>
+            </li>
           </ul>
         </div>
 
