@@ -15,15 +15,13 @@ function CheckOut3Payment() {
   const checkout = useCheckoutContext();
   const cart = useCart();
   const [value, setValue] = useState<string>("");
-  const shipping = checkout.shippingObject
 
   const userFromContext = useCheckoutContext();
   const userInfo = userFromContext.userInfo[0];
 
-  const totalPay = checkout.shippingObject[0].price + cart.totalPrice
+  const totalPay = checkout.shippingObject[0].price + cart.cartTotalPrice
   
 
-  console.log(shipping)
   function CardPaymentModal() {
     return (
       <div className="card-modal">

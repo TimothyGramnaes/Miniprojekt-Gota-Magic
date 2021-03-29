@@ -107,14 +107,14 @@ function ProductList() {
         const sliceProductColor = productColor.slice(0, searchlength)
         const productName = result.productname
         const sliceProductName = productName.slice(0, searchlength)
-        const productExpansion = result.expansion
-        const sliceProductExpansion = productExpansion.slice(0, searchlength)
+        const productCardtype = result.cardtype
+        const sliceProductCardtype = productCardtype.slice(0, searchlength)
 
         if (searchValue?.toLowerCase() === sliceProductColor.toLowerCase()) {
             return searchValue?.toLowerCase()
         } else if (searchValue?.toLowerCase() === sliceProductName.toLowerCase()) {
             return searchValue?.toLowerCase()
-        } else if (searchValue?.toLowerCase() === sliceProductExpansion.toLowerCase()) {
+        } else if (searchValue?.toLowerCase() === sliceProductCardtype.toLowerCase()) {
             return searchValue?.toLowerCase()
         }
        return null;
