@@ -1,11 +1,10 @@
 import React from 'react'
-import { Switch, Route, Link, BrowserRouter } from "react-router-dom";
-import AdminProduct from './AdminProduct';
-// import AdminProductsList from './AdminProductsList';
-// import AdminNewProduct from './AdminNewProduct';
-import AdminForm from './AdminForm';
+import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
 import { CSSProperties } from '@material-ui/styles';
 import { Button } from '@material-ui/core';
+import AdminForm from './AdminForm';
+import AdminProduct from './AdminProduct';
+import AdminProductsList from './AdminProductsList';
 
 function Admin() {
 
@@ -24,14 +23,12 @@ function Admin() {
             </Link>      
             <Link to="../">
             <Button>Till front</Button>
-            </Link>      
-            <Switch>        
+            </Link>     
+            <Switch>                
                 <Route exact path="/admin/products/:id" component={AdminProduct} />
-                <Route exact path="/admin/productspage/" component={AdminProduct} />
-                <Route exact path="/admin/new-product" component={AdminForm} />      
+                <Route exact path="/admin/productspage/" component={AdminProductsList} />
+                <Route exact path="/admin/new-product" component={AdminForm} /> 
             </Switch>
-            <AdminProduct />
-            <AdminForm />
             </div>
     )
 }

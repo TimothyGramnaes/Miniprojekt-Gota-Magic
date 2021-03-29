@@ -15,20 +15,23 @@ import ProductCart from "./cartComponent/ProductCart";
 function ClientPage() {
 
     return(
-      <BrowserRouter>
-        
-        <Switch>
-          <Route exact path="/" component={LandingPage} />
-          <Route path="/Tournaments" component={Tournaments} />
-          <Route path="/AboutUs" component={AboutUs} />
-          <Route path="/Contact" component={Contact} />
-          <Route path="/ProductList" component={ProductList} />
-          <Route path="/ProductCart" component={ProductCart} />
-          <Route path="/BreadCrumbs" component={BreadCrumbs} />
-          {/* :id is put behind the ProductPage/ to use the id that is put in the link tag in ProductList.tsx */}
-          <Route path="/ProductPage/:id" component={ProductPage} />
-        </Switch>
-      </BrowserRouter>
+      <div>
+      
+        <Header />
+      
+          <Switch>
+            <Route exact path="/" component={LandingPage}/>
+            <Route path="/Tournaments" component={Tournaments} />
+            <Route path="/AboutUs" component={AboutUs} />
+            <Route path="/Contact" component={Contact} />
+            <Route path="/ProductList" component={ProductList} />
+            <Route path="/ProductCart" component={ProductCart} />
+            <Route path="/BreadCrumbs" component={BreadCrumbs} />
+            {/* :id is put behind the ProductPage/ to use the id that is put in the link tag in ProductList.tsx */}
+            <Route path="/ProductPage/:id" component={ProductPage} />
+          </Switch>
+        <Footer />
+  </div>
     )
 }
 

@@ -62,7 +62,7 @@ function Footer() {
               </Link>
             </li>
             <li>
-              <Link to='/admin' className="li-item">
+              <Link to='/admin/productspage' className="li-item">
                 Admin
               </Link>
             </li>
