@@ -34,7 +34,7 @@ class ErrorBoundary extends Component<Props, State> {
         if (this.state.hasError) {
             return (
                 <div style={errorStyle}>
-                    <h2>404 inget funkar, alla dog</h2>
+                    <h2>404 inget funkar</h2>
                     <Button variant="contained" color="primary" onClick={this.navigateBack}></Button>
                 </div>
             );
@@ -47,6 +47,7 @@ class ErrorBoundary extends Component<Props, State> {
 
 const errorStyle: CSSProperties = {
     display: 'flex',
+    height: '100%',
 }
 
 export default withRouter(ErrorBoundary);

@@ -18,7 +18,6 @@ function Layout() {
     <BrowserRouter>
       <Header />
       <ErrorBoundary>
-
       <Switch>
         <Route exact path="/" component={LandingPage} />
         <Route path="/Tournaments" component={Tournaments} />
