@@ -11,6 +11,7 @@ import Contact from "./Contact";
 
 import { Switch, Route, BrowserRouter } from "react-router-dom";
 import ProductCart from "./cartComponent/ProductCart";
+import Admin from "./admin/Admin";
 
 function Layout() {
   return (
@@ -28,9 +29,6 @@ function Layout() {
         <Route path="/ProductPage/:id" component={ProductPage} />
         {/* Adminpages */}
         <Route path="/admin" component={Admin} />
-        <Route path="/admin/products" component={AdminProductsList} />
-        <Route path="/admin/products/:id" component={AdminProduct} />
-        <Route path="/admin/products/new-product" component={AdminNewProduct} />
       </Switch>
       <Footer />
     </BrowserRouter>
