@@ -116,9 +116,9 @@ function CheckOut2Shipping() {
           {/* Här tar vi in order komponenten, och tar bort den temporära nedanför */}
           <h2>Din beställning</h2>
           <h3 style={{ paddingTop: "1rem", paddingBottom: "1rem" }}>
-            {cart.totalPrice} kr{" "}
+            {cart.cartTotalPrice} kr{" "}
           </h3>
-          <div>
+          <div className="products">
             {cart.cart.map((item) => {
               return (
                 <div className="cartItem">
@@ -139,11 +139,11 @@ function CheckOut2Shipping() {
           <div className="priceInfo">
             <p>
               {" "}
-              <b>Total kostnad: </b> {cart.totalPrice} kr{" "}
+              <b>Total kostnad: </b> {cart.cartTotalPrice} kr{" "}
             </p>
             <p>
               {" "}
-              <b>Varav Moms:</b> {cart.totalPrice * 0.25} kr
+              <b>Varav Moms:</b> {cart.cartTotalPrice * 0.25} kr
             </p>
             <p>
               {" "}

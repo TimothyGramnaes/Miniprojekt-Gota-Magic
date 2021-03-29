@@ -9,14 +9,14 @@ import "./productCart.css";
 const ProductCart = () => {
   const cart = useCart();
 
-    // byt ut texterna där pris ska visas
+  // byt ut texterna där pris ska visas
 
   if (cart.cart.length > 0) {
     return (
       <div className="background" style={backStyle}>
         <div className="grey-card" style={varuStyle}>
           <h2>Din varukorg</h2>
-          <span>{cart.totalPrice} kr</span>
+          <span>{cart.cartTotalPrice} kr</span>
           <div className="cartInfoContainer">
             <div className="productsInCart">
               {cart.cart.map((item) => {
@@ -26,15 +26,15 @@ const ProductCart = () => {
             <div className="priceInfo">
               <p>
                 {" "}
-                <b>Total kostnad: </b> {cart.totalPrice} kr
-              </p>
-              <p>
-                {" "}
-                <b>Frakt: </b> Ej fastställt
+                <b>Total kostnad: </b> {cart.cartTotalPrice} kr
               </p>
               <p>
                 {" "}
                 <b>Varav Moms:</b> {cart.totalPrice * 0.25} kr
+              </p>
+              <p>
+                {" "}
+                <b>Frakt: </b> Ej fastställt
               </p>
 
               <Link className="till-kassan-btn" to="/BreadCrumbs">
