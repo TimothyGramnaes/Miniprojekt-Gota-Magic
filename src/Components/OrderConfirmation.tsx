@@ -52,7 +52,7 @@ function OrderConfirmation() {
           <h3 style={{ paddingTop: "1rem", paddingBottom: "1rem" }}>
             {cart.totalPrice} kr{" "}
           </h3>
-          <div>
+          <div className="products">
             {cart.cart.map((item) => {
               return (
                 <div className="cartItem">

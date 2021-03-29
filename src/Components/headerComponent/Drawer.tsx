@@ -15,6 +15,9 @@ const useStyles = makeStyles({
   fullList: {
     width: "auto",
   },
+  marginBottom: {
+    marginBottom: '1rem',
+  },
 });
 
 type Anchor = "top" | "left" | "bottom" | "right";
@@ -84,6 +87,7 @@ export default function TemporaryDrawer() {
                   variant="contained"
                   color="primary"
                   disabled={cart.cart.length >= 1 ? false : true}
+                  className={classes.marginBottom}
                 >
                   Till kassa
                 </Button>

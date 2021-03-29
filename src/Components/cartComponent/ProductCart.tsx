@@ -30,11 +30,11 @@ const ProductCart = () => {
               </p>
               <p>
                 {" "}
-                <b>Frakt: </b> Ej fastställt
+                <b>Varav Moms:</b> {cart.totalPrice * 0.25} kr
               </p>
               <p>
                 {" "}
-                <b>Varav Moms:</b> {cart.totalPrice * 0.25} kr
+                <b>Frakt: </b> Ej fastställt
               </p>
 
               <Link className="till-kassan-btn" to="/BreadCrumbs">

@@ -25,6 +25,11 @@
   flex: 1;
 }
 
+.products {
+  max-height: 400px;
+  overflow-y: scroll;
+}
+
 .order-overview {
   height: 100%;
   border-left: rgb(208, 208, 208) solid 2px;
