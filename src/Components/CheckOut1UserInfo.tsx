@@ -6,6 +6,7 @@ import "../main.css";
 import { useCart } from "../Context/CartContext";
 import "../css/checkOut1UserInfo.css";
 import { useEffect, useState } from "react";
+import { makeStyles } from "@material-ui/core";
 
 // Interface to the userObject array
 export interface User {
@@ -17,6 +18,13 @@ export interface User {
   postnumber: string;
   validated: boolean;
 }
+
+const useStyles = makeStyles({
+  input: {
+    marginBottom: "1rem",
+  },
+});
+
 
 function CheckOut1UserInfo() {
   const cart = useCart();
@@ -54,6 +62,7 @@ function CheckOut1UserInfo() {
   const [userObject, setUserObject] = useState<User[]>([]);
 
   const user = useCheckoutContext();
+  const style = useStyles();
 
   // Functions that handles the inputfields an save it to states right above
   const handleUserName = (e: any) => {
@@ -67,6 +76,8 @@ function CheckOut1UserInfo() {
       setUserToObject();
     }
   };
+
+  console.log(userPostNumber)
 
   const handleuserEmail = (e: any) => {
     setUserEmail(e.target.value);
@@ -206,7 +217,7 @@ function CheckOut1UserInfo() {
             <TextField
               name="name"
               autoFocus
-              className="input-field"
+              className={style.input}
               required
               label="Namn"
               variant="standard"
@@ -218,7 +229,7 @@ function CheckOut1UserInfo() {
 
             <TextField
               name="email"
-              className="input-field"
+              className={style.input}
               required
               label="Email"
               placeholder="ex. johndoe@gmail.com"
@@ -232,7 +243,7 @@ function CheckOut1UserInfo() {
 
             <TextField
               name="mobile"
-              className="input-field"
+              className={style.input}
               required
               label="Mobilnummer"
               variant="standard"
@@ -244,7 +255,7 @@ function CheckOut1UserInfo() {
 
             <TextField
               name="shipping street-address"
-              className="input-field"
+              className={style.input}
               required
               label="Adress"
               placeholder="ex. Exempelgatan 5B"
@@ -256,7 +267,7 @@ function CheckOut1UserInfo() {
 
             <TextField
               name="city"
-              className="input-field"
+              className={style.input}
               required
               label="Stad"
               placeholder="ex. Exempelhamn"
@@ -268,7 +279,7 @@ function CheckOut1UserInfo() {
 
             <TextField
               name="postal-code"
-              className="input-field"
+              className={style.input}
               required
               label="Postnummer"
               placeholder="ex. 123 45"
@@ -286,7 +297,7 @@ function CheckOut1UserInfo() {
           {/* Här tar vi in order komponenten, och tar bort den temporära nedanför */}
           <h2>Din beställning</h2>
           <h3 style={{ paddingTop: "1rem", paddingBottom: "1rem" }}>
-            {cart.totalPrice} kr{" "}
+            {cart.cartTotalPrice} kr{" "}
           </h3>
           <div className="products">
             {cart.cart.map((item) => {
@@ -309,11 +320,11 @@ function CheckOut1UserInfo() {
           <div className="priceInfo">
             <p>
               {" "}
-              <b>Total kostnad: </b> {cart.totalPrice} kr{" "}
+              <b>Total kostnad: </b> {cart.cartTotalPrice} kr{" "}
             </p>
             <p>
               {" "}
-              <b>Varav Moms:</b> {cart.totalPrice * 0.25} kr
+              <b>Varav Moms:</b> {cart.cartTotalPrice * 0.25} kr
             </p>
             <p>
               {" "}

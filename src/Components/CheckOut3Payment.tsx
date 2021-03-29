@@ -9,21 +9,20 @@ import {
   RadioGroup,
 } from "@material-ui/core";
 import React, { useState } from "react";
-import { useCheckoutContext } from '../Context/CheckoutContext'
-
+import { useCheckoutContext } from "../Context/CheckoutContext";
 
 function CheckOut3Payment() {
   const checkout = useCheckoutContext();
   const cart = useCart();
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState<string>("");
 
   const userFromContext = useCheckoutContext();
   const userInfo = userFromContext.userInfo[0];
 
-  const totalPay = checkout.shippingObject[0].price + cart.totalPrice
+  const totalPay = checkout.shippingObject[0].price + cart.cartTotalPrice
+  
 
   function CardPaymentModal() {
-  
     return (
       <div className="card-modal">
         <form>
@@ -73,7 +72,6 @@ function CheckOut3Payment() {
             </div>
           </div>
         </form>
-        
       </div>
     );
   }
@@ -96,7 +94,6 @@ function CheckOut3Payment() {
   }
 
   function SMSLoanPaymentModal() {
-    
     return (
       <div className="sms-loan-modal">
         <p className="payment-info-text">
@@ -113,7 +110,6 @@ function CheckOut3Payment() {
   }
 
   function SwishPaymentModal() {
-
     return (
       <div className="swish-modal flex column">
         <p className="payment-info-text">
@@ -129,8 +125,9 @@ function CheckOut3Payment() {
     );
   }
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue((event.target as HTMLInputElement).value);
-    checkout.savePaymentMethod("Swish", 4);
+    const value = event.target.value;
+    setValue(value);
+    checkout.savePaymentMethod(value);
   };
 
   return (
@@ -146,22 +143,22 @@ function CheckOut3Payment() {
             <FormControl>
               <RadioGroup value={value} onChange={handleRadioChange}>
                 <FormControlLabel
-                  value="kort"
+                  value="1"
                   control={<Radio />}
                   label="Kortbetalning"
                 />
                 <FormControlLabel
-                  value="faktura"
+                  value="2"
                   control={<Radio />}
                   label="Faktura"
                 />
                 <FormControlLabel
-                  value="betalaSenare"
+                  value="3"
                   control={<Radio />}
                   label="Köp nu - Betala senare, med SMS-lån"
                 />
                 <FormControlLabel
-                  value="swish"
+                  value="4"
                   control={<Radio />}
                   label="Swish"
                 />
@@ -169,13 +166,13 @@ function CheckOut3Payment() {
             </FormControl>
           </form>
 
-          {value === "betalaSenare" ? (
+          {value === "3" ? (
             <SMSLoanPaymentModal />
-          ) : value === "faktura" ? (
+          ) : value === "2" ? (
             <BillPaymentModal />
-          ) : value === "kort" ? (
+          ) : value === "1" ? (
             <CardPaymentModal />
-          ) : value === "swish" ? (
+          ) : value === "4" ? (
             <SwishPaymentModal />
           ) : (
             ""
@@ -188,9 +185,9 @@ function CheckOut3Payment() {
           {/* Här tar vi in order komponenten, och tar bort den temporära nedanför */}
           <h2>Din beställning</h2>
           <h3 style={{ paddingTop: "1rem", paddingBottom: "1rem" }}>
-            {cart.totalPrice} kr{" "}
+            {cart.cartTotalPrice} kr{" "}
           </h3>
-          <div>
+          <div className="products">
             {cart.cart.map((item) => {
               return (
                 <div className="cartItem">
@@ -215,7 +212,7 @@ function CheckOut3Payment() {
             </p>
             <p>
               {" "}
-              <b>Varav Moms:</b> {cart.totalPrice * 0.25} kr
+              <b>Varav Moms:</b> {cart.cartTotalPrice * 0.25} kr
             </p>
             <p>
               {" "}

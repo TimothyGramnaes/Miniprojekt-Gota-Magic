@@ -15,6 +15,9 @@ const useStyles = makeStyles({
   fullList: {
     width: "auto",
   },
+  marginBottom: {
+    marginBottom: '1rem',
+  },
 });
 
 type Anchor = "top" | "left" | "bottom" | "right";
@@ -42,7 +45,7 @@ export default function TemporaryDrawer() {
 
     setState({ ...state, [anchor]: open });
   };
-  
+
   const list = (anchor: Anchor) => (
     <div
       className={clsx(classes.list, {
@@ -74,7 +77,7 @@ export default function TemporaryDrawer() {
                 paddingTop: "1rem",
               }}
             >
-              <h3>Dina produkter: {cart.totalPrice} kr </h3>
+              <h3>Dina produkter: {cart.cartTotalPrice} kr </h3>
               {cart.cart.map((item) => {
                 return <CartComponent key={item.id} item={item} />;
               })}
@@ -84,6 +87,7 @@ export default function TemporaryDrawer() {
                   variant="contained"
                   color="primary"
                   disabled={cart.cart.length >= 1 ? false : true}
+                  className={classes.marginBottom}
                 >
                   Till kassa
                 </Button>
