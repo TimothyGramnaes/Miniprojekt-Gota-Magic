@@ -24,7 +24,9 @@ export default function CustomizedBadges() {
   return (
     <IconButton onClick={handleDrawer} aria-label="cart">
       <StyledBadge badgeContent={usecart.cart.length} color="secondary">
-        <ShoppingCartIcon />
+        <ShoppingCartIcon
+          color={usecart.cart.length >= 1 ? "primary" : "secondary"}
+        />
       </StyledBadge>
     </IconButton>
   );
