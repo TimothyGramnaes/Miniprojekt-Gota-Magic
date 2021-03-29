@@ -33,7 +33,7 @@ const ProductCart = () => {
               </p>
               <p>
                 {" "}
-                <b>Varav Moms:</b> {cart.totalPrice * 0.25} kr
+                <b>Varav Moms:</b> {cart.cartTotalPrice * 0.25} kr
               </p>
 
               <Link className="till-kassan-btn" to="/BreadCrumbs">
