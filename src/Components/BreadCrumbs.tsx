@@ -80,6 +80,10 @@ function BreadCrumbs() {
                             <p>Tack för din beställning, </p>
                             <p>mycket nöje!</p>
                         </div>
+                    <div style={{display: 'flex', 
+                                alignItems: 'center', 
+                                justifyContent: 'center',
+                                paddingTop: '2rem'}}>
                         <Link className="link-style" to="/ProductList">
                         <Button variant="contained" 
                         color="primary" 
@@ -87,6 +91,7 @@ function BreadCrumbs() {
                             Fortsätt Handla
                         </Button>
                         </Link>
+                    </div>
                     </div>
             
                 ) : (
@@ -122,7 +127,8 @@ function BreadCrumbs() {
 }
 
 const mainBox: CSSProperties = {
-    marginTop: '6rem'
+    marginTop: '6rem',
+    minHeight: '67vh'
 }
 
 const stepperStyle: CSSProperties = {
