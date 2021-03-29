@@ -43,6 +43,7 @@ export const CartContextProvider: FunctionComponent = ({ children }) => {
   );
 
   const ResetCart = () => {
+    getLsCart();
     setCart([...[]]);
   };
 
@@ -63,12 +64,12 @@ export const CartContextProvider: FunctionComponent = ({ children }) => {
 
   console.log(lsCart);
 
-  // const getLsCart = () => {
-  //   const cartData = localStorage.getItem("productCart") || "[]";
-  //   if (cartData) {
-  //     setLsCart([...JSON.parse(cartData)]);
-  //   }
-  // };
+  const getLsCart = () => {
+    const cartData = localStorage.getItem("productCart") || "[]";
+    if (cartData) {
+      setLsCart([...JSON.parse(cartData)]);
+    }
+  };
 
   useEffect(() => {
     localStorage.setItem("productCart", JSON.stringify(cart));

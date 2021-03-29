@@ -9,8 +9,7 @@ import {
   RadioGroup,
 } from "@material-ui/core";
 import React, { useState } from "react";
-import { useCheckoutContext } from '../Context/CheckoutContext'
-
+import { useCheckoutContext } from "../Context/CheckoutContext";
 
 function CheckOut3Payment() {
   const checkout = useCheckoutContext();
@@ -21,7 +20,6 @@ function CheckOut3Payment() {
   const userInfo = userFromContext.userInfo[0];
 
   function CardPaymentModal() {
-  
     return (
       <div className="card-modal">
         <form>
@@ -71,7 +69,6 @@ function CheckOut3Payment() {
             </div>
           </div>
         </form>
-        
       </div>
     );
   }
@@ -94,7 +91,6 @@ function CheckOut3Payment() {
   }
 
   function SMSLoanPaymentModal() {
-    
     return (
       <div className="sms-loan-modal">
         <p className="payment-info-text">
@@ -111,7 +107,6 @@ function CheckOut3Payment() {
   }
 
   function SwishPaymentModal() {
-
     return (
       <div className="swish-modal flex column">
         <p className="payment-info-text">
@@ -186,7 +181,7 @@ function CheckOut3Payment() {
           {/* Här tar vi in order komponenten, och tar bort den temporära nedanför */}
           <h2>Din beställning</h2>
           <h3 style={{ paddingTop: "1rem", paddingBottom: "1rem" }}>
-            {cart.totalPrice} kr{" "}
+            {cart.cartTotalPrice} kr{" "}
           </h3>
           <div>
             {cart.cart.map((item) => {
@@ -209,11 +204,11 @@ function CheckOut3Payment() {
           <div className="priceInfo">
             <p>
               {" "}
-              <b>Total kostnad: </b> {cart.totalPrice} kr{" "}
+              <b>Total kostnad: </b> {cart.cartTotalPrice} kr{" "}
             </p>
             <p>
               {" "}
-              <b>Varav Moms:</b> {cart.totalPrice * 0.25} kr
+              <b>Varav Moms:</b> {cart.cartTotalPrice * 0.25} kr
             </p>
             <p>
               {" "}

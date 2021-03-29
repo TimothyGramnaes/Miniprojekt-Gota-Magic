@@ -1,6 +1,6 @@
-import TextField from '@material-ui/core/TextField';
-import '../css/checkOut1UserInfo.css'
-import { useCheckoutContext } from '../Context/CheckoutContext'
+import TextField from "@material-ui/core/TextField";
+import "../css/checkOut1UserInfo.css";
+import { useCheckoutContext } from "../Context/CheckoutContext";
 import "../css/checkOut1UserInfo.css";
 import "../main.css";
 import { useCart } from "../Context/CartContext";
@@ -116,7 +116,7 @@ function CheckOut1UserInfo() {
       setUserToObject();
     }
   };
-  const handleuserPostNumber = (e: any) => {    
+  const handleuserPostNumber = (e: any) => {
     setUserPostNumber(e.target.value);
     if (!/^(\d{5})$/.test(e.target.value)) {
       setUserPostNumberError(false);
@@ -131,7 +131,6 @@ function CheckOut1UserInfo() {
 
   // Function that saves the inputsfields to an object
   const setUserToObject = () => {
-    
     user.getValidation(validated);
 
     user.saveUserInformation(
@@ -165,7 +164,6 @@ function CheckOut1UserInfo() {
     }
   }, []);
 
-
   const validateFunction = () => {
     if (
       userNameError &&
@@ -180,16 +178,15 @@ function CheckOut1UserInfo() {
     } else {
       setValidated(false);
     }
-  }
+  };
 
   useEffect(() => {
-    validateFunction()
+    validateFunction();
   });
 
   useEffect(() => {
     user.getValidation(validated);
   });
-
 
   // This useEffect saves the userObject to LS
   useEffect(() => {
@@ -284,7 +281,7 @@ function CheckOut1UserInfo() {
           {/* Här tar vi in order komponenten, och tar bort den temporära nedanför */}
           <h2>Din beställning</h2>
           <h3 style={{ paddingTop: "1rem", paddingBottom: "1rem" }}>
-            {cart.totalPrice} kr{" "}
+            {cart.cartTotalPrice} kr{" "}
           </h3>
           <div className="products">
             {cart.cart.map((item) => {
@@ -307,11 +304,11 @@ function CheckOut1UserInfo() {
           <div className="priceInfo">
             <p>
               {" "}
-              <b>Total kostnad: </b> {cart.totalPrice} kr{" "}
+              <b>Total kostnad: </b> {cart.cartTotalPrice} kr{" "}
             </p>
             <p>
               {" "}
-              <b>Varav Moms:</b> {cart.totalPrice * 0.25} kr
+              <b>Varav Moms:</b> {cart.cartTotalPrice * 0.25} kr
             </p>
             <p>
               {" "}

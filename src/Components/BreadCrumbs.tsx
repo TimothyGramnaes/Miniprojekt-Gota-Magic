@@ -57,7 +57,6 @@ function BreadCrumbs() {
       cart.ResetCart();
     } else if (activeStep === 3) {
       console.log(4);
-      cart.resetCartLs();
     }
   };
 
@@ -88,7 +87,11 @@ function BreadCrumbs() {
                   <p>mycket nöje!</p>
                 </div>
                 <Link className="link-style" to="/ProductList">
-                  <Button variant="contained" color="primary">
+                  <Button
+                    onClick={cart.resetCartLs}
+                    variant="contained"
+                    color="primary"
+                  >
                     Fortsätt Handla
                   </Button>
                 </Link>
