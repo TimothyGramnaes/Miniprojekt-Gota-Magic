@@ -1,9 +1,10 @@
 import React from 'react'
+import AdminForm from './AdminForm'
 
 function AdminNewProduct() {
 
     return(
-        <p>Ny produkt sätter Olof in här</p>
+        <AdminForm />
     )
 }
 
