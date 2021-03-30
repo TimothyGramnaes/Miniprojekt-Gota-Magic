@@ -83,7 +83,7 @@ function BreadCrumbs() {
 
   return (
     <div className="background">
-      <div className="grey-card main-box" style={mainBox}>
+      <div className="grey-card main-box">
         <div className="crumbs-container">
           <Stepper
             style={stepperStyle}
@@ -141,11 +141,6 @@ function BreadCrumbs() {
       </div>
     </div>
   );
-}
-
-const mainBox: CSSProperties = {
-    marginTop: '6rem',
-    minHeight: '67vh'
 }
 
 const stepperStyle: CSSProperties = {
