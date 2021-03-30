@@ -14,7 +14,13 @@ function Api() {
     useEffect(() => {
         productContext.ProductArray(products);
       }, [productContext, products]);
-      
+
+    // This useEffect saves the userObject to LS
+    // Like ComponentDidUpdate
+    useEffect(() => {    
+        localStorage.setItem('products', JSON.stringify(products))
+    })
+
     console.log(products)
     return(
         <Layout />

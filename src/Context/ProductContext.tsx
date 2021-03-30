@@ -1,6 +1,6 @@
-import React, { useState, createContext, FunctionComponent, useContext, useEffect } from 'react'
-import { Product, products as mockedProducts } from '../DB/Products'
+import React, { useState, createContext, FunctionComponent, useContext } from 'react'
 
+import { Product } from '../DB/Products'
 export const ProductContext = createContext<Context>(undefined!);
 
 // Typing for items in ProductProvider
@@ -15,32 +15,10 @@ type Context = {
 
 export const ProductProvider: FunctionComponent = ({ children }) => {
     // const [products, setProducts] = useState<Product[]>(mockedProducts)
-    const [products, setProducts] = useState<Product[]>(mockedProducts)
+    const [products, setProducts] = useState<Product[]>([])
 
     // const [viewProduct, setViewProduct] = useState<Product[]>([])
     const [productId, setProductId] = useState<number>(0)
-
-
-    // useEffect(() => {
-    //     setProducts(mockedProducts)
-    // }, [])
-
-    // This useEffect fetch the localStorage after the page is updated. 
-    // If this is not running, the saved LS data will be deleted
-    // Like ComponentDidMount
-    useEffect(() => {   
-        // ProductArray(products)
-        const data = localStorage.getItem('products') || "[]"
-        if (data) {
-            setProducts(JSON.parse(data))
-        }
-    }, [])
-
-    // This useEffect saves the userObject to LS
-    // Like ComponentDidUpdate
-    useEffect(() => {    
-        localStorage.setItem('products', JSON.stringify(products))
-    })
 
     // Add product to products
     const addProduct = (product: Product) => {}

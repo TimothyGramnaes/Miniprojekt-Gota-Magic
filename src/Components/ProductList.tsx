@@ -11,9 +11,9 @@ import {
 } from "@material-ui/core";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
-import { useProductContext } from "../Context/ProductContext";
+import { useProducts } from "../Context/ProductContext";
 
-import { Product, products as mockedProducts } from "../DB/Products";
+import { Product } from "../DB/Products";
 // Used fot routing the ID to URL and the right product is showned
 
 const useStyles = makeStyles({
@@ -27,8 +27,7 @@ const useStyles = makeStyles({
 });
 
 function ProductList() {
-  const products: Product[] = mockedProducts;
-  const productContext = useProductContext();
+  const products = useProducts();
 
   const style = useStyles();
 
@@ -40,6 +39,13 @@ function ProductList() {
   const [pageNumber, setPageNumber] = useState(1);
   const [productViewArray, setProductViewArray] = useState<Product[]>(products);
   const [searchValue, setSearchValue] = useState<string>();
+
+  useEffect(() => {   
+    const data = localStorage.getItem('products') || "[]"
+    if (data) {
+      setProductViewArray(JSON.parse(data))
+    }
+  }, [])
 
   // Styling variables
   const productListContainer: CSSProperties = {
@@ -193,25 +199,6 @@ function ProductList() {
       setPageNumber(thisPageNumber);
     }
   };
-
-  useEffect(() => {
-    productContext.ProductArray(products);
-  }, [productContext, products]);
-
-  // useEffect(() => {
-
-  //     const data = localStorage.getItem('products') || "[]"
-  //     if (data) {
-  //         setProductViewArray(JSON.parse(data))
-  //     }
-  // }, [])
-
-  // // This useEffect saves the userObject to LS
-  // // Like ComponentDidUpdate
-  // useEffect(() => {
-  //     localStorage.setItem('products', JSON.stringify(productViewArray))
-  // })
-  // console.log(productViewArray)
 
   return (
     <Grid
