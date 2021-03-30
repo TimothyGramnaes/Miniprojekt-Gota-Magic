@@ -102,3 +102,18 @@ form {
     max-width: 600px;
   }
 }
+
+@media (max-width: 630px) {
+  .right-side {
+    margin-left: 0;
+    padding-left: 0;
+  }
+  
+  .left-side {
+    padding-left: 0;
+  }
+  
+  .order-overview {
+    margin-top: 0;
+  }
+}
