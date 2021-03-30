@@ -64,12 +64,11 @@ const ProductCart = () => {
 };
 
 const varuStyle: CSSProperties = {
-  marginTop: '6rem',
-  minHeight: '20rem'
-
-}
+  marginTop: "6rem",
+  minHeight: "20rem",
+};
 const backStyle: CSSProperties = {
-  minHeight: '69vh'
-}
+  minHeight: "69vh",
+};
 
 export default ProductCart;
