@@ -3,6 +3,7 @@ import TextField from "@material-ui/core/TextField";
 import "./adminForm.css";
 import { Button } from "@material-ui/core";
 import { useProducts } from "../../Context/ProductContext";
+import { ContactPhoneOutlined } from "@material-ui/icons";
 
 function AdminForm() {
   const products = useProducts();
@@ -22,7 +23,48 @@ function AdminForm() {
     productCardRating: "",
     productView: true,
   });
+    
+  // const filterdArray = products.filter((result) => {
+  //   const searchlength = searchValue?.length;
+  //   const productColor = result.color;
+  //   const sliceProductColor = productColor.slice(0, searchlength);
+  //   const productName = result.productname;
+  //   const sliceProductName = productName.slice(0, searchlength);
+  //   const productCardtype = result.cardtype;
+  //   const sliceProductCardtype = productCardtype.slice(0, searchlength);
 
+  //   if (searchValue?.toLowerCase() === sliceProductColor.toLowerCase()) {
+  //     return searchValue?.toLowerCase();
+  //   } else if (searchValue?.toLowerCase() === sliceProductName.toLowerCase()) {
+  //     return searchValue?.toLowerCase();
+  //   } else if (
+  //     searchValue?.toLowerCase() === sliceProductCardtype.toLowerCase()
+  //   ) {
+  //     return searchValue?.toLowerCase();
+  //   }
+  //   return null;
+  // });    
+  // }
+
+  const test = () => {
+      const filterId = products.find((result) => {
+      console.log(filterId)
+      const productId = result.id
+      console.log(productId)
+      console.log(values.productId)
+      if(productId === parseInt(values.productId)){
+        console.log(values.productId)
+        return console.log('rätt')
+      } else {
+        console.log(productId)
+        return console.log('ej rätt')      
+      }
+    })
+  }
+
+  
+
+ 
   const handleProductNameInput = (event: any) => {
     setValues({ ...values, productName: event.target.value });
   };
@@ -56,6 +98,10 @@ function AdminForm() {
   const handleProductCardRating = (event: any) => {
     setValues({ ...values, productCardRating: event.target.value });
   };
+
+
+
+  
 
   console.log(values);
   console.log(products);
@@ -185,7 +231,7 @@ function AdminForm() {
           helperText="ensiffrigt nummer"
         />
 
-        <Button variant="outlined" color="primary">
+        <Button variant="outlined" color="primary" onClick={test}>
           Lägg till produkt{" "}
         </Button>
       </form>
