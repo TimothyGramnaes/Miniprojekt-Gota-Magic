@@ -86,9 +86,7 @@ function Tournaments() {
 
 const landingContainer: CSSProperties = {
     backgroundImage: 'url(./assets/imgs/what-the-hex.png)',    
-    height: '100%',
-
-    
+    height: '100%',   
 }
 
 const titleHeader: CSSProperties = {
@@ -124,7 +122,7 @@ const textLandingContainer: CSSProperties = {
     width: '100%',
     top: 0,
     backgroundColor: '#E2E2E2',
-    padding: '1rem 3rem 3rem 3rem'
+    padding: '2rem'
 }
 
 export default Tournaments;

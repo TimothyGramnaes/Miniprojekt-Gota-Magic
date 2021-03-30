@@ -207,7 +207,6 @@ function CheckOut1UserInfo() {
   return (
     <div className="container flex">
       <div className="left-side">
-        <div className="breadcrumbs">{/* <BreadCrumbs /> */}</div>
         <div className="headings">
           <h2>Utcheckning</h2>
           <h3>Fyll i dina användauppgifter</h3>
