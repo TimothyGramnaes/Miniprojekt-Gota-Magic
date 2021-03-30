@@ -2,7 +2,7 @@ import React from "react";
 import { CartContextProvider } from "../Context/CartContext";
 import { CheckoutProvider } from "../Context/CheckoutContext";
 import { ProductProvider } from "../Context/ProductContext";
-import Layout from "./Layout";
+import Api from "./Api";
 
 function ContextMaster() {
   return (
@@ -10,7 +10,7 @@ function ContextMaster() {
       <ProductProvider>
         <CheckoutProvider>
           <CartContextProvider>
-            <Layout />
+            <Api />
           </CartContextProvider>
         </CheckoutProvider>
       </ProductProvider>

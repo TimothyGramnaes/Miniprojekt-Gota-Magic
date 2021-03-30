@@ -46,7 +46,7 @@ function OrderConfirmation() {
 
       <div className="right-side">
         <div className="order-overview">
-          {/* Här tar vi in order komponenten, och tar bort den temporära nedanför */}
+          
           <h2>Din beställning</h2>
           <h3 style={{ paddingTop: "1rem", paddingBottom: "1rem" }}>
             {cart.totalPrice} kr{" "}
