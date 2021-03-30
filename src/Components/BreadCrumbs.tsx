@@ -53,20 +53,28 @@ function BreadCrumbs() {
       setActive(false)  
       
     } else if (validatedUser === true && activeStep === 0) {
-      setActive(true)}
-      else if(validatedUserShipping === false && activeStep === 1) {
+      setActive(true)
+
+    } else if(validatedUserShipping === false && activeStep === 1) {
       setActive(false)  
       
     } else if (validatedUserShipping === true && activeStep === 1) {
-      setActive(true)}
-      else if(validatedUserPayment === false && activeStep === 2) {
+      setActive(true)
+      user.getValidationPayment(false)
+
+    } else if(validatedUserPayment === false && activeStep === 2) {
       setActive(false)  
+      
       
     } else if (validatedUserPayment === true && activeStep === 2) {
       setActive(true)
       user.getValidation(false)
       user.getValidationShipping(false)
-      user.getValidationShipping(false)
+
+    
+    } else if (activeStep === 3) {
+      setActive(true)
+      user.getValidationPayment(false)
     } 
     
 
