@@ -41,6 +41,7 @@ function BreadCrumbs() {
   const cart = useCart();
   const user = useCheckoutContext();
   const validatedUser = user.validatedUser;
+  let isButtonClicked = false;
 
   console.log(validatedUser);
 
@@ -66,9 +67,25 @@ function BreadCrumbs() {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
+  const paymentDelay = () => {
+    setTimeout(() => {
+      handleNext()
+    }, 3500);
+  }
+
+  // const disableButton = () => {
+  //   if (isButtonClicked === true) {
+  //     return true
+  //   } else if (validatedUser === false) {
+  //     return true
+  //   } else {
+  //     return false
+  //   }
+  // }
+
   return (
     <div className="background">
-      <div className="grey-card main-box" style={mainBox}>
+      <div className="grey-card main-box">
         <div className="crumbs-container">
           <Grid item xs={12} sm={12} style={stepGrid}>
 
@@ -126,14 +143,14 @@ function BreadCrumbs() {
                 <p>{getStepContent(activeStep)}</p>
 
                 <div className="bread-btn">
-                  <Button disabled={activeStep === 0} onClick={handleBack}>
+                  <Button disabled={activeStep === 0 || activeStep === 3} onClick={handleBack}>
                     Tillbaka
                   </Button>
                   <Button
                     variant="contained"
                     color="primary"
                     disabled={validatedUser === false}
-                    onClick={handleNext}
+                    onClick={activeStep === 2 ? paymentDelay : handleNext}
                   >
                     {activeStep === steps.length - 1 ? "Klar" : "Nästa"}
                   </Button>
@@ -145,11 +162,6 @@ function BreadCrumbs() {
       </div>
     </div>
   );
-}
-
-const mainBox: CSSProperties = {
-    marginTop: '6rem',
-    minHeight: '67vh'
 }
 
 const stepperStyle: CSSProperties = {
