@@ -14,7 +14,6 @@ import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import { useProducts } from "../Context/ProductContext";
 
 import { Product } from "../DB/Products";
-// Used fot routing the ID to URL and the right product is showned
 
 const useStyles = makeStyles({
   searchfield: {
