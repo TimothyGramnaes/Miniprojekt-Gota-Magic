@@ -30,6 +30,7 @@ function getStepContent(stepIndex: number) {
       return <CheckOut3Payment />;
     case 3:
       return <OrderConfirmation />;
+    case 4: break;
     default:
       return "Unknown stepIndex";
   }
@@ -41,6 +42,7 @@ function BreadCrumbs() {
   const validatedUser = user.validatedUser;
   const validatedUserShipping = user.validatedShipping;
   const validatedUserPayment = user.validatedPayment;
+  const [disableAtPay, setDisableAtPay] = useState(true)
 
 
   const [active, setActive] = useState(false)
@@ -52,12 +54,12 @@ function BreadCrumbs() {
       
     } else if (validatedUser === true && activeStep === 0) {
       setActive(true)}
-    else if(validatedUserShipping === false && activeStep === 1) {
+      else if(validatedUserShipping === false && activeStep === 1) {
       setActive(false)  
       
     } else if (validatedUserShipping === true && activeStep === 1) {
       setActive(true)}
-    else if(validatedUserPayment === false && activeStep === 2) {
+      else if(validatedUserPayment === false && activeStep === 2) {
       setActive(false)  
       
     } else if (validatedUserPayment === true && activeStep === 2) {
@@ -65,16 +67,15 @@ function BreadCrumbs() {
       user.getValidation(false)
       user.getValidationShipping(false)
       user.getValidationShipping(false)
-    }    
-  }
+    } 
+    
+
+    
+}
 
   useEffect(() => {
     activateBtn()
   })
-  
-  
-
-  console.log(validatedUser);
 
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();
@@ -83,15 +84,16 @@ function BreadCrumbs() {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
     if (activeStep === 0) {
       activateBtn()
-      console.log(1);
     } else if (activeStep === 1) {
-      console.log(2);
+      
     } else if (activeStep === 2) {
-      console.log(3);
+      
       user.addOrderNumber();
       cart.ResetCart();
     } else if (activeStep === 3) {
-      console.log(4);
+      
+    } else if (activeStep >= 3) {
+      return
     }
   };
 
@@ -100,20 +102,26 @@ function BreadCrumbs() {
   };
 
   const paymentDelay = () => {
+    if (activeStep === 2 && disableAtPay === false) {
+      return
+    }
     setTimeout(() => {
       handleNext()
     }, 3500);
   }
 
-  // const disableButton = () => {
-  //   if (isButtonClicked === true) {
-  //     return true
-  //   } else if (validatedUser === false) {
-  //     return true
-  //   } else {
-  //     return false
-  //   }
-  // }
+  const handleClick = () => {
+
+    
+    
+    if(activeStep === 2){
+      setDisableAtPay(false)
+      setActive(false)
+      paymentDelay()    
+    } else {
+      handleNext()
+    }
+  }
 
   return (
     <div className="background">
@@ -163,7 +171,7 @@ function BreadCrumbs() {
                     variant="contained"
                     color="primary"
                     disabled={active === false}
-                    onClick={activeStep === 2 ? paymentDelay : handleNext}
+                    onClick={handleClick}
                   >
                     {activeStep === steps.length - 1 ? "Klar" : "Nästa"}
                   </Button>
