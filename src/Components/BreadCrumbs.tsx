@@ -82,9 +82,8 @@ function BreadCrumbs() {
           <div className="bread-btn">
             {activeStep === steps.length ? (
               <div>
-                <div className="slutfort-kop">
-                  <p>Tack för din beställning, </p>
-                  <p>mycket nöje!</p>
+                <div className="slutfort-kop" style={textStyle}>
+                  <p>Tack för din beställning, mycket nöje!</p>
                 </div>
                 <div style={{display: 'flex', 
                             alignItems: 'center', 
@@ -134,6 +133,11 @@ const mainBox: CSSProperties = {
 
 const stepperStyle: CSSProperties = {
   backgroundColor: "#ededed",
+  padding: '0 0 1.5rem 0'
 };
+
+const textStyle: CSSProperties = {
+  textAlign: 'center'
+}
 
 export default BreadCrumbs;
