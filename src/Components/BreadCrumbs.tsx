@@ -133,7 +133,8 @@ const mainBox: CSSProperties = {
 
 const stepperStyle: CSSProperties = {
   backgroundColor: "#ededed",
-  padding: '0 0 1.5rem 0'
+  padding: '0 0 1.5rem 0',
+  display: 'flex',
 };
 
 const textStyle: CSSProperties = {
