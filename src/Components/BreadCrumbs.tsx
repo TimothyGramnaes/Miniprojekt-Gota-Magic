@@ -3,6 +3,7 @@ import StepLabel from "@material-ui/core/StepLabel";
 import Step from "@material-ui/core/Step";
 import Stepper from "@material-ui/core/Stepper";
 import Button from "@material-ui/core/Button";
+import Hidden from '@material-ui/core/Hidden';
 import "../main.css";
 import "../css/breadcrumbs.css";
 
@@ -15,6 +16,7 @@ import OrderConfirmation from "./OrderConfirmation";
 import { CSSProperties } from "@material-ui/styles";
 import { useCheckoutContext } from "../Context/CheckoutContext";
 import { useCart } from "../Context/CartContext";
+import { Grid } from "@material-ui/core";
 
 function getSteps() {
   return ["Användaruppgifter", "Frakt", "Betalning", "Orderbekräftelse"];
@@ -85,17 +87,36 @@ function BreadCrumbs() {
     <div className="background">
       <div className="grey-card main-box">
         <div className="crumbs-container">
+          <Grid item xs={12} sm={12} style={stepGrid}>
+
+            <Hidden xsDown>
           <Stepper
             style={stepperStyle}
             activeStep={activeStep}
             alternativeLabel
-          >
+            >
             {steps.map((label) => (
               <Step key={label}>
                 <StepLabel>{label}</StepLabel>
               </Step>
             ))}
           </Stepper>
+            </Hidden>
+            <Hidden smUp>
+              <Stepper
+            style={stepperStyle}
+            activeStep={activeStep}
+            alternativeLabel
+            >
+              {steps.map((label) => (
+              <Step key={label}>
+                <StepLabel></StepLabel>
+              </Step>
+            ))}
+          </Stepper>
+
+            </Hidden>
+          </Grid>
           <div className="bread-btn">
             {activeStep === steps.length ? (
               <div>
@@ -145,8 +166,13 @@ function BreadCrumbs() {
 
 const stepperStyle: CSSProperties = {
   backgroundColor: "#ededed",
-  padding: '0 0 1.5rem 0'
+  padding: '0 0 1.5rem 0',
+  display: 'flex',
 };
+
+const stepGrid: CSSProperties = {
+  width: '100%',
+}
 
 const textStyle: CSSProperties = {
   textAlign: 'center'
