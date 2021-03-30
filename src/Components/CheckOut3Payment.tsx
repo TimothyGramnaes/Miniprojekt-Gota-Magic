@@ -81,13 +81,13 @@ function CheckOut3Payment() {
       <div className="bill-modal">
         {/* Här byts exempeladressen ut mot adressen användaren matat in tidigare */}
         <p className="payment-info-text">
-          Fyll i den adress dit du vill ha fakturan:
+          Fakturan kommer skickas till denna email.<br></br>Vill du använda en annan adress, gå tillbaka och ändra:
         </p>
         <TextField
           className="filled-input-field"
           required
           variant="standard"
-          value={userInfo.deliveryaddress}
+          value={userInfo.email}
         />
       </div>
     );
@@ -113,7 +113,7 @@ function CheckOut3Payment() {
     return (
       <div className="swish-modal flex column">
         <p className="payment-info-text">
-          Betala smidigt och säkert med Swish - fyll i ditt mobilnummer här:
+          Betala smidigt och säkert med Swish - SMS kommer skickas med en länk till din betalning:
         </p>
         <TextField
           className="filled-input-field"

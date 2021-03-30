@@ -61,7 +61,11 @@ function BreadCrumbs() {
       setActive(false)  
       
     } else if (validatedUserPayment === true && activeStep === 2) {
-      setActive(true)}    
+      setActive(true)
+      user.getValidation(false)
+      user.getValidationShipping(false)
+      user.getValidationShipping(false)
+    }    
   }
 
   useEffect(() => {
