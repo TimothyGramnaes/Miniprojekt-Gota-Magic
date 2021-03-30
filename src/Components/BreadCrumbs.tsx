@@ -39,6 +39,7 @@ function BreadCrumbs() {
   const cart = useCart();
   const user = useCheckoutContext();
   const validatedUser = user.validatedUser;
+  let isButtonClicked = false;
 
   console.log(validatedUser);
 
@@ -63,6 +64,22 @@ function BreadCrumbs() {
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
+
+  const paymentDelay = () => {
+    setTimeout(() => {
+      handleNext()
+    }, 3500);
+  }
+
+  // const disableButton = () => {
+  //   if (isButtonClicked === true) {
+  //     return true
+  //   } else if (validatedUser === false) {
+  //     return true
+  //   } else {
+  //     return false
+  //   }
+  // }
 
   return (
     <div className="background">
@@ -105,14 +122,14 @@ function BreadCrumbs() {
                 <p>{getStepContent(activeStep)}</p>
 
                 <div className="bread-btn">
-                  <Button disabled={activeStep === 0} onClick={handleBack}>
+                  <Button disabled={activeStep === 0 || activeStep === 3} onClick={handleBack}>
                     Tillbaka
                   </Button>
                   <Button
                     variant="contained"
                     color="primary"
                     disabled={validatedUser === false}
-                    onClick={handleNext}
+                    onClick={activeStep === 2 ? paymentDelay : handleNext}
                   >
                     {activeStep === steps.length - 1 ? "Klar" : "Nästa"}
                   </Button>
