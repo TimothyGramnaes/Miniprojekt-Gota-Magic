@@ -1,4 +1,5 @@
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import React from "react";
 import "./App.css";
 import ContextMaster from "./Components/ContextMaster";
 
