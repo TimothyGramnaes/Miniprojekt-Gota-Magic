@@ -54,6 +54,7 @@ function BreadCrumbs() {
       
     } else if (validatedUser === true && activeStep === 0) {
       setActive(true)
+      user.getValidationShipping(false)
 
     } else if(validatedUserShipping === false && activeStep === 1) {
       setActive(false)  
@@ -65,21 +66,16 @@ function BreadCrumbs() {
     } else if(validatedUserPayment === false && activeStep === 2) {
       setActive(false)  
       
-      
     } else if (validatedUserPayment === true && activeStep === 2) {
       setActive(true)
       user.getValidation(false)
       user.getValidationShipping(false)
-
     
     } else if (activeStep === 3) {
       setActive(true)
       user.getValidationPayment(false)
     } 
-    
-
-    
-}
+  }
 
   useEffect(() => {
     activateBtn()
@@ -119,8 +115,6 @@ function BreadCrumbs() {
   }
 
   const handleClick = () => {
-
-    
     
     if(activeStep === 2){
       setDisableAtPay(false)
