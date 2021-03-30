@@ -27,6 +27,8 @@ const useStyles = makeStyles({
 });
 
 function ProductList() {
+
+  // Products from ProductsContext
   const products = useProducts();
 
   const style = useStyles();
@@ -40,6 +42,7 @@ function ProductList() {
   const [productViewArray, setProductViewArray] = useState<Product[]>(products);
   const [searchValue, setSearchValue] = useState<string>();
 
+  // Fetch data from LS
   useEffect(() => {   
     const data = localStorage.getItem('products') || "[]"
     if (data) {
@@ -98,8 +101,7 @@ function ProductList() {
   const productData = productViewArray.slice(page, pageItems).map((product) => (
     <div key={product.id}>
       {/* Link is to show the right product on ProductPage.
-                The product.id is set in the URL string, and shows the right product that has the ID. */}
-
+      The product.id is set in the URL string, and shows the right product that has the ID. */}
       <ProductListCard
         productname={product.productname}
         price={product.price}
@@ -167,9 +169,7 @@ function ProductList() {
 
   // Goes back in the pagination
   const decrease = () => {
-    const productListStart: number =
-      productViewArray.length - productViewArray.length;
-
+    const productListStart: number = productViewArray.length - productViewArray.length;
     const thisPage: number = page - pageNumbers;
     const thisPageItems: number = pageItems - pageNumbers;
     const thisPageNumber: number = pageNumber - 1;
@@ -210,7 +210,7 @@ function ProductList() {
     >
       <div className="sok-test">
         <Grid item xs={12} className="searchContainer" style={searchStyle}>
-          <form onSubmit={handleSubmit} style={formStyle}>
+          <form onSubmit={handleSubmit} style={formStyle} autoComplete="off">
             <TextField
               id="filled-basic"
               fullWidth

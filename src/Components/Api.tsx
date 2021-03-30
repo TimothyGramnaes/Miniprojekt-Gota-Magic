@@ -9,8 +9,9 @@ function Api() {
 
     const productContext = useProductContext()
 
-    const [products, setProducts] = useState<Product[]>(mockedProducts)
+    const products:Product[] = mockedProducts
    
+    // Sends the products to ProductContext
     useEffect(() => {
         productContext.ProductArray(products);
       }, [productContext, products]);
@@ -21,7 +22,6 @@ function Api() {
         localStorage.setItem('products', JSON.stringify(products))
     })
 
-    console.log(products)
     return(
         <Layout />
     )

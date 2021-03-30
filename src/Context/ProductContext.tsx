@@ -10,7 +10,6 @@ type Context = {
     addProduct: (product: Product) => void;
     getIdFromProductList: (id:number) => void;
     ProductArray:(product: Product[]) => void
-    
 }
 
 export const ProductProvider: FunctionComponent = ({ children }) => {
