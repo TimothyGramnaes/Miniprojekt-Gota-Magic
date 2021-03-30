@@ -79,10 +79,7 @@ function Tournaments() {
                             <Link to="/Trasig">
                                 sabba allt här :)
                             </Link>
-                            <Route path="/Trasig" component={Trasig}>
-                                
-                            </Route>
-                            
+                            <Route path="/Trasig" component={Trasig} />                            
                         </Grid>
                     </Grid>
             </Grid>        
