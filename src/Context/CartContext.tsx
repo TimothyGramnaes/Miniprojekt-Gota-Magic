@@ -62,7 +62,6 @@ export const CartContextProvider: FunctionComponent = ({ children }) => {
     }
   }, []);
 
-  console.log(lsCart);
 
   const getLsCart = () => {
     const cartData = localStorage.getItem("productCart") || "[]";
@@ -75,7 +74,6 @@ export const CartContextProvider: FunctionComponent = ({ children }) => {
     localStorage.setItem("productCart", JSON.stringify(cart));
   }, [cart]);
 
-  console.log(lsCart);
   const addToCart = (
     itemName: string,
     price: number,
@@ -137,8 +135,6 @@ export const CartContextProvider: FunctionComponent = ({ children }) => {
 
     setCart([...newCart, newItem]); // skapar upp en ny cart med new item med eventuell quantity //
   };
-  console.log(cart);
-  console.log(lsCart);
 
   return (
     <CartContext.Provider

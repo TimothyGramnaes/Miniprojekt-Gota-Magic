@@ -20,7 +20,6 @@ export const ProductProvider: FunctionComponent = ({ children }) => {
     // const [viewProduct, setViewProduct] = useState<Product[]>([])
     const [productId, setProductId] = useState<number>(0)
 
-    console.log(products)
 
     // useEffect(() => {
     //     setProducts(mockedProducts)
