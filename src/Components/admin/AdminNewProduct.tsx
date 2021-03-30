@@ -1,11 +1,13 @@
-import React from 'react'
-import AdminForm from './AdminForm'
+import React from "react";
+import AdminForm from "./AdminForm";
 
 function AdminNewProduct() {
-
-    return(
-        <AdminForm />
-    )
+  return (
+    <div>
+      <AdminForm />
+      <h1>här skall formet ligga</h1>
+    </div>
+  );
 }
 
-export default AdminNewProduct
+export default AdminNewProduct;
