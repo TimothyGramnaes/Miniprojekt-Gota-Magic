@@ -97,8 +97,8 @@ form h5 {
   margin-bottom: 1rem;
 }
 
-.swish-modal .input-field {
-  margin-bottom: 3rem;
+.sms-loan-modal, .swish-modal, .bill-modal {
+  margin-bottom: 2rem;
 }
 
 @media (max-width: 950px) {

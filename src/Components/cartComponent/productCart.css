@@ -41,3 +41,19 @@
   margin-top: 2rem;
   text-decoration: none;
 }
+
+@media (max-width: 930px) {
+  .cartInfoContainer {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 500px) {
+  .grey-card {
+    padding: 3rem 1.5rem
+  }
+
+  .priceInfo {
+    margin: 1rem 0 0 1rem
+  }
+}
