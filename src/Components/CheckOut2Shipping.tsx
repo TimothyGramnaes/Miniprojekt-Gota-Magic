@@ -20,6 +20,7 @@ function CheckOut2Shipping() {
     const value = event.target.value;
     setRadioChange(value);
     checkout.saveShippingMethod(value);
+    checkout.getValidationShipping(true);
   };
 
   const setRadioChange = (v: string) => {

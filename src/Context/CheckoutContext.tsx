@@ -20,6 +20,10 @@ interface CheckoutContextValue {
   orderNumber: number;
   validatedUser: boolean
   addOrderNumber: () => void
+  validatedShipping: boolean
+  validatedPayment: boolean
+  getValidationShipping: (value:boolean) => void;
+  getValidationPayment: (value:boolean) => void;
 }
 
 // Interface for userinput from Checkout1UserInfo
@@ -96,9 +100,23 @@ export const CheckoutProvider: FunctionComponent = ({ children }) => {
   // A boolean that sends a true or false to BreadCrumbs to activate the next button at the CheckOut1UserInfo
   const [validatedUser, setValidatedUser] = useState<boolean>(false)
 
+  // A boolean that sends a true or false to BreadCrumbs to activate the next button at the CheckOut1UserInfo
+  const [validatedShipping, setValidatedShipping] = useState<boolean>(false)
+  
+  // A boolean that sends a true or false to BreadCrumbs to activate the next button at the CheckOut1UserInfo
+  const [validatedPayment, setValidatedPayment] = useState<boolean>(false)
+
   // Gets the boolean from CheckOut1UserInfo
   const getValidation = (value:boolean) => {
     setValidatedUser(value)      
+  }
+  // Gets the boolean from CheckOut1UserInfo
+  const getValidationShipping = (value:boolean) => {
+    setValidatedShipping(value)      
+  }
+  // Gets the boolean from CheckOut1UserInfo
+  const getValidationPayment = (value:boolean) => {
+    setValidatedPayment(value)      
   }
 
   // Saves the shippinginformation from CheckOut2Shipping
@@ -135,6 +153,11 @@ export const CheckoutProvider: FunctionComponent = ({ children }) => {
         payment,
         shippingObject,
         orderNumber,
+        validatedShipping,
+        validatedPayment,
+        getValidationShipping,
+        getValidationPayment
+
       }}
     >
       {children}

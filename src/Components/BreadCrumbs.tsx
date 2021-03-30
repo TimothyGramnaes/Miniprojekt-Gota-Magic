@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import StepLabel from "@material-ui/core/StepLabel";
 import Step from "@material-ui/core/Step";
 import Stepper from "@material-ui/core/Stepper";
@@ -39,7 +39,36 @@ function BreadCrumbs() {
   const cart = useCart();
   const user = useCheckoutContext();
   const validatedUser = user.validatedUser;
-  let isButtonClicked = false;
+  const validatedUserShipping = user.validatedShipping;
+  const validatedUserPayment = user.validatedPayment;
+
+
+  const [active, setActive] = useState(false)
+  // validatedUser === false
+
+  const activateBtn = () => {
+    if(validatedUser === false && activeStep === 0) {
+      setActive(false)  
+      
+    } else if (validatedUser === true && activeStep === 0) {
+      setActive(true)}
+    else if(validatedUserShipping === false && activeStep === 1) {
+      setActive(false)  
+      
+    } else if (validatedUserShipping === true && activeStep === 1) {
+      setActive(true)}
+    else if(validatedUserPayment === false && activeStep === 2) {
+      setActive(false)  
+      
+    } else if (validatedUserPayment === true && activeStep === 2) {
+      setActive(true)}    
+  }
+
+  useEffect(() => {
+    activateBtn()
+  })
+  
+  
 
   console.log(validatedUser);
 
@@ -49,6 +78,7 @@ function BreadCrumbs() {
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
     if (activeStep === 0) {
+      activateBtn()
       console.log(1);
     } else if (activeStep === 1) {
       console.log(2);
@@ -128,7 +158,7 @@ function BreadCrumbs() {
                   <Button
                     variant="contained"
                     color="primary"
-                    disabled={validatedUser === false}
+                    disabled={active === false}
                     onClick={activeStep === 2 ? paymentDelay : handleNext}
                   >
                     {activeStep === steps.length - 1 ? "Klar" : "Nästa"}
