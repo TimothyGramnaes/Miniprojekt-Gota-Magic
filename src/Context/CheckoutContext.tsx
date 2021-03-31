@@ -37,9 +37,6 @@ type User = {
   validated: boolean,
 }
 
-
-
-
 export const CheckoutContext = createContext<CheckoutContextValue>({} as any);
 
 // When page never been used, this value sets as ordernumber
@@ -100,21 +97,21 @@ export const CheckoutProvider: FunctionComponent = ({ children }) => {
   // A boolean that sends a true or false to BreadCrumbs to activate the next button at the CheckOut1UserInfo
   const [validatedUser, setValidatedUser] = useState<boolean>(false)
 
-  // A boolean that sends a true or false to BreadCrumbs to activate the next button at the CheckOut1UserInfo
+  // A boolean that sends a true or false to BreadCrumbs to activate the next button at the CheckOut2Shipping
   const [validatedShipping, setValidatedShipping] = useState<boolean>(false)
   
-  // A boolean that sends a true or false to BreadCrumbs to activate the next button at the CheckOut1UserInfo
+  // A boolean that sends a true or false to BreadCrumbs to activate the next button at the CheckOut3Payment
   const [validatedPayment, setValidatedPayment] = useState<boolean>(false)
 
   // Gets the boolean from CheckOut1UserInfo
   const getValidation = (value:boolean) => {
     setValidatedUser(value)      
   }
-  // Gets the boolean from CheckOut1UserInfo
+  // Gets the boolean from CheckOut2Shipping
   const getValidationShipping = (value:boolean) => {
     setValidatedShipping(value)      
   }
-  // Gets the boolean from CheckOut1UserInfo
+  // Gets the boolean from CheckOut3Payment
   const getValidationPayment = (value:boolean) => {
     setValidatedPayment(value)      
   }
