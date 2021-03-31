@@ -20,8 +20,7 @@ const useStyles = makeStyles({
     background: "#EDEDED",
   },
   resetBtn: {
-    margin: "2rem 0",
-    marginLeft: "1rem",
+    margin: "2rem 1rem 2rem 1rem",
   },
 });
 
@@ -61,6 +60,7 @@ function ProductList() {
     justifyContent: "center",
     alignItems: "center",
     flexWrap: "wrap",
+    paddingTop: '1.5rem',
   };
 
   const productListBtnStyle: CSSProperties = {

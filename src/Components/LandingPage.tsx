@@ -11,7 +11,7 @@ function LandingPage() {
 
     return(
         <>
-        <div className="* flex column" style={mainStyle}>
+        <div className="* flex column">
 
             <div className="heroContainer">            
             <div 
@@ -64,7 +64,7 @@ function LandingPage() {
                             <img className="person-bild" src="./assets/imgs/play/bear1.jpg" alt="bild"/>
                         </Grid>
                         
-                        <div className="breaker"></div>
+                        <div className="breaker" style={breakerStyle}></div>
 
                         <Grid container className="tour-kort">
                             <Grid className="artikel-grafik" item xs={12} md={5}>
@@ -130,8 +130,8 @@ const heroP: CSSProperties = {
     lineHeight: '1.5rem'
 }
 
-const mainStyle: CSSProperties = {
-    
+const breakerStyle: CSSProperties = {
+    margin: '2rem 0'
 }
 
 const landingContainer: CSSProperties = {
