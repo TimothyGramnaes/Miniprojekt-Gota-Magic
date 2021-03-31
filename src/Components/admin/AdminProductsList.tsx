@@ -2,8 +2,7 @@ import { Grid } from "@material-ui/core";
 import React from "react";
 
 import { useProducts } from "../../Context/ProductContext";
-import ProductListCardAdmin from "../ProductListCard";
-import AdminForm from "./AdminForm";
+import ProductListCardAdmin from "../ProductListCardAdmin";
 
 function AdminProductsList() {
   const products = useProducts();
