@@ -119,6 +119,7 @@ function BreadCrumbs() {
   }
 
   const handleClick = () => {
+    activateBtn()
     
     if(activeStep === 2){
       setDisableAtPay(false)
