@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 
 import { Product, products as mockedProducts } from '../DB/Products'
 import Layout from './Layout'
