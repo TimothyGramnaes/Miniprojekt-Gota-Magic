@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import StepLabel from "@material-ui/core/StepLabel";
 import Step from "@material-ui/core/Step";
 import Stepper from "@material-ui/core/Stepper";
@@ -32,6 +32,7 @@ function getStepContent(stepIndex: number) {
       return <CheckOut3Payment />;
     case 3:
       return <OrderConfirmation />;
+    case 4: break;
     default:
       return "Unknown stepIndex";
   }
@@ -41,9 +42,50 @@ function BreadCrumbs() {
   const cart = useCart();
   const user = useCheckoutContext();
   const validatedUser = user.validatedUser;
-  let isButtonClicked = false;
+  const validatedUserShipping = user.validatedShipping;
+  const validatedUserPayment = user.validatedPayment;
+  const [disableAtPay, setDisableAtPay] = useState(true)
 
-  console.log(validatedUser);
+
+  const [active, setActive] = useState(false)
+  // validatedUser === false
+
+  const activateBtn = () => {
+    if(validatedUser === false && activeStep === 0) {
+      setActive(false)  
+      
+    } else if (validatedUser === true && activeStep === 0) {
+      setActive(true)
+      console.log('steg1')
+      user.getValidationShipping(false)
+
+    } else if(validatedUserShipping === false && activeStep === 1) {
+      setActive(false)  
+      
+    } else if (validatedUserShipping === true && activeStep === 1) {
+      setActive(true)
+      console.log('steg2')
+      user.getValidationPayment(false)
+
+    } else if(validatedUserPayment === false && activeStep === 2) {
+      setActive(false)  
+      
+    } else if (validatedUserPayment === true && activeStep === 2) {
+      setActive(true)
+      console.log('steg3')
+      user.getValidation(false)
+      user.getValidationShipping(false)
+    
+    } else if (activeStep === 3) {
+      setActive(true)
+      console.log('steg4')
+      user.getValidationPayment(false)
+    } 
+  }
+
+  useEffect(() => {
+    activateBtn()
+  })
 
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();
@@ -51,15 +93,17 @@ function BreadCrumbs() {
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
     if (activeStep === 0) {
-      console.log(1);
+      activateBtn()
     } else if (activeStep === 1) {
-      console.log(2);
+      
     } else if (activeStep === 2) {
-      console.log(3);
+      
       user.addOrderNumber();
       cart.ResetCart();
     } else if (activeStep === 3) {
-      console.log(4);
+      
+    } else if (activeStep >= 3) {
+      return
     }
   };
 
@@ -68,20 +112,24 @@ function BreadCrumbs() {
   };
 
   const paymentDelay = () => {
+    if (activeStep === 2 && disableAtPay === false) {
+      return
+    }
     setTimeout(() => {
       handleNext()
     }, 3500);
   }
 
-  // const disableButton = () => {
-  //   if (isButtonClicked === true) {
-  //     return true
-  //   } else if (validatedUser === false) {
-  //     return true
-  //   } else {
-  //     return false
-  //   }
-  // }
+  const handleClick = () => {
+    
+    if(activeStep === 2){
+      setDisableAtPay(false)
+      setActive(false)
+      paymentDelay()    
+    } else {
+      handleNext()
+    }
+  }
 
   return (
     <div className="background">
@@ -149,8 +197,8 @@ function BreadCrumbs() {
                   <Button
                     variant="contained"
                     color="primary"
-                    disabled={validatedUser === false}
-                    onClick={activeStep === 2 ? paymentDelay : handleNext}
+                    disabled={active === false}
+                    onClick={handleClick}
                   >
                     {activeStep === steps.length - 1 ? "Klar" : "Nästa"}
                   </Button>

@@ -20,6 +20,10 @@ interface CheckoutContextValue {
   orderNumber: number;
   validatedUser: boolean
   addOrderNumber: () => void
+  validatedShipping: boolean
+  validatedPayment: boolean
+  getValidationShipping: (value:boolean) => void;
+  getValidationPayment: (value:boolean) => void;
 }
 
 // Interface for userinput from Checkout1UserInfo
@@ -32,9 +36,6 @@ type User = {
   postnumber: string,
   validated: boolean,
 }
-
-
-
 
 export const CheckoutContext = createContext<CheckoutContextValue>({} as any);
 
@@ -96,9 +97,26 @@ export const CheckoutProvider: FunctionComponent = ({ children }) => {
   // A boolean that sends a true or false to BreadCrumbs to activate the next button at the CheckOut1UserInfo
   const [validatedUser, setValidatedUser] = useState<boolean>(false)
 
+  // A boolean that sends a true or false to BreadCrumbs to activate the next button at the CheckOut2Shipping
+  const [validatedShipping, setValidatedShipping] = useState<boolean>(false)
+  
+  // A boolean that sends a true or false to BreadCrumbs to activate the next button at the CheckOut3Payment
+  const [validatedPayment, setValidatedPayment] = useState<boolean>(false)
+
   // Gets the boolean from CheckOut1UserInfo
   const getValidation = (value:boolean) => {
+    console.log('får user')
     setValidatedUser(value)      
+  }
+  // Gets the boolean from CheckOut2Shipping
+  const getValidationShipping = (value:boolean) => {
+    console.log('får shipping')
+    setValidatedShipping(value)      
+  }
+  // Gets the boolean from CheckOut3Payment
+  const getValidationPayment = (value:boolean) => {
+    console.log('får betal')
+    setValidatedPayment(value)      
   }
 
   // Saves the shippinginformation from CheckOut2Shipping
@@ -135,6 +153,11 @@ export const CheckoutProvider: FunctionComponent = ({ children }) => {
         payment,
         shippingObject,
         orderNumber,
+        validatedShipping,
+        validatedPayment,
+        getValidationShipping,
+        getValidationPayment
+
       }}
     >
       {children}

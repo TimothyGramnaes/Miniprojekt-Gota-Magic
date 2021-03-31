@@ -128,6 +128,7 @@ function CheckOut3Payment() {
     const value = event.target.value;
     setValue(value);
     checkout.savePaymentMethod(value);
+    checkout.getValidationPayment(true);
   };
 
   return (
