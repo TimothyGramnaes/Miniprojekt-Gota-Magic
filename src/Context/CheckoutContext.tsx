@@ -105,14 +105,17 @@ export const CheckoutProvider: FunctionComponent = ({ children }) => {
 
   // Gets the boolean from CheckOut1UserInfo
   const getValidation = (value:boolean) => {
+    console.log('får user')
     setValidatedUser(value)      
   }
   // Gets the boolean from CheckOut2Shipping
   const getValidationShipping = (value:boolean) => {
+    console.log('får shipping')
     setValidatedShipping(value)      
   }
   // Gets the boolean from CheckOut3Payment
   const getValidationPayment = (value:boolean) => {
+    console.log('får betal')
     setValidatedPayment(value)      
   }
 
