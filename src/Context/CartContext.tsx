@@ -33,10 +33,12 @@ export const CartContextProvider: FunctionComponent = ({ children }) => {
   const getCartSize = () => {
     return cart.length;
   };
+  // Sätter totalpriset på LSvarukorgen + quantity //
   const totalPrice = lsCart.reduce(
     (acc, curr) => acc + curr.price * curr.quantity,
     0
   );
+  // Sätter totalpriset på varukorgen + quantity //
   const cartTotalPrice = cart.reduce(
     (acc, curr) => acc + curr.price * curr.quantity,
     0
@@ -62,7 +64,6 @@ export const CartContextProvider: FunctionComponent = ({ children }) => {
     }
   }, []);
 
-
   const getLsCart = () => {
     const cartData = localStorage.getItem("productCart") || "[]";
     if (cartData) {
@@ -74,6 +75,7 @@ export const CartContextProvider: FunctionComponent = ({ children }) => {
     localStorage.setItem("productCart", JSON.stringify(cart));
   }, [cart]);
 
+  // Lägger till produkt i varukorgen //
   const addToCart = (
     itemName: string,
     price: number,
@@ -81,8 +83,10 @@ export const CartContextProvider: FunctionComponent = ({ children }) => {
     id: number
   ) => {
     let existingItem = cart.find(
-      (item) => item.itemName === itemName // tittar om två item har samma namn //
+      (item) => item.itemName === itemName //Retunerar true eller false beroende på om det finns två item av samma namn //
     ) as orderItem;
+
+    // skapar ett nytt orderitem med ökad quantity///
     let newItem: orderItem = {
       itemName: itemName,
       price: price,
@@ -91,15 +95,18 @@ export const CartContextProvider: FunctionComponent = ({ children }) => {
       id: id,
     };
 
+    // filtrerar bort items med samma namn som itemName //
     let newCart = [
       ...cart.filter((item) => {
-        return item.itemName !== itemName; // filtrerar bort dubletter bland items //
+        return item.itemName !== itemName;
       }),
     ];
 
-    setCart([...newCart, newItem]); // skapar upp en ny cart med new item med eventuell quantity //
+    // skapar upp en ny cart med new item med eventuell ökad quantity //
+    setCart([...newCart, newItem]);
   };
 
+  // tar bort item från cart //
   const removeFromCart = (productName: string) => {
     let newCart = [
       ...cart.filter((item) => {
@@ -109,31 +116,33 @@ export const CartContextProvider: FunctionComponent = ({ children }) => {
     setCart([...newCart]);
   };
 
+  // minskar quantity om två lika dana item finns//
   const decreaseQuantity = (item: orderItem) => {
     let existingItem = cart.find(
-      (i) => i.itemName === item.itemName // tittar om två item har samma namn //
+      (i) => i.itemName === item.itemName
     ) as orderItem;
 
     let newItem: orderItem = {
       itemName: existingItem.itemName,
       price: existingItem.price,
       img: existingItem.img,
-      quantity: existingItem.quantity - 1, // om två item har samma namn minskar quantity med 1 //
+      quantity: existingItem.quantity - 1,
       id: existingItem.id,
     };
 
     let newCart = [
       ...cart.filter((i) => {
-        return i.itemName !== item.itemName; // filtrerar bort dubletter bland items //
+        return i.itemName !== item.itemName;
       }),
     ];
 
+    // Tar bort itemet om quantity är mindre än 1 //
     if (newItem.quantity === 0) {
-      setCart([...newCart]); // deletar itemet om quantity är mindre än 1 //
+      setCart([...newCart]);
       return;
     }
-
-    setCart([...newCart, newItem]); // skapar upp en ny cart med new item med eventuell quantity //
+    // Annars sätter det nya itemet med minskad quantity//
+    setCart([...newCart, newItem]);
   };
 
   return (

@@ -25,7 +25,6 @@ const useStyles = makeStyles({
   },
 });
 
-
 function CheckOut1UserInfo() {
   const cart = useCart();
   const [userName, setUserName] = useState<string>("");
@@ -77,8 +76,6 @@ function CheckOut1UserInfo() {
     }
   };
 
-  console.log(userPostNumber)
-
   const handleuserEmail = (e: any) => {
     setUserEmail(e.target.value);
     if (e.target.value.indexOf("@") === -1) {
@@ -94,7 +91,6 @@ function CheckOut1UserInfo() {
   const handleuserMobile = (e: any) => {
     setUserMobile(e.target.value);
     if (!/^(\d{10})$/.test(e.target.value)) {
-      console.log("regex funkar");
       setUserMobileError(false);
       setUserMobileText("Ditt 10 siffriga mobilnummer");
     } else {
@@ -185,7 +181,6 @@ function CheckOut1UserInfo() {
       userCityError === true
     ) {
       setValidated(true);
-      console.log("funkar");
     } else {
       setValidated(false);
     }
