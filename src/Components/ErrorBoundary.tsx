@@ -33,9 +33,10 @@ class ErrorBoundary extends Component<Props, State> {
 
     public render() {
         if (this.state.hasError) {
+            console.log('du förstörde allt >=(')
             return (
                 <div style={errorStyle}>
-                    <h2>404 inget funkar</h2>
+                    <h2>Trasigt tihi</h2>
                     <Link to="/">
                     <Button variant="contained" color="primary" 
                     // onClick={this.navigateBack}

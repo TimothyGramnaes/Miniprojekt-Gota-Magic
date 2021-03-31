@@ -12,6 +12,7 @@ import ErrorBoundary from "./ErrorBoundary";
 
 import { Switch, Route, BrowserRouter } from "react-router-dom";
 import ProductCart from "./cartComponent/ProductCart";
+import MissingPage from "./MissingPage";
 
 function Layout() {
   return (
@@ -28,6 +29,7 @@ function Layout() {
         <Route path="/BreadCrumbs" component={BreadCrumbs} />
         {/* :id is put behind the ProductPage/ to use the id that is put in the link tag in ProductList.tsx */}
         <Route path="/ProductPage/:id" component={ProductPage} />
+        <MissingPage />
       </Switch>
       </ErrorBoundary>
       <Footer />
