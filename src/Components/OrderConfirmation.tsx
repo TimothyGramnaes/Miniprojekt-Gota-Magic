@@ -24,10 +24,9 @@ function OrderConfirmation() {
           <h3>Detta är ett bevis på ditt köp. Spara denna orderbekräftelse!</h3>
         </div>
         <div className="user-info">
-          {/* <h5 className="order-info-text">
-            Din leverans beräknas anlända till **ADRESS** om ca **FRAKTSÄTT
-            LÄNGD**
-          </h5> */}
+          <h5 className="order-info-text">
+            Din leverans beräknas anlända till {user.deliveryaddress} om ca {shipping[0].deliveryTime}
+          </h5>
           <h3>Användaruppgifter</h3>
           <p>{user.name}</p>
           <p>{user.email}</p>
@@ -47,7 +46,7 @@ function OrderConfirmation() {
 
       <div className="right-side">
         <div className="order-overview">
-          {/* Här tar vi in order komponenten, och tar bort den temporära nedanför */}
+          
           <h2>Din beställning</h2>
           <h3 style={{ paddingTop: "1rem", paddingBottom: "1rem" }}>
             {cart.totalPrice} kr{" "}

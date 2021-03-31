@@ -11,24 +11,23 @@ import {
 } from "@material-ui/core";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
-import { useProductContext } from "../Context/ProductContext";
+import { useProducts } from "../Context/ProductContext";
 
-import { Product, products as mockedProducts } from "../DB/Products";
-// Used fot routing the ID to URL and the right product is showned
+import { Product } from "../DB/Products";
 
 const useStyles = makeStyles({
   searchfield: {
     background: "#EDEDED",
   },
   resetBtn: {
-    margin: "2rem 0",
-    marginLeft: "1rem",
+    margin: "2rem 1rem 2rem 1rem",
   },
 });
 
 function ProductList() {
-  const products: Product[] = mockedProducts;
-  const productContext = useProductContext();
+
+  // Products from ProductsContext
+  const products = useProducts();
 
   const style = useStyles();
 
@@ -40,6 +39,14 @@ function ProductList() {
   const [pageNumber, setPageNumber] = useState(1);
   const [productViewArray, setProductViewArray] = useState<Product[]>(products);
   const [searchValue, setSearchValue] = useState<string>();
+
+  // Fetch data from LS
+  useEffect(() => {   
+    const data = localStorage.getItem('products') || "[]"
+    if (data) {
+      setProductViewArray(JSON.parse(data))
+    }
+  }, [])
 
   // Styling variables
   const productListContainer: CSSProperties = {
@@ -53,6 +60,7 @@ function ProductList() {
     justifyContent: "center",
     alignItems: "center",
     flexWrap: "wrap",
+    paddingTop: '1.5rem',
   };
 
   const productListBtnStyle: CSSProperties = {
@@ -92,8 +100,7 @@ function ProductList() {
   const productData = productViewArray.slice(page, pageItems).map((product) => (
     <div key={product.id}>
       {/* Link is to show the right product on ProductPage.
-                The product.id is set in the URL string, and shows the right product that has the ID. */}
-
+      The product.id is set in the URL string, and shows the right product that has the ID. */}
       <ProductListCard
         productname={product.productname}
         price={product.price}
@@ -161,9 +168,7 @@ function ProductList() {
 
   // Goes back in the pagination
   const decrease = () => {
-    const productListStart: number =
-      productViewArray.length - productViewArray.length;
-
+    const productListStart: number = productViewArray.length - productViewArray.length;
     const thisPage: number = page - pageNumbers;
     const thisPageItems: number = pageItems - pageNumbers;
     const thisPageNumber: number = pageNumber - 1;
@@ -194,25 +199,6 @@ function ProductList() {
     }
   };
 
-  useEffect(() => {
-    productContext.ProductArray(products);
-  }, [productContext, products]);
-
-  // useEffect(() => {
-
-  //     const data = localStorage.getItem('products') || "[]"
-  //     if (data) {
-  //         setProductViewArray(JSON.parse(data))
-  //     }
-  // }, [])
-
-  // // This useEffect saves the userObject to LS
-  // // Like ComponentDidUpdate
-  // useEffect(() => {
-  //     localStorage.setItem('products', JSON.stringify(productViewArray))
-  // })
-  // console.log(productViewArray)
-
   return (
     <Grid
       container
@@ -223,7 +209,7 @@ function ProductList() {
     >
       <div className="sok-test">
         <Grid item xs={12} className="searchContainer" style={searchStyle}>
-          <form onSubmit={handleSubmit} style={formStyle}>
+          <form onSubmit={handleSubmit} style={formStyle} autoComplete="off">
             <TextField
               id="filled-basic"
               fullWidth

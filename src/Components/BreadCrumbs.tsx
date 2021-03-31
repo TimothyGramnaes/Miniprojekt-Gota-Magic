@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import StepLabel from "@material-ui/core/StepLabel";
 import Step from "@material-ui/core/Step";
 import Stepper from "@material-ui/core/Stepper";
 import Button from "@material-ui/core/Button";
+import Hidden from '@material-ui/core/Hidden';
 import "../main.css";
 import "../css/breadcrumbs.css";
 
@@ -15,6 +16,7 @@ import OrderConfirmation from "./OrderConfirmation";
 import { CSSProperties } from "@material-ui/styles";
 import { useCheckoutContext } from "../Context/CheckoutContext";
 import { useCart } from "../Context/CartContext";
+import { Grid } from "@material-ui/core";
 
 function getSteps() {
   return ["Användaruppgifter", "Frakt", "Betalning", "Orderbekräftelse"];
@@ -30,6 +32,7 @@ function getStepContent(stepIndex: number) {
       return <CheckOut3Payment />;
     case 3:
       return <OrderConfirmation />;
+    case 4: break;
     default:
       return "Unknown stepIndex";
   }
@@ -39,8 +42,50 @@ function BreadCrumbs() {
   const cart = useCart();
   const user = useCheckoutContext();
   const validatedUser = user.validatedUser;
+  const validatedUserShipping = user.validatedShipping;
+  const validatedUserPayment = user.validatedPayment;
+  const [disableAtPay, setDisableAtPay] = useState(true)
 
-  console.log(validatedUser);
+
+  const [active, setActive] = useState(false)
+  // validatedUser === false
+
+  const activateBtn = () => {
+    if(validatedUser === false && activeStep === 0) {
+      setActive(false)  
+      
+    } else if (validatedUser === true && activeStep === 0) {
+      setActive(true)
+      console.log('steg1')
+      user.getValidationShipping(false)
+
+    } else if(validatedUserShipping === false && activeStep === 1) {
+      setActive(false)  
+      
+    } else if (validatedUserShipping === true && activeStep === 1) {
+      setActive(true)
+      console.log('steg2')
+      user.getValidationPayment(false)
+
+    } else if(validatedUserPayment === false && activeStep === 2) {
+      setActive(false)  
+      
+    } else if (validatedUserPayment === true && activeStep === 2) {
+      setActive(true)
+      console.log('steg3')
+      user.getValidation(false)
+      user.getValidationShipping(false)
+    
+    } else if (activeStep === 3) {
+      setActive(true)
+      console.log('steg4')
+      user.getValidationPayment(false)
+    } 
+  }
+
+  useEffect(() => {
+    activateBtn()
+  })
 
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();
@@ -48,15 +93,17 @@ function BreadCrumbs() {
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
     if (activeStep === 0) {
-      console.log(1);
+      activateBtn()
     } else if (activeStep === 1) {
-      console.log(2);
+      
     } else if (activeStep === 2) {
-      console.log(3);
+      
       user.addOrderNumber();
       cart.ResetCart();
     } else if (activeStep === 3) {
-      console.log(4);
+      
+    } else if (activeStep >= 3) {
+      return
     }
   };
 
@@ -64,27 +111,65 @@ function BreadCrumbs() {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
+  const paymentDelay = () => {
+    if (activeStep === 2 && disableAtPay === false) {
+      return
+    }
+    setTimeout(() => {
+      handleNext()
+    }, 3500);
+  }
+
+  const handleClick = () => {
+    
+    if(activeStep === 2){
+      setDisableAtPay(false)
+      setActive(false)
+      paymentDelay()    
+    } else {
+      handleNext()
+    }
+  }
+
   return (
     <div className="background">
-      <div className="grey-card main-box" style={mainBox}>
+      <div className="grey-card main-box">
         <div className="crumbs-container">
+          <Grid item xs={12} sm={12} style={stepGrid}>
+
+            <Hidden xsDown>
           <Stepper
             style={stepperStyle}
             activeStep={activeStep}
             alternativeLabel
-          >
+            >
             {steps.map((label) => (
               <Step key={label}>
                 <StepLabel>{label}</StepLabel>
               </Step>
             ))}
           </Stepper>
+            </Hidden>
+            <Hidden smUp>
+              <Stepper
+            style={stepperStyle}
+            activeStep={activeStep}
+            alternativeLabel
+            >
+              {steps.map((label) => (
+              <Step key={label}>
+                <StepLabel></StepLabel>
+              </Step>
+            ))}
+          </Stepper>
+
+            </Hidden>
+          </Grid>
           <div className="bread-btn">
             {activeStep === steps.length ? (
               <div>
-                <div className="slutfort-kop">
-                  <p>Tack för din beställning, </p>
-                  <p>mycket nöje!</p>
+                <div className="slutfort-kop" style={textStyle}>
+                  <p>Tack för din beställning, mycket nöje!</p>
                 </div>
                 <div style={{display: 'flex', 
                             alignItems: 'center', 
@@ -106,14 +191,14 @@ function BreadCrumbs() {
                 <p>{getStepContent(activeStep)}</p>
 
                 <div className="bread-btn">
-                  <Button disabled={activeStep === 0} onClick={handleBack}>
+                  <Button disabled={activeStep === 0 || activeStep === 3} onClick={handleBack}>
                     Tillbaka
                   </Button>
                   <Button
                     variant="contained"
                     color="primary"
-                    disabled={validatedUser === false}
-                    onClick={handleNext}
+                    disabled={active === false}
+                    onClick={handleClick}
                   >
                     {activeStep === steps.length - 1 ? "Klar" : "Nästa"}
                   </Button>
@@ -127,13 +212,18 @@ function BreadCrumbs() {
   );
 }
 
-const mainBox: CSSProperties = {
-    marginTop: '6rem',
-    minHeight: '67vh'
-}
-
 const stepperStyle: CSSProperties = {
   backgroundColor: "#ededed",
+  padding: '0 0 1.5rem 0',
+  display: 'flex',
 };
+
+const stepGrid: CSSProperties = {
+  width: '100%',
+}
+
+const textStyle: CSSProperties = {
+  textAlign: 'center'
+}
 
 export default BreadCrumbs;
