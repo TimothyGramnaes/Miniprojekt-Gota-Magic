@@ -84,9 +84,7 @@ function BreadCrumbs() {
 
   useEffect(() => {
     activateBtn()
-  })
-
-  
+  })  
 
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();
