@@ -34,35 +34,24 @@ function CheckOut1UserInfo() {
   const [userName, setUserName] = useState<string>("");
   const [userNameError, setUserNameError] = useState<boolean>(false);
   const [userNameErrorText, setUserNameErrorText] = useState<string>("");
-
   const [userEmail, setUserEmail] = useState<string>("");
-  const [userEmailError, setUserEmailError] = useState<boolean>(false);
-  const [userEmailErrorText, setUserEmailErrorText] = useState<string>("");
-
   const [userMobile, setUserMobile] = useState<string>("");
-  const [userMobileError, setUserMobileError] = useState<boolean>(false);
-  const [userMobileErrorText, setUserMobileText] = useState<string>("")
-
   const [userDeliveryaddress, setUserDeliveryaddress] = useState<string>("");
-  const [userDeliveryAdressError, setUserDeliveryAdressError] = useState<boolean>(false);
+  const [userDeliveryAdressError, setUserDeliveryAdressError ] = useState<boolean>(false);
   const [userDeliveryErrorText, setUserDeliveryErrorText] = useState<string>("");
-
   const [userCity, setUserCity] = useState<string>("");
   const [userCityError, setUserCityError] = useState<boolean>(false);
   const [userCityErrorText, setUserCityText] = useState<string>("");
-
   const [userPostNumber, setUserPostNumber] = useState<string>("");
   const [userPostNumberError, setUserPostNumberError] = useState<boolean>(false);
   const [userPostNumberTextError, setUserPostNumberErrorText] = useState<string>("");
-;
+  const [userEmailError, setUserEmailError] = useState<boolean>(false);
+  const [userEmailErrorText, setUserEmailErrorText] = useState<string>("");
+  const [userMobileError, setUserMobileError] = useState<boolean>(false);
+  const [userMobileErrorText, setUserMobileText] = useState<string>("");
   const [validated, setValidated] = useState<boolean>(false);
-  // const [disableInput, setDisableInput] = useState(false)
 
   const noCartItems = cart.cart.length
-
-  //   if( noCartItems === 0){
-  //     setDisableInput(true)
-  //   } else {setDisableInput(false)}
 
 
   // The user array
@@ -80,7 +69,18 @@ function CheckOut1UserInfo() {
     } else {
       setUserNameError(true);
       setUserNameErrorText("");
-      setUserToObject();
+    }
+  };
+
+  const handleuserPostNumber = (e: any) => {
+    setUserPostNumber(e.target.value);
+    if (!/^(\d{5})$/.test(e.target.value)) {
+      setUserPostNumberError(false);
+      setUserPostNumberErrorText("Skriv ditt 5 siffriga postnummer");
+    } else {
+      setUserPostNumberError(true);
+      setUserPostNumberErrorText("");
+      setUserToObject();      
     }
   };
 
@@ -92,7 +92,6 @@ function CheckOut1UserInfo() {
     } else {
       setUserEmailErrorText("");
       setUserEmailError(true);
-      setUserToObject();
     }
   };
 
@@ -104,7 +103,6 @@ function CheckOut1UserInfo() {
     } else {
       setUserMobileText("");
       setUserMobileError(true);
-      setUserToObject();
     }
   };
 
@@ -116,9 +114,9 @@ function CheckOut1UserInfo() {
     } else {
       setUserDeliveryAdressError(true);
       setUserDeliveryErrorText("");
-      setUserToObject();
     }
   };
+
 
   const handleuserCity = (e: any) => {
     setUserCity(e.target.value);
@@ -128,20 +126,9 @@ function CheckOut1UserInfo() {
     } else {
       setUserCityError(true);
       setUserCityText("");
-      setUserToObject();
     }
   };
-  const handleuserPostNumber = (e: any) => {
-    setUserPostNumber(e.target.value);
-    if (!/^(\d{5})$/.test(e.target.value)) {
-      setUserPostNumberError(false);
-      setUserPostNumberErrorText("Skriv ditt 5 siffriga postnummer");
-    } else {
-      setUserPostNumberError(true);
-      setUserPostNumberErrorText("");
-      setUserToObject();
-    }
-  };
+
   // End of input handlers
 
   // Function that saves the inputsfields to an object
@@ -153,8 +140,8 @@ function CheckOut1UserInfo() {
       userEmail,
       userMobile,
       userDeliveryaddress,
-      userCity,
       userPostNumber,
+      userCity,      
       validated
     );
     setUserObject([
@@ -163,12 +150,31 @@ function CheckOut1UserInfo() {
         email: userEmail,
         mobile: userMobile,
         deliveryaddress: userDeliveryaddress,
-        city: userCity,
         postnumber: userPostNumber,
+        city: userCity,        
         validated: validated,
       },
     ]);
   };
+
+  useEffect(() => {
+    if(validated === true) {
+      user.saveUserInformation(
+        userName,
+        userEmail,
+        userMobile,
+        userDeliveryaddress,
+        userPostNumber,
+        userCity,      
+        validated
+      );
+    } else if(validated === false) {
+      return
+    }    
+    else if (userObject[0].validated === true && validated === true) {
+      return
+    } else {return}
+  }, [user, userCity, userDeliveryaddress, userEmail, userMobile, userName, userObject, userPostNumber, validated])
 
   // This useEffect fetch the localStorage after the page is updated.
   // If this is not running, the saved LS data will be deleted
