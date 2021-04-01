@@ -5,8 +5,9 @@ import "../css/checkOut1UserInfo.css";
 import "../main.css";
 import { useCart } from "../Context/CartContext";
 import "../css/checkOut1UserInfo.css";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core";
+import CheckoutError from './CheckoutError'
 
 // Interface to the userObject array
 export interface User {
@@ -27,6 +28,8 @@ const useStyles = makeStyles({
 
 function CheckOut1UserInfo() {
   const cart = useCart();
+
+  console.log(cart.cart.length)
   
   const [userName, setUserName] = useState<string>("");
   const [userNameError, setUserNameError] = useState<boolean>(false);
@@ -53,6 +56,14 @@ function CheckOut1UserInfo() {
   const [userPostNumberTextError, setUserPostNumberErrorText] = useState<string>("");
 ;
   const [validated, setValidated] = useState<boolean>(false);
+  // const [disableInput, setDisableInput] = useState(false)
+
+  const noCartItems = cart.cart.length
+
+  //   if( noCartItems === 0){
+  //     setDisableInput(true)
+  //   } else {setDisableInput(false)}
+
 
   // The user array
   const [userObject, setUserObject] = useState<User[]>([]);
@@ -205,6 +216,7 @@ function CheckOut1UserInfo() {
           <h2>Utcheckning</h2>
           <h3>Fyll i dina användauppgifter</h3>
         </div>
+        {noCartItems === 0 ? <CheckoutError /> : null} 
         <div className="checkout-form">
           <form className="flex column" autoComplete="on">
             <TextField
@@ -218,6 +230,7 @@ function CheckOut1UserInfo() {
               onChange={handleUserName}
               error={userNameError}
               helperText={userNameErrorText}
+              // disabled={disableInput}
             />
 
             <TextField
