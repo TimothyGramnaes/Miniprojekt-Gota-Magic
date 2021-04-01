@@ -79,7 +79,6 @@ function CheckOut3Payment() {
   function BillPaymentModal() {
     return (
       <div className="bill-modal">
-        {/* Här byts exempeladressen ut mot adressen användaren matat in tidigare */}
         <p className="payment-info-text">
           Fakturan kommer skickas till din email:
         </p>
