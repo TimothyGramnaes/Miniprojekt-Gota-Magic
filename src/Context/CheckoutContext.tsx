@@ -85,8 +85,6 @@ export const CheckoutProvider: FunctionComponent = ({ children }) => {
       localStorage.setItem('orderNumber', JSON.stringify(orderNumber))
   })
 
-  console.log(userPayment)
-
   // Function that increase the ordernumber when order is done and the orderconfirmation shows
   const addOrderNumber = () => {
     let oldOrderNumber:number = orderNumber
@@ -128,7 +126,6 @@ export const CheckoutProvider: FunctionComponent = ({ children }) => {
         cvc: cvc,
       }])
     }
-    console.log(userPayment)
 
   // A boolean that sends a true or false to BreadCrumbs to activate the next button at the CheckOut1UserInfo
   const [validatedUser, setValidatedUser] = useState<boolean>(false)
@@ -143,17 +140,14 @@ export const CheckoutProvider: FunctionComponent = ({ children }) => {
 
   // Gets the boolean from CheckOut1UserInfo
   const getValidation = (value:boolean) => {
-    console.log('får user')
     setValidatedUser(value)      
   }
   // Gets the boolean from CheckOut2Shipping
   const getValidationShipping = (value:boolean) => {
-    console.log('får shipping')
     setValidatedShipping(value)      
   }
   // Gets the boolean from CheckOut3Payment
   const getValidationPayment = (value:boolean) => {
-    console.log('får betal')
     setValidatedPayment(value)      
   }
   // Gets the boolean from CheckOut3Payment
@@ -181,7 +175,6 @@ export const CheckoutProvider: FunctionComponent = ({ children }) => {
     })
     setPayment(selectedPayment)
   };
-  console.log(payment)
 
   return (
     <CheckoutContext.Provider

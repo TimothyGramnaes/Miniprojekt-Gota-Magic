@@ -61,6 +61,7 @@ function CheckOut3Payment() {
       isFormValid()       
     })
 
+    console.log(formValid)
 
     // hantera kortnamn ////
     const handleCardNameInput = (event: any) => {

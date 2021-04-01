@@ -12,8 +12,6 @@ function OrderConfirmation() {
   const payment = checkoutData.payment[0];
   const shipping = checkoutData.shippingObject
 
-  console.log(payment)
-
   const totalPay = cart.totalPrice + checkoutData.shippingObject[0].price;
 
   return (
