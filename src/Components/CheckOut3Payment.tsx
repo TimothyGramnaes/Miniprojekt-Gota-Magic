@@ -18,9 +18,6 @@ function CheckOut3Payment() {
   const userFromContext = useCheckoutContext();
   const userInfo = userFromContext.userInfo[0];
   const totalPay = checkout.shippingObject[0].price + cart.cartTotalPrice;   
-
-  const [validCard, setValidCard] = useState<boolean>(false)
-
   
   function CardPaymentModal() {    
 
@@ -60,10 +57,8 @@ function CheckOut3Payment() {
       checkout.saveUserPayment(cardName, cardNumber, expireDate, lastDate,cvc )     
     }
 
-
     useEffect(() => {
-      isFormValid()
-       
+      isFormValid()       
     })
 
 
@@ -257,20 +252,23 @@ function CheckOut3Payment() {
       </div>
     );
   }
+
+  const cleanPaymentUser = () => {
+    const cardName = ""
+    const cardNumber = ""
+    const expireDate = ""
+    const lastDate = ""
+    const cvc = ""
+    checkout.saveUserPayment(cardName, cardNumber, expireDate, lastDate,cvc )   
+  }
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     setValue(value);    
     checkout.savePaymentMethod(value)
-    if(value === "1" && validCard === false) {
-      checkout.getValidationPayment(true)
-      console.log('funkar ju')
-    } else if(value === "1" && validCard === true) {
-      return
-    } else {
-      checkout.getValidationPayment(true)
+    checkout.getValidationPayment(true)
+    checkout.getValidationCardPayment(false)
+    cleanPaymentUser()
     }
-      
-  };
 
 
   return (

@@ -57,20 +57,15 @@ function BreadCrumbs() {
     user.saveUserPayment(cardName, cardNumber, expireDate, lastDate,cvc )   
   }
 
-
   const [active, setActive] = useState(false)
   // validatedUser === false
-  console.log(user.payment[0].cardId)
   console.log(validatedUserCardPayment)
-  console.log('steg2')
-  
   const activateBtn = () => {
     if(validatedUser === false && activeStep === 0) {
       setActive(false)  
       
     } else if (validatedUser === true && activeStep === 0) {
       setActive(true)
-      console.log('steg1')
       user.getValidationShipping(false)
 
     } else if(validatedUserShipping === false && activeStep === 1) {
@@ -78,7 +73,6 @@ function BreadCrumbs() {
       
     } else if (validatedUserShipping === true && activeStep === 1) {
       setActive(true)
-      console.log('steg2')
       user.getValidationPayment(false)
 
     } else if(validatedUserPayment === false && activeStep === 2) {
@@ -89,20 +83,17 @@ function BreadCrumbs() {
      
     } else if (activeStep === 2 && user.payment[0].cardId === 1 && validatedUserCardPayment === true) {
       setActive(true)
-      console.log('steg3')
       user.getValidation(false)
       user.getValidationShipping(false)
     
     } else if (validatedUserPayment === true && activeStep === 2) {
       setActive(true)
-      console.log('steg3')
       user.getValidation(false)
       user.getValidationShipping(false)
     
     } 
     else if (activeStep === 3) {
       setActive(true)
-      console.log('steg4')
       user.getValidationPayment(false)
       user.getValidationCardPayment(false)  
       cleanPaymentUser()
