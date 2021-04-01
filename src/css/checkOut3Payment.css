@@ -101,6 +101,10 @@ form h5 {
   margin-bottom: 2rem;
 }
 
+.filled-input-field {
+  width: 100%;
+}
+
 @media (max-width: 950px) {
   .container {
     flex-direction: column-reverse;
