@@ -14,7 +14,7 @@ const ProductCart = () => {
   if (cart.cart.length > 0) {
     return (
       <div className="background" style={backStyle}>
-        <div className="grey-card" style={varuStyle}>
+        <div className="grey-card">
           <h2>Din varukorg</h2>
           <span>{cart.cartTotalPrice} kr</span>
           <div className="cartInfoContainer">
@@ -63,11 +63,6 @@ const ProductCart = () => {
     );
 };
 
-const varuStyle: CSSProperties = {
-  marginTop: '6rem',
-  minHeight: '20rem'
-
-}
 const backStyle: CSSProperties = {
   minHeight: '69vh'
 }

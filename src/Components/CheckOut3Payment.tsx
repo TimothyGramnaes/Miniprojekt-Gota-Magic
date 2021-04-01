@@ -81,7 +81,7 @@ function CheckOut3Payment() {
       <div className="bill-modal">
         {/* Här byts exempeladressen ut mot adressen användaren matat in tidigare */}
         <p className="payment-info-text">
-          Fakturan kommer skickas till denna email.<br></br>Vill du använda en annan adress, gå tillbaka och ändra:
+          Fakturan kommer skickas till din email:
         </p>
         <TextField
           className="filled-input-field"
@@ -113,7 +113,7 @@ function CheckOut3Payment() {
     return (
       <div className="swish-modal flex column">
         <p className="payment-info-text">
-          Betala smidigt och säkert med Swish - SMS kommer skickas med en länk till din betalning:
+          Betala smidigt och säkert med Swish - med ditt angivna mobilnummer:
         </p>
         <TextField
           className="filled-input-field"
@@ -134,7 +134,6 @@ function CheckOut3Payment() {
   return (
     <div className="container flex">
       <div className="left-side">
-        <div className="breadcrumbs">{/* <BreadCrumbs /> */}</div>
         <div className="headings">
           <h2>Betalning</h2>
           <h3>Välj betalmetod och fyll i dina uppgifter</h3>
@@ -183,7 +182,6 @@ function CheckOut3Payment() {
 
       <div className="right-side">
         <div className="order-overview">
-          {/* Här tar vi in order komponenten, och tar bort den temporära nedanför */}
           <h2>Din beställning</h2>
           <h3 style={{ paddingTop: "1rem", paddingBottom: "1rem" }}>
             {cart.cartTotalPrice} kr{" "}

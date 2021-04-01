@@ -67,7 +67,6 @@ function CheckOut2Shipping() {
   return (
     <div className="container flex">
       <div className="left-side">
-        <div className="breadcrumbs">{/* <BreadCrumbs /> */}</div>
         <div className="headings">
           <h2>Frakt</h2>
           <h3>Välj fraktsätt</h3>
@@ -114,7 +113,6 @@ function CheckOut2Shipping() {
 
       <div className="right-side">
         <div className="order-overview">
-          {/* Här tar vi in order komponenten, och tar bort den temporära nedanför */}
           <h2>Din beställning</h2>
           <h3 style={{ paddingTop: "1rem", paddingBottom: "1rem" }}>
             {cart.cartTotalPrice} kr{" "}

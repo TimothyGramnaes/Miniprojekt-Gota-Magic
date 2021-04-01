@@ -3,6 +3,7 @@ import StepLabel from "@material-ui/core/StepLabel";
 import Step from "@material-ui/core/Step";
 import Stepper from "@material-ui/core/Stepper";
 import Button from "@material-ui/core/Button";
+import Hidden from '@material-ui/core/Hidden';
 import "../main.css";
 import "../css/breadcrumbs.css";
 
@@ -15,6 +16,7 @@ import OrderConfirmation from "./OrderConfirmation";
 import { CSSProperties } from "@material-ui/styles";
 import { useCheckoutContext } from "../Context/CheckoutContext";
 import { useCart } from "../Context/CartContext";
+import { Grid } from "@material-ui/core";
 
 function getSteps() {
   return ["Användaruppgifter", "Frakt", "Betalning", "Orderbekräftelse"];
@@ -44,6 +46,9 @@ function BreadCrumbs() {
   const validatedUserPayment = user.validatedPayment;
   const [disableAtPay, setDisableAtPay] = useState(true)
 
+  // If this varible is 0 in length, the orderNumber will not get a new one 
+  //if you do the checkout without anything in the cart
+  const ifCartIsEmpty = cart.cart
 
   const [active, setActive] = useState(false)
   // validatedUser === false
@@ -54,7 +59,6 @@ function BreadCrumbs() {
       
     } else if (validatedUser === true && activeStep === 0) {
       setActive(true)
-      console.log('steg1')
       user.getValidationShipping(false)
 
     } else if(validatedUserShipping === false && activeStep === 1) {
@@ -62,7 +66,6 @@ function BreadCrumbs() {
       
     } else if (validatedUserShipping === true && activeStep === 1) {
       setActive(true)
-      console.log('steg2')
       user.getValidationPayment(false)
 
     } else if(validatedUserPayment === false && activeStep === 2) {
@@ -70,13 +73,11 @@ function BreadCrumbs() {
       
     } else if (validatedUserPayment === true && activeStep === 2) {
       setActive(true)
-      console.log('steg3')
       user.getValidation(false)
       user.getValidationShipping(false)
     
     } else if (activeStep === 3) {
       setActive(true)
-      console.log('steg4')
       user.getValidationPayment(false)
     } 
   }
@@ -84,6 +85,8 @@ function BreadCrumbs() {
   useEffect(() => {
     activateBtn()
   })
+
+  
 
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();
@@ -95,8 +98,9 @@ function BreadCrumbs() {
     } else if (activeStep === 1) {
       
     } else if (activeStep === 2) {
-      
-      user.addOrderNumber();
+      if(ifCartIsEmpty.length !== 0){
+        user.addOrderNumber();
+      }
       cart.ResetCart();
     } else if (activeStep === 3) {
       
@@ -132,19 +136,38 @@ function BreadCrumbs() {
 
   return (
     <div className="background">
-      <div className="grey-card main-box" style={mainBox}>
+      <div className="grey-card main-box">
         <div className="crumbs-container">
+          <Grid item xs={12} sm={12} style={stepGrid}>
+
+            <Hidden xsDown>
           <Stepper
             style={stepperStyle}
             activeStep={activeStep}
             alternativeLabel
-          >
+            >
             {steps.map((label) => (
               <Step key={label}>
                 <StepLabel>{label}</StepLabel>
               </Step>
             ))}
           </Stepper>
+            </Hidden>
+            <Hidden smUp>
+              <Stepper
+            style={stepperStyle}
+            activeStep={activeStep}
+            alternativeLabel
+            >
+              {steps.map((label) => (
+              <Step key={label}>
+                <StepLabel></StepLabel>
+              </Step>
+            ))}
+          </Stepper>
+
+            </Hidden>
+          </Grid>
           <div className="bread-btn">
             {activeStep === steps.length ? (
               <div>
@@ -192,15 +215,15 @@ function BreadCrumbs() {
   );
 }
 
-const mainBox: CSSProperties = {
-    marginTop: '6rem',
-    minHeight: '67vh'
-}
-
 const stepperStyle: CSSProperties = {
   backgroundColor: "#ededed",
-  padding: '0 0 1.5rem 0'
+  padding: '0 0 1.5rem 0',
+  display: 'flex',
 };
+
+const stepGrid: CSSProperties = {
+  width: '100%',
+}
 
 const textStyle: CSSProperties = {
   textAlign: 'center'

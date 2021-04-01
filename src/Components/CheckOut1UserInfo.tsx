@@ -25,7 +25,6 @@ const useStyles = makeStyles({
   },
 });
 
-
 function CheckOut1UserInfo() {
   const cart = useCart();
   const [userName, setUserName] = useState<string>("");
@@ -34,24 +33,14 @@ function CheckOut1UserInfo() {
   const [userEmail, setUserEmail] = useState<string>("");
   const [userMobile, setUserMobile] = useState<string>("");
   const [userDeliveryaddress, setUserDeliveryaddress] = useState<string>("");
-  const [
-    userDeliveryAdressError,
-    setUserDeliveryAdressError,
-  ] = useState<boolean>(false);
-  const [userDeliveryErrorText, setUserDeliveryErrorText] = useState<string>(
-    ""
-  );
+  const [userDeliveryAdressError, setUserDeliveryAdressError] = useState<boolean>(false);
+  const [userDeliveryErrorText, setUserDeliveryErrorText] = useState<string>("");
   const [userCity, setUserCity] = useState<string>("");
   const [userCityError, setUserCityError] = useState<boolean>(false);
   const [userCityErrorText, setUserCityText] = useState<string>("");
   const [userPostNumber, setUserPostNumber] = useState<string>("");
-  const [userPostNumberError, setUserPostNumberError] = useState<boolean>(
-    false
-  );
-  const [
-    userPostNumberTextError,
-    setUserPostNumberErrorText,
-  ] = useState<string>("");
+  const [userPostNumberError, setUserPostNumberError] = useState<boolean>(false);
+  const [userPostNumberTextError, setUserPostNumberErrorText] = useState<string>("");
   const [userEmailError, setUserEmailError] = useState<boolean>(false);
   const [userEmailErrorText, setUserEmailErrorText] = useState<string>("");
   const [userMobileError, setUserMobileError] = useState<boolean>(false);
@@ -77,8 +66,6 @@ function CheckOut1UserInfo() {
     }
   };
 
-  console.log(userPostNumber)
-
   const handleuserEmail = (e: any) => {
     setUserEmail(e.target.value);
     if (e.target.value.indexOf("@") === -1) {
@@ -94,7 +81,6 @@ function CheckOut1UserInfo() {
   const handleuserMobile = (e: any) => {
     setUserMobile(e.target.value);
     if (!/^(\d{10})$/.test(e.target.value)) {
-      console.log("regex funkar");
       setUserMobileError(false);
       setUserMobileText("Ditt 10 siffriga mobilnummer");
     } else {
@@ -185,7 +171,6 @@ function CheckOut1UserInfo() {
       userCityError === true
     ) {
       setValidated(true);
-      console.log("funkar");
     } else {
       setValidated(false);
     }
@@ -195,6 +180,8 @@ function CheckOut1UserInfo() {
     validateFunction();
   });
 
+  // Runs the validatation function through the checkoutContext.
+  // If true the next button will be activated
   useEffect(() => {
     user.getValidation(validated);
   });
@@ -207,7 +194,6 @@ function CheckOut1UserInfo() {
   return (
     <div className="container flex">
       <div className="left-side">
-        <div className="breadcrumbs">{/* <BreadCrumbs /> */}</div>
         <div className="headings">
           <h2>Utcheckning</h2>
           <h3>Fyll i dina användauppgifter</h3>

@@ -7,8 +7,10 @@ import { useProductContext } from "../Context/ProductContext";
 
 function Api() {
 
+    // Fetch the productContext
     const productContext = useProductContext()
 
+    // Fetch the product DB
     const products:Product[] = mockedProducts
    
     // Sends the products to ProductContext
