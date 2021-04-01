@@ -8,7 +8,7 @@ import BreadCrumbs from "./BreadCrumbs";
 import Tournaments from "./Tournaments";
 import AboutUs from "./AboutUs";
 import Contact from "./Contact";
-import ErrorBoundary from "./ErrorBoundary";
+import ErrorBoundary from "./ErrorBoundary"
 
 import { Switch, Route, BrowserRouter } from "react-router-dom";
 import ProductCart from "./cartComponent/ProductCart";
