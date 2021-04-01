@@ -4,6 +4,7 @@ import Step from "@material-ui/core/Step";
 import Stepper from "@material-ui/core/Stepper";
 import Button from "@material-ui/core/Button";
 import Hidden from '@material-ui/core/Hidden';
+
 import "../main.css";
 import "../css/breadcrumbs.css";
 
@@ -13,15 +14,23 @@ import CheckOut1UserInfo from "./CheckOut1UserInfo";
 import CheckOut2Shipping from "./CheckOut2Shipping";
 import CheckOut3Payment from "./CheckOut3Payment";
 import OrderConfirmation from "./OrderConfirmation";
+
 import { CSSProperties } from "@material-ui/styles";
 import { useCheckoutContext } from "../Context/CheckoutContext";
 import { useCart } from "../Context/CartContext";
 import { Grid } from "@material-ui/core";
 
+
+// Creates an array for all the steps.
+// the amount of strings in the array decides the amount of
+// steps in the stepper
 function getSteps() {
   return ["Användaruppgifter", "Frakt", "Betalning", "Orderbekräftelse"];
 }
 
+// Depending on what step is the current
+// different components is returned between the
+// stepper and the buttons
 function getStepContent(stepIndex: number) {
   switch (stepIndex) {
     case 0:
@@ -51,8 +60,7 @@ function BreadCrumbs() {
   const ifCartIsEmpty = cart.cart
 
   const [active, setActive] = useState(false)
-  // validatedUser === false
-
+  
   const activateBtn = () => {
     if(validatedUser === false && activeStep === 0) {
       setActive(false)  
@@ -89,6 +97,8 @@ function BreadCrumbs() {
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();
 
+// Depending on where in the stepper the user is
+// the functionality of the next button is changed here.
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
     if (activeStep === 0) {
