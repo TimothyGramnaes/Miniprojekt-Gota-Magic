@@ -62,10 +62,15 @@ function BreadCrumbs() {
   const [active, setActive] = useState(false)
   
   const activateBtn = () => {
-    if(validatedUser === false && activeStep === 0) {
+    if(validatedUser === false && activeStep === 0 ) {
+      setActive(false)        
+    } 
+    
+    else if (validatedUser === true && activeStep === 0 && ifCartIsEmpty.length === 0 ){
       setActive(false)  
-      
-    } else if (validatedUser === true && activeStep === 0) {
+    } 
+    
+    else if (validatedUser === true && activeStep === 0) {
       setActive(true)
       user.getValidationShipping(false)
 
@@ -210,7 +215,9 @@ function BreadCrumbs() {
                     disabled={active === false}
                     onClick={handleClick}
                   >
-                    {activeStep === steps.length - 1 ? "Klar" : "Nästa"}
+                    {activeStep === steps.length - 1 ? "Klar" 
+                    : activeStep === steps.length - 2 ? "Slutför köp"
+                    : "Nästa"}
                   </Button>
                 </div>
               </div>
