@@ -56,7 +56,6 @@ function BreadCrumbs() {
       
     } else if (validatedUser === true && activeStep === 0) {
       setActive(true)
-      console.log('steg1')
       user.getValidationShipping(false)
 
     } else if(validatedUserShipping === false && activeStep === 1) {
@@ -64,7 +63,6 @@ function BreadCrumbs() {
       
     } else if (validatedUserShipping === true && activeStep === 1) {
       setActive(true)
-      console.log('steg2')
       user.getValidationPayment(false)
 
     } else if(validatedUserPayment === false && activeStep === 2) {
@@ -72,13 +70,11 @@ function BreadCrumbs() {
       
     } else if (validatedUserPayment === true && activeStep === 2) {
       setActive(true)
-      console.log('steg3')
       user.getValidation(false)
       user.getValidationShipping(false)
     
     } else if (activeStep === 3) {
       setActive(true)
-      console.log('steg4')
       user.getValidationPayment(false)
     } 
   }

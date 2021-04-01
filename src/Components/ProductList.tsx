@@ -96,6 +96,14 @@ function ProductList() {
 
   // End styling variables
 
+
+  const noResult = () => {
+    <div><h2>Ingen träff</h2></div>
+    
+  }
+
+  
+
   // The mapping of the product database
   const productData = productViewArray.slice(page, pageItems).map((product) => (
     <div key={product.id}>
@@ -109,6 +117,8 @@ function ProductList() {
       />
     </div>
   ));
+
+  
 
   // Filtering the product database with the searchvalue
   // The searchvalue is broken down with length to slice the product database value to the lenght of the searchvalue
@@ -134,6 +144,8 @@ function ProductList() {
     return null;
   });
 
+ 
+
   // Reset the pagination values and set the setProductViewArray with the full product database values
   // And then sets the setProductViewArray to the filtered result
   const searchArray = () => {
@@ -142,12 +154,16 @@ function ProductList() {
     setPageNumber(1);
     setProductViewArray(products);
     setProductViewArray(filterdArray);
+    
+
+    
   };
 
   // sets the input value to searchValue
   const handleChange = (e: any) => {
     setSearchValue(e.target.value);
     searchArray();
+    noResult()
   };
 
   // When pressed it runs the seachArray function to show the search result
@@ -229,11 +245,14 @@ function ProductList() {
             Reset
           </Button>
         </Grid>
+        {noResult}
 
         <Grid container xs={12} md={10} style={infoLandingContainer}>
           <Grid item style={listStyle}>
+            
             {productData}
-
+            {noResult}
+           
             <Grid
               item
               xs={12}

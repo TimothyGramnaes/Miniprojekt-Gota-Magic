@@ -34,30 +34,21 @@ function CheckOut1UserInfo() {
   const [userEmail, setUserEmail] = useState<string>("");
   const [userMobile, setUserMobile] = useState<string>("");
   const [userDeliveryaddress, setUserDeliveryaddress] = useState<string>("");
-  const [
-    userDeliveryAdressError,
-    setUserDeliveryAdressError,
-  ] = useState<boolean>(false);
-  const [userDeliveryErrorText, setUserDeliveryErrorText] = useState<string>(
-    ""
-  );
+  const [userDeliveryAdressError, setUserDeliveryAdressError ] = useState<boolean>(false);
+  const [userDeliveryErrorText, setUserDeliveryErrorText] = useState<string>("");
   const [userCity, setUserCity] = useState<string>("");
   const [userCityError, setUserCityError] = useState<boolean>(false);
   const [userCityErrorText, setUserCityText] = useState<string>("");
   const [userPostNumber, setUserPostNumber] = useState<string>("");
-  const [userPostNumberError, setUserPostNumberError] = useState<boolean>(
-    false
-  );
-  const [
-    userPostNumberTextError,
-    setUserPostNumberErrorText,
-  ] = useState<string>("");
+  const [userPostNumberError, setUserPostNumberError] = useState<boolean>(false);
+  const [userPostNumberTextError, setUserPostNumberErrorText] = useState<string>("");
   const [userEmailError, setUserEmailError] = useState<boolean>(false);
   const [userEmailErrorText, setUserEmailErrorText] = useState<string>("");
   const [userMobileError, setUserMobileError] = useState<boolean>(false);
   const [userMobileErrorText, setUserMobileText] = useState<string>("");
   const [validated, setValidated] = useState<boolean>(false);
-
+  console.log(userPostNumber)
+  console.log(userName)
   // The user array
   const [userObject, setUserObject] = useState<User[]>([]);
 
@@ -77,7 +68,18 @@ function CheckOut1UserInfo() {
     }
   };
 
-  console.log(userPostNumber)
+  const handleuserPostNumber = (e: any) => {
+    setUserPostNumber(e.target.value);
+    if (!/^(\d{5})$/.test(e.target.value)) {
+      setUserPostNumberError(false);
+      setUserPostNumberErrorText("Skriv ditt 5 siffriga postnummer");
+    } else {
+      setUserPostNumberError(true);
+      setUserPostNumberErrorText("");
+      setUserToObject();
+      
+    }
+  };
 
   const handleuserEmail = (e: any) => {
     setUserEmail(e.target.value);
@@ -94,7 +96,6 @@ function CheckOut1UserInfo() {
   const handleuserMobile = (e: any) => {
     setUserMobile(e.target.value);
     if (!/^(\d{10})$/.test(e.target.value)) {
-      console.log("regex funkar");
       setUserMobileError(false);
       setUserMobileText("Ditt 10 siffriga mobilnummer");
     } else {
@@ -116,6 +117,7 @@ function CheckOut1UserInfo() {
     }
   };
 
+
   const handleuserCity = (e: any) => {
     setUserCity(e.target.value);
     if (e.target.value.length < 2) {
@@ -127,30 +129,23 @@ function CheckOut1UserInfo() {
       setUserToObject();
     }
   };
-  const handleuserPostNumber = (e: any) => {
-    setUserPostNumber(e.target.value);
-    if (!/^(\d{5})$/.test(e.target.value)) {
-      setUserPostNumberError(false);
-      setUserPostNumberErrorText("Skriv ditt 5 siffriga postnummer");
-    } else {
-      setUserPostNumberError(true);
-      setUserPostNumberErrorText("");
-      setUserToObject();
-    }
-  };
+
   // End of input handlers
 
   // Function that saves the inputsfields to an object
   const setUserToObject = () => {
     user.getValidation(validated);
+    console.log(userPostNumber)
+    console.log(userName)
+    console.log(userObject)
 
     user.saveUserInformation(
       userName,
       userEmail,
       userMobile,
       userDeliveryaddress,
-      userCity,
       userPostNumber,
+      userCity,      
       validated
     );
     setUserObject([
@@ -159,8 +154,8 @@ function CheckOut1UserInfo() {
         email: userEmail,
         mobile: userMobile,
         deliveryaddress: userDeliveryaddress,
-        city: userCity,
         postnumber: userPostNumber,
+        city: userCity,        
         validated: validated,
       },
     ]);
@@ -185,7 +180,6 @@ function CheckOut1UserInfo() {
       userCityError === true
     ) {
       setValidated(true);
-      console.log("funkar");
     } else {
       setValidated(false);
     }
