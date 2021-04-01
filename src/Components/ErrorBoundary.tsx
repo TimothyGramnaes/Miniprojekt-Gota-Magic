@@ -69,6 +69,7 @@ const landingContainer: CSSProperties = {
 
 
 const errorStyle: CSSProperties = {
+    marginTop: '8rem',
     position: 'relative',
     top: '0',
     bottom: '0',

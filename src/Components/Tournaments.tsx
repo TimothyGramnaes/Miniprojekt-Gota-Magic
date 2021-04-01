@@ -2,9 +2,8 @@ import { CSSProperties } from '@material-ui/styles';
 import React from 'react'
 import '../main.css';
 import '../css/tournaments.css';
-import { Link, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {  Grid } from '@material-ui/core'
-import Trasig from './Trasig';
 import ErrorBoundary from './ErrorBoundary';
 
 
@@ -75,11 +74,7 @@ function Tournaments() {
                                 Lokal samt tillfälle för Bearvitational 2021 är för närvarande oklart 
                                 pga. pågående pandemi.
                             </p>
-
-                            <Link to="/Trasig">
-                                sabba allt här :)
-                            </Link>
-                            <Route path="/Tournaments/Trasig" component={Trasig} />                            
+                            
                         </Grid>
                     </Grid>
             </Grid>        
