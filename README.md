@@ -1,5 +1,7 @@
 # Göta Magic
 
+Check out the page [here](https://musing-torvalds-76dad1.netlify.app/)
+
 Göta Magic is an e-commerce webiste which was part of a school assignment. We sell magic cards, host tournaments and display the latest news. We created the webiste with React and the Material UI design system. The products displayed on the page are fetched from a mocked API of products. 
 
 The product information is fetched from a [Magic-API](https://api.magicthegathering.io/v1/cards) 

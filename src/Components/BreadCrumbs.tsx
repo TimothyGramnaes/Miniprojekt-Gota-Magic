@@ -4,6 +4,7 @@ import Step from "@material-ui/core/Step";
 import Stepper from "@material-ui/core/Stepper";
 import Button from "@material-ui/core/Button";
 import Hidden from '@material-ui/core/Hidden';
+
 import "../main.css";
 import "../css/breadcrumbs.css";
 
@@ -13,15 +14,23 @@ import CheckOut1UserInfo from "./CheckOut1UserInfo";
 import CheckOut2Shipping from "./CheckOut2Shipping";
 import CheckOut3Payment from "./CheckOut3Payment";
 import OrderConfirmation from "./OrderConfirmation";
+
 import { CSSProperties } from "@material-ui/styles";
 import { useCheckoutContext } from "../Context/CheckoutContext";
 import { useCart } from "../Context/CartContext";
 import { Grid } from "@material-ui/core";
 
+
+// Creates an array for all the steps.
+// the amount of strings in the array decides the amount of
+// steps in the stepper
 function getSteps() {
   return ["Användaruppgifter", "Frakt", "Betalning", "Orderbekräftelse"];
 }
 
+// Depending on what step is the current
+// different components is returned between the
+// stepper and the buttons
 function getStepContent(stepIndex: number) {
   switch (stepIndex) {
     case 0:
@@ -38,20 +47,31 @@ function getStepContent(stepIndex: number) {
   }
 }
 
+
 function BreadCrumbs() {
   const cart = useCart();
   const user = useCheckoutContext();
   const validatedUser = user.validatedUser;
   const validatedUserShipping = user.validatedShipping;
   const validatedUserPayment = user.validatedPayment;
+  const validatedUserCardPayment = user.validatedCardPayment;
   const [disableAtPay, setDisableAtPay] = useState(true)
 
-  // If this varible is 0 in length, the orderNumber will not get a new one 
-  //if you do the checkout without anything in the cart
-  const ifCartIsEmpty = cart.cart
+  const cleanPaymentUser = () => {
+    const cardName = ""
+    const cardNumber = ""
+    const expireDate = ""
+    const lastDate = ""
+    const cvc = ""
+    user.saveUserPayment(cardName, cardNumber, expireDate, lastDate,cvc )   
+  }
 
   const [active, setActive] = useState(false)
   // validatedUser === false
+  console.log(validatedUserCardPayment)
+  // If this varible is 0 in length, the orderNumber will not get a new one 
+  //if you do the checkout without anything in the cart
+  const ifCartIsEmpty = cart.cart
 
   const activateBtn = () => {
     if(validatedUser === false && activeStep === 0 ) {
@@ -76,14 +96,25 @@ function BreadCrumbs() {
     } else if(validatedUserPayment === false && activeStep === 2) {
       setActive(false)  
       
+    } else if (activeStep === 2 && user.payment[0].cardId === 1 && validatedUserCardPayment === false) {
+      setActive(false)
+     
+    } else if (activeStep === 2 && user.payment[0].cardId === 1 && validatedUserCardPayment === true) {
+      setActive(true)
+      user.getValidation(false)
+      user.getValidationShipping(false)
+    
     } else if (validatedUserPayment === true && activeStep === 2) {
       setActive(true)
       user.getValidation(false)
       user.getValidationShipping(false)
     
-    } else if (activeStep === 3) {
+    } 
+    else if (activeStep === 3) {
       setActive(true)
       user.getValidationPayment(false)
+      user.getValidationCardPayment(false)  
+      cleanPaymentUser()
     } 
   }
 
@@ -94,6 +125,8 @@ function BreadCrumbs() {
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();
 
+// Depending on where in the stepper the user is
+// the functionality of the next button is changed here.
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
     if (activeStep === 0) {
@@ -124,6 +157,8 @@ function BreadCrumbs() {
       handleNext()
     }, 3500);
   }
+
+  
 
   const handleClick = () => {
     activateBtn()
@@ -206,7 +241,9 @@ function BreadCrumbs() {
                     disabled={active === false}
                     onClick={handleClick}
                   >
-                    {activeStep === steps.length - 1 ? "Klar" : "Nästa"}
+                    {activeStep === steps.length - 1 ? "Klar" 
+                    : activeStep === steps.length - 2 ? "Slutför köp"
+                    : "Nästa"}
                   </Button>
                 </div>
               </div>
