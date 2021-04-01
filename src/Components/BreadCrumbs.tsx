@@ -44,6 +44,7 @@ function BreadCrumbs() {
   const validatedUser = user.validatedUser;
   const validatedUserShipping = user.validatedShipping;
   const validatedUserPayment = user.validatedPayment;
+  const validatedUserCardPayment = user.validatedCardPayment;
   const [disableAtPay, setDisableAtPay] = useState(true)
 
 
@@ -56,7 +57,6 @@ function BreadCrumbs() {
       
     } else if (validatedUser === true && activeStep === 0) {
       setActive(true)
-      console.log('steg1')
       user.getValidationShipping(false)
 
     } else if(validatedUserShipping === false && activeStep === 1) {
@@ -64,21 +64,19 @@ function BreadCrumbs() {
       
     } else if (validatedUserShipping === true && activeStep === 1) {
       setActive(true)
-      console.log('steg2')
       user.getValidationPayment(false)
 
     } else if(validatedUserPayment === false && activeStep === 2) {
       setActive(false)  
       
-    } else if (validatedUserPayment === true && activeStep === 2) {
+    } else if (validatedUserPayment === true && activeStep === 2 && validatedUserCardPayment === true) {
       setActive(true)
-      console.log('steg3')
       user.getValidation(false)
-      user.getValidationShipping(false)
-    
-    } else if (activeStep === 3) {
+      user.getValidationShipping(false)    
+    } 
+   
+    else if (activeStep === 3) {
       setActive(true)
-      console.log('steg4')
       user.getValidationPayment(false)
     } 
   }

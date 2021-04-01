@@ -21,7 +21,10 @@ function CheckOut3Payment() {
   // const [handlecardValidation, setHandleCardValidation] = useState<boolean>(
   //   false
   //);
-  function CardPaymentModal() {
+
+  
+  function CardPaymentModal() {    
+    
     const [formValid, setFormValid] = useState(false);
     const [cardFormInput, setCardFormInput] = useState({
       cardName: "",
@@ -47,16 +50,21 @@ function CheckOut3Payment() {
         cardValidation.numberValid
       ) {
         setFormValid(true);
-        // setHandleCardValidation(true);
       } else {
-        setFormValid(false);
+        return
       }
     };
 
+    useEffect(() => {
+      isFormValid()
+      checkout.getValidationCardPayment(formValid)
+    })
+
     // hantera kortnamn ////
     const handleCardNameInput = (event: any) => {
-      let newName = event.target.value;
-      setCardFormInput({ ...cardFormInput, cardName: newName });
+      // let newName = event.target.value;
+      setCardFormInput({ ...cardFormInput, cardName: event.target.value });
+            
       /// validera namn input ////
       if (event.target.value.length >= 1) {
         setCardValidation({ ...cardValidation, nameValid: true });
@@ -67,8 +75,8 @@ function CheckOut3Payment() {
 
     /// Hanterar kortnummer input ///
     const handleCardNumberInput = (event: any) => {
-      let newNumber = event.target.value;
-      setCardFormInput({ ...cardFormInput, cardNumber: newNumber });
+      // let newNumber = event.target.value;
+      setCardFormInput({ ...cardFormInput, cardNumber: event.target.value });
 
       //// vaidering av kortnummer ///
       if (/^(\d{16})$/.test(event.target.value)) {
@@ -80,8 +88,8 @@ function CheckOut3Payment() {
 
     /// Hanterar expiredate input ////
     const handleCardExpireInput = (event: any) => {
-      let newExpireDate = event.target.value;
-      setCardFormInput({ ...cardFormInput, expireDate: newExpireDate });
+      // let newExpireDate = event.target.value;
+      setCardFormInput({ ...cardFormInput, expireDate: event.target.value });
 
       /// validering av expiredate ////
       if (/^(\d{2})$/.test(event.target.value)) {
@@ -93,8 +101,8 @@ function CheckOut3Payment() {
 
     /// Hanterar utgångsdatum input /////
     const handleCardExpireLastDateInput = (event: any) => {
-      let newExpireLastDate = event.target.value;
-      setCardFormInput({ ...cardFormInput, lastDate: newExpireLastDate });
+      // let newExpireLastDate = event.target.value;
+      setCardFormInput({ ...cardFormInput, lastDate: event.target.value });
 
       /// validering utgångsdatum ///
       if (/^(\d{2})$/.test(event.target.value)) {
@@ -106,8 +114,8 @@ function CheckOut3Payment() {
 
     /// Hanterar cvc input////
     const handleCvcInput = (event: any) => {
-      let newCvc = event.target.value;
-      setCardFormInput({ ...cardFormInput, cvc: newCvc });
+      // let newCvc = event.target.value;
+      setCardFormInput({ ...cardFormInput, cvc: event.target.value });
 
       /// validerar cvc input ////
       if (/^(\d{3})$/.test(event.target.value)) {
@@ -116,14 +124,10 @@ function CheckOut3Payment() {
         setCardValidation({ ...cardValidation, cvcValid: false });
       }
     };
-    // isFormValid();
-    console.log(cardValidation);
-    console.log(formValid);
-    useEffect(() => {
-      isFormValid();
-    });
     return (
+      
       <div className="card-modal">
+        
         <form>
           <h5>Kortinnehavarens namn</h5>
           <TextField
@@ -247,14 +251,10 @@ function CheckOut3Payment() {
   }
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
-    setValue(value);
-    checkout.savePaymentMethod(value);
-    if (value === "1" && handlecardValidation === true) {
-      checkout.getValidationPayment(true);
-    } else {
-      checkout.getValidationPayment(false);
-    }
-    // checkout.getValidationCardPayment(true)
+    setValue(value);    
+    checkout.savePaymentMethod(value)
+    checkout.getValidationPayment(true)
+    checkout.getValidationCardPayment(true)  
   };
 
   return (
