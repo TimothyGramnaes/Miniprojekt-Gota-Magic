@@ -8,7 +8,7 @@ import {
   Radio,
   RadioGroup,
 } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useCheckoutContext } from "../Context/CheckoutContext";
 
 function CheckOut3Payment() {
@@ -18,42 +18,110 @@ function CheckOut3Payment() {
   const userFromContext = useCheckoutContext();
   const userInfo = userFromContext.userInfo[0];
   const totalPay = checkout.shippingObject[0].price + cart.cartTotalPrice;
-
-  const [cardFormInput, setCardFormInput] = useState({
-    cardName: "",
-    cardNumber: "",
-    expireDate: "",
-    lastDate: "",
-    cvc: "",
-  });
-
-  // hantera kortnamn ////
-  const handleCardNameInput = (e: any) => {
-    // let newName = e.target.value;
-    setCardFormInput({ ...cardFormInput, cardName: e.target.value });
-  };
-
-  /// hantera kortnummer ///
-  const handleCardNumberInput = (e: any) => {
-    let newNumber = e.target.value;
-    setCardFormInput({ ...cardFormInput, cardNumber: newNumber });
-  };
-
-  const handleCardExpireInput = (e: any) => {
-    let newExpireDate = e.target.value;
-    setCardFormInput({ ...cardFormInput, lastDate: newExpireDate });
-  };
-  const handleCardExpireLastDateInput = (e: any) => {
-    let newExpireLastDate = e.target.value;
-    setCardFormInput({ ...cardFormInput, expireDate: newExpireLastDate });
-  };
-
-  const handleCvcInput = (e: any) => {
-    let newCvc = e.target.value;
-    setCardFormInput({ ...cardFormInput, cvc: newCvc });
-  };
-
+  // const [handlecardValidation, setHandleCardValidation] = useState<boolean>(
+  //   false
+  //);
   function CardPaymentModal() {
+    const [formValid, setFormValid] = useState(false);
+    const [cardFormInput, setCardFormInput] = useState({
+      cardName: "",
+      cardNumber: "",
+      expireDate: "",
+      lastDate: "",
+      cvc: "",
+    });
+    const [cardValidation, setCardValidation] = useState({
+      nameValid: false,
+      numberValid: false,
+      dateValid: false,
+      lastDateValid: false,
+      cvcValid: false,
+    });
+
+    const isFormValid = () => {
+      if (
+        cardValidation.cvcValid &&
+        cardValidation.dateValid &&
+        cardValidation.lastDateValid &&
+        cardValidation.nameValid &&
+        cardValidation.numberValid
+      ) {
+        setFormValid(true);
+        // setHandleCardValidation(true);
+      } else {
+        setFormValid(false);
+      }
+    };
+
+    // hantera kortnamn ////
+    const handleCardNameInput = (event: any) => {
+      let newName = event.target.value;
+      setCardFormInput({ ...cardFormInput, cardName: newName });
+      /// validera namn input ////
+      if (event.target.value.length >= 1) {
+        setCardValidation({ ...cardValidation, nameValid: true });
+      } else {
+        setCardValidation({ ...cardValidation, nameValid: false });
+      }
+    };
+
+    /// Hanterar kortnummer input ///
+    const handleCardNumberInput = (event: any) => {
+      let newNumber = event.target.value;
+      setCardFormInput({ ...cardFormInput, cardNumber: newNumber });
+
+      //// vaidering av kortnummer ///
+      if (/^(\d{16})$/.test(event.target.value)) {
+        setCardValidation({ ...cardValidation, numberValid: true });
+      } else {
+        setCardValidation({ ...cardValidation, numberValid: false });
+      }
+    };
+
+    /// Hanterar expiredate input ////
+    const handleCardExpireInput = (event: any) => {
+      let newExpireDate = event.target.value;
+      setCardFormInput({ ...cardFormInput, expireDate: newExpireDate });
+
+      /// validering av expiredate ////
+      if (/^(\d{2})$/.test(event.target.value)) {
+        setCardValidation({ ...cardValidation, dateValid: true });
+      } else {
+        setCardValidation({ ...cardValidation, dateValid: false });
+      }
+    };
+
+    /// Hanterar utgångsdatum input /////
+    const handleCardExpireLastDateInput = (event: any) => {
+      let newExpireLastDate = event.target.value;
+      setCardFormInput({ ...cardFormInput, lastDate: newExpireLastDate });
+
+      /// validering utgångsdatum ///
+      if (/^(\d{2})$/.test(event.target.value)) {
+        setCardValidation({ ...cardValidation, lastDateValid: true });
+      } else {
+        setCardValidation({ ...cardValidation, lastDateValid: false });
+      }
+    };
+
+    /// Hanterar cvc input////
+    const handleCvcInput = (event: any) => {
+      let newCvc = event.target.value;
+      setCardFormInput({ ...cardFormInput, cvc: newCvc });
+
+      /// validerar cvc input ////
+      if (/^(\d{3})$/.test(event.target.value)) {
+        setCardValidation({ ...cardValidation, cvcValid: true });
+      } else {
+        setCardValidation({ ...cardValidation, cvcValid: false });
+      }
+    };
+    // isFormValid();
+    console.log(cardValidation);
+    console.log(formValid);
+    useEffect(() => {
+      isFormValid();
+    });
     return (
       <div className="card-modal">
         <form>
@@ -62,24 +130,22 @@ function CheckOut3Payment() {
             fullWidth
             defaultValue="Normal"
             className="input-field"
-            required
             placeholder="ex. John Doe"
             variant="standard"
             value={cardFormInput.cardName}
             onChange={handleCardNameInput}
+            helperText={!cardValidation.nameValid ? "Fyll i ditt namn" : null}
           />
           <h5>Kortnummer</h5>
           <TextField
             fullWidth
             className="input-field"
             required
-            placeholder="ex. 5355 0000 1111 2222"
+            placeholder="ex. 5355000011112222"
             variant="standard"
             value={cardFormInput.cardNumber}
             onChange={handleCardNumberInput}
-            helperText={
-              cardFormInput.cardNumber > "" ? "Minst 10 siffror" : null
-            }
+            helperText={!cardValidation.numberValid ? "Minst 16 siffror" : null}
           />
           <div className="bottom-row flex">
             <div className="expiration-date">
@@ -92,6 +158,9 @@ function CheckOut3Payment() {
                   variant="standard"
                   value={cardFormInput.expireDate}
                   onChange={handleCardExpireInput}
+                  helperText={
+                    !cardValidation.dateValid ? "Minst 2 siffror" : null
+                  }
                 />
                 <span> / </span>
                 <TextField
@@ -101,6 +170,9 @@ function CheckOut3Payment() {
                   variant="standard"
                   value={cardFormInput.lastDate}
                   onChange={handleCardExpireLastDateInput}
+                  helperText={
+                    !cardValidation.lastDateValid ? "Minst 2 siffror" : null
+                  }
                 />
               </div>
             </div>
@@ -112,6 +184,11 @@ function CheckOut3Payment() {
                 placeholder="ex. 321"
                 variant="standard"
                 onChange={handleCvcInput}
+                helperText={
+                  !cardValidation.cvcValid
+                    ? "Skriv ditt 3 siffriga cvc nummer"
+                    : null
+                }
               />
             </div>
           </div>
@@ -172,7 +249,12 @@ function CheckOut3Payment() {
     const value = event.target.value;
     setValue(value);
     checkout.savePaymentMethod(value);
-    checkout.getValidationPayment(true);
+    if (value === "1" && handlecardValidation === true) {
+      checkout.getValidationPayment(true);
+    } else {
+      checkout.getValidationPayment(false);
+    }
+    // checkout.getValidationCardPayment(true)
   };
 
   return (
