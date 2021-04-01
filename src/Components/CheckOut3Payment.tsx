@@ -15,12 +15,16 @@ function CheckOut3Payment() {
   const checkout = useCheckoutContext();
   const cart = useCart();
   const [value, setValue] = useState<string>("");
-
   const userFromContext = useCheckoutContext();
   const userInfo = userFromContext.userInfo[0];
-
-  const totalPay = checkout.shippingObject[0].price + cart.cartTotalPrice
-  
+  const totalPay = checkout.shippingObject[0].price + cart.cartTotalPrice;
+  const [cardName, setCardName] = useState("");
+  const [cardNumber, setCardNumber] = useState("");
+  const [cardExpireDate, setCardExpireDate] = useState("");
+  const [cardCvcNumber, setCardCvcNumber] = useState("");
+  function handleCardNumberInput() {
+    return;
+  }
 
   function CardPaymentModal() {
     return (
@@ -41,6 +45,8 @@ function CheckOut3Payment() {
             required
             placeholder="ex. 5355 0000 1111 2222"
             variant="standard"
+            value={cardNumber}
+            onChange={handleCardNumberInput}
           />
           <div className="bottom-row flex">
             <div className="expiration-date">
@@ -157,11 +163,7 @@ function CheckOut3Payment() {
                   control={<Radio />}
                   label="Köp nu - Betala senare, med SMS-lån"
                 />
-                <FormControlLabel
-                  value="4"
-                  control={<Radio />}
-                  label="Swish"
-                />
+                <FormControlLabel value="4" control={<Radio />} label="Swish" />
               </RadioGroup>
             </FormControl>
           </form>
