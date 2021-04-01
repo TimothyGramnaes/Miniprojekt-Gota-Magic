@@ -1,7 +1,7 @@
 import {  Grid } from '@material-ui/core';
 import { CSSProperties } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
-import '../css/tournaments.css';
+import '../css/components.css';
 import { useHistory } from 'react-router-dom';
 
 function MissingPage() {

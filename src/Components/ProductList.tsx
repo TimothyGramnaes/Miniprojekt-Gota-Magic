@@ -1,5 +1,5 @@
 import { CSSProperties } from "@material-ui/styles";
-import "../css/tournaments.css";
+import '../css/components.css';
 import ProductListCard from "./ProductListCard";
 import SearchError from "./SearchError";
 import { useEffect, useState } from "react";

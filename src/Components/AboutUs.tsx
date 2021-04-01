@@ -1,15 +1,13 @@
 import { CSSProperties } from '@material-ui/styles';
-import React from 'react'
 import '../main.css';
-import '../css/tournaments.css';
+import '../css/components.css';
 import { Link } from 'react-router-dom';
 import {  Grid } from '@material-ui/core'
 
 
 function AboutUs() {
     return (
-        <>
-        
+
         <Grid container 
         justify="center" 
         alignItems="center" 
@@ -57,7 +55,7 @@ function AboutUs() {
         </Grid>
     </Grid>
     
-        </>
+
     );
 }
 

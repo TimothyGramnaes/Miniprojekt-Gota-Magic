@@ -1,7 +1,7 @@
 import { CSSProperties } from '@material-ui/styles';
 import React from 'react'
 import '../main.css';
-import '../css/tournaments.css';
+import '../css/components.css';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 import { Grid } from '@material-ui/core';
