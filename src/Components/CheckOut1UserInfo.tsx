@@ -28,8 +28,6 @@ const useStyles = makeStyles({
 
 function CheckOut1UserInfo() {
   const cart = useCart();
-
-  console.log(cart.cart.length)
   
   const [userName, setUserName] = useState<string>("");
   const [userNameError, setUserNameError] = useState<boolean>(false);
