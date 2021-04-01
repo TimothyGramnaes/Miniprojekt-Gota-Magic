@@ -47,21 +47,72 @@ function CheckOut3Payment() {
         cardValidation.numberValid
       ) {
         setFormValid(true);
+        revaluate()
       } else {
         return
       }
     };
 
-    if(formValid === true) {
-      checkout.getValidationCardPayment(true)
-      checkout.saveUserPayment(cardName, cardNumber, expireDate, lastDate,cvc )     
-    }
+    
 
     useEffect(() => {
-      isFormValid()       
+      isFormValid()     
     })
 
+    const revaluate = () => {
+
+      const checkName = () => {
+        if (cardName.length >= 1) {
+          setCardValidation({ ...cardValidation, nameValid: true });
+        } else {
+          setCardValidation({ ...cardValidation, nameValid: false });
+        }        
+      }
+      const checkCard = () => {
+        if (/^(\d{16})$/.test(cardNumber)) {
+          setCardValidation({ ...cardValidation, numberValid: true });
+        } else {
+          setCardValidation({ ...cardValidation, numberValid: false });
+        }        
+      }
+      const checkExpire = () => {
+        if (/^(\d{2})$/.test(expireDate)) {
+          setCardValidation({ ...cardValidation, dateValid: true });
+        } else {
+          setCardValidation({ ...cardValidation, dateValid: false });
+        }
+      }
+      const checkLastDate = () => {
+        if (/^(\d{2})$/.test(lastDate)) {
+          setCardValidation({ ...cardValidation, lastDateValid: true });
+        } else {
+          setCardValidation({ ...cardValidation, lastDateValid: false });
+        }        
+      }
+      const checkCvc = () => {
+        if (/^(\d{3})$/.test(cvc)) {
+          setCardValidation({ ...cardValidation, cvcValid: true });
+        } else {
+          setCardValidation({ ...cardValidation, cvcValid: false });
+        }        
+      }
+      checkName()
+      checkCard()
+      checkExpire()
+      checkLastDate()
+      checkCvc()
+    }
+
+    
+    if(formValid === true) {
+      checkout.getValidationCardPayment(true)
+      checkout.saveUserPayment(cardName, cardNumber, expireDate, lastDate,cvc )    
+    } else if (formValid === false) {
+      checkout.getValidationCardPayment(false)
+    }
     console.log(formValid)
+    console.log(cardValidation)
+
 
     // hantera kortnamn ////
     const handleCardNameInput = (event: any) => {
