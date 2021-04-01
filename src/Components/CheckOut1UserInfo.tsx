@@ -47,8 +47,6 @@ function CheckOut1UserInfo() {
   const [userMobileError, setUserMobileError] = useState<boolean>(false);
   const [userMobileErrorText, setUserMobileText] = useState<string>("");
   const [validated, setValidated] = useState<boolean>(false);
-  console.log(userPostNumber)
-  console.log(userName)
   // The user array
   const [userObject, setUserObject] = useState<User[]>([]);
 
@@ -64,7 +62,6 @@ function CheckOut1UserInfo() {
     } else {
       setUserNameError(true);
       setUserNameErrorText("");
-      setUserToObject();
     }
   };
 
@@ -76,8 +73,7 @@ function CheckOut1UserInfo() {
     } else {
       setUserPostNumberError(true);
       setUserPostNumberErrorText("");
-      setUserToObject();
-      
+      setUserToObject();      
     }
   };
 
@@ -89,7 +85,6 @@ function CheckOut1UserInfo() {
     } else {
       setUserEmailErrorText("");
       setUserEmailError(true);
-      setUserToObject();
     }
   };
 
@@ -101,7 +96,6 @@ function CheckOut1UserInfo() {
     } else {
       setUserMobileText("");
       setUserMobileError(true);
-      setUserToObject();
     }
   };
 
@@ -113,7 +107,6 @@ function CheckOut1UserInfo() {
     } else {
       setUserDeliveryAdressError(true);
       setUserDeliveryErrorText("");
-      setUserToObject();
     }
   };
 
@@ -126,7 +119,6 @@ function CheckOut1UserInfo() {
     } else {
       setUserCityError(true);
       setUserCityText("");
-      setUserToObject();
     }
   };
 
@@ -135,9 +127,6 @@ function CheckOut1UserInfo() {
   // Function that saves the inputsfields to an object
   const setUserToObject = () => {
     user.getValidation(validated);
-    console.log(userPostNumber)
-    console.log(userName)
-    console.log(userObject)
 
     user.saveUserInformation(
       userName,
@@ -160,6 +149,25 @@ function CheckOut1UserInfo() {
       },
     ]);
   };
+
+  useEffect(() => {
+    if(validated === true) {
+      user.saveUserInformation(
+        userName,
+        userEmail,
+        userMobile,
+        userDeliveryaddress,
+        userPostNumber,
+        userCity,      
+        validated
+      );
+    } else if(validated === false) {
+      return
+    }    
+    else if (userObject[0].validated === true && validated === true) {
+      return
+    } else {return}
+  }, [user, userCity, userDeliveryaddress, userEmail, userMobile, userName, userObject, userPostNumber, validated])
 
   // This useEffect fetch the localStorage after the page is updated.
   // If this is not running, the saved LS data will be deleted

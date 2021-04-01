@@ -10,7 +10,7 @@ import { ShippingMethod, shippingMethods } from "../DB/ShippingMethods";
 
 // functions and varibles that works through context
 interface CheckoutContextValue {
-  saveUserInformation: (name: string, email: string, mobile: string, deliveryaddress: string, city: string, postnumber: string, validated: boolean ) => void;
+  saveUserInformation: (name: string, email: string, mobile: string, deliveryaddress: string,postnumber: string, city: string, validated: boolean ) => void;
   saveShippingMethod: (id: string) => void;
   savePaymentMethod: (cardId: string) => void;
   getValidation: (value:boolean) => void;
@@ -80,16 +80,16 @@ export const CheckoutProvider: FunctionComponent = ({ children }) => {
     email: string,
     mobile: string,
     deliveryaddress: string,
-    city: string,
     postnumber: string,
+    city: string,    
     validated: boolean) => {
       setUserInfo([{
           name: name,
           email: email,
           mobile: mobile,
           deliveryaddress: deliveryaddress,
-          city: city,
           postnumber: postnumber,
+          city: city,          
           validated: validated   
       }])
     }
@@ -127,6 +127,8 @@ export const CheckoutProvider: FunctionComponent = ({ children }) => {
     setShippingObject([...selectedShipping]);
     
   };
+
+  console.log(userInfo)
 
   // Saves the paymentinformation from CheckOut3Payment
   const savePaymentMethod = (cardId: string) => {
