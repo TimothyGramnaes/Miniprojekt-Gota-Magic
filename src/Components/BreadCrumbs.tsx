@@ -54,10 +54,15 @@ function BreadCrumbs() {
   // validatedUser === false
 
   const activateBtn = () => {
-    if(validatedUser === false && activeStep === 0) {
+    if(validatedUser === false && activeStep === 0 ) {
+      setActive(false)        
+    } 
+    
+    else if (validatedUser === true && activeStep === 0 && ifCartIsEmpty.length === 0 ){
       setActive(false)  
-      
-    } else if (validatedUser === true && activeStep === 0) {
+    } 
+    
+    else if (validatedUser === true && activeStep === 0) {
       setActive(true)
       user.getValidationShipping(false)
 
