@@ -29,8 +29,8 @@ function CheckOut3Payment() {
 
   // hantera kortnamn ////
   const handleCardNameInput = (e: any) => {
-    let newName = e.target.value;
-    setCardFormInput({ ...cardFormInput, cardName: newName });
+    // let newName = e.target.value;
+    setCardFormInput({ ...cardFormInput, cardName: e.target.value });
   };
 
   /// hantera kortnummer ///
@@ -60,6 +60,7 @@ function CheckOut3Payment() {
           <h5>Kortinnehavarens namn</h5>
           <TextField
             fullWidth
+            defaultValue="Normal"
             className="input-field"
             required
             placeholder="ex. John Doe"
@@ -76,6 +77,9 @@ function CheckOut3Payment() {
             variant="standard"
             value={cardFormInput.cardNumber}
             onChange={handleCardNumberInput}
+            helperText={
+              cardFormInput.cardNumber > "" ? "Minst 10 siffror" : null
+            }
           />
           <div className="bottom-row flex">
             <div className="expiration-date">
