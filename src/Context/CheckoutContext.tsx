@@ -24,7 +24,7 @@ interface CheckoutContextValue {
   shippingObject: ShippingMethod[];
   orderNumber: number;
   validatedUser: boolean
-  userPayment:{}
+  userPayment:PayUser[]
   addOrderNumber: () => void
   validatedShipping: boolean
   validatedPayment: boolean
@@ -45,6 +45,14 @@ type User = {
   validated: boolean,
 }
 
+type PayUser = {
+  cardName: string,
+  cardNumber: string,
+  cvc: string,
+  expiredDate: string,
+  lastDate: string,
+}
+
 export const CheckoutContext = createContext<CheckoutContextValue>({} as any);
 
 // When page never been used, this value sets as ordernumber
@@ -56,7 +64,7 @@ export const CheckoutProvider: FunctionComponent = ({ children }) => {
   const [userInfo, setUserInfo] = useState<User[]>([])
   const [shippingObject, setShippingObject] = useState<ShippingMethod[]>([]); 
   const [payment, setPayment] = useState<PaymentMethod[]>([]);
-  const [userPayment, setUserPayment] = useState({});
+  const [userPayment, setUserPayment] = useState<PayUser[]>([{cardName:"", cardNumber:"", expiredDate:"", lastDate:"", cvc:""}]);
 
   const [orderNumber, setOrderNumber] = useState<number>(baseOrderNumber)
 
@@ -115,11 +123,12 @@ export const CheckoutProvider: FunctionComponent = ({ children }) => {
       setUserPayment([{
         cardName: cardName,
         cardNumber: cardNumber,
-        expireDate: expireDate,
+        expiredDate: expireDate,
         lastDate: lastDate,
         cvc: cvc,
       }])
     }
+    console.log(userPayment)
 
   // A boolean that sends a true or false to BreadCrumbs to activate the next button at the CheckOut1UserInfo
   const [validatedUser, setValidatedUser] = useState<boolean>(false)
@@ -148,9 +157,8 @@ export const CheckoutProvider: FunctionComponent = ({ children }) => {
     setValidatedPayment(value)      
   }
   // Gets the boolean from CheckOut3Payment
-  const getValidationCardPayment = (value:boolean) => {
-    
-    setValidatedCardPayment(value)     
+  const getValidationCardPayment = (value:boolean) => {    
+    setValidatedCardPayment(value)  
   }
 
   // Saves the shippinginformation from CheckOut2Shipping
