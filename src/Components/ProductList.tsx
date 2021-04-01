@@ -1,6 +1,7 @@
 import { CSSProperties } from "@material-ui/styles";
 import "../css/tournaments.css";
 import ProductListCard from "./ProductListCard";
+import SearchError from "./SearchError";
 import { useEffect, useState } from "react";
 import {
   IconButton,
@@ -96,9 +97,18 @@ function ProductList() {
 
   // End styling variables
 
+
+  const noResult = () => {
+    <div><h2>Ingen träff</h2></div>
+    
+  }
+
+  
+
   // The mapping of the product database
   const productData = productViewArray.slice(page, pageItems).map((product) => (
     <div key={product.id}>
+      
       {/* Link is to show the right product on ProductPage.
       The product.id is set in the URL string, and shows the right product that has the ID. */}
       <ProductListCard
@@ -109,6 +119,8 @@ function ProductList() {
       />
     </div>
   ));
+
+  
 
   // Filtering the product database with the searchvalue
   // The searchvalue is broken down with length to slice the product database value to the lenght of the searchvalue
@@ -141,13 +153,14 @@ function ProductList() {
     setPageItems(pageNumbers);
     setPageNumber(1);
     setProductViewArray(products);
-    setProductViewArray(filterdArray);
+    setProductViewArray(filterdArray);    
   };
 
   // sets the input value to searchValue
   const handleChange = (e: any) => {
     setSearchValue(e.target.value);
     searchArray();
+    noResult()
   };
 
   // When pressed it runs the seachArray function to show the search result
@@ -199,6 +212,7 @@ function ProductList() {
     }
   };
 
+ 
   return (
     <Grid
       container
@@ -209,15 +223,17 @@ function ProductList() {
     >
       <div className="sok-test">
         <Grid item xs={12} className="searchContainer" style={searchStyle}>
-          <form onSubmit={handleSubmit} style={formStyle} autoComplete="off">
+          <form onSubmit={handleSubmit} style={formStyle} autoComplete="off" >
             <TextField
               id="filled-basic"
               fullWidth
-              label="Sök här"
+              label="Sök kort, minst två tecken"
               variant="filled"
               className={style.searchfield}
               value={searchValue}
               onChange={handleChange}
+              autoFocus
+              name="Sök här"
             />
           </form>
           <Button
@@ -229,17 +245,20 @@ function ProductList() {
             Reset
           </Button>
         </Grid>
+        {noResult}
 
         <Grid container xs={12} md={10} style={infoLandingContainer}>
           <Grid item style={listStyle}>
+            
             {productData}
-
+            {productViewArray.length === 0 ? <SearchError /> : null}
             <Grid
               item
               xs={12}
               className="productListBtn"
               style={productListBtnStyle}
             >
+              
               <IconButton onClick={decrease}>
                 <ArrowBackIcon />
               </IconButton>
