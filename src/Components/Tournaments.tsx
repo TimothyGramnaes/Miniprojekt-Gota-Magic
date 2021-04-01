@@ -1,14 +1,17 @@
 import { CSSProperties } from '@material-ui/styles';
 import React from 'react'
 import '../main.css';
-import '../css/tournaments.css';
+import '../css/components.css';
 import { Link } from 'react-router-dom';
 import {  Grid } from '@material-ui/core'
+import ErrorBoundary from './ErrorBoundary';
 
 
 function Tournaments() {
     return (
-        <>
+        <ErrorBoundary>
+
+    
         
         <Grid container 
         justify="center" 
@@ -71,16 +74,15 @@ function Tournaments() {
                                 Lokal samt tillfälle för Bearvitational 2021 är för närvarande oklart 
                                 pga. pågående pandemi.
                             </p>
+                            
                         </Grid>
-
                     </Grid>
-
-            </Grid>
-        
+            </Grid>        
         </Grid>
     </Grid>
     
-        </>
+     
+    </ErrorBoundary>
     );
 }
 

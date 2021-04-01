@@ -97,16 +97,16 @@ export const CheckoutProvider: FunctionComponent = ({ children }) => {
     email: string,
     mobile: string,
     deliveryaddress: string,
-    city: string,
     postnumber: string,
+    city: string,    
     validated: boolean) => {
       setUserInfo([{
           name: name,
           email: email,
           mobile: mobile,
           deliveryaddress: deliveryaddress,
-          city: city,
           postnumber: postnumber,
+          city: city,          
           validated: validated   
       }])
     }
@@ -167,6 +167,8 @@ export const CheckoutProvider: FunctionComponent = ({ children }) => {
     
   };
 
+  console.log(userInfo)
+
   // Saves the paymentinformation from CheckOut3Payment
   const savePaymentMethod = (cardId: string) => {
     const selectedPayment = PaymentMethods.filter((p) => {
@@ -175,7 +177,6 @@ export const CheckoutProvider: FunctionComponent = ({ children }) => {
     })
     setPayment(selectedPayment)
   };
-
   return (
     <CheckoutContext.Provider
       value={{

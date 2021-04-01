@@ -5,8 +5,9 @@ import "../css/checkOut1UserInfo.css";
 import "../main.css";
 import { useCart } from "../Context/CartContext";
 import "../css/checkOut1UserInfo.css";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core";
+import CheckoutError from './CheckoutError'
 
 // Interface to the userObject array
 export interface User {
@@ -27,35 +28,29 @@ const useStyles = makeStyles({
 
 function CheckOut1UserInfo() {
   const cart = useCart();
+  
   const [userName, setUserName] = useState<string>("");
   const [userNameError, setUserNameError] = useState<boolean>(false);
   const [userNameErrorText, setUserNameErrorText] = useState<string>("");
   const [userEmail, setUserEmail] = useState<string>("");
   const [userMobile, setUserMobile] = useState<string>("");
   const [userDeliveryaddress, setUserDeliveryaddress] = useState<string>("");
-  const [
-    userDeliveryAdressError,
-    setUserDeliveryAdressError,
-  ] = useState<boolean>(false);
-  const [userDeliveryErrorText, setUserDeliveryErrorText] = useState<string>(
-    ""
-  );
+  const [userDeliveryAdressError, setUserDeliveryAdressError ] = useState<boolean>(false);
+  const [userDeliveryErrorText, setUserDeliveryErrorText] = useState<string>("");
   const [userCity, setUserCity] = useState<string>("");
   const [userCityError, setUserCityError] = useState<boolean>(false);
   const [userCityErrorText, setUserCityText] = useState<string>("");
   const [userPostNumber, setUserPostNumber] = useState<string>("");
-  const [userPostNumberError, setUserPostNumberError] = useState<boolean>(
-    false
-  );
-  const [
-    userPostNumberTextError,
-    setUserPostNumberErrorText,
-  ] = useState<string>("");
+  const [userPostNumberError, setUserPostNumberError] = useState<boolean>(false);
+  const [userPostNumberTextError, setUserPostNumberErrorText] = useState<string>("");
   const [userEmailError, setUserEmailError] = useState<boolean>(false);
   const [userEmailErrorText, setUserEmailErrorText] = useState<string>("");
   const [userMobileError, setUserMobileError] = useState<boolean>(false);
   const [userMobileErrorText, setUserMobileText] = useState<string>("");
   const [validated, setValidated] = useState<boolean>(false);
+
+  const noCartItems = cart.cart.length
+
 
   // The user array
   const [userObject, setUserObject] = useState<User[]>([]);
@@ -72,7 +67,18 @@ function CheckOut1UserInfo() {
     } else {
       setUserNameError(true);
       setUserNameErrorText("");
-      setUserToObject();
+    }
+  };
+
+  const handleuserPostNumber = (e: any) => {
+    setUserPostNumber(e.target.value);
+    if (!/^(\d{5})$/.test(e.target.value)) {
+      setUserPostNumberError(false);
+      setUserPostNumberErrorText("Skriv ditt 5 siffriga postnummer");
+    } else {
+      setUserPostNumberError(true);
+      setUserPostNumberErrorText("");
+      setUserToObject();      
     }
   };
 
@@ -84,7 +90,6 @@ function CheckOut1UserInfo() {
     } else {
       setUserEmailErrorText("");
       setUserEmailError(true);
-      setUserToObject();
     }
   };
 
@@ -96,7 +101,6 @@ function CheckOut1UserInfo() {
     } else {
       setUserMobileText("");
       setUserMobileError(true);
-      setUserToObject();
     }
   };
 
@@ -108,9 +112,9 @@ function CheckOut1UserInfo() {
     } else {
       setUserDeliveryAdressError(true);
       setUserDeliveryErrorText("");
-      setUserToObject();
     }
   };
+
 
   const handleuserCity = (e: any) => {
     setUserCity(e.target.value);
@@ -120,20 +124,9 @@ function CheckOut1UserInfo() {
     } else {
       setUserCityError(true);
       setUserCityText("");
-      setUserToObject();
     }
   };
-  const handleuserPostNumber = (e: any) => {
-    setUserPostNumber(e.target.value);
-    if (!/^(\d{5})$/.test(e.target.value)) {
-      setUserPostNumberError(false);
-      setUserPostNumberErrorText("Skriv ditt 5 siffriga postnummer");
-    } else {
-      setUserPostNumberError(true);
-      setUserPostNumberErrorText("");
-      setUserToObject();
-    }
-  };
+
   // End of input handlers
 
   // Function that saves the inputsfields to an object
@@ -145,8 +138,8 @@ function CheckOut1UserInfo() {
       userEmail,
       userMobile,
       userDeliveryaddress,
-      userCity,
       userPostNumber,
+      userCity,      
       validated
     );
     setUserObject([
@@ -155,12 +148,31 @@ function CheckOut1UserInfo() {
         email: userEmail,
         mobile: userMobile,
         deliveryaddress: userDeliveryaddress,
-        city: userCity,
         postnumber: userPostNumber,
+        city: userCity,        
         validated: validated,
       },
     ]);
   };
+
+  useEffect(() => {
+    if(validated === true) {
+      user.saveUserInformation(
+        userName,
+        userEmail,
+        userMobile,
+        userDeliveryaddress,
+        userPostNumber,
+        userCity,      
+        validated
+      );
+    } else if(validated === false) {
+      return
+    }    
+    else if (userObject[0].validated === true && validated === true) {
+      return
+    } else {return}
+  }, [user, userCity, userDeliveryaddress, userEmail, userMobile, userName, userObject, userPostNumber, validated])
 
   // This useEffect fetch the localStorage after the page is updated.
   // If this is not running, the saved LS data will be deleted
@@ -190,6 +202,8 @@ function CheckOut1UserInfo() {
     validateFunction();
   });
 
+  // Runs the validatation function through the checkoutContext.
+  // If true the next button will be activated
   useEffect(() => {
     user.getValidation(validated);
   });
@@ -206,6 +220,7 @@ function CheckOut1UserInfo() {
           <h2>Utcheckning</h2>
           <h3>Fyll i dina användauppgifter</h3>
         </div>
+        {noCartItems === 0 ? <CheckoutError /> : null} 
         <div className="checkout-form">
           <form className="flex column" autoComplete="on">
             <TextField
@@ -219,6 +234,7 @@ function CheckOut1UserInfo() {
               onChange={handleUserName}
               error={userNameError}
               helperText={userNameErrorText}
+              // disabled={disableInput}
             />
 
             <TextField

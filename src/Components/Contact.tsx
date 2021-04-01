@@ -1,7 +1,7 @@
 import { CSSProperties } from '@material-ui/styles';
 import React from 'react'
 import '../main.css';
-import '../css/tournaments.css';
+import '../css/components.css';
 import {  Grid } from '@material-ui/core';
 import MailIcon from '@material-ui/icons/Mail';
 import PhoneIcon from '@material-ui/icons/Phone';
@@ -10,8 +10,7 @@ import HomeIcon from '@material-ui/icons/Home';
 
 function Contact() {
     return (
-        <>
-        
+
         <Grid container 
         justify="center" 
         alignItems="center" 
@@ -67,8 +66,6 @@ function Contact() {
         
         </Grid>
     </Grid>
-    
-        </>
     );
 }
 
