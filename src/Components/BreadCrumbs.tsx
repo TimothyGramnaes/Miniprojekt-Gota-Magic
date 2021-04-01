@@ -46,6 +46,9 @@ function BreadCrumbs() {
   const validatedUserPayment = user.validatedPayment;
   const [disableAtPay, setDisableAtPay] = useState(true)
 
+  // If this varible is 0 in length, the orderNumber will not get a new one 
+  //if you do the checkout without anything in the cart
+  const ifCartIsEmpty = cart.cart
 
   const [active, setActive] = useState(false)
   // validatedUser === false
@@ -81,7 +84,7 @@ function BreadCrumbs() {
 
   useEffect(() => {
     activateBtn()
-  })
+  })  
 
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();
@@ -93,8 +96,9 @@ function BreadCrumbs() {
     } else if (activeStep === 1) {
       
     } else if (activeStep === 2) {
-      
-      user.addOrderNumber();
+      if(ifCartIsEmpty.length !== 0){
+        user.addOrderNumber();
+      }
       cart.ResetCart();
     } else if (activeStep === 3) {
       

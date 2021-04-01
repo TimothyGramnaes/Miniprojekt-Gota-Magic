@@ -25,9 +25,9 @@ const useStyles = makeStyles({
   },
 });
 
-
 function CheckOut1UserInfo() {
   const cart = useCart();
+  
   const [userName, setUserName] = useState<string>("");
   const [userNameError, setUserNameError] = useState<boolean>(false);
   const [userNameErrorText, setUserNameErrorText] = useState<string>("");
@@ -197,6 +197,8 @@ function CheckOut1UserInfo() {
     validateFunction();
   });
 
+  // Runs the validatation function through the checkoutContext.
+  // If true the next button will be activated
   useEffect(() => {
     user.getValidation(validated);
   });

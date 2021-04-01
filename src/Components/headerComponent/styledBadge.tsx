@@ -19,7 +19,7 @@ const StyledBadge = withStyles((theme: Theme) =>
 export default function CustomizedBadges() {
   const usecart = useCart();
   const handleDrawer = () => {
-    console.log(usecart.cart.length);
+    console.log(usecart.cart.length); //TODO: Olof ska denna bort? 
   };
   return (
     <IconButton onClick={handleDrawer} aria-label="cart">

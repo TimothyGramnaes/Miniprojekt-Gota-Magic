@@ -1,6 +1,7 @@
 import { CSSProperties } from "@material-ui/styles";
 import "../css/tournaments.css";
 import ProductListCard from "./ProductListCard";
+import SearchError from "./SearchError";
 import { useEffect, useState } from "react";
 import {
   IconButton,
@@ -107,6 +108,7 @@ function ProductList() {
   // The mapping of the product database
   const productData = productViewArray.slice(page, pageItems).map((product) => (
     <div key={product.id}>
+      
       {/* Link is to show the right product on ProductPage.
       The product.id is set in the URL string, and shows the right product that has the ID. */}
       <ProductListCard
@@ -144,8 +146,6 @@ function ProductList() {
     return null;
   });
 
- 
-
   // Reset the pagination values and set the setProductViewArray with the full product database values
   // And then sets the setProductViewArray to the filtered result
   const searchArray = () => {
@@ -153,10 +153,7 @@ function ProductList() {
     setPageItems(pageNumbers);
     setPageNumber(1);
     setProductViewArray(products);
-    setProductViewArray(filterdArray);
-    
-
-    
+    setProductViewArray(filterdArray);    
   };
 
   // sets the input value to searchValue
@@ -215,6 +212,7 @@ function ProductList() {
     }
   };
 
+ 
   return (
     <Grid
       container
@@ -225,15 +223,17 @@ function ProductList() {
     >
       <div className="sok-test">
         <Grid item xs={12} className="searchContainer" style={searchStyle}>
-          <form onSubmit={handleSubmit} style={formStyle} autoComplete="off">
+          <form onSubmit={handleSubmit} style={formStyle} autoComplete="off" >
             <TextField
               id="filled-basic"
               fullWidth
-              label="Sök här"
+              label="Sök kort, minst två tecken"
               variant="filled"
               className={style.searchfield}
               value={searchValue}
               onChange={handleChange}
+              autoFocus
+              name="Sök här"
             />
           </form>
           <Button
@@ -251,14 +251,14 @@ function ProductList() {
           <Grid item style={listStyle}>
             
             {productData}
-            {noResult}
-           
+            {productViewArray.length === 0 ? <SearchError /> : null}
             <Grid
               item
               xs={12}
               className="productListBtn"
               style={productListBtnStyle}
             >
+              
               <IconButton onClick={decrease}>
                 <ArrowBackIcon />
               </IconButton>
