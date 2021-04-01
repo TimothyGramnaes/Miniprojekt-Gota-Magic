@@ -18,13 +18,40 @@ function CheckOut3Payment() {
   const userFromContext = useCheckoutContext();
   const userInfo = userFromContext.userInfo[0];
   const totalPay = checkout.shippingObject[0].price + cart.cartTotalPrice;
-  const [cardName, setCardName] = useState("");
-  const [cardNumber, setCardNumber] = useState("");
-  const [cardExpireDate, setCardExpireDate] = useState("");
-  const [cardCvcNumber, setCardCvcNumber] = useState("");
-  function handleCardNumberInput() {
-    return;
-  }
+
+  const [cardFormInput, setCardFormInput] = useState({
+    cardName: "",
+    cardNumber: "",
+    expireDate: "",
+    lastDate: "",
+    cvc: "",
+  });
+
+  // hantera kortnamn ////
+  const handleCardNameInput = (e: any) => {
+    let newName = e.target.value;
+    setCardFormInput({ ...cardFormInput, cardName: newName });
+  };
+
+  /// hantera kortnummer ///
+  const handleCardNumberInput = (e: any) => {
+    let newNumber = e.target.value;
+    setCardFormInput({ ...cardFormInput, cardNumber: newNumber });
+  };
+
+  const handleCardExpireInput = (e: any) => {
+    let newExpireDate = e.target.value;
+    setCardFormInput({ ...cardFormInput, lastDate: newExpireDate });
+  };
+  const handleCardExpireLastDateInput = (e: any) => {
+    let newExpireLastDate = e.target.value;
+    setCardFormInput({ ...cardFormInput, expireDate: newExpireLastDate });
+  };
+
+  const handleCvcInput = (e: any) => {
+    let newCvc = e.target.value;
+    setCardFormInput({ ...cardFormInput, cvc: newCvc });
+  };
 
   function CardPaymentModal() {
     return (
@@ -37,6 +64,8 @@ function CheckOut3Payment() {
             required
             placeholder="ex. John Doe"
             variant="standard"
+            value={cardFormInput.cardName}
+            onChange={handleCardNameInput}
           />
           <h5>Kortnummer</h5>
           <TextField
@@ -45,7 +74,7 @@ function CheckOut3Payment() {
             required
             placeholder="ex. 5355 0000 1111 2222"
             variant="standard"
-            value={cardNumber}
+            value={cardFormInput.cardNumber}
             onChange={handleCardNumberInput}
           />
           <div className="bottom-row flex">
@@ -57,6 +86,8 @@ function CheckOut3Payment() {
                   required
                   placeholder="Månad"
                   variant="standard"
+                  value={cardFormInput.expireDate}
+                  onChange={handleCardExpireInput}
                 />
                 <span> / </span>
                 <TextField
@@ -64,6 +95,8 @@ function CheckOut3Payment() {
                   required
                   placeholder="År"
                   variant="standard"
+                  value={cardFormInput.lastDate}
+                  onChange={handleCardExpireLastDateInput}
                 />
               </div>
             </div>
@@ -74,6 +107,7 @@ function CheckOut3Payment() {
                 required
                 placeholder="ex. 321"
                 variant="standard"
+                onChange={handleCvcInput}
               />
             </div>
           </div>
