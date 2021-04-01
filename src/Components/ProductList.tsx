@@ -1,6 +1,7 @@
 import { CSSProperties } from "@material-ui/styles";
 import "../css/tournaments.css";
 import ProductListCard from "./ProductListCard";
+import SearchError from "./SearchError";
 import { useEffect, useState } from "react";
 import {
   IconButton,
@@ -99,6 +100,7 @@ function ProductList() {
   // The mapping of the product database
   const productData = productViewArray.slice(page, pageItems).map((product) => (
     <div key={product.id}>
+      
       {/* Link is to show the right product on ProductPage.
       The product.id is set in the URL string, and shows the right product that has the ID. */}
       <ProductListCard
@@ -199,6 +201,7 @@ function ProductList() {
     }
   };
 
+ 
   return (
     <Grid
       container
@@ -209,15 +212,17 @@ function ProductList() {
     >
       <div className="sok-test">
         <Grid item xs={12} className="searchContainer" style={searchStyle}>
-          <form onSubmit={handleSubmit} style={formStyle} autoComplete="off">
+          <form onSubmit={handleSubmit} style={formStyle} autoComplete="off" >
             <TextField
               id="filled-basic"
               fullWidth
-              label="Sök här"
+              label="Sök kort, minst två tecken"
               variant="filled"
               className={style.searchfield}
               value={searchValue}
               onChange={handleChange}
+              autoFocus
+              name="Sök här"
             />
           </form>
           <Button
@@ -233,13 +238,14 @@ function ProductList() {
         <Grid container xs={12} md={10} style={infoLandingContainer}>
           <Grid item style={listStyle}>
             {productData}
-
+            {productViewArray.length === 0 ? <SearchError /> : null}
             <Grid
               item
               xs={12}
               className="productListBtn"
               style={productListBtnStyle}
             >
+              
               <IconButton onClick={decrease}>
                 <ArrowBackIcon />
               </IconButton>
