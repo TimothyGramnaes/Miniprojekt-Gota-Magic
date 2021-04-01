@@ -205,7 +205,9 @@ function BreadCrumbs() {
                     disabled={active === false}
                     onClick={handleClick}
                   >
-                    {activeStep === steps.length - 1 ? "Klar" : "Nästa"}
+                    {activeStep === steps.length - 1 ? "Klar" 
+                    : activeStep === steps.length - 2 ? "Slutför köp"
+                    : "Nästa"}
                   </Button>
                 </div>
               </div>
