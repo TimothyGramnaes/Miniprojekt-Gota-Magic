@@ -27,24 +27,31 @@ const useStyles = makeStyles({
 
 function CheckOut1UserInfo() {
   const cart = useCart();
+  
   const [userName, setUserName] = useState<string>("");
   const [userNameError, setUserNameError] = useState<boolean>(false);
   const [userNameErrorText, setUserNameErrorText] = useState<string>("");
+
   const [userEmail, setUserEmail] = useState<string>("");
+  const [userEmailError, setUserEmailError] = useState<boolean>(false);
+  const [userEmailErrorText, setUserEmailErrorText] = useState<string>("");
+
   const [userMobile, setUserMobile] = useState<string>("");
+  const [userMobileError, setUserMobileError] = useState<boolean>(false);
+  const [userMobileErrorText, setUserMobileText] = useState<string>("")
+
   const [userDeliveryaddress, setUserDeliveryaddress] = useState<string>("");
   const [userDeliveryAdressError, setUserDeliveryAdressError] = useState<boolean>(false);
   const [userDeliveryErrorText, setUserDeliveryErrorText] = useState<string>("");
+
   const [userCity, setUserCity] = useState<string>("");
   const [userCityError, setUserCityError] = useState<boolean>(false);
   const [userCityErrorText, setUserCityText] = useState<string>("");
+
   const [userPostNumber, setUserPostNumber] = useState<string>("");
   const [userPostNumberError, setUserPostNumberError] = useState<boolean>(false);
   const [userPostNumberTextError, setUserPostNumberErrorText] = useState<string>("");
-  const [userEmailError, setUserEmailError] = useState<boolean>(false);
-  const [userEmailErrorText, setUserEmailErrorText] = useState<string>("");
-  const [userMobileError, setUserMobileError] = useState<boolean>(false);
-  const [userMobileErrorText, setUserMobileText] = useState<string>("");
+;
   const [validated, setValidated] = useState<boolean>(false);
 
   // The user array
