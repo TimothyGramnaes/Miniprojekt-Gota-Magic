@@ -1,6 +1,7 @@
 import React, {Component, CSSProperties, ErrorInfo, ReactNode } from 'react';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
+import {  Grid } from '@material-ui/core';
 
 interface Props {
     children: ReactNode;
@@ -35,6 +36,12 @@ class ErrorBoundary extends Component<Props, State> {
         if (this.state.hasError) {
             console.log('du förstörde allt >=(')
             return (
+                <Grid container 
+                justify="center" 
+                alignItems="center" 
+                className="landingContainer" 
+                style={landingContainer}>
+
                 <div style={errorStyle}>
                     <h2>Trasigt tihi</h2>
                     <Link to="/">
@@ -45,11 +52,21 @@ class ErrorBoundary extends Component<Props, State> {
                     </Button>
                     </Link>
                 </div>
+
+                </Grid>
             );
         }
         return this.props.children
     }
 }
+
+
+const landingContainer: CSSProperties = {
+    backgroundImage: 'url(./assets/imgs/what-the-hex.png)',    
+    height: '100%',
+    
+}
+
 
 const errorStyle: CSSProperties = {
     position: 'relative',
