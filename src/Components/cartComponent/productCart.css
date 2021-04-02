@@ -59,7 +59,7 @@
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 430px) {
   .background {
     padding: 0;
   }
@@ -70,5 +70,11 @@
 
   .productImageContainer .img {
     width: 4rem;
+  }
+}
+
+@media (max-width: 370px) {
+  .productImageContainer img {
+    display: none;
   }
 }
