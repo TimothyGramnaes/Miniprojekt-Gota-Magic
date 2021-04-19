@@ -48,6 +48,7 @@ function CheckOut1UserInfo() {
   const [userMobileError, setUserMobileError] = useState<boolean>(false);
   const [userMobileErrorText, setUserMobileText] = useState<string>("");
   const [validated, setValidated] = useState<boolean>(false);
+  const [ifValid, setIfValid] = useState<boolean>(false);
 
   const noCartItems = cart.cart.length
 
@@ -57,6 +58,7 @@ function CheckOut1UserInfo() {
 
   const user = useCheckoutContext();
   const style = useStyles();
+
 
   // Functions that handles the inputfields an save it to states right above
   const handleUserName = (e: any) => {
@@ -156,7 +158,10 @@ function CheckOut1UserInfo() {
   };
 
   useEffect(() => {
-    if(validated === true) {
+
+    if(ifValid === true) {
+      return
+    } else if(validated === true) {
       user.saveUserInformation(
         userName,
         userEmail,
@@ -166,16 +171,17 @@ function CheckOut1UserInfo() {
         userCity,      
         validated
       );
+        setIfValid(true)
     } else if(validated === false) {
       return
     }    
     else if (userObject[0].validated === true && validated === true) {
       return
     } else {return}
-  }, [user, userCity, userDeliveryaddress, userEmail, userMobile, userName, userObject, userPostNumber, validated])
+  }, [ifValid, user, userCity, userDeliveryaddress, userEmail, userMobile, userName, userObject, userPostNumber, validated])
 
-  // This useEffect fetch the localStorage after the page is updated.
-  // If this is not running, the saved LS data will be deleted
+  This useEffect fetch the localStorage after the page is updated.
+  If this is not running, the saved LS data will be deleted
   useEffect(() => {
     const data = localStorage.getItem("user");
     if (data) {
