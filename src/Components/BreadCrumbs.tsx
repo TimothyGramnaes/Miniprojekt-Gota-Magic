@@ -47,20 +47,32 @@ function getStepContent(stepIndex: number) {
   }
 }
 
+
 function BreadCrumbs() {
   const cart = useCart();
   const user = useCheckoutContext();
   const validatedUser = user.validatedUser;
   const validatedUserShipping = user.validatedShipping;
   const validatedUserPayment = user.validatedPayment;
+  const validatedUserCardPayment = user.validatedCardPayment;
   const [disableAtPay, setDisableAtPay] = useState(true)
 
+  const cleanPaymentUser = () => {
+    const cardName = ""
+    const cardNumber = ""
+    const expireDate = ""
+    const lastDate = ""
+    const cvc = ""
+    user.saveUserPayment(cardName, cardNumber, expireDate, lastDate,cvc )   
+  }
+
+  const [active, setActive] = useState(false)
+  // validatedUser === false
+  console.log(validatedUserCardPayment)
   // If this varible is 0 in length, the orderNumber will not get a new one 
   //if you do the checkout without anything in the cart
   const ifCartIsEmpty = cart.cart
 
-  const [active, setActive] = useState(false)
-  
   const activateBtn = () => {
     if(validatedUser === false && activeStep === 0 ) {
       setActive(false)        
@@ -84,14 +96,25 @@ function BreadCrumbs() {
     } else if(validatedUserPayment === false && activeStep === 2) {
       setActive(false)  
       
+    } else if (activeStep === 2 && user.payment[0].cardId === 1 && validatedUserCardPayment === false) {
+      setActive(false)
+     
+    } else if (activeStep === 2 && user.payment[0].cardId === 1 && validatedUserCardPayment === true) {
+      setActive(true)
+      user.getValidation(false)
+      user.getValidationShipping(false)
+    
     } else if (validatedUserPayment === true && activeStep === 2) {
       setActive(true)
       user.getValidation(false)
       user.getValidationShipping(false)
     
-    } else if (activeStep === 3) {
+    } 
+    else if (activeStep === 3) {
       setActive(true)
       user.getValidationPayment(false)
+      user.getValidationCardPayment(false)  
+      cleanPaymentUser()
     } 
   }
 
@@ -135,7 +158,10 @@ function BreadCrumbs() {
     }, 3500);
   }
 
+  
+
   const handleClick = () => {
+    activateBtn()
     
     if(activeStep === 2){
       setDisableAtPay(false)
