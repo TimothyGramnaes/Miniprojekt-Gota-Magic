@@ -68,7 +68,6 @@ function BreadCrumbs() {
 
   const [active, setActive] = useState(false)
   // validatedUser === false
-  console.log(validatedUserCardPayment)
   // If this varible is 0 in length, the orderNumber will not get a new one 
   //if you do the checkout without anything in the cart
   const ifCartIsEmpty = cart.cart
