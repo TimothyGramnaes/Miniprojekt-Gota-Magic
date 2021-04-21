@@ -180,8 +180,8 @@ function CheckOut1UserInfo() {
     } else {return}
   }, [ifValid, user, userCity, userDeliveryaddress, userEmail, userMobile, userName, userObject, userPostNumber, validated])
 
-  This useEffect fetch the localStorage after the page is updated.
-  If this is not running, the saved LS data will be deleted
+  // This useEffect fetch the localStorage after the page is updated.
+  // If this is not running, the saved LS data will be deleted
   useEffect(() => {
     const data = localStorage.getItem("user");
     if (data) {
