@@ -238,9 +238,8 @@ function CheckOut1UserInfo() {
               variant="standard"
               value={userName}
               onChange={handleUserName}
-              error={userNameError}
+              error={Boolean(userNameErrorText)}
               helperText={userNameErrorText}
-              // disabled={disableInput}
             />
 
             <TextField
@@ -253,7 +252,7 @@ function CheckOut1UserInfo() {
               type="email"
               value={userEmail}
               onChange={handleuserEmail}
-              error={userEmailError}
+              error={Boolean(userEmailErrorText)}
               helperText={userEmailErrorText}
             />
 
@@ -266,6 +265,7 @@ function CheckOut1UserInfo() {
               type="tel"
               value={userMobile}
               onChange={handleuserMobile}
+              error={Boolean(userMobileErrorText)}
               helperText={userMobileErrorText}
             />
 
@@ -278,6 +278,7 @@ function CheckOut1UserInfo() {
               variant="standard"
               value={userDeliveryaddress}
               onChange={handleuserDeliveryaddress}
+              error={Boolean(userDeliveryErrorText)}
               helperText={userDeliveryErrorText}
             />
 
@@ -290,6 +291,7 @@ function CheckOut1UserInfo() {
               variant="standard"
               value={userCity}
               onChange={handleuserCity}
+              error={Boolean(userCityErrorText)}
               helperText={userCityErrorText}
             />
 
@@ -302,6 +304,7 @@ function CheckOut1UserInfo() {
               variant="standard"
               value={userPostNumber}
               onChange={handleuserPostNumber}
+              error={Boolean(userPostNumberTextError)}
               helperText={userPostNumberTextError}
             />
           </form>

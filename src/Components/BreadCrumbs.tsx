@@ -111,6 +111,7 @@ function BreadCrumbs() {
     
     } 
     else if (activeStep === 3) {
+      setDisableAtPay(true)
       setActive(true)
       user.getValidationPayment(false)
       user.getValidationCardPayment(false)  
@@ -150,15 +151,14 @@ function BreadCrumbs() {
   };
 
   const paymentDelay = () => {
-    if (activeStep === 2 && disableAtPay === false) {
+    setActive(false)
+    if (activeStep === 2 && disableAtPay === false) {      
       return
     }
     setTimeout(() => {
       handleNext()
     }, 3500);
-  }
-
-  
+  }  
 
   const handleClick = () => {
     activateBtn()
@@ -235,13 +235,15 @@ function BreadCrumbs() {
                   <Button disabled={activeStep === 0 || activeStep === 3} onClick={handleBack}>
                     Tillbaka
                   </Button>
+                  {/* {disableAtPay === true ?} */}
                   <Button
                     variant="contained"
                     color="primary"
-                    disabled={active === false}
+                    disabled={active === false || disableAtPay === false}
                     onClick={handleClick}
                   >
                     {activeStep === steps.length - 1 ? "Klar" 
+                    : activeStep === steps.length - 2 && disableAtPay === false ? "Bearbetar..."
                     : activeStep === steps.length - 2 ? "Slutför köp"
                     : "Nästa"}
                   </Button>
