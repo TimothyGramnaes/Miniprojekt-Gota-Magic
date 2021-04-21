@@ -25,7 +25,7 @@ function OrderConfirmation() {
         </div>
         <div className="user-info">
           <h5 className="order-info-text">
-            Din leverans beräknas anlända till {user.deliveryaddress} om ca {shipping[0].deliveryTime}
+            Din leverans beräknas anlända till {user.deliveryaddress}, {shipping[0].deliveryTime}
           </h5>
           <h3>Användaruppgifter</h3>
           <p>{user.name}</p>

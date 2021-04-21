@@ -167,8 +167,6 @@ export const CheckoutProvider: FunctionComponent = ({ children }) => {
     
   };
 
-  console.log(userInfo)
-
   // Saves the paymentinformation from CheckOut3Payment
   const savePaymentMethod = (cardId: string) => {
     const selectedPayment = PaymentMethods.filter((p) => {

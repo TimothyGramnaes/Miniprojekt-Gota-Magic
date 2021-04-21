@@ -48,6 +48,7 @@ function CheckOut1UserInfo() {
   const [userMobileError, setUserMobileError] = useState<boolean>(false);
   const [userMobileErrorText, setUserMobileText] = useState<string>("");
   const [validated, setValidated] = useState<boolean>(false);
+  const [ifValid, setIfValid] = useState<boolean>(false);
 
   const noCartItems = cart.cart.length
 
@@ -57,6 +58,7 @@ function CheckOut1UserInfo() {
 
   const user = useCheckoutContext();
   const style = useStyles();
+
 
   // Functions that handles the inputfields an save it to states right above
   const handleUserName = (e: any) => {
@@ -156,7 +158,10 @@ function CheckOut1UserInfo() {
   };
 
   useEffect(() => {
-    if(validated === true) {
+
+    if(ifValid === true) {
+      return
+    } else if(validated === true) {
       user.saveUserInformation(
         userName,
         userEmail,
@@ -166,13 +171,14 @@ function CheckOut1UserInfo() {
         userCity,      
         validated
       );
+        setIfValid(true)
     } else if(validated === false) {
       return
     }    
     else if (userObject[0].validated === true && validated === true) {
       return
     } else {return}
-  }, [user, userCity, userDeliveryaddress, userEmail, userMobile, userName, userObject, userPostNumber, validated])
+  }, [ifValid, user, userCity, userDeliveryaddress, userEmail, userMobile, userName, userObject, userPostNumber, validated])
 
   // This useEffect fetch the localStorage after the page is updated.
   // If this is not running, the saved LS data will be deleted
@@ -232,9 +238,8 @@ function CheckOut1UserInfo() {
               variant="standard"
               value={userName}
               onChange={handleUserName}
-              error={userNameError}
+              error={Boolean(userNameErrorText)}
               helperText={userNameErrorText}
-              // disabled={disableInput}
             />
 
             <TextField
@@ -247,7 +252,7 @@ function CheckOut1UserInfo() {
               type="email"
               value={userEmail}
               onChange={handleuserEmail}
-              error={userEmailError}
+              error={Boolean(userEmailErrorText)}
               helperText={userEmailErrorText}
             />
 
@@ -260,6 +265,7 @@ function CheckOut1UserInfo() {
               type="tel"
               value={userMobile}
               onChange={handleuserMobile}
+              error={Boolean(userMobileErrorText)}
               helperText={userMobileErrorText}
             />
 
@@ -272,6 +278,7 @@ function CheckOut1UserInfo() {
               variant="standard"
               value={userDeliveryaddress}
               onChange={handleuserDeliveryaddress}
+              error={Boolean(userDeliveryErrorText)}
               helperText={userDeliveryErrorText}
             />
 
@@ -284,6 +291,7 @@ function CheckOut1UserInfo() {
               variant="standard"
               value={userCity}
               onChange={handleuserCity}
+              error={Boolean(userCityErrorText)}
               helperText={userCityErrorText}
             />
 
@@ -296,6 +304,7 @@ function CheckOut1UserInfo() {
               variant="standard"
               value={userPostNumber}
               onChange={handleuserPostNumber}
+              error={Boolean(userPostNumberTextError)}
               helperText={userPostNumberTextError}
             />
           </form>

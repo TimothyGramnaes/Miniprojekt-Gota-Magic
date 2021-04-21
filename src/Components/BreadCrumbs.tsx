@@ -68,7 +68,6 @@ function BreadCrumbs() {
 
   const [active, setActive] = useState(false)
   // validatedUser === false
-  console.log(validatedUserCardPayment)
   // If this varible is 0 in length, the orderNumber will not get a new one 
   //if you do the checkout without anything in the cart
   const ifCartIsEmpty = cart.cart
@@ -111,6 +110,7 @@ function BreadCrumbs() {
     
     } 
     else if (activeStep === 3) {
+      setDisableAtPay(true)
       setActive(true)
       user.getValidationPayment(false)
       user.getValidationCardPayment(false)  
@@ -150,15 +150,14 @@ function BreadCrumbs() {
   };
 
   const paymentDelay = () => {
-    if (activeStep === 2 && disableAtPay === false) {
+    setActive(false)
+    if (activeStep === 2 && disableAtPay === false) {      
       return
     }
     setTimeout(() => {
       handleNext()
     }, 3500);
-  }
-
-  
+  }  
 
   const handleClick = () => {
     activateBtn()
@@ -235,13 +234,15 @@ function BreadCrumbs() {
                   <Button disabled={activeStep === 0 || activeStep === 3} onClick={handleBack}>
                     Tillbaka
                   </Button>
+                  {/* {disableAtPay === true ?} */}
                   <Button
                     variant="contained"
                     color="primary"
-                    disabled={active === false}
+                    disabled={active === false || disableAtPay === false}
                     onClick={handleClick}
                   >
                     {activeStep === steps.length - 1 ? "Klar" 
+                    : activeStep === steps.length - 2 && disableAtPay === false ? "Bearbetar..."
                     : activeStep === steps.length - 2 ? "Slutför köp"
                     : "Nästa"}
                   </Button>
