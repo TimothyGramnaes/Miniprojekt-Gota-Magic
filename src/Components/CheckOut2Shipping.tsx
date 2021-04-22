@@ -32,35 +32,35 @@ function CheckOut2Shipping() {
     shippingMethods[0].name +
     " - " +
     shippingMethods[0].price +
-    " kr Beräknat leveransdatum (" +
+    " kr - Beräknat leveransdatum (" +
     shippingMethods[0].deliveryTime +
     ")";
   const shippingMethodText2 =
     shippingMethods[1].name +
     " - " +
     shippingMethods[1].price +
-    " kr Beräknat leveransdatum (" +
+    " kr - Beräknat leveransdatum (" +
     shippingMethods[1].deliveryTime +
     ")";
   const shippingMethodText3 =
     shippingMethods[2].name +
     " - " +
     shippingMethods[2].price +
-    " kr Beräknat leveransdatum (" +
+    " kr - Beräknat leveransdatum (" +
     shippingMethods[2].deliveryTime +
     ")";
   const shippingMethodText4 =
     shippingMethods[3].name +
     " - " +
     shippingMethods[3].price +
-    " kr Beräknat leveransdatum (" +
+    " kr - Beräknat leveransdatum (" +
     shippingMethods[3].deliveryTime +
     ")";
   const shippingMethodText5 =
     shippingMethods[4].name +
     " - " +
     shippingMethods[4].price +
-    " kr Beräknat leveransdatum (" +
+    " kr - Beräknat leveransdatum (" +
     shippingMethods[4].deliveryTime +
     ")";
 
